@@ -1,0 +1,35 @@
+file structure
+
+ColdMustache - root
+- ColdMustache - unity project folder
+- - Assets - everything thats par tof the game
+- - - Resources - everything that could be loaded on runtime has to be here
+- - - = Entities - living things (including robots)
+- - - | - Animal - not human, not mechanical
+- - - | - Boss
+- - - | - Human - human sized and shaped
+- - - | - Mechanical - robots and stuff
+- - - = Environment - things in game - walls etc.
+- - - | - Physical - can be collided with
+- - - | - - Walls
+- - - | - - Objects - tables, barricades...
+- - - | - Decor - cannot be collided with
+- - - | - - Floor
+- - - | - - Objects (stuff on floor)
+- - - | - - Details (scrathes, stains - even for walls) - PERMANENT PART OF ENVIRONMENT, UNLIKE FX/ENVIRONMENT
+- - - = Fx - particles and other special effects
+- - - | - Combat - explosions, bullet trails, flames (from flamethrower...)
+- - - | - Entity - de/buffs, status effect (flames (burning entities), bleeding...), cosmetic fx
+- - - | - Environment - DECORATIVE, TEMPORARY, SPAWNED ON RUNTIME - dust, blood, scratches, stains
+- - - = Gui
+- - - | - Hud - health, status effect icons...
+- - - | - Menus - including inventory, main menu, pause menu...
+- - - | - Dialogue
+- - - = Items
+- - - = Projectiles
+- - - = Scenes
+- - - = Sound
+- - - | - Music
+- - - = Util - utilities like rotating vectors that dont fit anywhere else (combat/movement reletad utilities are under entities...)
+- - Library, ProjectSettings... automatic stuff
+- NonUnity - for concepts, notes... things that arent actualy in the game

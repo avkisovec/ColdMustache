@@ -1,0 +1,3 @@
+when entities move to target place, you have to prevent overshooting - every frame they check if theyre there, and if in the next frame they would overshoot, they either slow down or teleport to the exact place (teleporting into other entities could cause collision issues)
+
+mby this doesnt apply to player - his goal will always be right next to him, based on key pressed - you wouldnt want any weird teleports and slows to mess w movement

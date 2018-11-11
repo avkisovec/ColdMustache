@@ -1,0 +1,17 @@
+game object tag - bullet
+
+bullet script - .team
+
+if you collide w bullet from other team, you take damage
+
+trail effect - assign script fxBulletTrail that spawns it every update
+
+explosion - assign script fxBulletExplosion through some script manager and call it's spawn() on destroy
+.
+or bullet class has a var "effect to play on destroy"
+.
+or explosion can be empty object prefab w script
+
+or have effectsDb script, every effect is a method w parameters where it should spawn
+.
+this would have frame rate manager integrated to ensure frame rate independence (different life int based on current framerate)

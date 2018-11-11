@@ -1,0 +1,13 @@
+cold mustache
+
+
+every sprite manager could have sprite[] head, body instead of just a single sprite head, body
+
+on start, it chooses one each sprite randomly, and saves it into special variable and dumps the rest to save on memory
+
+
+even robots could have multiple sprites for everything
+
+base body could be different metal, based on their age - new & clean (light gray steel), slightly used (darker steel), old (rust, smudges, dark burnt spots), patched (repeared with different metals put together)
+paintjob - some patterns (number, one or two sprites, checker pattern, camo), with random colors each
+

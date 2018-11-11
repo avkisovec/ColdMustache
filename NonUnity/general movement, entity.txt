@@ -1,0 +1,22 @@
+cold mustache - entity general - movement
+
+
+move to coordinates
+
+move to closest entity from team ___
+
+patrol
+	move to x, when near x, move to y
+
+
+
+
+
+	TARGET FINDER
+
+find nearest member of team ___
+
+find weakest member of team __ within range __
+
+
+should have some list of all living entities within it (every entity has to have "entity" script assigned, when that's created it reports it existence to the list)

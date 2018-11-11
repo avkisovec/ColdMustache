@@ -1,0 +1,12 @@
+cold mustache
+
+
+objects should be in front of / behind one another depending on their Y value
+
+
+for every 1 point of Y, units should move by 0.1 on Z
+(rounding instead of a smooth linear - you wouldnt want someones face to be on top of someone elses body)
+
+
+entities should not be vider than +-0.05 Z
+base 0, other layers +-0.01 0.02 0.03...

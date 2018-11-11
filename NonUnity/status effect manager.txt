@@ -1,0 +1,17 @@
+every entity has one
+
+keeps track of all active effects
+
+when entity moves, it asks its manager for move speed modifier - similar when it attacks etc.
+
+when entity inflicts status effect on another, it calls its manager to note the new effect
+
+manager do some things alone, such as deal damage from poison
+
+some units can be immune to certain effects . flying units vs slow, mechanical units vs poisons...
+.
+have a bool - slowImmunity, poisonImmunity, fireImmunity...
+.
+or have % resist - 100% resist equals immunity
+
+also manages fx for the status effects

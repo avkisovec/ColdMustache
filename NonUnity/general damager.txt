@@ -1,0 +1,9 @@
+cold mustache
+
+
+
+instead of bullets, have a "damager" (tag & class)
+
+damager has a variable whether or not it should be destroyed upon dealing damage (bullet) or not (fire)
+
+also what team it belongs to (environment fire = neutral)
