@@ -7,6 +7,7 @@ public class Entity : MonoBehaviour {
     public int Health = 10;
     
 
+
 	// Use this for initialization
 	void Start () {
 		
