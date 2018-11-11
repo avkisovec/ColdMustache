@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour {
 
-    public int Health = 10;
+    public float Health = 10;
     public enum team {Player, Enemy, Neutral }
     public team Team = team.Neutral;
     public float BaseMoveSpeed = 5;
+    public float CurrMoveSpeed = 5;
 
     public Vector2 LookingToward = new Vector2(1,0);
 
@@ -28,18 +29,21 @@ public class Entity : MonoBehaviour {
 
     public void MoveInDirection(Vector2 MovementVector)
     {
-        float CurrMoveSpeed = BaseMoveSpeed;
-        
         //fixing some bug when computing/assigning vector 0,0
         if (MovementVector.x != 0 || MovementVector.y != 0)
         {
             //dividing by magnitude to make diagonal travel as fast as horizontal/vertical
             rb.velocity = MovementVector / MovementVector.magnitude * CurrMoveSpeed;
+
+            LookingToward = (Vector2)transform.position + MovementVector;
         }
         else
         {
             rb.velocity = new Vector2(0, 0);
         }
+
+
+        CurrMoveSpeed = BaseMoveSpeed;
     }
 
     public void TakeDamage (int Damage)

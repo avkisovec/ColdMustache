@@ -9,6 +9,12 @@ public class Damager : MonoBehaviour {
     
     private void OnTriggerEnter2D(Collider2D coll)
     {
+        if(coll.tag == "Wall")
+        {
+            GetComponent<DeathAnimation>().Spawn();
+            Destroy(gameObject);
+            return;
+        }
         Entity hit = coll.GetComponent<Entity>();
         if (hit!=null)
         {

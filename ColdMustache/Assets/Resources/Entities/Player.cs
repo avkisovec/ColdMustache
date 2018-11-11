@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
     
-    // will be status effect
-    float AimingMoveSpeedModifier = 0.25f;
     //after player shoots, he will be briefly stuck in aiming position (making him slower) (in seconds)
     float BaseShootingWindDownDuration = 0.3f;
     float CurrShootingWindDownDuration = 0;
@@ -84,6 +82,8 @@ public class Player : MonoBehaviour {
             Shoot(MouseWorldPos);
 
             CurrShootingCooldown = BaseShootingCooldown;
+
+            gameObject.AddComponent<StatusSlow>().ini(BaseShootingCooldown, 0.5f, false);  //slow yourself for the duration of the cooldown
         }
 
     }
@@ -104,5 +104,6 @@ public class Player : MonoBehaviour {
         bullet.AddComponent<DieInSeconds>().Seconds = 5;
         //bullet.gameObject.tag = "PlayerBullet";
         bullet.gameObject.AddComponent<CircleCollider2D>().isTrigger = true;
+        //bullet.AddComponent<InflicterSlow>().ini(Entity.team.Enemy, 2, 0.25f);
     }
 }
