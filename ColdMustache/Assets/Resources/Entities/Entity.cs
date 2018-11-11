@@ -16,6 +16,8 @@ public class Entity : MonoBehaviour {
 
     SpriteManager AnySprtMng;
 
+    public bool LookDirectionBasedOnMovement = true;
+
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody2D>();
@@ -35,7 +37,10 @@ public class Entity : MonoBehaviour {
             //dividing by magnitude to make diagonal travel as fast as horizontal/vertical
             rb.velocity = MovementVector / MovementVector.magnitude * CurrMoveSpeed;
 
-            LookingToward = (Vector2)transform.position + MovementVector;
+            if (LookDirectionBasedOnMovement)
+            {
+                LookingToward = (Vector2)transform.position + MovementVector;
+            }
         }
         else
         {
