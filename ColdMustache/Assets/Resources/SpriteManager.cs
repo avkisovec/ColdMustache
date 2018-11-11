@@ -3,19 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpriteManager : MonoBehaviour {
-
-    //public enum LookDirections { Up, Down, Left, Right }
-
+    
     public Sprite Front;
     public Sprite Side;
     public Sprite Back;
 
-    public SpriteRenderer SpriteRenderer;
-    
-	// Use this for initialization
-	void Start ()
+    public SpriteRenderer spriteRenderer;
+
+    protected Entity entity;
+
+
+    float BaseCooldownToDefaultColor = 0.1f;
+    float CurrCooldownToDefaultColor = 0;
+
+    Color DefaultColor;
+    Color InjuredColor = new Color(1, 0, 0);
+
+    // Use this for initialization
+    void Start ()
     {
-        SpriteRenderer.sprite = Front;
+        StartOriginal();
+    }
+
+    //start default is what is called in the original class - every child class has its own start(), but they still need to call the original
+    protected void StartOriginal()
+    {
+        //spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = Front;
+        DefaultColor = spriteRenderer.color;
+        entity = GetComponent<Entity>();
     }
 	
 	public void LookAt(Vector3 Target)
@@ -25,17 +41,17 @@ public class SpriteManager : MonoBehaviour {
         //if target is farther "up/down" than "left/right", choose between up/down
         if (Mathf.Abs(Delta.y) > Mathf.Abs(Delta.x))
         {
-            SpriteRenderer.flipX = false;
+            spriteRenderer.flipX = false;
             //up (back is visible)
             if (Delta.y > 0)
             {
-                SpriteRenderer.sprite = Back;
+                spriteRenderer.sprite = Back;
                 
             }
             //down (front is visible)
             else
             {
-                SpriteRenderer.sprite = Front;
+                spriteRenderer.sprite = Front;
 
             }
         }
@@ -45,20 +61,44 @@ public class SpriteManager : MonoBehaviour {
             //side (toward right = dafault)
             if (Delta.x > 0)
             {
-                SpriteRenderer.sprite = Side;
-                SpriteRenderer.flipX = false;
+                spriteRenderer.sprite = Side;
+                spriteRenderer.flipX = false;
                 
                 
             }
             //other side (toward left - needs mirrorring)
             else
             {
-                SpriteRenderer.sprite = Side;
-                SpriteRenderer.flipX = true;
+                spriteRenderer.sprite = Side;
+                spriteRenderer.flipX = true;
                 
             }
         }
     }
 
+    private void Update()
+    {
+        UpdateOriginal();
+    }
+
+    //update default is what is updated in the original class - every child  class has its own update(), but they still need to call the original
+    protected void UpdateOriginal()
+    {
+        LookAt(entity.LookingToward);
+        if (CurrCooldownToDefaultColor > 0)
+        {
+            CurrCooldownToDefaultColor -= Time.deltaTime;
+        }
+        else
+        {
+            spriteRenderer.color = DefaultColor;
+        }
+    }
+
+    public void FlashInjuredColor()
+    {
+        spriteRenderer.color = InjuredColor;
+        CurrCooldownToDefaultColor = BaseCooldownToDefaultColor;
+    }
 
 }

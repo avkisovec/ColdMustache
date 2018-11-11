@@ -308,6 +308,8 @@ GameObject:
   - component: {fileID: 1491351037}
   - component: {fileID: 1491351040}
   - component: {fileID: 1491351041}
+  - component: {fileID: 1491351042}
+  - component: {fileID: 1491351043}
   m_Layer: 0
   m_Name: PlayerContainer
   m_TagString: Player
@@ -329,9 +331,10 @@ MonoBehaviour:
   Front: {fileID: 21300000, guid: e60822e01d1f1a344a431bd41eaf0fcc, type: 3}
   Side: {fileID: 21300000, guid: e9f72d4775056cf499936fc83adbdb66, type: 3}
   Back: {fileID: 21300000, guid: be505afb8d055964a93a852c66971b57, type: 3}
-  SpriteRenderer: {fileID: 2136922842}
+  spriteRenderer: {fileID: 2136922842}
   GunContainer: {fileID: 509282461}
   GunSpriteRenderer: {fileID: 1190511910}
+  ActivelyAiming: 1
 --- !u!114 &1491351038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,10 +343,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1491351036}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e05a542d8b9626b4faa19d37acfd302d, type: 3}
+  m_Script: {fileID: 11500000, guid: 34d3833b1156c5e47b26c0550f699a54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 10
+  Team: 0
   BaseMoveSpeed: 5
+  LookingToward: {x: 1, y: 0}
 --- !u!4 &1491351039
 Transform:
   m_ObjectHideFlags: 0
@@ -394,6 +400,28 @@ CapsuleCollider2D:
   m_Offset: {x: -0.014238894, y: 0.052801013}
   m_Size: {x: 0.4715222, y: 0.91067076}
   m_Direction: 0
+--- !u!114 &1491351042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1491351036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e05a542d8b9626b4faa19d37acfd302d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1491351043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1491351036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e03067eea45284743b343d6fc3024b1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1671020095
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,9 +504,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1979359409}
   - component: {fileID: 1979359408}
-  - component: {fileID: 1979359410}
   - component: {fileID: 1979359411}
   - component: {fileID: 1979359412}
+  - component: {fileID: 1979359410}
+  - component: {fileID: 1979359413}
   m_Layer: 0
   m_Name: EnemyContainer
   m_TagString: Enemy
@@ -500,7 +529,7 @@ MonoBehaviour:
   Front: {fileID: 21300000, guid: ebc7532c2176ede4aad28573f51ba951, type: 3}
   Side: {fileID: 21300000, guid: 4c1eca6753d38c34e85a5e3fa2a0b088, type: 3}
   Back: {fileID: 21300000, guid: b0c07a3f990374b459a75eb312e6ab86, type: 3}
-  SpriteRenderer: {fileID: 1671020096}
+  spriteRenderer: {fileID: 1671020096}
 --- !u!4 &1979359409
 Transform:
   m_ObjectHideFlags: 0
@@ -523,11 +552,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1979359407}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3d81bdf85fee2f45a0a3cd139025aa6, type: 3}
+  m_Script: {fileID: 11500000, guid: 34d3833b1156c5e47b26c0550f699a54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 1671020096}
-  Target: {fileID: 1491351036}
+  Health: 10
+  Team: 1
+  BaseMoveSpeed: 5
+  LookingToward: {x: 1, y: 0}
 --- !u!58 &1979359411
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -563,6 +594,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1979359413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1979359407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e03067eea45284743b343d6fc3024b1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2136922841
 GameObject:
   m_ObjectHideFlags: 0

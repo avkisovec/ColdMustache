@@ -12,16 +12,34 @@ public class SpriteManagerGunner : SpriteManager {
     Vector3 GunBackPos;
     Vector3 GunSidePos; //default = toward right
     Vector3 GunOtherSidePos; //mirrorred = toward left
+
+    public bool ActivelyAiming = false; //if not - just hold the gun in a relaxed way
     
     // Use this for initialization
     void Start()
     {
+        StartOriginal();
+
         GunFrontPos = new Vector3(GunContainer.localPosition.x, GunContainer.localPosition.y - 0.1f, GunContainer.localPosition.z);
         GunBackPos = new Vector3(GunContainer.localPosition.x, GunContainer.localPosition.y + 0.3f, -GunContainer.localPosition.z);
         GunSidePos = new Vector3(GunContainer.localPosition.x + 0.2f, GunContainer.localPosition.y, GunContainer.localPosition.z);
         GunOtherSidePos = new Vector3(GunContainer.localPosition.x - 0.2f, GunContainer.localPosition.y, GunContainer.localPosition.z);
     }
-    
+
+    private void Update()
+    {
+        UpdateOriginal();
+
+        if (ActivelyAiming)
+        {
+            AimGun(entity.LookingToward);
+        }
+        else
+        {
+            HoldGun(entity.LookingToward);
+        }
+    }
+
     public void AimGun(Vector3 Target)
     {
         Vector2 Delta = (Vector2)Target - (Vector2)transform.position;
@@ -29,7 +47,7 @@ public class SpriteManagerGunner : SpriteManager {
         //if target is farther "up/down" than "left/right", choose between up/down
         if (Mathf.Abs(Delta.y) > Mathf.Abs(Delta.x))
         {
-            SpriteRenderer.flipX = false;
+            spriteRenderer.flipX = false;
             //up (back is visible)
             if (Delta.y > 0)
             {
@@ -65,9 +83,7 @@ public class SpriteManagerGunner : SpriteManager {
             GunSpriteRenderer.flipY = true;
         }
     }
-
-   
-
+    
     public void HoldGun(Vector3 Target)
     {
         Vector2 Delta = (Vector2)Target - (Vector2)transform.position;
@@ -75,7 +91,7 @@ public class SpriteManagerGunner : SpriteManager {
         //if target is farther "up/down" than "left/right", choose between up/down
         if (Mathf.Abs(Delta.y) > Mathf.Abs(Delta.x))
         {
-            SpriteRenderer.flipX = false;
+            spriteRenderer.flipX = false;
             //up (back is visible)
             if (Delta.y > 0)
             {
