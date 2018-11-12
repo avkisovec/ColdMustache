@@ -99,8 +99,11 @@ public class Player : MonoBehaviour {
         bullet.GetComponent<Rigidbody2D>().velocity = Util.GetDirectionVectorToward(transform, Target) * 20;
         bullet.AddComponent<FxBulletTrail>();
         bullet.AddComponent<FxBulletExplosion>();
-        bullet.AddComponent<Damager>().Team = Entity.team.Player;
-        bullet.GetComponent<Damager>().Damage = 1;
+
+        bullet.AddComponent<DamagerInflicter>().ini(Entity.team.Player, 1, true);
+        bullet.AddComponent<InflicterSlow>().ini(2,0.5f,true);
+        bullet.gameObject.name = "bullet";
+
         bullet.AddComponent<DieInSeconds>().Seconds = 5;
         //bullet.gameObject.tag = "PlayerBullet";
         bullet.gameObject.AddComponent<CircleCollider2D>().isTrigger = true;

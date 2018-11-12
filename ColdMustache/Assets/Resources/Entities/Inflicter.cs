@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeathAnimation : MonoBehaviour {
+public class Inflicter : MonoBehaviour {
     
-    virtual public void Spawn(Vector3 Coordinates)
+    public virtual void Inflict(GameObject Target)
     {
-
     }
     
 }

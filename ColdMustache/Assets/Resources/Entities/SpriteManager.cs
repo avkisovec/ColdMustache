@@ -13,7 +13,7 @@ public class SpriteManager : MonoBehaviour {
     protected Entity entity;
 
 
-    float BaseCooldownToDefaultColor = 0.1f;
+    float BaseCooldownToDefaultColor = 0.2f;
     float CurrCooldownToDefaultColor = 0;
 
     Color DefaultColor;

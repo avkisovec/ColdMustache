@@ -67,7 +67,7 @@ public class Entity : MonoBehaviour {
 
     public void Die()
     {
-        GetComponent<DeathAnimation>().Spawn();
+        GetComponent<DeathAnimation>().Spawn(transform.position);
         Destroy(this.gameObject);
     }
 

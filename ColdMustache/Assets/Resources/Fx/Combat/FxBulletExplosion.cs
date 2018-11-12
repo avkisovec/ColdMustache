@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FxBulletExplosion : DeathAnimation {
 
-    public override void Spawn()
+    public override void Spawn(Vector3 Coordinates)
     {
         //base.Spawn();
         for (int i = 0; i < 30; i++)

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class FxMeatExplosion : DeathAnimation {
 
-    public override void Spawn()
+    public override void Spawn(Vector3 Coordinates)
     {
         for (int i = 0; i < 50; i++)
         {
             GameObject go = new GameObject();
             go.AddComponent<Particle>();
-            go.transform.position = transform.position;
+            go.transform.position = Coordinates;
             Particle p = go.GetComponent<Particle>();
             p.UseShifts = true;
             p.LeaveParent = true;
