@@ -35,6 +35,11 @@ public class DamagerInflicter : MonoBehaviour {
 
     private void Collision(Collider2D coll)
     {
+        if (coll.CompareTag("Wall") || coll.CompareTag("PseudoWall")){
+            GetComponent<DeathAnimation>().Spawn(transform.position);
+            Destroy(this.gameObject);
+            return;
+        }
         Entity hit = coll.GetComponent<Entity>();
         if (hit != null && CurrCooldown <= 0)
         {

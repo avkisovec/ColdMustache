@@ -97,6 +97,7 @@ public class Player : MonoBehaviour {
         bullet.GetComponent<SpriteRenderer>().color = new Color(1, 1, 0);
         bullet.AddComponent<Rigidbody2D>().gravityScale = 0;
         bullet.GetComponent<Rigidbody2D>().velocity = Util.GetDirectionVectorToward(transform, Target) * 20;
+        bullet.GetComponent<Rigidbody2D>().collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         bullet.AddComponent<FxBulletTrail>();
         bullet.AddComponent<FxBulletExplosion>();
 

@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - Enemy
   - PlayerBullet
+  - PseudoWall
   layers:
   - Default
   - TransparentFX

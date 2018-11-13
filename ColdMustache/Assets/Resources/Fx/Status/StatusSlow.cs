@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StatusSlow : StatusEffect {
+public class StatusSlow : MonoBehaviour {
 
 
     public float DurationSeconds = 2;
