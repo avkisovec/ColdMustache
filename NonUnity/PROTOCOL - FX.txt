@@ -1,0 +1,50 @@
+COLD MUSTACHE - FX PROTOCOL
+
+
+DEATH EFFECTS
+
+all are based on the parent class "DeathAnimation"
+all override the original spawn() (which is empty) with their own code for spawning particles
+
+every damager (like a projectile), when it hits someone, finds it's "DeathAnimation" (actually script based on it) and calls the spawn() animation (which will be overridden, differently for each particle effect)
+
+damager that can hit multiple times (damage auras, flames), they don't "die" when they hit someone (unlike bullets), but they still search for script based on DeathAnimation and play the Spawn()
+(it should be renamed but whatever)
+
+
+PERMANENT
+
+includes things like bullet trails
+
+they keep spawning particles every update, forever (until the gameobject is destroyed)
+
+
+STATUS
+
+status scripts are assigned to a gameobject with an Entity script
+
+usually they have limited lifespan (every script its own, commonly seconds or maybe other (until death, for next X attacks...))
+
+usually, every frame they do something (like "slow" will decrease it's gameobject's Entity script's movement speed) every frame until it runs out)
+
+they may or may not display particles
+
+
+INFLICTERS (in same folders as status)
+
+
+they are all based on class Inflicter (located in entity folder)
+base class has method Inflict()
+
+they are assigned to an object with DamagerInflicter
+
+when DamagerInflicter hits an enemy, it deals damage and checks for any Inflicters on the same gameobject the DamagerInflicter is
+calls the inflict() method of any inflicter it finds
+
+the inclict() adds specified status effect to the target hit
+
+
+
+SINGLE
+
+they are assigned, in their first frame of existance they do their thing and delete themselves

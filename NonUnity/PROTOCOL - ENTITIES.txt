@@ -1,0 +1,17 @@
+COLD MUSTACHE - ENTITIES PROTOCOL
+
+
+
+CONTAINER
+	the actual entity
+	requires:
+	- rigidbody2D (gravity scale 0, dynamic, freeze rotation)
+	- circle / capsule / polygon collider 2d
+	- Entity script
+	- Sprite manager script (or its children)
+	optional:
+	- deathAnimation children
+	- some behavior script (otherwise wont do much)
+
+	spriteManager requires some SpriteRenderer, can be assigned to container itself (not recommended) or part of some child gameobject
+	
