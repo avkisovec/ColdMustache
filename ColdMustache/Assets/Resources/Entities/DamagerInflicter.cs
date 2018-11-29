@@ -13,6 +13,8 @@ public class DamagerInflicter : MonoBehaviour {
 
     public bool SpawnFxOnTargetInsteadOfSource = false;
 
+    public float BecomeActiveAfterSeconds = 0;
+
     //public bool InflictEffects
 
     private void Update()
@@ -20,6 +22,10 @@ public class DamagerInflicter : MonoBehaviour {
         if (CurrCooldown > 0)
         {
             CurrCooldown -= Time.deltaTime;
+        }
+        if(BecomeActiveAfterSeconds > 0)
+        {
+            BecomeActiveAfterSeconds -= Time.deltaTime;
         }
     }
 
@@ -35,47 +41,55 @@ public class DamagerInflicter : MonoBehaviour {
 
     private void Collision(Collider2D coll)
     {
-        if (coll.CompareTag("Wall") || coll.CompareTag("PseudoWall")){
-            GetComponent<DeathAnimation>().Spawn(transform.position);
-            Destroy(this.gameObject);
-            return;
-        }
-        Entity hit = coll.GetComponent<Entity>();
-        if (hit != null && CurrCooldown <= 0)
+
+        if (BecomeActiveAfterSeconds <= 0)
         {
-            if (Team != hit.Team)
+
+            if (coll.CompareTag("Wall") || coll.CompareTag("PseudoWall"))
             {
-                CurrCooldown = CoolDownBetweenHits;
-                if (Damage!= 0)
+                GetComponent<DeathAnimation>().Spawn(transform.position);
+                Destroy(this.gameObject);
+                return;
+            }
+            Entity hit = coll.GetComponent<Entity>();
+            if (hit != null && CurrCooldown <= 0)
+            {
+                if (Team != hit.Team)
                 {
-                    hit.TakeDamage(Damage);
-                }
-                if (SpawnFxOnTargetInsteadOfSource)
-                {
-                    GetComponent<DeathAnimation>().Spawn(coll.transform.position);
-                }
-                else
-                {
-                    GetComponent<DeathAnimation>().Spawn(transform.position);
-                }
-                foreach (Inflicter i in GetComponents<Inflicter>())
-                {
-                    i.Inflict(coll.gameObject);
-                }
-                if (SingleUse)
-                {
-                    Destroy(this.gameObject);
-                    return;
+                    CurrCooldown = CoolDownBetweenHits;
+                    if (Damage != 0)
+                    {
+                        hit.TakeDamage(Damage);
+                    }
+                    if (SpawnFxOnTargetInsteadOfSource)
+                    {
+                        GetComponent<DeathAnimation>().Spawn(coll.transform.position);
+                    }
+                    else
+                    {
+                        GetComponent<DeathAnimation>().Spawn(transform.position);
+                    }
+                    foreach (Inflicter i in GetComponents<Inflicter>())
+                    {
+                        i.Inflict(coll.gameObject);
+                    }
+                    if (SingleUse)
+                    {
+                        Destroy(this.gameObject);
+                        return;
+                    }
                 }
             }
         }
     }
 
-    public void ini(Entity.team Team, int Damage, bool SingleUse = true, float CoolDownBetweenHits = 1)
+    public void ini(Entity.team Team, int Damage, bool SingleUse = true, bool SpawnFxOnTargetInsteadOfSource = false, float CoolDownBetweenHits = 1, float BecomeActiveAfterSeconds = 0)
     {
         this.Team = Team;
         this.Damage = Damage;
         this.SingleUse = SingleUse;
+        this.SpawnFxOnTargetInsteadOfSource = SpawnFxOnTargetInsteadOfSource;
         this.CoolDownBetweenHits = CoolDownBetweenHits;
+        this.BecomeActiveAfterSeconds = BecomeActiveAfterSeconds;
     }
 }

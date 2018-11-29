@@ -76,6 +76,37 @@ public class Player : MonoBehaviour {
         entity.MoveInDirection(MovementVector);
 
 
+
+        //test purposes - can delete
+
+        if (Input.GetKeyUp(KeyCode.Mouse2))
+        {
+            GameObject laser = new GameObject();
+            Laser l = laser.AddComponent<Laser>();
+            l.Origin = transform.position;
+            l.End = MouseWorldPos;
+            l.Sprites = Resources.LoadAll<Sprite>("Fx/LaserCharged_57frames2"); //for this animation, damage should start at 70% 
+            l.LifeSpanInSeconds = 1f;
+
+            GameObject dmg = new GameObject();
+            dmg.transform.parent = laser.transform;
+
+            dmg.transform.localScale = new Vector3(1f/32f, 1, 1);
+
+            //dmg.AddComponent<InflicterSlow>();
+
+            dmg.AddComponent<DamagerInflicter>().ini(Entity.team.Player, 1, false, true, 1, 0.7f);
+
+            dmg.AddComponent<BoxCollider2D>().isTrigger = true;
+
+            dmg.AddComponent<FxBurnSmoke>();
+
+            dmg.AddComponent<WiggleNonNoticably>();
+        }
+
+        //end of test stuff
+
+
         if (Input.GetKey(KeyCode.Mouse0) && CurrShootingCooldown <= 0)
         {
             CurrShootingWindDownDuration = BaseShootingWindDownDuration;
