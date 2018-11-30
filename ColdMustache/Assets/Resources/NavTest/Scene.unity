@@ -272,7 +272,11 @@ MonoBehaviour:
 
     B bomb
 
-    M move (pathfinding)'
+    N bomb alternative
+
+    M move (pathfinding)
+
+'
 --- !u!222 &222104795
 CanvasRenderer:
   m_ObjectHideFlags: 0

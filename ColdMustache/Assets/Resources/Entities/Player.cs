@@ -113,7 +113,7 @@ public class Player : MonoBehaviour {
                 )){
 
                 GameObject blast = new GameObject();
-                blast.transform.position = new Vector3(v.x, v.y, -v.z);
+                blast.transform.position = new Vector3(v.x, v.y, -5);
                 blast.AddComponent<SpriteRenderer>();
 
                 SpriteSheetAnimation banim = blast.AddComponent<SpriteSheetAnimation>();
@@ -125,7 +125,30 @@ public class Player : MonoBehaviour {
             }
 
         }
+        if (Input.GetKeyUp(KeyCode.N))
+        {
 
+            foreach (Vector3 v in GameObject.Find("ScriptHolder").GetComponent<NavTest>().CalculateExplosion_Distributor(
+                Mathf.RoundToInt(Camera.main.ScreenToWorldPoint(Input.mousePosition).x),
+                Mathf.RoundToInt(Camera.main.ScreenToWorldPoint(Input.mousePosition).y),
+                100
+                ))
+            {
+
+                GameObject blast = new GameObject();
+                blast.transform.position = new Vector3(v.x, v.y, -5);
+                blast.AddComponent<SpriteRenderer>();
+
+                SpriteSheetAnimation banim = blast.AddComponent<SpriteSheetAnimation>();
+                banim.Sprites = Resources.LoadAll<Sprite>("Fx/Explosion");
+                banim.LifeSpanInSeconds = 2.5f;
+                banim.Mode = SpriteSheetAnimation.Modes.Destroy;
+
+                blast.GetComponent<SpriteRenderer>().color = new Color(1, v.z / 50, 0);
+                blast.name = v.z.ToString();
+            }
+
+        }
 
         //end of test stuff
 
