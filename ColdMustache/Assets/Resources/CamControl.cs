@@ -6,7 +6,13 @@ public class CamControl : MonoBehaviour {
 
     public Transform Player;
     Vector2 MousePos;
-    
+
+    public bool PixelPerfect;
+
+    public int PixelSize = 1;
+    float ActualPixelSize = 1;
+
+    public float PixelResolution = 32;
 
 	// Use this for initialization
 	void Start () {
@@ -34,10 +40,49 @@ public class CamControl : MonoBehaviour {
         {
             float factor = 1 - Input.mouseScrollDelta.y/10;
 
-            if(GetComponent<Camera>().orthographicSize*factor > 2 && GetComponent<Camera>().orthographicSize*factor < 30)
+            PixelSize += (int)Input.mouseScrollDelta.y;
+            if(PixelSize > 0)
+            {
+                ActualPixelSize = PixelSize;
+
+                if(PixelSize < -2)
+                {
+                    PixelSize = -2;
+                }
+
+            }
+            else
+            {
+                switch (PixelSize)
+                {
+                    case 0:
+                        ActualPixelSize = 0.5f;
+                        break;
+                    case -1:
+                        ActualPixelSize = 0.25f;
+                        break;
+                    default:
+                        ActualPixelSize = 0.125f;
+                        break;
+                }
+            }
+
+            if (GetComponent<Camera>().orthographicSize*factor > 2 && GetComponent<Camera>().orthographicSize*factor < 30)
             {
                 GetComponent<Camera>().orthographicSize *= factor;
             }
+        }
+
+        if (PixelPerfect)
+        {
+            //Orthographic size = ((Vert Resolution)/(PPUScale * PPU)) * 0.5
+            //GetComponent<Camera>().orthographicSize = ((float)Screen.height / 32f) / PixelSize;
+            GetComponent<Camera>().orthographicSize = ((float)Screen.height / (PixelResolution * ActualPixelSize)) * 0.5f;
+
+            transform.position = (Vector3)Goal;
+            transform.position = new Vector3(transform.position.x, transform.position.y, -50);
+
+
         }
         
         

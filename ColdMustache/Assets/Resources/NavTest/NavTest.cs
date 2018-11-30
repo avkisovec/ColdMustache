@@ -29,14 +29,53 @@ public class NavTest : MonoBehaviour {
             {
                 if(all[y*map.width + x].r == 0)
                 {
-                    GameObject go = new GameObject();
-                    go.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("pixel");
-                    go.transform.position = new Vector3(x, y, 5);
                     NavArray[x, y] = ImpassableTileValue;
                 }
                 else
                 {
                     NavArray[x, y] = EmptyTileValue;
+                }
+            }
+        }
+
+        for(int y = 0; y < map.height; y++)
+        {
+            for(int x = 0; x < map.width; x++)
+            {
+                if(NavArray[x,y] == ImpassableTileValue)
+                {
+                    bool ConnectedRight = false;
+                    bool ConnectedUp = false;
+                    bool ConnectedLeft = false;
+                    bool ConnectedDown = false;
+
+                    if(x < map.width-1 && NavArray[x+1,y] == ImpassableTileValue)
+                    {
+                        ConnectedRight = true;
+                    }
+                    if (y < map.height - 1 && NavArray[x, y+1] == ImpassableTileValue)
+                    {
+                        ConnectedUp = true;
+                    }
+                    if (x >= 1 && NavArray[x - 1, y] == ImpassableTileValue)
+                    {
+                        ConnectedLeft = true;
+                    }
+                    if (y >= 1 && NavArray[x, y - 1] == ImpassableTileValue)
+                    {
+                        ConnectedDown = true;
+                    }
+
+                    GameObject go = new GameObject();
+                    go.AddComponent<SpriteRenderer>().sprite = WallSpriteFinder.Find(
+                            Resources.LoadAll<Sprite>("Navtest/WallSheetTransparent"),
+                            ConnectedRight, ConnectedUp, ConnectedLeft, ConnectedDown);
+                    go.transform.position = new Vector3(x, y, -5);
+
+                    GameObject concrete = new GameObject();
+                    concrete.transform.parent = go.transform;
+                    concrete.transform.localPosition = new Vector3(0, 0, 1);
+                    concrete.AddComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("NavTest/ConcreteDull320")[y%10*10+x%10];
                 }
             }
         }

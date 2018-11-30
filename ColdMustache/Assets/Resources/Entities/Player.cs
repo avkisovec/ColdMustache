@@ -78,6 +78,7 @@ public class Player : MonoBehaviour {
 
 
         //test purposes - can delete
+        
 
         if (Input.GetKeyUp(KeyCode.Mouse2))
         {
