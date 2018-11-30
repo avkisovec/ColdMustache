@@ -83,27 +83,49 @@ public class Player : MonoBehaviour {
         if (Input.GetKeyUp(KeyCode.Mouse2))
         {
             GameObject laser = new GameObject();
+            laser.AddComponent<SpriteRenderer>();
             Laser l = laser.AddComponent<Laser>();
             l.Origin = transform.position;
             l.End = MouseWorldPos;
-            l.Sprites = Resources.LoadAll<Sprite>("Fx/LaserCharged_57frames2"); //for this animation, damage should start at 70% 
-            l.LifeSpanInSeconds = 1f;
+
+            SpriteSheetAnimation lanim = laser.AddComponent<SpriteSheetAnimation>();
+            lanim.Sprites = Resources.LoadAll<Sprite>("Fx/LaserCharged_57frames2"); //for this animation, damage should start at 70% 
+            lanim.LifeSpanInSeconds = 1f;
+            lanim.Mode = SpriteSheetAnimation.Modes.Destroy;
 
             GameObject dmg = new GameObject();
             dmg.transform.parent = laser.transform;
-
             dmg.transform.localScale = new Vector3(1f/32f, 1, 1);
-
             //dmg.AddComponent<InflicterSlow>();
-
             dmg.AddComponent<DamagerInflicter>().ini(Entity.team.Player, 1, false, true, 1, 0.7f);
-
             dmg.AddComponent<BoxCollider2D>().isTrigger = true;
-
             dmg.AddComponent<FxBurnSmoke>();
-
             dmg.AddComponent<WiggleNonNoticably>();
         }
+
+
+        if (Input.GetKeyUp(KeyCode.B)) {
+
+            foreach (Vector3 v in GameObject.Find("ScriptHolder").GetComponent<NavTest>().CalculateExplosion(
+                Mathf.RoundToInt(Camera.main.ScreenToWorldPoint(Input.mousePosition).x),
+                Mathf.RoundToInt(Camera.main.ScreenToWorldPoint(Input.mousePosition).y),
+                20
+                )){
+
+                GameObject blast = new GameObject();
+                blast.transform.position = new Vector3(v.x, v.y, -v.z);
+                blast.AddComponent<SpriteRenderer>();
+
+                SpriteSheetAnimation banim = blast.AddComponent<SpriteSheetAnimation>();
+                banim.Sprites = Resources.LoadAll<Sprite>("Fx/Explosion"); 
+                banim.LifeSpanInSeconds = 1f;
+                banim.Mode = SpriteSheetAnimation.Modes.Destroy;
+
+                blast.GetComponent<SpriteRenderer>().color = new Color(1,v.z/10,0);
+            }
+
+        }
+
 
         //end of test stuff
 
