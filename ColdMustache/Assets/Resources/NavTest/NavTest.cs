@@ -672,6 +672,170 @@ public class NavTest : MonoBehaviour {
 
         return Output;
     }
+    public List<Vector3> CalculateExplosion_DistributorNoBacksiesTileSplit(int SourceX, int SourceY, int ExpandForce)
+    {
+
+        /*
+         * 
+         * splits pressure between tile and new distributors, instead of just giving all to tile and also among distributors
+         * 
+         */
+
+        int Right = 0;
+        int Up = 90;
+        int Left = 180;
+        int Down = 270;
+
+
+        int[,] CurrNavArr = (int[,])NavArray.Clone();
+
+        //int CurrDistance = 0;
+        List<Vector4> TilesToExamineNext = new List<Vector4>();
+        List<Vector4> TilesCurrentlyBeingExamined = new List<Vector4>();
+
+        List<Vector2Int> OutputCoordinates = new List<Vector2Int>(); //only x and y
+        List<Vector3> Output = new List<Vector3>(); // x and y are coordinates of explosion, z is expandforce
+
+        TilesToExamineNext.Add(new Vector4(SourceX, SourceY, ExpandForce, -1));
+        //CurrNavArr[SourceX, SourceY] = ExpandForce;
+
+        int AvoidInfiniteCycle = 100;
+
+        OutputCoordinates.Add(new Vector2Int(SourceX, SourceY));
+
+        while (TilesToExamineNext.Count != 0 && AvoidInfiniteCycle > 0)
+        {
+            AvoidInfiniteCycle--;
+
+            TilesCurrentlyBeingExamined.Clear();
+            foreach (Vector4 v in TilesToExamineNext)
+            {
+                TilesCurrentlyBeingExamined.Add(v);
+            }
+            TilesToExamineNext.Clear();
+
+            if (ExpandForce < 1)
+            {
+                break;
+            }
+
+            foreach (Vector4 v in TilesCurrentlyBeingExamined)
+            {
+                if (CurrNavArr[(int)v.x, (int)v.y] == EmptyTileValue)
+                {
+                    CurrNavArr[(int)v.x, (int)v.y] = 0;
+                }
+
+
+                int ExpandableDirections = 0;
+                if (CurrNavArr[(int)v.x + 1, (int)v.y] != ImpassableTileValue && v.w != Right)
+                {
+                    ExpandableDirections++;
+                }
+                if (CurrNavArr[(int)v.x - 1, (int)v.y] != ImpassableTileValue && v.w != Left)
+                {
+                    ExpandableDirections++;
+                }
+                if (CurrNavArr[(int)v.x, (int)v.y + 1] != ImpassableTileValue && v.w != Up)
+                {
+                    ExpandableDirections++;
+                }
+                if (CurrNavArr[(int)v.x, (int)v.y - 1] != ImpassableTileValue && v.w != Down)
+                {
+                    ExpandableDirections++;
+                }
+
+                ExpandableDirections++; //also splits with ground
+
+                int NewDistributorPressure = Mathf.FloorToInt(((float)v.z) / (float)ExpandableDirections);
+
+                if (NewDistributorPressure > 0)
+                {
+
+                    CurrNavArr[(int)v.x, (int)v.y] += NewDistributorPressure;
+
+                    if (ExpandableDirections > 1)
+                    {
+
+                        if (CurrNavArr[(int)v.x + 1, (int)v.y] != ImpassableTileValue && v.w != Left)
+                        {
+                            TilesToExamineNext.Add(new Vector4(v.x + 1, v.y, NewDistributorPressure, Right));
+                            if (!OutputCoordinates.Contains(new Vector2Int((int)v.x + 1, (int)v.y)) && NewDistributorPressure > 0)
+                            {
+                                OutputCoordinates.Add(new Vector2Int((int)v.x + 1, (int)v.y));
+                            }
+                        }
+                        if (CurrNavArr[(int)v.x - 1, (int)v.y] != ImpassableTileValue && v.w != Right)
+                        {
+                            TilesToExamineNext.Add(new Vector4(v.x - 1, v.y, NewDistributorPressure, Left));
+                            if (!OutputCoordinates.Contains(new Vector2Int((int)v.x - 1, (int)v.y)) && NewDistributorPressure > 0)
+                            {
+                                OutputCoordinates.Add(new Vector2Int((int)v.x - 1, (int)v.y));
+                            }
+                        }
+                        if (CurrNavArr[(int)v.x, (int)v.y + 1] != ImpassableTileValue && v.w != Down)
+                        {
+                            TilesToExamineNext.Add(new Vector4(v.x, v.y + 1, NewDistributorPressure, Up));
+                            if (!OutputCoordinates.Contains(new Vector2Int((int)v.x, (int)v.y + 1)) && NewDistributorPressure > 0)
+                            {
+                                OutputCoordinates.Add(new Vector2Int((int)v.x, (int)v.y + 1));
+                            }
+                        }
+                        if (CurrNavArr[(int)v.x, (int)v.y - 1] != ImpassableTileValue && v.w != Up)
+                        {
+                            TilesToExamineNext.Add(new Vector4(v.x, v.y - 1, NewDistributorPressure, Down));
+                            if (!OutputCoordinates.Contains(new Vector2Int((int)v.x, (int)v.y - 1)) && NewDistributorPressure > 0)
+                            {
+                                OutputCoordinates.Add(new Vector2Int((int)v.x, (int)v.y - 1));
+                            }
+                        }
+
+                        /*
+                        if (CurrNavArr[(int)v.x + 1, (int)v.y] == EmptyTileValue)
+                        {
+                            CurrNavArr[(int)v.x + 1, (int)v.y] = CurrNavArr[(int)v.x, (int)v.y]- 1;
+                            TilesToExamineNext.Add(new Vector2(v.x + 1, v.y));
+                            OutputCoordinates.Add(new Vector2(v.x + 1, v.y));
+                        }
+                        if (CurrNavArr[(int)v.x - 1, (int)v.y] == EmptyTileValue)
+                        {
+                            CurrNavArr[(int)v.x - 1, (int)v.y] = CurrNavArr[(int)v.x, (int)v.y] - 1;
+                            TilesToExamineNext.Add(new Vector2(v.x - 1, v.y));
+                            OutputCoordinates.Add(new Vector2(v.x - 1, v.y));
+                        }
+                        if (CurrNavArr[(int)v.x, (int)v.y + 1] == EmptyTileValue)
+                        {
+                            CurrNavArr[(int)v.x, (int)v.y + 1] = CurrNavArr[(int)v.x, (int)v.y] - 1;
+                            TilesToExamineNext.Add(new Vector2(v.x, v.y + 1));
+                            OutputCoordinates.Add(new Vector2(v.x, v.y + 1));
+                        }
+                        if (CurrNavArr[(int)v.x, (int)v.y - 1] == EmptyTileValue)
+                        {
+                            CurrNavArr[(int)v.x, (int)v.y - 1] = CurrNavArr[(int)v.x, (int)v.y] - 1;
+                            TilesToExamineNext.Add(new Vector2(v.x, v.y - 1));
+                            OutputCoordinates.Add(new Vector2(v.x, v.y - 1));
+                        }
+                        */
+
+                    }
+
+
+                }
+            }
+
+
+        }
+
+        foreach (Vector2Int v in OutputCoordinates)
+        {
+            if(CurrNavArr[(int)v.x, (int)v.y] != 0)
+            {
+                Output.Add(new Vector3(v.x, v.y, CurrNavArr[(int)v.x, (int)v.y]));
+            }
+        }
+
+        return Output;
+    }
 
     /*
     void Update () {
