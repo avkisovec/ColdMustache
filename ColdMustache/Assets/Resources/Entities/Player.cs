@@ -103,80 +103,13 @@ public class Player : MonoBehaviour {
             dmg.AddComponent<WiggleNonNoticably>();
         }
 
-
-        if (Input.GetKeyUp(KeyCode.B)) {
-
-            foreach (Vector3 v in GameObject.Find("ScriptHolder").GetComponent<NavTest>().CalculateExplosion(
-                Mathf.RoundToInt(Camera.main.ScreenToWorldPoint(Input.mousePosition).x),
-                Mathf.RoundToInt(Camera.main.ScreenToWorldPoint(Input.mousePosition).y),
-                20
-                )){
-
-                GameObject blast = new GameObject();
-                blast.transform.position = new Vector3(v.x, v.y, -5);
-                blast.AddComponent<SpriteRenderer>();
-
-                SpriteSheetAnimation banim = blast.AddComponent<SpriteSheetAnimation>();
-                banim.Sprites = Resources.LoadAll<Sprite>("Fx/Explosion"); 
-                banim.LifeSpanInSeconds = 1f;
-                banim.Mode = SpriteSheetAnimation.Modes.Destroy;
-
-                blast.GetComponent<SpriteRenderer>().color = new Color(1,v.z/10,0);
-            }
-
-        }
-        if (Input.GetKeyUp(KeyCode.N))
+        if (Input.GetKeyUp(KeyCode.G))
         {
-
-            foreach (Vector3 v in GameObject.Find("ScriptHolder").GetComponent<NavTest>().CalculateExplosion_Distributor(
-                Mathf.RoundToInt(Camera.main.ScreenToWorldPoint(Input.mousePosition).x),
-                Mathf.RoundToInt(Camera.main.ScreenToWorldPoint(Input.mousePosition).y),
-                100
-                ))
-            {
-
-                GameObject blast = new GameObject();
-                blast.transform.position = new Vector3(v.x, v.y, -5);
-                blast.AddComponent<SpriteRenderer>();
-
-                SpriteSheetAnimation banim = blast.AddComponent<SpriteSheetAnimation>();
-                banim.Sprites = Resources.LoadAll<Sprite>("Fx/Explosion");
-                banim.LifeSpanInSeconds = 2.5f;
-                banim.Mode = SpriteSheetAnimation.Modes.Destroy;
-
-                blast.GetComponent<SpriteRenderer>().color = new Color(1, v.z / 50, 0);
-                blast.name = v.z.ToString();
-            }
-
+            Grenade(MouseWorldPos);
         }
-        if (Input.GetKeyUp(KeyCode.V))
+        if (Input.GetKeyUp(KeyCode.B))
         {
-
-            foreach (Vector3 v in GameObject.Find("ScriptHolder").GetComponent<NavTest>().CalculateExplosion_DistributorNoBacksies(
-                Mathf.RoundToInt(Camera.main.ScreenToWorldPoint(Input.mousePosition).x),
-                Mathf.RoundToInt(Camera.main.ScreenToWorldPoint(Input.mousePosition).y),
-                100
-                ))
-            {
-
-                GameObject blast = new GameObject();
-                blast.transform.position = new Vector3(v.x, v.y, -5);
-                blast.AddComponent<SpriteRenderer>();
-
-                SpriteSheetAnimation banim = blast.AddComponent<SpriteSheetAnimation>();
-                banim.Sprites = Resources.LoadAll<Sprite>("Fx/Explosion");
-                banim.LifeSpanInSeconds = 2.5f;
-                banim.Mode = SpriteSheetAnimation.Modes.Destroy;
-
-                blast.GetComponent<SpriteRenderer>().color = new Color(1, v.z / 50, 0);
-                blast.name = v.z.ToString();
-            }
-
-        }
-        if (Input.GetKeyUp(KeyCode.C))
-        {
-
-            foreach (Vector3 v in GameObject.Find("ScriptHolder").GetComponent<NavTest>().CalculateExplosion_DistributorNoBacksiesTileSplit(
+            foreach (Vector3 v in NavTestStatic.CalculateExplosion_DistributorNoBacksiesTileSplit(
                 Mathf.RoundToInt(Camera.main.ScreenToWorldPoint(Input.mousePosition).x),
                 Mathf.RoundToInt(Camera.main.ScreenToWorldPoint(Input.mousePosition).y),
                 200
@@ -195,7 +128,6 @@ public class Player : MonoBehaviour {
                 blast.GetComponent<SpriteRenderer>().color = new Color(1, v.z / 30, 0);
                 blast.name = v.z.ToString();
             }
-
         }
         //end of test stuff
 
@@ -233,5 +165,40 @@ public class Player : MonoBehaviour {
         //bullet.gameObject.tag = "PlayerBullet";
         bullet.gameObject.AddComponent<CircleCollider2D>().isTrigger = true;
         //bullet.AddComponent<InflicterSlow>().ini(Entity.team.Enemy, 2, 0.25f);
+    }
+
+    void Grenade(Vector2 Target)
+    {
+        foreach (Vector3 v in NavTestStatic.CalculateExplosion_DistributorNoBacksiesTileSplit(
+                Mathf.RoundToInt(Camera.main.ScreenToWorldPoint(Input.mousePosition).x),
+                Mathf.RoundToInt(Camera.main.ScreenToWorldPoint(Input.mousePosition).y),
+                200
+               ))
+        {
+
+            GameObject blastAnim = new GameObject();
+            blastAnim.transform.position = new Vector3(v.x, v.y, -5);
+            blastAnim.AddComponent<SpriteRenderer>();
+
+            SpriteSheetAnimation banim = blastAnim.AddComponent<SpriteSheetAnimation>();
+            banim.Sprites = Resources.LoadAll<Sprite>("Fx/Explosion");
+            banim.LifeSpanInSeconds = 0.5f;
+            banim.Mode = SpriteSheetAnimation.Modes.Destroy;
+
+            blastAnim.GetComponent<SpriteRenderer>().color = new Color(1, v.z / 30, 0);
+            blastAnim.name = v.z.ToString();
+
+
+            GameObject ActualBlast = new GameObject();
+            ActualBlast.transform.position = new Vector3(v.x, v.y, -5);
+
+            ActualBlast.AddComponent<DamagerInflicter>().ini(Entity.team.Neutral, (int)v.z, true, true, 0, 0, false);
+            ActualBlast.AddComponent<CircleCollider2D>().isTrigger = true;
+            ActualBlast.GetComponent<CircleCollider2D>().radius = 0.6f;
+            ActualBlast.AddComponent<Rigidbody2D>().isKinematic = true;
+            ActualBlast.AddComponent<DieIn>().Frames = 0;
+            
+
+        }
     }
 }

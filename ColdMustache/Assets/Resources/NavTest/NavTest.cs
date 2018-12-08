@@ -70,11 +70,15 @@ public class NavTest : MonoBehaviour {
                             Resources.LoadAll<Sprite>("Navtest/WallSheetTransparent"),
                             ConnectedRight, ConnectedUp, ConnectedLeft, ConnectedDown);
                     go.transform.position = new Vector3(x, y, -5);
+                    go.AddComponent<EnvironmentObject>();
+                    go.AddComponent<BoxCollider2D>();
+
 
                     GameObject concrete = new GameObject();
                     concrete.transform.parent = go.transform;
                     concrete.transform.localPosition = new Vector3(0, 0, 1);
                     concrete.AddComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("NavTest/ConcreteDull320")[y%10*10+x%10];
+                    
                 }
             }
         }

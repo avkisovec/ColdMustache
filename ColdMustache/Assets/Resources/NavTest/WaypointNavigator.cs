@@ -22,7 +22,7 @@ public class WaypointNavigator : MonoBehaviour {
         {
             if(WayPoints.Count >= 1)
             {
-                if (((Vector2)transform.position - WayPoints[WayPoints.Count - 1]).magnitude > 0.7f)
+                if (((Vector2)transform.position - WayPoints[WayPoints.Count - 1]).magnitude > 0.3f)
                 {
                     e.MoveInDirection(WayPoints[WayPoints.Count - 1] - (Vector2)transform.position);
                 }
