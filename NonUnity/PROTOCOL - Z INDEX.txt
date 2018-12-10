@@ -1,0 +1,27 @@
+cold mustache - Z index protocol
+
+
+scenes likely won't be taller than 200 tiles
+they can be as long as they wont, that won't affect the z-index
+
+z -70		(camera)
+z -50 ... z -60 (reserved for GUI, menus)
+z -40 ... z -50 (reserved for HUD)
+z -30 ... z -40 (reserved for fx and stuff not affected by darkness, such as sparks)
+			also effects like explosion's white flash, injury red screen...
+z -20 ... z -30 (reserved for darkness)
+z -10 ... z -20 (reserved for fx and stuff above eerything but affected by darkness)
+
+	(10 units margin)
+
+	for objects:
+Z 0  (corresponds to y 0)
+z 200	(corresponds to y 200)
+	each object can occupy upto -+0.5 from its coordinates (preferably only like +-0.1)
+
+	(10 units margin)
+
+z 210 ... z 220 (reserved for floors)
+
+z 220 ... z 230 (reserved for things below floor - such as water w its ripples and stuff)
+

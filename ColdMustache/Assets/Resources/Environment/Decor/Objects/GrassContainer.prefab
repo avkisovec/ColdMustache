@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 61107779129650154}
   - component: {fileID: 114410827198748498}
   - component: {fileID: 114952764468286578}
+  - component: {fileID: 114374934457395038}
   m_Layer: 0
   m_Name: GrassContainer
   m_TagString: Untagged
@@ -97,6 +98,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7087507, y: 0.30912828}
   m_EdgeRadius: 0
+--- !u!114 &114374934457395038
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1137175499503052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76e078b20e7f19b49a9479e45cf42cf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SingleUse: 1
+  Type: 5
+  RelativeValue: -1
 --- !u!114 &114410827198748498
 MonoBehaviour:
   m_ObjectHideFlags: 1

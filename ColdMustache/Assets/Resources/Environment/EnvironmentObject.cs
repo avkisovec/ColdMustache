@@ -107,7 +107,7 @@ public class EnvironmentObject : MonoBehaviour {
         if (DeathRemains != null)
         {
             GameObject remains = new GameObject();
-            remains.transform.position = transform.position;
+            remains.transform.position = new Vector3(transform.position.x, transform.position.y, ZIndexManager.Const_Floors-1);
             remains.AddComponent<SpriteRenderer>().sprite = DeathRemains;
             remains.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
         }
