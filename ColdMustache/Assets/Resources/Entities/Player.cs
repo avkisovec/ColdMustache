@@ -87,7 +87,7 @@ public class Player : MonoBehaviour {
             Laser l = laser.AddComponent<Laser>();
             l.Origin = transform.position;
             l.End = MouseWorldPos;
-
+            
             SpriteSheetAnimation lanim = laser.AddComponent<SpriteSheetAnimation>();
             lanim.Sprites = Resources.LoadAll<Sprite>("Fx/LaserCharged_57frames2"); //for this animation, damage should start at 70% 
             lanim.LifeSpanInSeconds = 1f;

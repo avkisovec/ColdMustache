@@ -14,8 +14,8 @@ public class Laser : MonoBehaviour {
 	void Start () {
 
 
-        transform.position = Origin + ((End - Origin) / 2);
-        transform.localScale = new Vector3((End - Origin).magnitude * 32, 1, 1);
+        transform.position = Origin + (Vector3)(((Vector2)End - (Vector2)Origin) / 2);
+        transform.localScale = new Vector3(((Vector2)End - (Vector2)Origin).magnitude * 32, 1, 1);
 
         Util.RotateTransformToward(transform, End);
 

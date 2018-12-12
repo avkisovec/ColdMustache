@@ -45,9 +45,9 @@ public class CamControl : MonoBehaviour {
             {
                 ActualPixelSize = PixelSize;
 
-                if(PixelSize < -2)
+                if(PixelSize > 15)
                 {
-                    PixelSize = -2;
+                    PixelSize = 15;
                 }
 
             }
@@ -63,6 +63,7 @@ public class CamControl : MonoBehaviour {
                         break;
                     default:
                         ActualPixelSize = 0.125f;
+                        PixelSize = -2;
                         break;
                 }
             }
