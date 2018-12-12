@@ -1,0 +1,27 @@
+cold mustache - protocol - walls spritesheet indexes
+
+they are ordered based on which directions they connect to - based on unit circle
+
+top row:
+[0] cross
+[1] pillar (not connected)
+[2] I - horizontal (0 deg)
+[3] I - vertical (90 deg)
+
+second row - T
+[4] T - missing 0 deg
+[5] T - missing 90 deg
+[6] T - missing 180 deg
+[7] T - missing 270 deg
+
+third row - corners
+[8]  0 + 90 deg
+[9]  90 + 180 deg
+[10] 180 + 270 deg
+[11] 270 + 360/0 deg
+
+fourth row - ends
+[12] 0 deg
+[13] 90 deg
+[14] 180 deg
+[15] 270 deg
