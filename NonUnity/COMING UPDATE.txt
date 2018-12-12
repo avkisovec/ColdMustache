@@ -1,0 +1,21 @@
+- trhaný pohyb
+- pohyb + strelba (postava se nedívá smerem kam strílí)
+- respawn monster
+- nový typ zbrane (laser (bíla + cervená (zásobník)))
+- design (písek, tráva)
+- nový typ monstra (dron)
+- monstra = chuze diagonálne
+
+
+
+
+
+
+
+
+
+BIG THINGS
+- vykreslování postavicek + itemy, inventár
+- nacítání a ukládání levelu
+- HUD
+- inteligence monster 

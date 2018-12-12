@@ -90,7 +90,7 @@ public class Player : MonoBehaviour {
             
             SpriteSheetAnimation lanim = laser.AddComponent<SpriteSheetAnimation>();
             lanim.Sprites = Resources.LoadAll<Sprite>("Fx/LaserCharged_57frames2"); //for this animation, damage should start at 70% 
-            lanim.LifeSpanInSeconds = 1f;
+            lanim.LifeSpanInSeconds = 0.25f;
             lanim.Mode = SpriteSheetAnimation.Modes.Destroy;
 
             GameObject dmg = new GameObject();
