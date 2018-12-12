@@ -97,7 +97,7 @@ public class Player : MonoBehaviour {
             dmg.transform.parent = laser.transform;
             dmg.transform.localScale = new Vector3(1f/32f, 1, 1);
             //dmg.AddComponent<InflicterSlow>();
-            dmg.AddComponent<DamagerInflicter>().ini(Entity.team.Player, 1, false, true, 1, 0.7f);
+            dmg.AddComponent<DamagerInflicter>().ini(Entity.team.Player, 1, false, true, 1, 0);
             dmg.AddComponent<BoxCollider2D>().isTrigger = true;
             dmg.AddComponent<FxBurnSmoke>();
             dmg.AddComponent<WiggleNonNoticably>();
