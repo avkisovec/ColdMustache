@@ -45,6 +45,8 @@ public class SMG01 : Weapon {
         AmmoCounter = GameObject.Find(AmmoCounterPath).GetComponent<Image>();
         AmmoSpriteSheet = Resources.LoadAll<Sprite>(AmmoSpriteSheetPath);
 
+        DisplayAmmo();
+
         WeaponStatus = GameObject.Find(WeaponStatusPath).GetComponent<Image>();
         StatusFullSprite = Resources.Load<Sprite>(StatusFullPath);
         StatusSemiSprite = Resources.Load<Sprite>(StatusSemiPath);
@@ -113,16 +115,8 @@ public class SMG01 : Weapon {
 
         FramesSincePlayerRequestedShooting = 0;
 
-        if(Ammo == 0)
-        {
-            AmmoCounter.sprite = AmmoSpriteSheet[AmmoSpriteSheet.Length - 1];
-        }
-        else
-        {
-            AmmoCounter.sprite = AmmoSpriteSheet[AmmoSpriteSheet.Length - 1 - Mathf.RoundToInt(((float)Ammo / (float)MaxAmmo) * (float)(AmmoSpriteSheet.Length - 1))];
-            //AmmoCounter.sprite = AmmoSpriteSheet[Mathf.RoundToInt((AmmoSpriteSheet.Length - 1)-Ammo)];
-        }
 
+        DisplayAmmo();
     }
 
     public override void TryAltFire()
@@ -154,6 +148,7 @@ public class SMG01 : Weapon {
 
             gameObject.AddComponent<StatusSlow>().ini(BaseReloadTime, 0.25f, true);
         }
+        DisplayAmmo();
     }
 
     public void DisplayCorrectStatusImage()
@@ -167,5 +162,17 @@ public class SMG01 : Weapon {
             WeaponStatus.sprite = StatusSemiSprite;
         }
         
+    }
+
+    public void DisplayAmmo()
+    {
+        if (Ammo == 0)
+        {
+            AmmoCounter.sprite = AmmoSpriteSheet[AmmoSpriteSheet.Length - 1];
+        }
+        else
+        {
+            AmmoCounter.sprite = AmmoSpriteSheet[AmmoSpriteSheet.Length - 1 - Mathf.RoundToInt(((float)Ammo / (float)MaxAmmo) * (float)(AmmoSpriteSheet.Length - 1))];
+        }
     }
 }

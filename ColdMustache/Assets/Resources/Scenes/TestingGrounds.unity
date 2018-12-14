@@ -16275,29 +16275,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1265227795}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec7a3186dd6c5c141bffd75ebc9dc22a, type: 3}
+  m_Script: {fileID: 11500000, guid: 90d469faa65f5b347ad9456ec72c494e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mode: 1
-  MaxAmmo: 10
-  Ammo: 10
-  BaseCooldownBetweenShots: 0.1
-  CurrCooldownBetweenShots: 0
-  BaseReloadTime: 1
-  ReloadTimeRemaining: 0
-  SpritePath: Items/Weapons/SMG01
-  FramesSincePlayerRequestedShooting: 0
-  FramesSincePlayerRequestedAltFire: 0
+  FullCharge: 2
+  CurrCharge: 2
+  SpritePath: Items/Weapons/Laser01
   AmmoCounterPath: Canvas/AmmoCounter
   AmmoCounter: {fileID: 0}
-  AmmoSpriteSheetPath: Gui/Hud/Ammo/Bullets10
+  AmmoSpriteSheetPath: Gui/Hud/Ammo/Charger10
   AmmoSpriteSheet: []
-  WeaponStatusPath: Canvas/WeaponStatus
-  WeaponStatus: {fileID: 0}
-  StatusFullPath: Gui/Hud/WeaponStatus/ModeFull
-  StatusFullSprite: {fileID: 0}
-  StatusSemiPath: Gui/Hud/WeaponStatus/ModeSemi
-  StatusSemiSprite: {fileID: 0}
 --- !u!4 &1265930120 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4828163444889734, guid: 09732134eeeb7cd43ae0145ede4f0ea8,
