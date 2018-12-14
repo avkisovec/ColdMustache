@@ -132,6 +132,7 @@ public class Player : MonoBehaviour {
         //end of test stuff
 
 
+        /*
         if (Input.GetKey(KeyCode.Mouse0) && CurrShootingCooldown <= 0)
         {
             CurrShootingWindDownDuration = BaseShootingWindDownDuration;
@@ -141,7 +142,19 @@ public class Player : MonoBehaviour {
 
             gameObject.AddComponent<StatusSlow>().ini(BaseShootingCooldown, 0.5f, false);  //slow yourself for the duration of the cooldown
         }
-
+        */
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            GetComponent<Weapon>().TryShooting(MouseWorldPos);
+        }
+        if (Input.GetKey(KeyCode.Q))
+        {
+            GetComponent<Weapon>().TryAltFire();
+        }
+        if (Input.GetKey(KeyCode.R))
+        {
+            GetComponent<Weapon>().ForceReload();
+        }
     }
 
     void Shoot(Vector2 Target)
