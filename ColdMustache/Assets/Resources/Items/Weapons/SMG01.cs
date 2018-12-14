@@ -31,12 +31,25 @@ public class SMG01 : Weapon {
     public string AmmoSpriteSheetPath = "Gui/Hud/Ammo/Bullets10";
     public Sprite[] AmmoSpriteSheet;
 
+    public string WeaponStatusPath = "Canvas/WeaponStatus";
+    public Image WeaponStatus;
+    public string StatusFullPath = "Gui/Hud/WeaponStatus/ModeFull";
+    public Sprite StatusFullSprite;
+    public string StatusSemiPath = "Gui/Hud/WeaponStatus/ModeSemi";
+    public Sprite StatusSemiSprite;
+
     private void Start()
     {
         GetComponent<SpriteManagerGunner>().GunSpriteRenderer.sprite = Resources.Load<Sprite>(SpritePath);
 
         AmmoCounter = GameObject.Find(AmmoCounterPath).GetComponent<Image>();
         AmmoSpriteSheet = Resources.LoadAll<Sprite>(AmmoSpriteSheetPath);
+
+        WeaponStatus = GameObject.Find(WeaponStatusPath).GetComponent<Image>();
+        StatusFullSprite = Resources.Load<Sprite>(StatusFullPath);
+        StatusSemiSprite = Resources.Load<Sprite>(StatusSemiPath);
+
+        DisplayCorrectStatusImage();
     }
 
     private void Update()
@@ -126,7 +139,8 @@ public class SMG01 : Weapon {
                 Mode = SmgModes.Full;
             }
         }
-        
+
+        DisplayCorrectStatusImage();
         FramesSincePlayerRequestedAltFire = 0;
     }
 
@@ -140,5 +154,18 @@ public class SMG01 : Weapon {
 
             gameObject.AddComponent<StatusSlow>().ini(BaseReloadTime, 0.25f, true);
         }
+    }
+
+    public void DisplayCorrectStatusImage()
+    {
+        if(Mode == SmgModes.Full)
+        {
+            WeaponStatus.sprite = StatusFullSprite;
+        }
+        else if(Mode == SmgModes.Semi)
+        {
+            WeaponStatus.sprite = StatusSemiSprite;
+        }
+        
     }
 }
