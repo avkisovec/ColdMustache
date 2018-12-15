@@ -81,7 +81,7 @@ public class CamControl : MonoBehaviour {
             GetComponent<Camera>().orthographicSize = ((float)Screen.height / (PixelResolution * ActualPixelSize)) * 0.5f;
 
             transform.position = (Vector3)Goal;
-            transform.position = new Vector3(transform.position.x, transform.position.y, -50);
+            transform.position = new Vector3(transform.position.x, transform.position.y, -70);
 
 
         }

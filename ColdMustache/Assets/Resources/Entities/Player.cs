@@ -143,7 +143,7 @@ public class Player : MonoBehaviour {
             gameObject.AddComponent<StatusSlow>().ini(BaseShootingCooldown, 0.5f, false);  //slow yourself for the duration of the cooldown
         }
         */
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.Mouse0) && MouseInterceptor.IsMouseAvailable())
         {
             GetComponent<Weapon>().TryShooting(MouseWorldPos);
         }

@@ -5,22 +5,22 @@ using UnityEngine.UI;
 
 public class Laser01 : Weapon {
     
-    public float FullCharge = 2f;
+    public static float FullCharge = 2f;
     public float CurrCharge = 2f;
     
     public string SpritePath = "Items/Weapons/Laser01";
     
-    public string AmmoCounterPath = "Canvas/AmmoCounter";
-    public Image AmmoCounter;
     public string AmmoSpriteSheetPath = "Gui/Hud/Ammo/Charger10";
     public Sprite[] AmmoSpriteSheet;
     
+
     private void Start()
     {
         GetComponent<SpriteManagerGunner>().GunSpriteRenderer.sprite = Resources.Load<Sprite>(SpritePath);
-
-        AmmoCounter = GameObject.Find(AmmoCounterPath).GetComponent<Image>();
+        
         AmmoSpriteSheet = Resources.LoadAll<Sprite>(AmmoSpriteSheetPath);
+
+        GuiReference.WeaponStatus.sprite = Resources.Load<Sprite>("EmptyPixel");
 
         DisplayAmmo();
     }
@@ -84,11 +84,11 @@ public class Laser01 : Weapon {
     {
         if (CurrCharge >= FullCharge)
         {
-            AmmoCounter.sprite = AmmoSpriteSheet[0];
+            GuiReference.AmmoCounter.sprite = AmmoSpriteSheet[0];
         }
         else
         {
-            AmmoCounter.sprite = AmmoSpriteSheet[Mathf.RoundToInt(((float)CurrCharge / (float)FullCharge) * (float)(AmmoSpriteSheet.Length - 1))];
+            GuiReference.AmmoCounter.sprite = AmmoSpriteSheet[Mathf.RoundToInt(((float)CurrCharge / (float)FullCharge) * (float)(AmmoSpriteSheet.Length - 1))];
         }
     }
 }

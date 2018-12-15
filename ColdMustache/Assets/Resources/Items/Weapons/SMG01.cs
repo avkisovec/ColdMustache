@@ -26,13 +26,10 @@ public class SMG01 : Weapon {
 
     public int FramesSincePlayerRequestedAltFire = 0;
 
-    public string AmmoCounterPath = "Canvas/AmmoCounter";
-    public Image AmmoCounter;
+    
     public string AmmoSpriteSheetPath = "Gui/Hud/Ammo/Bullets10";
     public Sprite[] AmmoSpriteSheet;
-
-    public string WeaponStatusPath = "Canvas/WeaponStatus";
-    public Image WeaponStatus;
+    
     public string StatusFullPath = "Gui/Hud/WeaponStatus/ModeFull";
     public Sprite StatusFullSprite;
     public string StatusSemiPath = "Gui/Hud/WeaponStatus/ModeSemi";
@@ -40,14 +37,14 @@ public class SMG01 : Weapon {
 
     private void Start()
     {
-        GetComponent<SpriteManagerGunner>().GunSpriteRenderer.sprite = Resources.Load<Sprite>(SpritePath);
+        ReloadTimeRemaining = SpecialValueThatIndicatesWeaponHasJustBeenReloaded; //without this, weapon gets max ammo in its first frame
 
-        AmmoCounter = GameObject.Find(AmmoCounterPath).GetComponent<Image>();
+        GetComponent<SpriteManagerGunner>().GunSpriteRenderer.sprite = Resources.Load<Sprite>(SpritePath);
+        
         AmmoSpriteSheet = Resources.LoadAll<Sprite>(AmmoSpriteSheetPath);
 
         DisplayAmmo();
-
-        WeaponStatus = GameObject.Find(WeaponStatusPath).GetComponent<Image>();
+        
         StatusFullSprite = Resources.Load<Sprite>(StatusFullPath);
         StatusSemiSprite = Resources.Load<Sprite>(StatusSemiPath);
 
@@ -63,7 +60,7 @@ public class SMG01 : Weapon {
         else if(ReloadTimeRemaining != SpecialValueThatIndicatesWeaponHasJustBeenReloaded) //special value, indicates that weapon has just reloaded and reloading should be ignored
         {
             Ammo = MaxAmmo;
-            AmmoCounter.sprite = AmmoSpriteSheet[0];
+            GuiReference.AmmoCounter.sprite = AmmoSpriteSheet[0];
             ReloadTimeRemaining = SpecialValueThatIndicatesWeaponHasJustBeenReloaded;
         }
 
@@ -155,11 +152,11 @@ public class SMG01 : Weapon {
     {
         if(Mode == SmgModes.Full)
         {
-            WeaponStatus.sprite = StatusFullSprite;
+            GuiReference.WeaponStatus.sprite = StatusFullSprite;
         }
         else if(Mode == SmgModes.Semi)
         {
-            WeaponStatus.sprite = StatusSemiSprite;
+            GuiReference.WeaponStatus.sprite = StatusSemiSprite;
         }
         
     }
@@ -168,11 +165,11 @@ public class SMG01 : Weapon {
     {
         if (Ammo == 0)
         {
-            AmmoCounter.sprite = AmmoSpriteSheet[AmmoSpriteSheet.Length - 1];
+            GuiReference.AmmoCounter.sprite = AmmoSpriteSheet[AmmoSpriteSheet.Length - 1];
         }
         else
         {
-            AmmoCounter.sprite = AmmoSpriteSheet[AmmoSpriteSheet.Length - 1 - Mathf.RoundToInt(((float)Ammo / (float)MaxAmmo) * (float)(AmmoSpriteSheet.Length - 1))];
+            GuiReference.AmmoCounter.sprite = AmmoSpriteSheet[AmmoSpriteSheet.Length - 1 - Mathf.RoundToInt(((float)Ammo / (float)MaxAmmo) * (float)(AmmoSpriteSheet.Length - 1))];
         }
     }
 }
