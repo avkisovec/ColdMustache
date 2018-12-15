@@ -77,10 +77,12 @@ public class Shotgun01 : Weapon {
                 Ammo--;
                 CurrCooldownBetweenShots = BaseCooldownBetweenShots;
 
-                ShootProjectile(Util.RotateVector(Target, 1f));
-                ShootProjectile(Util.RotateVector(Target, 3f));
-                ShootProjectile(Util.RotateVector(Target, -1f));
-                ShootProjectile(Util.RotateVector(Target, -3f));
+                Vector3 Vector = Util.GetDirectionVectorToward(transform, Target);
+
+                ShootProjectile(Util.RotateVector(Vector, 1.5f));
+                ShootProjectile(Util.RotateVector(Vector, 4.5f));
+                ShootProjectile(Util.RotateVector(Vector, -1.5f));
+                ShootProjectile(Util.RotateVector(Vector, -4.5f));
             }
         }
 
@@ -89,7 +91,7 @@ public class Shotgun01 : Weapon {
         DisplayAmmo();
     }
 
-    public void ShootProjectile(Vector3 Target)
+    public void ShootProjectile(Vector3 Vector)
     {
         GameObject bullet = new GameObject();
         bullet.transform.position = transform.position;
@@ -97,7 +99,7 @@ public class Shotgun01 : Weapon {
         bullet.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("pixel");
         bullet.GetComponent<SpriteRenderer>().color = new Color(1, 1, 0);
         bullet.AddComponent<Rigidbody2D>().gravityScale = 0;
-        bullet.GetComponent<Rigidbody2D>().velocity = Util.GetDirectionVectorToward(transform, Target) * 20;
+        bullet.GetComponent<Rigidbody2D>().velocity = Vector * 20;
         bullet.GetComponent<Rigidbody2D>().collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         bullet.AddComponent<FxBulletTrail>();
         bullet.AddComponent<FxBulletExplosion>();
@@ -122,14 +124,16 @@ public class Shotgun01 : Weapon {
             Ammo = 0;
             CurrCooldownBetweenShots = BaseCooldownBetweenShots;
 
-            ShootProjectile(Util.RotateVector(Target, 1));
-            ShootProjectile(Util.RotateVector(Target, 3));
-            ShootProjectile(Util.RotateVector(Target, 5));
-            ShootProjectile(Util.RotateVector(Target, 7));
-            ShootProjectile(Util.RotateVector(Target, -1));
-            ShootProjectile(Util.RotateVector(Target, -3));
-            ShootProjectile(Util.RotateVector(Target, -5));
-            ShootProjectile(Util.RotateVector(Target, -7));
+            Vector3 Vector = Util.GetDirectionVectorToward(transform, Target);
+
+            ShootProjectile(Util.RotateVector(Vector, 1));
+            ShootProjectile(Util.RotateVector(Vector, 4));
+            ShootProjectile(Util.RotateVector(Vector, 7));
+            ShootProjectile(Util.RotateVector(Vector, 10));
+            ShootProjectile(Util.RotateVector(Vector, -1));
+            ShootProjectile(Util.RotateVector(Vector, -4));
+            ShootProjectile(Util.RotateVector(Vector, -7));
+            ShootProjectile(Util.RotateVector(Vector, -10));
 
 
             DisplayAmmo();
