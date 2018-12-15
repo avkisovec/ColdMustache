@@ -11,6 +11,8 @@ public class PlayerReferenceFeeder : MonoBehaviour {
 	void Start () {
         PlayerReference.PlayerObject = GameObject.Find("PlayerContainer");
         PlayerReference.PlayerScript = PlayerReference.PlayerObject.GetComponent<Player>();
+        PlayerReference.GunRotator = GameObject.Find("PlayerContainer/GunContainer").GetComponent<GunRotator>();
+        PlayerReference.SpriteManagerBuilder = GameObject.Find("PlayerContainer/Body").GetComponent<SpriteManagerBuilder>();
 	}
     
 }

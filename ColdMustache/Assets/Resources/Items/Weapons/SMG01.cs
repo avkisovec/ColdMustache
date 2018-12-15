@@ -39,8 +39,9 @@ public class SMG01 : Weapon {
     {
         ReloadTimeRemaining = SpecialValueThatIndicatesWeaponHasJustBeenReloaded; //without this, weapon gets max ammo in its first frame
 
-        GetComponent<SpriteManagerGunner>().GunSpriteRenderer.sprite = Resources.Load<Sprite>(SpritePath);
-        
+        //GetComponent<SpriteManagerGunner>().GunSpriteRenderer.sprite = Resources.Load<Sprite>(SpritePath);
+        PlayerReference.GunRotator.GunSpriteRenderer.sprite = Resources.Load<Sprite>(SpritePath);
+
         AmmoSpriteSheet = Resources.LoadAll<Sprite>(AmmoSpriteSheetPath);
 
         DisplayAmmo();

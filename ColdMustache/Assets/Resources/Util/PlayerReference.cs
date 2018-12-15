@@ -10,4 +10,8 @@ public class PlayerReference : MonoBehaviour {
 
     public static Player PlayerScript;
 
+    public static GunRotator GunRotator;
+
+    public static SpriteManagerBuilder SpriteManagerBuilder;
+
 }

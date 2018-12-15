@@ -42,6 +42,8 @@ public class Player : MonoBehaviour {
             CurrShootingCooldown -= Time.deltaTime;
         }
         
+        /*
+
         //when not firing/aiming, hold the gun in resting position
         if(Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Mouse1) || CurrShootingWindDownDuration > 0)
         {
@@ -52,6 +54,7 @@ public class Player : MonoBehaviour {
             smg.ActivelyAiming = false;
         }
         
+        */
 
         //movement vector will hold information about direction, speed is added after
         Vector2 MovementVector = new Vector2(0, 0);
