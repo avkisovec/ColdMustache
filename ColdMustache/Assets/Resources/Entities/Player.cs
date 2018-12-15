@@ -150,6 +150,7 @@ public class Player : MonoBehaviour {
         if (Input.GetKey(KeyCode.Q))
         {
             GetComponent<Weapon>().TryAltFire();
+            GetComponent<Weapon>().TryAltFire(MouseWorldPos);
         }
         if (Input.GetKey(KeyCode.R))
         {

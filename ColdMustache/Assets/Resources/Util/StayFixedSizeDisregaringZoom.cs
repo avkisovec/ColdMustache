@@ -5,14 +5,21 @@ using UnityEngine;
 public class StayFixedSizeDisregaringZoom : MonoBehaviour {
 
     Camera c;
+    CamControl cControl;
 
     float OrigRatio = 0;
     Vector3 OrigScale = new Vector3(1, 1, 1);
+
+    public KeyCode ActivationKey = KeyCode.E;
+    public KeyCode DeactivationOnlyKey = KeyCode.Escape;
     
 
     public bool StayOnScreenPosition = true;
     public float ScreenXPercentRatio;
     public float ScreenYPercentRatio;
+
+    public bool PixelPerfectScale = true;
+    public float PixelScale = 1;
 
     Vector2 MouseLastScreenPos;
     Vector2 MouseDelta;
@@ -34,6 +41,7 @@ public class StayFixedSizeDisregaringZoom : MonoBehaviour {
 	void Start () {
 
         c = Camera.main;
+        cControl = c.GetComponent<CamControl>();
 
         MouseLastScreenPos = Input.mousePosition;
         MouseLastWorldPos = c.ScreenToWorldPoint(Input.mousePosition);
@@ -55,7 +63,7 @@ public class StayFixedSizeDisregaringZoom : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (Input.GetKeyUp(KeyCode.E))
+        if (Input.GetKeyUp(ActivationKey))
         {
             transform.position = VisibleCoordinates;
             AmIActive = true;
@@ -68,7 +76,14 @@ public class StayFixedSizeDisregaringZoom : MonoBehaviour {
             MouseDelta = (Vector2)Input.mousePosition - MouseLastScreenPos;
             MouseWorldDelta = ((Vector2)c.ScreenToWorldPoint(Input.mousePosition) - MouseLastWorldPos) / 2;
 
-            transform.localScale = OrigScale * (c.orthographicSize / OrigRatio);
+            if (PixelPerfectScale)
+            {
+                transform.localScale = OrigScale / cControl.ActualTileScale * PixelScale;
+            }
+            else
+            {
+                transform.localScale = OrigScale * (c.orthographicSize / OrigRatio);
+            }
 
             if (StayOnScreenPosition)
             {
@@ -81,12 +96,13 @@ public class StayFixedSizeDisregaringZoom : MonoBehaviour {
 
 
 
-            if (Input.GetKeyDown(KeyCode.Mouse0) &&
+            if (Input.GetKeyUp(DeactivationOnlyKey) || (
+                Input.GetKeyDown(KeyCode.Mouse0) &&
                 MouseWorldPos.x > CloseButton.transform.position.x - (CloseButton.transform.lossyScale.x / 2) &&
                 MouseWorldPos.x < CloseButton.transform.position.x + (CloseButton.transform.lossyScale.x / 2) &&
                 MouseWorldPos.y > CloseButton.transform.position.y - (CloseButton.transform.lossyScale.y / 2) &&
                 MouseWorldPos.y < CloseButton.transform.position.y + (CloseButton.transform.lossyScale.y / 2)
-                )
+                ))
             {
                 VisibleCoordinates = transform.position;
                 transform.position = HidingCoordinates;

@@ -9,8 +9,8 @@ public class CamControl : MonoBehaviour {
 
     public bool PixelPerfect;
 
-    public int PixelSize = 1;
-    float ActualPixelSize = 1;
+    public int DesiredTileScale = 1;
+    public float ActualTileScale = 1;
 
     public float PixelResolution = 32;
 
@@ -40,30 +40,30 @@ public class CamControl : MonoBehaviour {
         {
             float factor = 1 - Input.mouseScrollDelta.y/10;
 
-            PixelSize += (int)Input.mouseScrollDelta.y;
-            if(PixelSize > 0)
+            DesiredTileScale += (int)Input.mouseScrollDelta.y;
+            if(DesiredTileScale > 0)
             {
-                ActualPixelSize = PixelSize;
+                ActualTileScale = DesiredTileScale;
 
-                if(PixelSize > 15)
+                if(DesiredTileScale > 15)
                 {
-                    PixelSize = 15;
+                    DesiredTileScale = 15;
                 }
 
             }
             else
             {
-                switch (PixelSize)
+                switch (DesiredTileScale)
                 {
                     case 0:
-                        ActualPixelSize = 0.5f;
+                        ActualTileScale = 0.5f;
                         break;
                     case -1:
-                        ActualPixelSize = 0.25f;
+                        ActualTileScale = 0.25f;
                         break;
                     default:
-                        ActualPixelSize = 0.125f;
-                        PixelSize = -2;
+                        ActualTileScale = 0.125f;
+                        DesiredTileScale = -2;
                         break;
                 }
             }
@@ -78,7 +78,7 @@ public class CamControl : MonoBehaviour {
         {
             //Orthographic size = ((Vert Resolution)/(PPUScale * PPU)) * 0.5
             //GetComponent<Camera>().orthographicSize = ((float)Screen.height / 32f) / PixelSize;
-            GetComponent<Camera>().orthographicSize = ((float)Screen.height / (PixelResolution * ActualPixelSize)) * 0.5f;
+            GetComponent<Camera>().orthographicSize = ((float)Screen.height / (PixelResolution * ActualTileScale)) * 0.5f;
 
             transform.position = (Vector3)Goal;
             transform.position = new Vector3(transform.position.x, transform.position.y, -70);

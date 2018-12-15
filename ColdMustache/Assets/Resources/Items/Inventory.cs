@@ -12,10 +12,7 @@ public class Inventory : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (IsSlotEmpty(GetListIdOfSlotWithId(-22)))
-        {
-            NoWeaponEquipped();
-        }
+        
 	}
 
     public void ReportSlotBeingClicked(int id)
@@ -35,6 +32,12 @@ public class Inventory : MonoBehaviour {
                     itemObject.transform.parent = Slots[FindFirstEmptyNormalSlot()].transform;
                     itemObject.transform.localPosition = new Vector3(0, 0, -1);
                 }
+
+                if (IsSlotEmpty(GetListIdOfSlotWithId(-22)))
+                {
+                    NoWeaponEquipped();
+                }
+
                 return;
             default: //normal slots (storage) -> go to corresponding special slot (and clear that one)
                 if (!IsSlotEmpty(GetListIdOfSlotWithId(id)))
