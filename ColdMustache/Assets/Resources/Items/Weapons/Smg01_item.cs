@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Smg01_item : InventoryItem {
 
-    public int Ammo = 0;
+    public int Ammo = 10;
     public SMG01.SmgModes Mode = SMG01.SmgModes.Full;
 
     public override void CodeBeforeRemoving()
