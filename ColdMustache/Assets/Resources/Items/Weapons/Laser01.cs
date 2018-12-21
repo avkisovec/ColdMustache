@@ -16,7 +16,7 @@ public class Laser01 : Weapon {
 
     private void Start()
     {
-        GetComponent<SpriteManagerGunner>().GunSpriteRenderer.sprite = Resources.Load<Sprite>(SpritePath);
+        PlayerReference.GunRotator.GunSpriteRenderer.sprite = Resources.Load<Sprite>(SpritePath);
         
         AmmoSpriteSheet = Resources.LoadAll<Sprite>(AmmoSpriteSheetPath);
 

@@ -1,0 +1,19 @@
+cold mustache - body parts (+clothing) indexes
+for the purpose of SpriteManagerBuilder
+
+/*
+     * INDEXES:
+     * 
+     * 0 - body
+     * 1 - shirt
+     * 2 - head (part of body, not headwear)
+     * 3 - coat
+     * 4 - eyes
+     * 5 - face (facial hair)
+     * 6 - hair
+     * 7 - hat
+     * 
+     * corresponds to layering - higher index sprite should be over lower index sprite
+     * 
+     * 
+     */

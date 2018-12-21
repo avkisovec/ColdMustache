@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour {
 
+    public float MaxHealth = 10;
     public float Health = 10;
     public enum team {Player, Enemy, Neutral }
     public team Team = team.Neutral;

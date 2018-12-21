@@ -68,7 +68,7 @@ public class Inventory : MonoBehaviour {
         {
             Destroy(w);
         }
-        PlayerReference.PlayerObject.GetComponent<SpriteManagerGunner>().GunSpriteRenderer.sprite = GuiReference.WeaponStatus.sprite = GuiReference.AmmoCounter.sprite = Resources.Load<Sprite>("EmptyPixel");
+        PlayerReference.GunRotator.GunSpriteRenderer.sprite = GuiReference.WeaponStatus.sprite = GuiReference.AmmoCounter.sprite = Resources.Load<Sprite>("EmptyPixel");
     }
 
     public int GetSpecialSlotId(InventoryItem.ItemType type)

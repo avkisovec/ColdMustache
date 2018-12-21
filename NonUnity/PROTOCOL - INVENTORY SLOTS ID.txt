@@ -1,0 +1,13 @@
+cold mustache - INVENTORY SLOTS ID PROTOCOL
+
+
+0, 1, 2 ... n	normal (main storage)
+
+-1 default, has no meaning, "undefined"
+
+-11 equip - shirt layer
+-12 equip - jacket layer
+-13 equip - head
+
+-21 equip - sidearm
+-22 equip - main weapon

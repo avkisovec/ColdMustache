@@ -81,6 +81,12 @@ public class SpriteManagerBuilder : MonoBehaviour {
             }
         }
 
+        if (Input.GetKeyUp(KeyCode.C))
+        {
+            RandomColorsHumanIsh();
+            UpdateEverything(LastDirection);
+        }
+
     }
 
     void LoadNakedBody()
@@ -223,5 +229,68 @@ public class SpriteManagerBuilder : MonoBehaviour {
                 UpdateSpecific(LastDirection, 7);
                 return;
         }
+    }
+
+    public void RandomColors()
+    {
+        /*
+        for(int i = 0; i < Colors.Length; i++)
+        {
+            Colors[i] = new Color(Random.Range(0,1f), Random.Range(0,1f), Random.Range(0,1f));
+        }
+        */
+
+        //body + head
+        Colors[0] = Colors[2] = new Color(Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0, 1f));
+
+        //facial hair + hair
+        Colors[5] = Colors[6] = new Color(Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0, 1f));
+
+
+        Colors[1] = new Color(Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0, 1f));
+
+        Colors[3] = new Color(Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0, 1f));
+
+        Colors[4] = new Color(Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0, 1f));
+
+        Colors[7] = new Color(Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0, 1f));
+
+    }
+
+    public void RandomColorsHumanIsh()
+    {
+        /*
+        for(int i = 0; i < Colors.Length; i++)
+        {
+            Colors[i] = new Color(Random.Range(0,1f), Random.Range(0,1f), Random.Range(0,1f));
+        }
+        */
+
+        // human skin:
+        // r = 0,1765 - 1
+        // g = 0,8 * r +- 0,05x
+        // b = 0,7 * r +- 0,05x
+
+        float red = Random.Range(0.1765f, 1);
+
+        //body + head
+        Colors[0] = Colors[2] = new Color(red, (0.8f+Random.Range(-0.1f, 0.1f))*red, (0.7f + Random.Range(-0.1f, 0.1f)) * red);
+
+        //hair
+        Colors[6] = new Color(Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0, 1f));
+
+        //facial hair - always 10% darker than hair, but same color
+        Colors[5] = Colors[6] * 0.9f;
+
+        Colors[1] = new Color(Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0, 1f));
+
+        Colors[3] = new Color(Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0, 1f));
+
+        Colors[4] = new Color(Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0, 1f));
+
+        Colors[7] = new Color(Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0, 1f));
+
+
+
     }
 }
