@@ -1,12 +1,14 @@
 fileFormatVersion: 2
 guid: e78d2e4bae7f83a49a31097089b89811
-timeCreated: 1544908961
+timeCreated: 1545476947
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: EmptyParts_0
     21300002: EmptyParts_1
     21300004: EmptyParts_2
+    21300006: EmptyParts_3
+    21300008: EmptyParts_4
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -97,11 +99,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 32
-        height: 64
+        y: 62
+        width: 2
+        height: 2
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -110,12 +112,12 @@ TextureImporter:
       name: EmptyParts_1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 64
+        x: 2
+        y: 62
+        width: 2
+        height: 2
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -124,10 +126,38 @@ TextureImporter:
       name: EmptyParts_2
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 64
+        x: 4
+        y: 62
+        width: 2
+        height: 2
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: EmptyParts_3
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 62
+        width: 2
+        height: 2
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: EmptyParts_4
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 62
+        width: 2
+        height: 2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

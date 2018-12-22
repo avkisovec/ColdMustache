@@ -26,6 +26,14 @@ public class SpriteManagerBuilder : MonoBehaviour {
     public Color[] Colors = new Color[8];
     public SpriteRenderer[] SpriteRenderers = new SpriteRenderer[8];
 
+    public SpriteRenderer Hand_Shirt;
+    public SpriteRenderer Hand_Jacket;
+    public SpriteRenderer OtherHand_Shirt;
+    public SpriteRenderer OtherHand_Jacket;
+
+    public SpriteRenderer Hand;
+    public SpriteRenderer OtherHand;
+
 
     public Sprite[] Empty;
 
@@ -87,6 +95,8 @@ public class SpriteManagerBuilder : MonoBehaviour {
             UpdateEverything(LastDirection);
         }
 
+        UpdateHands();
+
     }
 
     void LoadNakedBody()
@@ -118,6 +128,36 @@ public class SpriteManagerBuilder : MonoBehaviour {
             LastDirection = Direction;
             UpdateEverything(Direction);
         }
+    }
+
+    public void UpdateHands()
+    {
+        // 1 - shirt
+        // 3 - jacket
+
+        //mainhand is subsprite _3, other hand is subsprite _4
+        
+        Hand_Shirt.sprite = Sprites[1][3];
+        Hand_Shirt.color = Colors[1];
+        Hand_Shirt.flipY = Hand.flipY;
+
+        Hand_Jacket.sprite = Sprites[3][3];
+        Hand_Jacket.color = Colors[3];
+        Hand_Jacket.flipY = Hand.flipY;
+        
+        OtherHand_Shirt.sprite = Sprites[1][4];
+        OtherHand_Shirt.color = Colors[1];
+        OtherHand_Shirt.flipY = OtherHand.flipY;
+
+        OtherHand_Jacket.sprite = Sprites[3][4];
+        OtherHand_Jacket.color = Colors[3];
+        OtherHand_Jacket.flipY = OtherHand.flipY;
+
+
+        //hands get the same color as body
+        Hand.color = Colors[0];
+        OtherHand.color = Colors[0];
+
     }
 
     public void UpdateEverything(int Direction = 0)

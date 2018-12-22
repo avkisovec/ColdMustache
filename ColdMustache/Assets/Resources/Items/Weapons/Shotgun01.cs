@@ -112,8 +112,6 @@ public class Shotgun01 : Weapon {
         bullet.gameObject.AddComponent<CircleCollider2D>().isTrigger = true;
         bullet.GetComponent<CircleCollider2D>().radius = 1.3f;
         //bullet.AddComponent<InflicterSlow>().ini(Entity.team.Enemy, 2, 0.25f);
-
-        gameObject.AddComponent<StatusSlow>().ini(BaseCooldownBetweenShots, 0.5f, true);
     }
 
     public override void TryAltFire(Vector3 Target)
