@@ -1,6 +1,8 @@
 cold mustache - INVENTORY SLOTS ID PROTOCOL
 
 
+SLOT TYPE:
+
 0, 1, 2 ... n	normal (main storage)
 
 -1 default, has no meaning, "undefined"
@@ -11,3 +13,11 @@ cold mustache - INVENTORY SLOTS ID PROTOCOL
 
 -21 equip - sidearm
 -22 equip - main weapon
+
+those numbers are outdated, replaced by InventryItem.ItemType (enum)
+
+
+
+SLOT ID:
+
+0,1,2,3,4 ... the order in which they were loaded

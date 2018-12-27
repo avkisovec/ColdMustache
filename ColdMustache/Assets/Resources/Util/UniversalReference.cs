@@ -20,6 +20,8 @@ public class UniversalReference : MonoBehaviour {
 
     public static Transform PlayerBulletsOrigin;
 
+    public static Inventory PlayerInventory;
+
     //gui
     public static Image AmmoCounter;
     public static Image AmmoStatus;
@@ -52,6 +54,8 @@ public class UniversalReference : MonoBehaviour {
         GunRotator = GameObject.Find("PlayerContainer/GunContainer").GetComponent<GunRotatorHand>();
 
         PlayerBulletsOrigin = GameObject.Find("PlayerContainer/GunContainer/BulletsOrigin").transform;
+
+        PlayerInventory = GameObject.Find("UNCHANGING/Inventory").GetComponent<Inventory>();
 
         //gui
         AmmoCounter = GameObject.Find("Canvas/AmmoCounter").GetComponent<Image>();

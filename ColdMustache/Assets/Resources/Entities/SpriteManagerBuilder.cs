@@ -356,6 +356,8 @@ public class SpriteManagerBuilder : SpriteManagerBase {
     public float TemporaryColorTimeRemaining = 0;
     public override void TemporaryColor(Color color, float Time)
     {
+        colors_original = (Color[])Colors.Clone();
+
         for (int i = 0; i < Colors.Length; i++)
         {
             Colors[i] = color;

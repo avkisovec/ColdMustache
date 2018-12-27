@@ -27,7 +27,7 @@ public class FxFootSteps : MonoBehaviour {
             CurrCooldown = CooldownInSeconds;
 
             GameObject footStep = new GameObject();
-            footStep.transform.position = transform.position;
+            footStep.transform.position = new Vector3(transform.position.x, transform.position.y ,210);
             footStep.transform.rotation = Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360)));
 
             footStep.AddComponent<SpriteRenderer>().sprite = sprite;

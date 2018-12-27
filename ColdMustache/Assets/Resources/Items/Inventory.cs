@@ -247,24 +247,7 @@ public class Inventory : MonoBehaviour {
         return -1;
     }
 
-    /*
-    public int MainWeaponSlotSelectedIndexForModulo = 1;
-        
-
-    public void CycleMainWeapons()
-    {
-        int[] MainWeaponNonEmptySlotsListIndexes = GetAllListIdOfSlotType_notEmpty(InventoryItem.ItemType.WeaponMain);
-        
-        if(MainWeaponNonEmptySlotsListIndexes.Length == 0)
-        {
-            return; //to avoid dividing by zero
-        }
-
-        SlotsScripts[MainWeaponNonEmptySlotsListIndexes[MainWeaponSlotSelectedIndexForModulo % MainWeaponNonEmptySlotsListIndexes.Length]].transform.GetChild(0).GetComponent<InventoryItem>().CodeBeforeRemoving();
-        MainWeaponSlotSelectedIndexForModulo++;
-        SlotsScripts[MainWeaponNonEmptySlotsListIndexes[MainWeaponSlotSelectedIndexForModulo % MainWeaponNonEmptySlotsListIndexes.Length]].transform.GetChild(0).GetComponent<InventoryItem>().CodeAfterEquipping();
-    }
-    */
+    
 
     int[] MainWeaponSlotsListIndexes = { 4, 5, 6 };
 
@@ -364,9 +347,11 @@ public class Inventory : MonoBehaviour {
         inventorySlot.transform.GetChild(0).GetComponent<InventoryItem>().CodeAfterEquipping();
     }
 
-    void GoFromSlotToSlot(InventorySlot a, InventorySlot b)
-    {
 
+    public void AddItem(GameObject item)
+    {
+        item.transform.parent = SlotsScripts[FindListIdOfFirstEmptySlot(InventoryItem.ItemType.Everything)].transform;
+        item.transform.localPosition = new Vector3(0, 0, -1);
     }
 
 
