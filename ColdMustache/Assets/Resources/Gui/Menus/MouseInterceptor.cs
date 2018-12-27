@@ -16,16 +16,14 @@ public class MouseInterceptor : MonoBehaviour {
      * 
      */
 
-    //public static int FramesSinceMouseHoveredOverAMenu = 0;
+    public static int FramesSinceMouseHoveredOverAMenu = 0;
     public static bool MouseBeingIntercepted = false;
-
-    /*
+    
     public static void ReportAMouseCurrentlyOverAMenu()
     {
         FramesSinceMouseHoveredOverAMenu = 0;
     }
-    */
-
+    
     public static bool IsMouseBeingIntercepted()
     {
         return MouseBeingIntercepted;
@@ -48,6 +46,24 @@ public class MouseInterceptor : MonoBehaviour {
         }
         return false;
         */
+    }
+
+    public static bool IsMouseHoveringMenu()
+    {
+        if(FramesSinceMouseHoveredOverAMenu >= 2)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    public static bool IsMouseNotHoveringMenu()
+    {
+        if (FramesSinceMouseHoveredOverAMenu >= 2)
+        {
+            return true;
+        }
+        return false;
     }
 
 }

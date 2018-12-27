@@ -63,7 +63,7 @@ public class EnvironmentObject : MonoBehaviour {
 		
 	}
 
-    public void TakeDamage(int Damage)
+    public void TakeDamage(float Damage)
     {
         if (!Indestructible)
         {

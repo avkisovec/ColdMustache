@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpriteManagerBuilder : MonoBehaviour {
+public class SpriteManagerBuilder : SpriteManagerBase {
 
     /*
-     * INDEXES:
+     * INDEXES: (for human)
      * 
      * 0 - body
      * 1 - shirt
@@ -34,6 +34,7 @@ public class SpriteManagerBuilder : MonoBehaviour {
     public SpriteRenderer Hand;
     public SpriteRenderer OtherHand;
 
+    Color[] colors_original;
 
     public Sprite[] Empty;
 
@@ -53,6 +54,9 @@ public class SpriteManagerBuilder : MonoBehaviour {
             
         }
 
+
+        colors_original = (Color[])Colors.Clone();
+
         UpdateEverything(0);
     }
 	
@@ -66,12 +70,12 @@ public class SpriteManagerBuilder : MonoBehaviour {
             //up (back is visible)
             if (Delta.y > 0)
             {
-                UpdateEverythingIfRequired(90);
+                UpdateIfNeeded(90);
             }
             //down (front is visible)
             else
             {
-                UpdateEverythingIfRequired(270);
+                UpdateIfNeeded(270);
             }
         }
         //target is on one of your sides - choose between left/right
@@ -80,12 +84,12 @@ public class SpriteManagerBuilder : MonoBehaviour {
             //side (toward right = dafault)
             if (Delta.x > 0)
             {
-                UpdateEverythingIfRequired(0);
+                UpdateIfNeeded(0);
             }
             //other side (toward left - needs mirrorring)
             else
             {
-                UpdateEverythingIfRequired(180);
+                UpdateIfNeeded(180);
             }
         }
 
@@ -96,6 +100,20 @@ public class SpriteManagerBuilder : MonoBehaviour {
         }
 
         UpdateHands();
+
+
+        if (TemporaryColorTimeRemaining > 0)
+        {
+            TemporaryColorTimeRemaining -= Time.deltaTime;
+        }
+        if (TemporaryColorTimeRemaining != -999999 && TemporaryColorTimeRemaining <= 0)
+        {
+            TemporaryColorTimeRemaining = -999999;
+
+            Colors = (Color[])colors_original.Clone();
+
+            UpdateEverything(LastDirection);
+        }
 
     }
 
@@ -121,7 +139,8 @@ public class SpriteManagerBuilder : MonoBehaviour {
     }
 
     public int LastDirection = -1;
-    public void UpdateEverythingIfRequired(int Direction)
+
+    public override void UpdateIfNeeded(int Direction)
     {
         if (Direction != LastDirection)
         {
@@ -160,7 +179,7 @@ public class SpriteManagerBuilder : MonoBehaviour {
 
     }
 
-    public void UpdateEverything(int Direction = 0)
+    public override void UpdateEverything(int Direction = 0)
     {
         switch (Direction)
         {
@@ -332,5 +351,16 @@ public class SpriteManagerBuilder : MonoBehaviour {
 
 
 
+    }
+
+    public float TemporaryColorTimeRemaining = 0;
+    public override void TemporaryColor(Color color, float Time)
+    {
+        for (int i = 0; i < Colors.Length; i++)
+        {
+            Colors[i] = color;
+        }
+        TemporaryColorTimeRemaining = Time;
+        UpdateEverything(LastDirection);
     }
 }

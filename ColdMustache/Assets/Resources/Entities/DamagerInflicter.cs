@@ -5,7 +5,7 @@ using UnityEngine;
 public class DamagerInflicter : MonoBehaviour {
 
     public Entity.team Team;
-    public int Damage = 1;
+    public float Damage = 1;
 
     public bool SingleUse = true;
     public float CoolDownBetweenHits = 1;
@@ -127,7 +127,7 @@ public class DamagerInflicter : MonoBehaviour {
         }
     }
 
-    public void ini(Entity.team Team, int Damage, bool SingleUse = true, bool SpawnFxOnTargetInsteadOfSource = false, float CoolDownBetweenHits = 1, float BecomeActiveAfterSeconds = 0, bool IsProjectile = true)
+    public void ini(Entity.team Team, float Damage, bool SingleUse = true, bool SpawnFxOnTargetInsteadOfSource = false, float CoolDownBetweenHits = 1, float BecomeActiveAfterSeconds = 0, bool IsProjectile = true)
     {
         this.Team = Team;
         this.Damage = Damage;

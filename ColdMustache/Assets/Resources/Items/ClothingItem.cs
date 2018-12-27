@@ -19,11 +19,11 @@ public class ClothingItem : InventoryItem {
 
     public override void CodeBeforeRemoving()
     {
-        PlayerReference.SpriteManagerBuilder.UnequipClothing(Type);
+        UniversalReference.SpriteManagerBuilder.UnequipClothing(Type);
     }
 
     public override void CodeAfterEquipping()
     {
-        PlayerReference.SpriteManagerBuilder.EquipClothing(Type, Sprites, Color);
+        UniversalReference.SpriteManagerBuilder.EquipClothing(Type, Sprites, Color);
     }
 }

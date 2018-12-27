@@ -82,16 +82,14 @@ public class GunRotatorHand : MonoBehaviour {
             {
                 if (Delta.x > 0)
                 {
-                    GunContainer.localPosition = new Vector3(FrontBackLeftShoulder.x, FrontBackLeftShoulder.y, ObscuredDepth);
-                    GunSpriteRenderer.flipY = false;
-                    HandSr.flipY = false;
+                    GunContainer.localPosition = new Vector3(FrontBackRightShoulder.x, FrontBackRightShoulder.y, ObscuredDepth);
+                    transform.localScale = new Vector3(1, 1, 1);
                 }
                 //other side (toward left - needs mirrorring)
                 else
                 {
-                    GunContainer.localPosition = new Vector3(FrontBackRightShoulder.x, FrontBackRightShoulder.y, ObscuredDepth);
-                    GunSpriteRenderer.flipY = true;
-                    HandSr.flipY = true;
+                    GunContainer.localPosition = new Vector3(FrontBackLeftShoulder.x, FrontBackLeftShoulder.y, ObscuredDepth);
+                    transform.localScale = new Vector3(1, -1, 1);
                 }
                 OtherHand.localPosition = new Vector3(0, 0, 999999);
             }
@@ -101,23 +99,21 @@ public class GunRotatorHand : MonoBehaviour {
                 if (Delta.x > 0)
                 {
                     GunContainer.localPosition = new Vector3(FrontBackLeftShoulder.x, FrontBackLeftShoulder.y, VisibleDepth);
-                    GunSpriteRenderer.flipY = false;
+                    transform.localScale = new Vector3(1, 1, 1);
 
                     OtherHand.localPosition = new Vector3(FrontBackRightShoulder.x, FrontBackRightShoulder.y, VisibleDepth/2);
-                    OtherHandSr.flipY = false;
-                    HandSr.flipY = false;
                     Util.RotateTransformToward(OtherHand, HoldPoint);
+                    OtherHandSr.flipY = false;
                 }
                 //other side (toward left - needs mirrorring)
                 else
                 {
                     GunContainer.localPosition = new Vector3(FrontBackRightShoulder.x, FrontBackRightShoulder.y, VisibleDepth);
-                    GunSpriteRenderer.flipY = true;
+                    transform.localScale = new Vector3(1, -1, 1);
 
                     OtherHand.localPosition = new Vector3(FrontBackLeftShoulder.x, FrontBackLeftShoulder.y, VisibleDepth/2);
-                    OtherHandSr.flipY = true;
-                    HandSr.flipY = true;
                     Util.RotateTransformToward(OtherHand, HoldPoint);
+                    OtherHandSr.flipY = true;
                 }
             }
 
@@ -130,15 +126,13 @@ public class GunRotatorHand : MonoBehaviour {
             if (Delta.x > 0)
             {
                 GunContainer.localPosition = new Vector3(SideShoulder.x, SideShoulder.y, VisibleDepth);
-                GunSpriteRenderer.flipY = false;
-                HandSr.flipY = false;
+                transform.localScale = new Vector3(1, 1, 1);
             }
             //other side (toward left - needs mirrorring)
             else
             {
                 GunContainer.localPosition = new Vector3(SideShoulder.x, SideShoulder.y, VisibleDepth);
-                GunSpriteRenderer.flipY = true;
-                HandSr.flipY = true;
+                transform.localScale = new Vector3(1, -1, 1);
             }
 
             //Util.RotateTransformToward(Head, Camera.main.ScreenToWorldPoint(Input.mousePosition));

@@ -16,11 +16,11 @@ public class Laser01 : Weapon {
 
     private void Start()
     {
-        PlayerReference.GunRotator.GunSpriteRenderer.sprite = Resources.Load<Sprite>(SpritePath);
+        UniversalReference.GunRotator.GunSpriteRenderer.sprite = Resources.Load<Sprite>(SpritePath);
         
         AmmoSpriteSheet = Resources.LoadAll<Sprite>(AmmoSpriteSheetPath);
 
-        GuiReference.WeaponStatus.sprite = Resources.Load<Sprite>("EmptyPixel");
+        UniversalReference.WeaponStatus.sprite = Resources.Load<Sprite>("EmptyPixel");
 
         DisplayAmmo();
     }
@@ -84,11 +84,11 @@ public class Laser01 : Weapon {
     {
         if (CurrCharge >= FullCharge)
         {
-            GuiReference.AmmoCounter.sprite = AmmoSpriteSheet[0];
+            UniversalReference.AmmoCounter.sprite = AmmoSpriteSheet[0];
         }
         else
         {
-            GuiReference.AmmoCounter.sprite = AmmoSpriteSheet[Mathf.RoundToInt(((float)CurrCharge / (float)FullCharge) * (float)(AmmoSpriteSheet.Length - 1))];
+            UniversalReference.AmmoCounter.sprite = AmmoSpriteSheet[Mathf.RoundToInt(((float)CurrCharge / (float)FullCharge) * (float)(AmmoSpriteSheet.Length - 1))];
         }
     }
 }

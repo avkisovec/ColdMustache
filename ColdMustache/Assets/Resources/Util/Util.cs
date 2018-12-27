@@ -39,12 +39,22 @@ public class Util : MonoBehaviour {
     {
         return To - (Vector2)From.position;
     }
+    public static Vector2 GetVectorToward(Vector3 From, Vector2 To)
+    {
+        return To - (Vector2)From;
+    }
     public static Vector2 GetDirectionVectorToward(Transform From, Transform To)
     {
         Vector2 Output = GetVectorToward(From, To);
         return Output / Output.magnitude;
     }
     public static Vector2 GetDirectionVectorToward(Transform From, Vector2 To)
+    {
+        Vector2 Output = GetVectorToward(From, To);
+        return Output / Output.magnitude;
+    }
+
+    public static Vector2 GetDirectionVectorToward(Vector3 From, Vector2 To)
     {
         Vector2 Output = GetVectorToward(From, To);
         return Output / Output.magnitude;

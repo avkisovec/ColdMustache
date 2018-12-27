@@ -17,18 +17,18 @@ public class Laser01_item : InventoryItem {
 
     public override void CodeBeforeRemoving()
     {
-        CurrCharge = PlayerReference.PlayerObject.GetComponent<Laser01>().CurrCharge;
+        CurrCharge = UniversalReference.PlayerObject.GetComponent<Laser01>().CurrCharge;
     }
 
     public override void CodeAfterEquipping()
     {
         //remove all previously held (=attached components) weapons
-        foreach (Weapon w in PlayerReference.PlayerObject.GetComponents<Weapon>())
+        foreach (Weapon w in UniversalReference.PlayerObject.GetComponents<Weapon>())
         {
             Destroy(w);
         }
 
-        PlayerReference.PlayerObject.AddComponent<Laser01>().CurrCharge = CurrCharge;
+        UniversalReference.PlayerObject.AddComponent<Laser01>().CurrCharge = CurrCharge;
 
         //UnityEngineInternal.APIUpdaterRuntimeServices.AddComponent(player, "Assets/Resources/Items/InventoryItem.cs (38,17)", WeaponScriptName);
 

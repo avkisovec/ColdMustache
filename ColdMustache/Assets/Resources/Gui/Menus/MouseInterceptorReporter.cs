@@ -9,15 +9,17 @@ public class MouseInterceptorReporter : MonoBehaviour {
     
 	void Update () {
         Vector2 MouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (Input.GetKeyDown(KeyCode.Mouse0) &&
-            MouseWorldPos.x > transform.position.x - (transform.lossyScale.x / 2) &&
+        if (MouseWorldPos.x > transform.position.x - (transform.lossyScale.x / 2) &&
             MouseWorldPos.x < transform.position.x + (transform.lossyScale.x / 2) &&
             MouseWorldPos.y > transform.position.y - (transform.lossyScale.y / 2) &&
             MouseWorldPos.y < transform.position.y + (transform.lossyScale.y / 2)       
             )
         {
-            //MouseInterceptor.ReportAMouseCurrentlyOverAMenu();
-            MouseInterceptor.MouseBeingIntercepted = true;
+            MouseInterceptor.FramesSinceMouseHoveredOverAMenu = 0;
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                MouseInterceptor.MouseBeingIntercepted = true;
+            }
         }
     }
 }

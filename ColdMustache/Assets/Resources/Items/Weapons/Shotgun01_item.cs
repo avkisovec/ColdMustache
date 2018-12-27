@@ -8,18 +8,18 @@ public class Shotgun01_item : InventoryItem {
 
     public override void CodeBeforeRemoving()
     {
-        Ammo = PlayerReference.PlayerObject.GetComponent<Shotgun01>().Ammo;
+        Ammo = UniversalReference.PlayerObject.GetComponent<Shotgun01>().Ammo;
     }
 
     public override void CodeAfterEquipping()
     {
         //remove all previously held (=attached components) weapons
-        foreach (Weapon w in PlayerReference.PlayerObject.GetComponents<Weapon>())
+        foreach (Weapon w in UniversalReference.PlayerObject.GetComponents<Weapon>())
         {
             Destroy(w);
         }
 
-        PlayerReference.PlayerObject.AddComponent<Shotgun01>().Ammo = Ammo;
+        UniversalReference.PlayerObject.AddComponent<Shotgun01>().Ammo = Ammo;
 
         return;
     }

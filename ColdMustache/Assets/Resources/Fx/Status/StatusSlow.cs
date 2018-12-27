@@ -19,7 +19,11 @@ public class StatusSlow : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        e.CurrMoveSpeed *= Coefficient;
+
+        if(e.MoveSpeedSlowModifier > Coefficient)
+        {
+            e.MoveSpeedSlowModifier = Coefficient;
+        }
 
         if (SpawnParticles)
         {

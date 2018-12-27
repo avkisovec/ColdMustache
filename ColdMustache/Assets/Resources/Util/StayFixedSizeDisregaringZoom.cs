@@ -4,8 +4,25 @@ using UnityEngine;
 
 public class StayFixedSizeDisregaringZoom : MonoBehaviour {
 
+    /*
+     * 
+     *  THIS SHOULD BE RANAMED TO "WINDOW"
+     * 
+     *  IT DOES WAY MORE THAN JUST FIXED SIZE
+     *  
+     *  FOR THAT IS NOW "STAYFIXEDSIZE"
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     */
+
     Camera c;
-    CamControl cControl;
+    CamControlPixelPerfect cControl;
 
     float OrigRatio = 0;
     Vector3 OrigScale = new Vector3(1, 1, 1);
@@ -41,7 +58,7 @@ public class StayFixedSizeDisregaringZoom : MonoBehaviour {
 	void Start () {
 
         c = Camera.main;
-        cControl = c.GetComponent<CamControl>();
+        cControl = UniversalReference.camControlPixelPerfect;
 
         MouseLastScreenPos = Input.mousePosition;
         MouseLastWorldPos = c.ScreenToWorldPoint(Input.mousePosition);

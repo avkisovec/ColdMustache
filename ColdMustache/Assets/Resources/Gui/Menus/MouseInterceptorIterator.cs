@@ -9,10 +9,9 @@ public class MouseInterceptorIterator : MonoBehaviour {
 
         
 	void Update () {
-        /*
+        
         MouseInterceptor.FramesSinceMouseHoveredOverAMenu++;
-        Debug.Log(MouseInterceptor.FramesSinceMouseHoveredOverAMenu);
-        */
+        
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             MouseInterceptor.MouseBeingIntercepted = false;

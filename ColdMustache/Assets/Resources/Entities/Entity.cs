@@ -9,20 +9,23 @@ public class Entity : MonoBehaviour {
     public enum team {Player, Enemy, Neutral }
     public team Team = team.Neutral;
     public float BaseMoveSpeed = 5;
-    public float CurrMoveSpeed = 5;
+    public float MoveSpeedSlowModifier = 1;
 
     public Vector2 LookingToward = new Vector2(1,0);
 
     Rigidbody2D rb;
-
-    SpriteManager AnySprtMng;
-
+        
+    public SpriteManagerBase AnySprtMng = null;
+    
     public bool LookDirectionBasedOnMovement = true;
 
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody2D>();
-        AnySprtMng = GetComponent<SpriteManager>();
+        if(AnySprtMng == null)
+        {
+            AnySprtMng = GetComponent<SpriteManagerBase>();
+        }
 	}
 	
 	// Update is called once per frame
@@ -36,7 +39,7 @@ public class Entity : MonoBehaviour {
         if (MovementVector.x != 0 || MovementVector.y != 0)
         {
             //dividing by magnitude to make diagonal travel as fast as horizontal/vertical
-            rb.velocity = MovementVector / MovementVector.magnitude * CurrMoveSpeed;
+            rb.velocity = MovementVector / MovementVector.magnitude * BaseMoveSpeed * MoveSpeedSlowModifier;
 
             if (LookDirectionBasedOnMovement)
             {
@@ -49,16 +52,27 @@ public class Entity : MonoBehaviour {
         }
 
 
-        CurrMoveSpeed = BaseMoveSpeed;
+        MoveSpeedSlowModifier = 1;
     }
 
-    public void TakeDamage (int Damage)
+    public void TakeDamage (float Damage)
     {
         //check invincibility, resistances and stuff
         if (true)
         {
+
+
+            GameObject BloodSpatter = new GameObject();
+            BloodSpatter.transform.position = new Vector3(transform.position.x, transform.position.y, 209);
+            BloodSpatter.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+            BloodSpatter.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Fx/BloodSpatter");
+
+
+
             Health -= Damage;
-            AnySprtMng.FlashInjuredColor();
+
+            AnySprtMng.TemporaryColor(new Color(1, 0, 0), 0.5f);
+
             if(Health <= 0)
             {
                 Die();

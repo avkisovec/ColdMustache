@@ -42,9 +42,24 @@ public class Inventory : MonoBehaviour {
             default: //normal slots (storage) -> go to corresponding special slot (and clear that one)
                 if (!IsSlotEmpty(GetListIdOfSlotWithId(id)))
                 {
-                    itemObject = Slots[GetListIdOfSlotWithId(id)].gameObject.transform.GetChild(0).gameObject;
-                    
+                    //new object
+                    itemObject = Slots[GetListIdOfSlotWithId(id)].gameObject.transform.GetChild(0).gameObject;                    
                     int SpecialSlotId = GetSpecialSlotId(itemObject.GetComponent<InventoryItem>().Type);
+
+                    foreach(int listId in GetAllListIdOfSlotWithId(SpecialSlotId))
+                    {
+                        if (IsSlotEmpty(listId))
+                        {
+                            //empty slot was found, put new thing there
+
+                            itemObject.transform.parent = Slots[listId].transform;
+                            itemObject.transform.localPosition = new Vector3(0, 0, -1);
+
+                            itemObject.GetComponent<InventoryItem>().CodeAfterEquipping();
+
+                            return;
+                        }
+                    }
 
                     bool WasTheSlotAlreadyOccupied = !IsSlotEmpty(GetListIdOfSlotWithId(SpecialSlotId));
 
@@ -64,11 +79,11 @@ public class Inventory : MonoBehaviour {
 
     public void NoWeaponEquipped()
     {
-        foreach (Weapon w in PlayerReference.PlayerObject.GetComponents<Weapon>())
+        foreach (Weapon w in UniversalReference.PlayerObject.GetComponents<Weapon>())
         {
             Destroy(w);
         }
-        PlayerReference.GunRotator.GunSpriteRenderer.sprite = GuiReference.WeaponStatus.sprite = GuiReference.AmmoCounter.sprite = Resources.Load<Sprite>("EmptyPixel");
+        UniversalReference.GunRotator.GunSpriteRenderer.sprite = UniversalReference.WeaponStatus.sprite = UniversalReference.AmmoCounter.sprite = Resources.Load<Sprite>("EmptyPixel");
     }
 
     public int GetSpecialSlotId(InventoryItem.ItemType type)
@@ -100,6 +115,20 @@ public class Inventory : MonoBehaviour {
             }
         }
         return -1; //means "not found"
+    }
+
+    public int[] GetAllListIdOfSlotWithId(int slotId)
+    {
+        List<int> output = new List<int>();
+
+        for (int i = 0; i < Slots.Count; i++)
+        {
+            if (Slots[i].SlotID == slotId)
+            {
+                output.Add(i);
+            }
+        }
+        return output.ToArray();
     }
 
     public bool IsSlotEmpty(int ListId)

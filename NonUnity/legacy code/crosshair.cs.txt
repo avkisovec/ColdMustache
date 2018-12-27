@@ -1,0 +1,130 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Crosshair : MonoBehaviour {
+    
+    public float EffectiveRange = 10; // crosshair is very close until effective range, then starts spreading apart, until 2x effective range where it disappears
+                //between 2x and 2.5x effective range, edges start disappearing
+
+    public float EdgeDistanceInMenu = 999999f; //originally 0.2f
+    public float EdgeDistanceMenuClick = 999999f; //originally 0.25f
+    public float EdgeDistanceEffectiveRange = 0.35f;
+    public float EdgeSpreadAt2xEffective = 2;
+
+    public Color DefaultColor;
+    public Color MenuColor;
+    public Color InvisibleColor;
+
+    public Transform Edge0;
+    public Transform Edge1;
+    public Transform Edge2;
+    public Transform Edge3;
+
+    public SpriteRenderer Dot_sr;
+    public SpriteRenderer Edge0_sr;
+    public SpriteRenderer Edge1_sr;
+    public SpriteRenderer Edge2_sr;
+    public SpriteRenderer Edge3_sr;
+
+    public Sprite Dot;
+    public Sprite PointerEmpty;
+    public Sprite PointerFull;
+    
+    // Use this for initialization
+    void Start () {
+        Cursor.visible = false;
+	}
+	
+	// Update is called once per frame
+	void Update () {
+        transform.position = new Vector3(UniversalReference.MouseWorldPos.x, UniversalReference.MouseWorldPos.y, transform.position.z);
+
+        float Distance = ((Vector2)UniversalReference.PlayerObject.transform.position - UniversalReference.MouseWorldPos).magnitude;
+        if (MouseInterceptor.IsMouseHoveringMenu())
+        {
+            Edge0_sr.color = MenuColor;
+            Edge1_sr.color = MenuColor;
+            Edge2_sr.color = MenuColor;
+            Edge3_sr.color = MenuColor;
+            Dot_sr.color = MenuColor;
+
+            //hovering menu and being clicked/held down
+            if (MouseInterceptor.MouseBeingIntercepted == true)
+            {
+                SetEdgesToDistance(EdgeDistanceMenuClick);
+                Dot_sr.sprite = PointerFull;
+            }
+            //just hovering
+            else
+            {
+                SetEdgesToDistance(EdgeDistanceInMenu);
+                Dot_sr.sprite = PointerEmpty;
+            }
+        }
+        else
+        {
+            Edge0_sr.color = DefaultColor;
+            Edge1_sr.color = DefaultColor;
+            Edge2_sr.color = DefaultColor;
+            Edge3_sr.color = DefaultColor;
+            Dot_sr.color = DefaultColor;
+            
+            Dot_sr.sprite = Dot;
+
+            if (Distance <= EffectiveRange)
+            {
+                SetEdgesToDistance(EdgeDistanceEffectiveRange);
+                
+                Edge0_sr.color = DefaultColor;
+                Edge1_sr.color = DefaultColor;
+                Edge2_sr.color = DefaultColor;
+                Edge3_sr.color = DefaultColor;
+                Dot_sr.color = DefaultColor;
+            }
+            else if (Distance <= 2*EffectiveRange)
+            {
+                SetEdgesToDistance(EdgeDistanceEffectiveRange + ((Distance - EffectiveRange) / EffectiveRange) * EdgeSpreadAt2xEffective);
+                Dot_sr.color = DefaultColor * (1-((Distance - EffectiveRange) / EffectiveRange));
+
+
+                Edge0_sr.color = DefaultColor;
+                Edge1_sr.color = DefaultColor;
+                Edge2_sr.color = DefaultColor;
+                Edge3_sr.color = DefaultColor;
+            }
+            else if (Distance <= 2.5f * EffectiveRange)
+            {
+                SetEdgesToDistance(EdgeDistanceEffectiveRange + ((Distance - EffectiveRange) / EffectiveRange) * EdgeSpreadAt2xEffective);
+
+                Color clr = DefaultColor * (1 - ((Distance - 2*EffectiveRange) / EffectiveRange));
+                
+                Edge0_sr.color = clr;
+                Edge1_sr.color = clr;
+                Edge2_sr.color = clr;
+                Edge3_sr.color = clr;
+
+                Dot_sr.color = InvisibleColor;
+            }
+            else
+            {
+                Edge0_sr.color = InvisibleColor;
+                Edge1_sr.color = InvisibleColor;
+                Edge2_sr.color = InvisibleColor;
+                Edge3_sr.color = InvisibleColor;
+
+                Dot_sr.color = InvisibleColor;
+            }
+
+        }
+
+	}
+
+    void SetEdgesToDistance(float Distance)
+    {
+        Edge0.transform.localPosition = new Vector3(Distance, Distance, 0);
+        Edge1.transform.localPosition = new Vector3(-Distance, Distance, 0);
+        Edge2.transform.localPosition = new Vector3(-Distance, -Distance, 0);
+        Edge3.transform.localPosition = new Vector3(Distance, -Distance, 0);
+    }
+}
