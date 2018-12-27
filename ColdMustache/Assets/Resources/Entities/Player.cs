@@ -15,6 +15,8 @@ public class Player : MonoBehaviour {
 
     SpriteManagerGunner smg;
 
+    public Weapon CurrentlyEquippedWeapon;
+
     public float Inaccuracy = 0;
     //ranges between 0 and 1
     //random bullet spread is multiplied by this value
@@ -190,16 +192,16 @@ public class Player : MonoBehaviour {
         */
         if (Input.GetKey(KeyCode.Mouse0) && MouseInterceptor.IsMouseAvailable())
         {
-            GetComponent<Weapon>().TryShooting(MouseWorldPos);
+           CurrentlyEquippedWeapon.TryShooting(MouseWorldPos);
         }
         if (Input.GetKey(KeyCode.Q))
         {
-            GetComponent<Weapon>().TryAltFire();
-            GetComponent<Weapon>().TryAltFire(MouseWorldPos);
+            CurrentlyEquippedWeapon.TryAltFire();
+            CurrentlyEquippedWeapon.TryAltFire(MouseWorldPos);
         }
         if (Input.GetKey(KeyCode.R))
         {
-            GetComponent<Weapon>().ForceReload();
+            CurrentlyEquippedWeapon.ForceReload();
         }
         if (Input.GetKey(KeyCode.P))
         {

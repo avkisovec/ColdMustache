@@ -539,7 +539,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1681403888}
-  m_RootOrder: 30
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &32704808
 MonoBehaviour:
@@ -553,7 +553,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentInventory: {fileID: 1681403889}
-  SlotID: 22
+  SlotType: 6
+  SlotId: 122
 --- !u!212 &32704809
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1731,7 +1732,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1681403888}
-  m_RootOrder: 21
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &102460242
 MonoBehaviour:
@@ -1745,7 +1746,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentInventory: {fileID: 1681403889}
-  SlotID: 13
+  SlotType: 6
+  SlotId: 113
 --- !u!212 &102460243
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1817,7 +1819,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1681403888}
-  m_RootOrder: 33
+  m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &102641517
 SpriteRenderer:
@@ -2722,7 +2724,7 @@ Transform:
   m_Children:
   - {fileID: 1516034868}
   m_Father: {fileID: 1681403888}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &147365393
 SpriteRenderer:
@@ -2780,7 +2782,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentInventory: {fileID: 1681403889}
-  SlotID: 4
+  SlotType: 6
+  SlotId: 104
 --- !u!1 &151667865
 GameObject:
   m_ObjectHideFlags: 0
@@ -3689,7 +3692,9 @@ MonoBehaviour:
 
     C,L randomize
 
-    P particle spam'
+    P particle spam
+
+    TAB cycle weapons'
 --- !u!222 &222104795
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3931,7 +3936,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentInventory: {fileID: 1681403889}
-  SlotID: -22
+  SlotType: 5
+  SlotId: 4
 --- !u!1001 &239283663
 Prefab:
   m_ObjectHideFlags: 0
@@ -5762,7 +5768,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 1681403888}
-  m_RootOrder: 32
+  m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!212 &386803669
 SpriteRenderer:
@@ -5837,7 +5843,7 @@ Transform:
   m_Children:
   - {fileID: 921865680}
   m_Father: {fileID: 1681403888}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &387144386
 MonoBehaviour:
@@ -5851,7 +5857,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentInventory: {fileID: 1681403889}
-  SlotID: 7
+  SlotType: 6
+  SlotId: 107
 --- !u!212 &387144387
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6987,7 +6994,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1681403888}
-  m_RootOrder: 25
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &428465608
 MonoBehaviour:
@@ -7001,7 +7008,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentInventory: {fileID: 1681403889}
-  SlotID: 17
+  SlotType: 6
+  SlotId: 117
 --- !u!212 &428465609
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8364,7 +8372,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1681403888}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &527163517
 MonoBehaviour:
@@ -8378,7 +8386,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentInventory: {fileID: 1681403889}
-  SlotID: 12
+  SlotType: 6
+  SlotId: 112
 --- !u!212 &527163518
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9373,7 +9382,7 @@ Transform:
   m_Children:
   - {fileID: 1549866843}
   m_Father: {fileID: 1681403888}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &616779250
 SpriteRenderer:
@@ -9431,7 +9440,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentInventory: {fileID: 1681403889}
-  SlotID: 1
+  SlotType: 6
+  SlotId: 101
 --- !u!4 &620584842 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4534745923900852, guid: d0f177fcf17323f4eb0334c43026ca4a,
@@ -10171,7 +10181,7 @@ Transform:
   m_Children:
   - {fileID: 195043342}
   m_Father: {fileID: 1681403888}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &663785335
 MonoBehaviour:
@@ -10185,7 +10195,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentInventory: {fileID: 1681403889}
-  SlotID: 11
+  SlotType: 6
+  SlotId: 111
 --- !u!212 &663785336
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10990,7 +11001,7 @@ Transform:
   m_Children:
   - {fileID: 139338097}
   m_Father: {fileID: 1681403888}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &695165252
 MonoBehaviour:
@@ -11004,7 +11015,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentInventory: {fileID: 1681403889}
-  SlotID: 10
+  SlotType: 6
+  SlotId: 110
 --- !u!212 &695165253
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12806,7 +12818,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentInventory: {fileID: 1681403889}
-  SlotID: -21
+  SlotType: 4
+  SlotId: 3
 --- !u!1001 &821541205
 Prefab:
   m_ObjectHideFlags: 0
@@ -13738,7 +13751,7 @@ Transform:
   m_Children:
   - {fileID: 2057640452}
   m_Father: {fileID: 1681403888}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &886800395
 MonoBehaviour:
@@ -13752,7 +13765,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentInventory: {fileID: 1681403889}
-  SlotID: 8
+  SlotType: 6
+  SlotId: 108
 --- !u!212 &886800396
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15266,7 +15280,7 @@ Transform:
   m_Children:
   - {fileID: 1813449659}
   m_Father: {fileID: 1681403888}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &988763795
 SpriteRenderer:
@@ -15324,7 +15338,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentInventory: {fileID: 1681403889}
-  SlotID: 0
+  SlotType: 6
+  SlotId: 100
 --- !u!1 &988977579
 GameObject:
   m_ObjectHideFlags: 0
@@ -15411,7 +15426,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentInventory: {fileID: 1681403889}
-  SlotID: -13
+  SlotType: 3
+  SlotId: 0
 --- !u!1001 &989841980
 Prefab:
   m_ObjectHideFlags: 0
@@ -16301,6 +16317,94 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d0f177fcf17323f4eb0334c43026ca4a, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1057288550
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1057288551}
+  - component: {fileID: 1057288553}
+  - component: {fileID: 1057288552}
+  m_Layer: 0
+  m_Name: SlotWeaponMain3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1057288551
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1057288550}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3, y: 3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1681403888}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1057288552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1057288550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c214c9a0aaa3a2645aa8e970ff46bbaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ParentInventory: {fileID: 1681403889}
+  SlotType: 5
+  SlotId: 6
+--- !u!212 &1057288553
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1057288550}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 0f07524941c633042b6edc8d734286ba, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1.125, y: 1.125}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1001 &1061040048
 Prefab:
   m_ObjectHideFlags: 0
@@ -17559,7 +17663,7 @@ Transform:
   m_Children:
   - {fileID: 583264751}
   m_Father: {fileID: 1681403888}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1160010771
 MonoBehaviour:
@@ -17573,7 +17677,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentInventory: {fileID: 1681403889}
-  SlotID: 6
+  SlotType: 6
+  SlotId: 106
 --- !u!212 &1160010772
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18537,7 +18642,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1681403888}
-  m_RootOrder: 28
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1211146686
 MonoBehaviour:
@@ -18551,7 +18656,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentInventory: {fileID: 1681403889}
-  SlotID: 20
+  SlotType: 6
+  SlotId: 120
 --- !u!212 &1211146687
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19522,6 +19628,11 @@ Prefab:
       propertyPath: InaccuracyMax
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114991665320039776, guid: 44d4cde11436f2f47a762a5f17d93a6e,
+        type: 2}
+      propertyPath: CurrentlyEquippedWeapon
+      value: 
+      objectReference: {fileID: 1265227796}
     m_RemovedComponents:
     - {fileID: 114316528858333736, guid: 44d4cde11436f2f47a762a5f17d93a6e, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 44d4cde11436f2f47a762a5f17d93a6e, type: 2}
@@ -19542,8 +19653,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec7a3186dd6c5c141bffd75ebc9dc22a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxAmmo: 999
-  Ammo: 999
+  MaxAmmo: 10
+  Ammo: 10
   BaseCooldownBetweenShots: 0.1
   CurrCooldownBetweenShots: 0
   BaseReloadTime: 1
@@ -19630,7 +19741,7 @@ Transform:
   m_Children:
   - {fileID: 1384168868}
   m_Father: {fileID: 1681403888}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1265755234
 SpriteRenderer:
@@ -19688,7 +19799,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentInventory: {fileID: 1681403889}
-  SlotID: 2
+  SlotType: 6
+  SlotId: 102
 --- !u!4 &1265930120 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4828163444889734, guid: 09732134eeeb7cd43ae0145ede4f0ea8,
@@ -20759,7 +20871,7 @@ Transform:
   m_Children:
   - {fileID: 1699677801}
   m_Father: {fileID: 1681403888}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1311769723
 SpriteRenderer:
@@ -20817,7 +20929,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentInventory: {fileID: 1681403889}
-  SlotID: 3
+  SlotType: 6
+  SlotId: 103
 --- !u!4 &1312911737 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4828163444889734, guid: 09732134eeeb7cd43ae0145ede4f0ea8,
@@ -21069,7 +21182,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentInventory: {fileID: 1681403889}
-  SlotID: -12
+  SlotType: 2
+  SlotId: 2
 --- !u!212 &1329033539
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21887,7 +22001,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1681403888}
-  m_RootOrder: 22
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1370225488
 MonoBehaviour:
@@ -21901,7 +22015,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentInventory: {fileID: 1681403889}
-  SlotID: 14
+  SlotType: 6
+  SlotId: 114
 --- !u!212 &1370225489
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -22030,7 +22145,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1681403888}
-  m_RootOrder: 23
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1379749838
 MonoBehaviour:
@@ -22044,7 +22159,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentInventory: {fileID: 1681403889}
-  SlotID: 15
+  SlotType: 6
+  SlotId: 115
 --- !u!212 &1379749839
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -22224,6 +22340,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 5
   Ammo: 2
+  sprite: {fileID: 0}
+  BulletColorStart: {r: 1, g: 1, b: 0, a: 1}
+  BulletColorEnd: {r: 0.75735295, g: 0, b: 0, a: 1}
 --- !u!212 &1384168870
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -22905,7 +23024,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1681403888}
-  m_RootOrder: 24
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1425650188
 MonoBehaviour:
@@ -22919,7 +23038,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentInventory: {fileID: 1681403889}
-  SlotID: 16
+  SlotType: 6
+  SlotId: 116
 --- !u!212 &1425650189
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -23776,7 +23896,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1681403888}
-  m_RootOrder: 31
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1491047620
 MonoBehaviour:
@@ -23790,7 +23910,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentInventory: {fileID: 1681403889}
-  SlotID: 31
+  SlotType: 6
+  SlotId: 123
 --- !u!212 &1491047621
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -24682,6 +24803,9 @@ MonoBehaviour:
   Type: 5
   Ammo: 5
   Mode: 0
+  sprite: {fileID: 0}
+  BulletColorStart: {r: 1, g: 1, b: 0, a: 1}
+  BulletColorEnd: {r: 0.75735295, g: 0, b: 0, a: 1}
 --- !u!212 &1549866845
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -26671,6 +26795,7 @@ Transform:
   - {fileID: 817489929}
   - {fileID: 237734129}
   - {fileID: 1960076911}
+  - {fileID: 1057288551}
   - {fileID: 988763794}
   - {fileID: 616779249}
   - {fileID: 1265755233}
@@ -26711,7 +26836,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ae03a24265765540b601590c18d376a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Slots: []
+  SlotsScripts: []
 --- !u!1001 &1683832649
 Prefab:
   m_ObjectHideFlags: 0
@@ -29597,7 +29722,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1681403888}
-  m_RootOrder: 27
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1819100670
 MonoBehaviour:
@@ -29611,7 +29736,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentInventory: {fileID: 1681403889}
-  SlotID: 19
+  SlotType: 6
+  SlotId: 119
 --- !u!212 &1819100671
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -31633,7 +31759,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentInventory: {fileID: 1681403889}
-  SlotID: -11
+  SlotType: 1
+  SlotId: 1
 --- !u!1001 &1950591495
 Prefab:
   m_ObjectHideFlags: 0
@@ -31778,7 +31905,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentInventory: {fileID: 1681403889}
-  SlotID: -22
+  SlotType: 5
+  SlotId: 5
 --- !u!212 &1960076913
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -31903,7 +32031,7 @@ Transform:
   m_Children:
   - {fileID: 1726510514}
   m_Father: {fileID: 1681403888}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1962135254
 MonoBehaviour:
@@ -31917,7 +32045,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentInventory: {fileID: 1681403889}
-  SlotID: 9
+  SlotType: 6
+  SlotId: 109
 --- !u!212 &1962135255
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -32466,7 +32595,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1681403888}
-  m_RootOrder: 26
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1976490864
 MonoBehaviour:
@@ -32480,7 +32609,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentInventory: {fileID: 1681403889}
-  SlotID: 18
+  SlotType: 6
+  SlotId: 118
 --- !u!212 &1976490865
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -34408,7 +34538,7 @@ Transform:
   m_Children:
   - {fileID: 142327102}
   m_Father: {fileID: 1681403888}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2099085842
 SpriteRenderer:
@@ -34466,7 +34596,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentInventory: {fileID: 1681403889}
-  SlotID: 5
+  SlotType: 6
+  SlotId: 105
 --- !u!1 &2100437794
 GameObject:
   m_ObjectHideFlags: 0
@@ -34495,7 +34626,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1681403888}
-  m_RootOrder: 29
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2100437796
 MonoBehaviour:
@@ -34509,7 +34640,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentInventory: {fileID: 1681403889}
-  SlotID: 21
+  SlotType: 6
+  SlotId: 121
 --- !u!212 &2100437797
 SpriteRenderer:
   m_ObjectHideFlags: 0

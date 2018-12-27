@@ -1,77 +1,151 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Inventory : MonoBehaviour {
-
-    public List<InventorySlot> Slots = new List<InventorySlot>();
+    
+    public List<InventorySlot> SlotsScripts = new List<InventorySlot>();
     
 	// Use this for initialization
 	void Start () {
+        SlotsScripts = SlotsScripts.OrderBy(o => o.SlotId).ToList();
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        
+
+        if (Input.GetKeyUp(KeyCode.Tab))
+        {
+            CycleMainWeapons();
+        }
+
 	}
 
     public void ReportSlotBeingClicked(int id)
     {
+        //UpdateMainWeapons();
+
         GameObject itemObject;
-        switch (id)
+        InventorySlot SlotScript = SlotsScripts[GetListIdOfSlotWithId(id)];
+
+        switch (SlotScript.SlotType)
         {
-            case -11: //special slots (equip) -> go to first empty normal slot
-            case -12:
-            case -13:
-            case -21:
-            case -22:
+            case InventoryItem.ItemType.ClothingShirt: //special slots (equip) -> go to first empty normal slot
+            case InventoryItem.ItemType.ClothingJacket:
+            case InventoryItem.ItemType.ClothingHead:
+            case InventoryItem.ItemType.WeaponSide:
+            case InventoryItem.ItemType.WeaponMain:
+
+                //non-empty special slot was clicked - move item to first empty non-special slot ("everything" slot)
                 if (!IsSlotEmpty(GetListIdOfSlotWithId(id)))
                 {
-                    itemObject = Slots[GetListIdOfSlotWithId(id)].gameObject.transform.GetChild(0).gameObject;
-                    itemObject.GetComponent<InventoryItem>().CodeBeforeRemoving();
-                    itemObject.transform.parent = Slots[FindFirstEmptyNormalSlot()].transform;
+                    //the item being moved
+                    itemObject = ItemOnSlot(GetSlotWithId(id));
+
+                    if(SlotScript.SlotType!=InventoryItem.ItemType.WeaponMain || id == LastSelectedWeaponListId)
+                    {
+                        itemObject.GetComponent<InventoryItem>().CodeBeforeRemoving();
+                    }
+
+                    itemObject.transform.parent = SlotsScripts[FindListIdOfFirstEmptySlot(InventoryItem.ItemType.Everything)].transform;
+
                     itemObject.transform.localPosition = new Vector3(0, 0, -1);
-                }
 
-                if (IsSlotEmpty(GetListIdOfSlotWithId(-22)))
-                {
-                    NoWeaponEquipped();
+                    //youre just removed selected weapon
+                    if (SlotScript.SlotType == InventoryItem.ItemType.WeaponMain && id == LastSelectedWeaponListId)
+                    {
+                        SelectAvailableWeapon(); //finds some other weapon
+                    }
                 }
-
+                
                 return;
-            default: //normal slots (storage) -> go to corresponding special slot (and clear that one)
+
+            case InventoryItem.ItemType.Everything: //normal slots (storage) -> go to corresponding special slot (and clear that one)
+                
+                //non-empty everything slot was clicked
                 if (!IsSlotEmpty(GetListIdOfSlotWithId(id)))
                 {
-                    //new object
-                    itemObject = Slots[GetListIdOfSlotWithId(id)].gameObject.transform.GetChild(0).gameObject;                    
-                    int SpecialSlotId = GetSpecialSlotId(itemObject.GetComponent<InventoryItem>().Type);
+                    //the item being moved
+                    itemObject = ItemOnSlot(GetSlotWithId(id));
 
-                    foreach(int listId in GetAllListIdOfSlotWithId(SpecialSlotId))
-                    {
-                        if (IsSlotEmpty(listId))
+                    //new thing is a weapon
+                    if (itemObject.GetComponent<InventoryItem>().Type == InventoryItem.ItemType.WeaponMain)
+                    {             
+                        InventoryItem.ItemType ObjectType = itemObject.GetComponent<InventoryItem>().Type;
+
+                        //go through every slots of correct type
+                        foreach (int listId in GetAllListIdOfSlotType(ObjectType))
                         {
-                            //empty slot was found, put new thing there
-
-                            itemObject.transform.parent = Slots[listId].transform;
-                            itemObject.transform.localPosition = new Vector3(0, 0, -1);
-
-                            itemObject.GetComponent<InventoryItem>().CodeAfterEquipping();
-
-                            return;
+                            if (IsSlotEmpty(listId))
+                            {
+                                //empty slot was found, put new thing there (and nothing more)
+                                itemObject.transform.parent = SlotsScripts[listId].transform;
+                                itemObject.transform.localPosition = new Vector3(0, 0, -1);
+                                return;
+                            }
                         }
+
+                        //no empty special slot found, gotta remove something first                        
+                        int NewSlotListId = FindListIdOfFirstSlot(ObjectType);
+
+                        //if the thing im removing was selected as active weapon
+                        //its CodeBeforeRemoving has to be called now, but not from here
+                        //its CodeBeforeRemoving will be called during the switch, in ReportSlotBeingClicked
+
+                        //go to the new slot
+                        itemObject.transform.parent = SlotsScripts[NewSlotListId].transform;
+                        itemObject.transform.localPosition = new Vector3(0, 0, -1);
+
+                        //move the previously equipped item to some empty slot
+                        ReportSlotBeingClicked(SlotsScripts[NewSlotListId].SlotId); 
+
+                        //previous thing was selected, so new thing is selected aswell
+                        if (NewSlotListId == LastSelectedWeaponListId)
+                        {
+                            CodeAfterEquipping(SlotsScripts[NewSlotListId]);
+                        }
+                        
+                        return;
                     }
-
-                    bool WasTheSlotAlreadyOccupied = !IsSlotEmpty(GetListIdOfSlotWithId(SpecialSlotId));
-
-                    itemObject.transform.parent = Slots[GetListIdOfSlotWithId(SpecialSlotId)].transform;
-                    itemObject.transform.localPosition = new Vector3(0, 0, -1);
-
-                    if (WasTheSlotAlreadyOccupied)
+                    else
                     {
-                        ReportSlotBeingClicked(SpecialSlotId); //to move the previously equipped item to the now empty slot;
-                    }
 
-                    itemObject.GetComponent<InventoryItem>().CodeAfterEquipping();
+
+                        //new thing is not weapon
+
+                        //new object                  
+                        InventoryItem.ItemType ObjectType = itemObject.GetComponent<InventoryItem>().Type;
+
+                        foreach(int listId in GetAllListIdOfSlotType(ObjectType))
+                        {
+                            if (IsSlotEmpty(listId))
+                            {
+                                //empty slot was found, put new thing there
+
+                                itemObject.transform.parent = SlotsScripts[listId].transform;
+                                itemObject.transform.localPosition = new Vector3(0, 0, -1);
+
+                                itemObject.GetComponent<InventoryItem>().CodeAfterEquipping();
+
+                                return;
+                            }
+                        }
+
+                        //no empty special slot found, gotta remove something first
+
+                        //bool WasTheSlotAlreadyOccupied = !IsSlotEmpty(GetListIdOfSlotWithId(ObjectType));
+
+                        int NewSlotListId = FindListIdOfFirstSlot(ObjectType);
+
+                        itemObject.transform.parent = SlotsScripts[NewSlotListId].transform;
+                        itemObject.transform.localPosition = new Vector3(0, 0, -1);
+                    
+                        ReportSlotBeingClicked(SlotsScripts[NewSlotListId].SlotId); //to move the previously equipped item to the now empty slot;
+                    
+                        itemObject.GetComponent<InventoryItem>().CodeAfterEquipping();
+                    }
                 }
                 return;
         }
@@ -85,31 +159,12 @@ public class Inventory : MonoBehaviour {
         }
         UniversalReference.GunRotator.GunSpriteRenderer.sprite = UniversalReference.WeaponStatus.sprite = UniversalReference.AmmoCounter.sprite = Resources.Load<Sprite>("EmptyPixel");
     }
-
-    public int GetSpecialSlotId(InventoryItem.ItemType type)
-    {
-        switch (type)
-        {
-            case InventoryItem.ItemType.ClothingShirt:
-                return -11;
-            case InventoryItem.ItemType.ClothingJacket:
-                return -12;
-            case InventoryItem.ItemType.ClothingHead:
-                return -13;
-            case InventoryItem.ItemType.WeaponSide:
-                return -21;
-            case InventoryItem.ItemType.WeaponMain:
-                return -22;
-        }
-        
-        return -1;
-    }
-
+    
     public int GetListIdOfSlotWithId(int slotId)
     {
-        for(int i = 0; i < Slots.Count; i++)
+        for(int i = 0; i < SlotsScripts.Count; i++)
         {
-            if(Slots[i].SlotID == slotId)
+            if(SlotsScripts[i].SlotId == slotId)
             {
                 return i;
             }
@@ -121,9 +176,37 @@ public class Inventory : MonoBehaviour {
     {
         List<int> output = new List<int>();
 
-        for (int i = 0; i < Slots.Count; i++)
+        for (int i = 0; i < SlotsScripts.Count; i++)
         {
-            if (Slots[i].SlotID == slotId)
+            if(SlotsScripts[i].SlotId == slotId)
+            {
+                output.Add(i);
+            }
+        }
+        return output.ToArray();
+    }
+
+    public int[] GetAllListIdOfSlotType(InventoryItem.ItemType type)
+    {
+        List<int> output = new List<int>();
+
+        for (int i = 0; i < SlotsScripts.Count; i++)
+        {
+            if (SlotsScripts[i].SlotType == type)
+            {
+                output.Add(i);
+            }
+        }
+        return output.ToArray();
+    }
+
+    public int[] GetAllListIdOfSlotType_notEmpty(InventoryItem.ItemType type)
+    {
+        List<int> output = new List<int>();
+
+        for (int i = 0; i < SlotsScripts.Count; i++)
+        {
+            if (SlotsScripts[i].SlotType == type && !IsSlotEmpty(i))
             {
                 output.Add(i);
             }
@@ -133,27 +216,159 @@ public class Inventory : MonoBehaviour {
 
     public bool IsSlotEmpty(int ListId)
     {
-        if (Slots[ListId].transform.childCount == 0)
+        if (SlotsScripts[ListId].transform.childCount == 0)
         {
             return true;
         }
         return false;
     }
 
-    public int FindFirstEmptyNormalSlot()
+    public int FindListIdOfFirstEmptySlot(InventoryItem.ItemType type = InventoryItem.ItemType.Undefined)
     {
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < SlotsScripts.Count; i++)
         {
-            int ListId = GetListIdOfSlotWithId(i);
-            if (ListId != 0)
+            if (SlotsScripts[i].SlotType == type && IsSlotEmpty(i))
             {
-                if(Slots[ListId].SlotID >= 0 && IsSlotEmpty(ListId))
-                {
-                    return ListId;
-                }
+                return i;
             }
         }
         return -1;
     }
+
+    public int FindListIdOfFirstSlot(InventoryItem.ItemType type = InventoryItem.ItemType.Undefined)
+    {
+        for (int i = 0; i < SlotsScripts.Count; i++)
+        {
+            if (SlotsScripts[i].SlotType == type)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /*
+    public int MainWeaponSlotSelectedIndexForModulo = 1;
+        
+
+    public void CycleMainWeapons()
+    {
+        int[] MainWeaponNonEmptySlotsListIndexes = GetAllListIdOfSlotType_notEmpty(InventoryItem.ItemType.WeaponMain);
+        
+        if(MainWeaponNonEmptySlotsListIndexes.Length == 0)
+        {
+            return; //to avoid dividing by zero
+        }
+
+        SlotsScripts[MainWeaponNonEmptySlotsListIndexes[MainWeaponSlotSelectedIndexForModulo % MainWeaponNonEmptySlotsListIndexes.Length]].transform.GetChild(0).GetComponent<InventoryItem>().CodeBeforeRemoving();
+        MainWeaponSlotSelectedIndexForModulo++;
+        SlotsScripts[MainWeaponNonEmptySlotsListIndexes[MainWeaponSlotSelectedIndexForModulo % MainWeaponNonEmptySlotsListIndexes.Length]].transform.GetChild(0).GetComponent<InventoryItem>().CodeAfterEquipping();
+    }
+    */
+
+    int[] MainWeaponSlotsListIndexes = { 4, 5, 6 };
+
+    int LastSelectedWeaponListId = 4;
+
+    void CycleMainWeapons()
+    {
+        int SelectedMainWeaponLocalIndex = 0;
+
+        if (LastSelectedWeaponListId == 4)
+        {
+            SelectedMainWeaponLocalIndex = 0;
+        }
+        if (LastSelectedWeaponListId == 5)
+        {
+            SelectedMainWeaponLocalIndex = 1;
+        }
+        if (LastSelectedWeaponListId == 6)
+        {
+            SelectedMainWeaponLocalIndex = 2;
+        }
+
+        int OccupiedWeaponSlots = 0;
+
+        foreach(int i in MainWeaponSlotsListIndexes)
+        {
+            if (!IsSlotEmpty(i))
+            {
+                OccupiedWeaponSlots++;
+            }
+        }
+
+        //if there are no weapons, cycling has no sense (in fact it will cause infinite cycle)
+        if(OccupiedWeaponSlots == 0)
+        {
+            return;
+        }
+        if (OccupiedWeaponSlots == 1)
+        {
+            SelectAvailableWeapon();
+            return;
+        }
+
+        while (true)
+        {
+            SelectedMainWeaponLocalIndex++;
+
+            //when you reach end of array, wrap around
+            if (SelectedMainWeaponLocalIndex >= MainWeaponSlotsListIndexes.Length)
+            {
+                SelectedMainWeaponLocalIndex -= MainWeaponSlotsListIndexes.Length;
+            }
+
+            //new weapon found - job's done
+            if (!IsSlotEmpty(MainWeaponSlotsListIndexes[SelectedMainWeaponLocalIndex]))
+            {
+                SlotsScripts[ LastSelectedWeaponListId ].transform.GetChild(0).GetComponent<InventoryItem>().CodeBeforeRemoving();
+                SlotsScripts[ MainWeaponSlotsListIndexes[ SelectedMainWeaponLocalIndex ] ].transform.GetChild(0).GetComponent<InventoryItem>().CodeAfterEquipping();
+
+                LastSelectedWeaponListId = MainWeaponSlotsListIndexes[SelectedMainWeaponLocalIndex];
+
+                return;
+            }
+        }
+    }
+    
+    //script is for cases where player unequips his currently held weapon, so he jumps to first one available
+    void SelectAvailableWeapon()
+    {
+        foreach(int i in MainWeaponSlotsListIndexes)
+        {
+            if (!IsSlotEmpty(i))
+            {
+                LastSelectedWeaponListId = i;
+                CodeAfterEquipping(SlotsScripts[i]);
+            }
+        }
+    }
+
+
+    InventorySlot GetSlotWithId(int id)
+    {
+        return SlotsScripts[GetListIdOfSlotWithId(id)];
+    }
+
+    GameObject ItemOnSlot(InventorySlot inventorySlot)
+    {
+        return inventorySlot.transform.GetChild(0).gameObject;
+    }
+
+    void CodeBeforeRemoving(InventorySlot inventorySlot)
+    {
+        inventorySlot.transform.GetChild(0).GetComponent<InventoryItem>().CodeBeforeRemoving();
+    }
+    void CodeAfterEquipping(InventorySlot inventorySlot)
+    {
+        inventorySlot.transform.GetChild(0).GetComponent<InventoryItem>().CodeAfterEquipping();
+    }
+
+    void GoFromSlotToSlot(InventorySlot a, InventorySlot b)
+    {
+
+    }
+
+
 
 }

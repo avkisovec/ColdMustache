@@ -17,14 +17,19 @@ public class InventorySlot : MonoBehaviour {
      * 
      */
 
-
+    //inventory which this slot belongs to
     public Inventory ParentInventory = null;
 
-    public int SlotID = -1;
+    //what type of item goes into this slot
+    public InventoryItem.ItemType SlotType = InventoryItem.ItemType.Undefined;
+
+    //unique id of this specific slot
+    public int SlotId;
+
 
 	// Use this for initialization
 	void Start () {
-        ParentInventory.Slots.Add(this);
+        ParentInventory.SlotsScripts.Add(this);
 	}
 	
 	// Update is called once per frame
@@ -38,7 +43,7 @@ public class InventorySlot : MonoBehaviour {
             MouseWorldPos.y < transform.position.y + (transform.lossyScale.y / 2)
             )
         {
-            ParentInventory.ReportSlotBeingClicked(SlotID);
+            ParentInventory.ReportSlotBeingClicked(SlotId);
         }
 
     }
