@@ -18,7 +18,7 @@ public class InventorySlot : MonoBehaviour {
      */
 
     //inventory which this slot belongs to
-    public Inventory ParentInventory = null;
+    public InventoryBase ParentInventory = null;
 
     //what type of item goes into this slot
     public InventoryItem.ItemType SlotType = InventoryItem.ItemType.Undefined;
@@ -29,11 +29,15 @@ public class InventorySlot : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        ParentInventory.SlotsScripts.Add(this);
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void Awake()
+    {
+        ParentInventory.SlotsScripts.Add(this);
+    }
+
+    // Update is called once per frame
+    void Update () {
 
         Vector2 MouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (Input.GetKeyDown(KeyCode.Mouse0) &&

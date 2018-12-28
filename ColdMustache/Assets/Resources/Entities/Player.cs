@@ -103,19 +103,19 @@ public class Player : MonoBehaviour {
         //movement vector will hold information about direction, speed is added after
         Vector2 MovementVector = new Vector2(0, 0);
 
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeybindManager.MoveUp))
         {
             MovementVector += new Vector2(0, 1);
         }
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeybindManager.MoveDown))
         {
             MovementVector += new Vector2(0, -1);
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeybindManager.MoveLeft))
         {
             MovementVector += new Vector2(-1, 0);
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeybindManager.MoveRight))
         {
             MovementVector += new Vector2(1, 0);
         }
@@ -125,81 +125,23 @@ public class Player : MonoBehaviour {
 
 
         //test purposes - can delete
-
-
-        if (Input.GetKeyUp(KeyCode.Mouse2))
-        {
-            GameObject laser = new GameObject();
-            laser.AddComponent<SpriteRenderer>();
-            Laser l = laser.AddComponent<Laser>();
-            l.Origin = transform.position;
-            l.End = MouseWorldPos;
-
-            SpriteSheetAnimation lanim = laser.AddComponent<SpriteSheetAnimation>();
-            lanim.Sprites = Resources.LoadAll<Sprite>("Fx/LaserCharged_57frames2"); //for this animation, damage should start at 70% 
-            lanim.LifeSpanInSeconds = 0.25f;
-            lanim.Mode = SpriteSheetAnimation.Modes.Destroy;
-
-            GameObject dmg = new GameObject();
-            dmg.transform.parent = laser.transform;
-            dmg.transform.localScale = new Vector3(1f / 32f, 1, 1);
-            //dmg.AddComponent<InflicterSlow>();
-            dmg.AddComponent<DamagerInflicter>().ini(Entity.team.Player, 1, false, true, 1, 0);
-            dmg.AddComponent<BoxCollider2D>().isTrigger = true;
-            dmg.AddComponent<FxBurnSmoke>();
-            dmg.AddComponent<WiggleNonNoticably>();
-        }
-
         if (Input.GetKeyUp(KeyCode.G))
         {
             Grenade(MouseWorldPos);
         }
-        if (Input.GetKeyUp(KeyCode.B))
-        {
-            foreach (Vector3 v in NavTestStatic.CalculateExplosion_DistributorNoBacksiesTileSplit(
-                Mathf.RoundToInt(Camera.main.ScreenToWorldPoint(Input.mousePosition).x),
-                Mathf.RoundToInt(Camera.main.ScreenToWorldPoint(Input.mousePosition).y),
-                200
-                ))
-            {
-
-                GameObject blast = new GameObject();
-                blast.transform.position = new Vector3(v.x, v.y, -5);
-                blast.AddComponent<SpriteRenderer>();
-
-                SpriteSheetAnimation banim = blast.AddComponent<SpriteSheetAnimation>();
-                banim.Sprites = Resources.LoadAll<Sprite>("Fx/Explosion");
-                banim.LifeSpanInSeconds = 2.5f;
-                banim.Mode = SpriteSheetAnimation.Modes.Destroy;
-
-                blast.GetComponent<SpriteRenderer>().color = new Color(1, v.z / 30, 0);
-                blast.name = v.z.ToString();
-            }
-        }
         //end of test stuff
 
-
-        /*
-        if (Input.GetKey(KeyCode.Mouse0) && CurrShootingCooldown <= 0)
-        {
-            CurrShootingWindDownDuration = BaseShootingWindDownDuration;
-            Shoot(MouseWorldPos);
-
-            CurrShootingCooldown = BaseShootingCooldown;
-
-            gameObject.AddComponent<StatusSlow>().ini(BaseShootingCooldown, 0.5f, false);  //slow yourself for the duration of the cooldown
-        }
-        */
-        if (Input.GetKey(KeyCode.Mouse0) && MouseInterceptor.IsMouseAvailable())
+        
+        if (Input.GetKey(KeybindManager.MousePrimary) && MouseInterceptor.IsMouseAvailable())
         {
            CurrentlyEquippedWeapon.TryShooting(MouseWorldPos);
         }
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKey(KeybindManager.AltFire))
         {
             CurrentlyEquippedWeapon.TryAltFire();
             CurrentlyEquippedWeapon.TryAltFire(MouseWorldPos);
         }
-        if (Input.GetKey(KeyCode.R))
+        if (Input.GetKey(KeybindManager.Reload))
         {
             CurrentlyEquippedWeapon.ForceReload();
         }

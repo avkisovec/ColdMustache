@@ -42,6 +42,12 @@ public class Crosshair : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if(TemporaryColorRemaining > 0)
+        {
+            TemporaryColorRemaining -= Time.deltaTime;
+        }
+
         transform.position = new Vector3(UniversalReference.MouseWorldPos.x, UniversalReference.MouseWorldPos.y, transform.position.z);
 
         float Distance = ((Vector2)UniversalReference.PlayerObject.transform.position - UniversalReference.MouseWorldPos).magnitude;
@@ -68,62 +74,78 @@ public class Crosshair : MonoBehaviour {
         }
         else
         {
-            Edge0_sr.color = DefaultColor;
-            Edge1_sr.color = DefaultColor;
-            Edge2_sr.color = DefaultColor;
-            Edge3_sr.color = DefaultColor;
-            Dot_sr.color = DefaultColor;
+            if(TemporaryColorRemaining > 0)
+            {
+                Edge0_sr.color = Edge1_sr.color = Edge2_sr.color = Edge3_sr.color = Dot_sr.color = TemporaryColor;
+            }
+            else
+            {
+                Edge0_sr.color = Edge1_sr.color = Edge2_sr.color = Edge3_sr.color = Dot_sr.color = DefaultColor;
+            }
             
             Dot_sr.sprite = Dot;
 
             if (Distance <= EffectiveRange)
             {
                 //SetEdgesToDistance(EdgeDistanceEffectiveRange);
-                
-                Edge0_sr.color = DefaultColor;
-                Edge1_sr.color = DefaultColor;
-                Edge2_sr.color = DefaultColor;
-                Edge3_sr.color = DefaultColor;
-                Dot_sr.color = DefaultColor;
+                if (TemporaryColorRemaining > 0)
+                {
+                    Edge0_sr.color = Edge1_sr.color = Edge2_sr.color = Edge3_sr.color = Dot_sr.color = TemporaryColor;
+                }
+                else
+                {
+                    Edge0_sr.color = Edge1_sr.color = Edge2_sr.color = Edge3_sr.color = Dot_sr.color = DefaultColor;
+                }
             }
             else if (Distance <= 2*EffectiveRange)
             {
                 
-                //Dot_sr.color = DefaultColor * (1-((Distance - EffectiveRange) / EffectiveRange));
-
-                float Ratio = (((Distance - EffectiveRange) / EffectiveRange));
-                Color clr = IneffectiveRangeColor * Ratio + DefaultColor * (1 - Ratio);
-                //Color clr = IneffectiveRangeColor * (1 - ((Distance - 2 * EffectiveRange) / EffectiveRange));
-
-                Dot_sr.color = clr;
-                Edge0_sr.color = clr;
-                Edge1_sr.color = clr;
-                Edge2_sr.color = clr;
-                Edge3_sr.color = clr;
+                if (TemporaryColorRemaining > 0)
+                {
+                    Edge0_sr.color = Edge1_sr.color = Edge2_sr.color = Edge3_sr.color = Dot_sr.color = TemporaryColor;
+                }
+                else
+                {
+                    //Dot_sr.color = DefaultColor * (1-((Distance - EffectiveRange) / EffectiveRange));
+                    float Ratio = (((Distance - EffectiveRange) / EffectiveRange));
+                    Color clr = IneffectiveRangeColor * Ratio + DefaultColor * (1 - Ratio);
+                    //Color clr = IneffectiveRangeColor * (1 - ((Distance - 2 * EffectiveRange) / EffectiveRange));
+                    Edge0_sr.color = Edge1_sr.color = Edge2_sr.color = Edge3_sr.color = Dot_sr.color = clr;
+                }
             }
             else if (Distance <= 3f * EffectiveRange)
             {
-                Color clr = IneffectiveRangeColor * (1 - ((Distance - 2*EffectiveRange) / EffectiveRange));
-                
-                Edge0_sr.color = clr;
-                Edge1_sr.color = clr;
-                Edge2_sr.color = clr;
-                Edge3_sr.color = clr;
-
-                Dot_sr.color = clr;
+                if (TemporaryColorRemaining > 0)
+                {
+                    Edge0_sr.color = Edge1_sr.color = Edge2_sr.color = Edge3_sr.color = Dot_sr.color = TemporaryColor;
+                }
+                else
+                {
+                    Color clr = IneffectiveRangeColor * (1 - ((Distance - 2 * EffectiveRange) / EffectiveRange));                    
+                    Edge0_sr.color = Edge1_sr.color = Edge2_sr.color = Edge3_sr.color = Dot_sr.color = clr;
+                }
             }
             else
             {
-                Edge0_sr.color = InvisibleColor;
-                Edge1_sr.color = InvisibleColor;
-                Edge2_sr.color = InvisibleColor;
-                Edge3_sr.color = InvisibleColor;
-
-                Dot_sr.color = InvisibleColor;
+                if (TemporaryColorRemaining > 0)
+                {
+                    Edge0_sr.color = Edge1_sr.color = Edge2_sr.color = Edge3_sr.color = Dot_sr.color = TemporaryColor;
+                }
+                else
+                {
+                    Edge0_sr.color = Edge1_sr.color = Edge2_sr.color = Edge3_sr.color = Dot_sr.color = InvisibleColor;
+                }
             }
 
-            SetEdgesToDistance(EdgeDistanceMinInaccuracy + EdgeDistancePerPOintOfInaccuracy * (UniversalReference.PlayerScript.Inaccuracy));
 
+            if (TemporaryColorRemaining > 0)
+            {
+                SetEdgesToDistance(EdgeDistanceEffectiveRange);
+            }
+            else
+            {
+                SetEdgesToDistance(EdgeDistanceMinInaccuracy + EdgeDistancePerPOintOfInaccuracy * (UniversalReference.PlayerScript.Inaccuracy));
+            }
         }
 
 	}
@@ -134,5 +156,14 @@ public class Crosshair : MonoBehaviour {
         Edge1.transform.localPosition = new Vector3(-Distance, Distance, 0);
         Edge2.transform.localPosition = new Vector3(-Distance, -Distance, 0);
         Edge3.transform.localPosition = new Vector3(Distance, -Distance, 0);
+    }
+
+    Color TemporaryColor = new Color(1, 1, 1, 1);
+    float TemporaryColorRemaining = 0;
+
+    public void SetTemporaryColor(Color clr, float time = 0.1f)
+    {
+        TemporaryColor = clr;
+        TemporaryColorRemaining = time;
     }
 }

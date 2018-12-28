@@ -26,11 +26,7 @@ public class StayFixedSizeDisregaringZoom : MonoBehaviour {
 
     float OrigRatio = 0;
     Vector3 OrigScale = new Vector3(1, 1, 1);
-
-    public KeyCode ActivationKey = KeyCode.E;
-    public KeyCode DeactivationOnlyKey = KeyCode.Escape;
-    
-
+       
     public bool StayOnScreenPosition = true;
     public float ScreenXPercentRatio;
     public float ScreenYPercentRatio;
@@ -80,7 +76,7 @@ public class StayFixedSizeDisregaringZoom : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (Input.GetKeyUp(ActivationKey))
+        if (Input.GetKeyUp(KeybindManager.Interaction))
         {
             transform.position = VisibleCoordinates;
             AmIActive = true;
@@ -113,7 +109,7 @@ public class StayFixedSizeDisregaringZoom : MonoBehaviour {
 
 
 
-            if (Input.GetKeyUp(DeactivationOnlyKey) || (
+            if (Input.GetKeyUp(KeybindManager.CloseMenus) || (
                 Input.GetKeyDown(KeyCode.Mouse0) &&
                 MouseWorldPos.x > CloseButton.transform.position.x - (CloseButton.transform.lossyScale.x / 2) &&
                 MouseWorldPos.x < CloseButton.transform.position.x + (CloseButton.transform.lossyScale.x / 2) &&

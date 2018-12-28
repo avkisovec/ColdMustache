@@ -21,11 +21,7 @@ public class SaverLoader : MonoBehaviour {
 
     public static void LoadInventory()
     {
-        foreach(string s in ReadAFile("Assets/Resources/Save/inventory.save"))
-        {
-            Debug.Log(s);
-            UniversalReference.PlayerInventory.AddItem( Instantiate(Resources.Load<GameObject>(s) as GameObject) );
-        }
+        UniversalReference.PlayerInventory.LoadItemsFromPaths(ReadAFile("Assets/Resources/Save/inventory.save"));
     }
 
     public static string[] ReadAFile(string path)
