@@ -1,0 +1,34 @@
+/*
+    * INDEXES: (for human AND HIS HAND)
+    * 
+    * SPRITES:
+    * 
+    * 0 - body      (triple)
+    * 1 - shirt     ([0][1][2] normal, [3] hand [4] otherhand)
+    * 2 - head      (triple)
+    * 3 - coat      ([0][1][2] normal, [3] hand [4] otherhand)
+    * 4 - eyes      (triple)
+    * 5 - face      (triple)
+    * 6 - hair      (triple)
+    * 7 - headwear  (triple)
+    * 8 - hands     ([0] hand [4] otherhand)
+    * 
+    * 
+    * SPRITE RENDERERS:
+    * 0 - body
+    * 1 - shirt
+    * 2 - head (part of body, not headwear)
+    * 3 - coat
+    * 4 - eyes
+    * 5 - face (facial hair)
+    * 6 - hair
+    * 7 - hat
+    * 
+    * 8 - Hand (skin)
+    * 9 - Hand (shirt)
+    * 10 - Hand (jacket)
+    * 11 - Other Hand (skin)
+    * 12 - Other Hand (shirt)
+    * 13 - Other Hand (jacket)
+    *
+    * 

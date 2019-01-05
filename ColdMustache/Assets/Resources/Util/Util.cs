@@ -96,5 +96,14 @@ public class Util : MonoBehaviour {
             return false;
         }
     }
-    
+
+    public static Vector2Int Vector3To2Int(Vector3 vector3)
+    {
+        return new Vector2Int(Mathf.RoundToInt(vector3.x), Mathf.RoundToInt(vector3.y) );
+    }
+    public static Vector3 Vector2IntTo3(Vector2Int vector2int)
+    {
+        return new Vector3(vector2int.x, vector2int.y, 0);
+    }
+
 }

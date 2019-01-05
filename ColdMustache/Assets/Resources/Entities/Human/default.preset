@@ -1,0 +1,57 @@
+[0]
+//body; this color will also be used for head and hands
+Entities/Human/Parts/Body/Default
+#0.552;0.333;0.141;1;0.05
+#0.776;0.525;0.258;1;0.05
+#0.878;0.674;0.411;1;0.05
+#0.945;0.760;0.490;1;0.05
+#1.000;0.858;0.674;1;0.05
+
+[1]
+//shirt; color doesnt matter
+Entities/Human/Parts/EmptyParts
+#0.4;0.4;0.9;1;0.2
+
+[2]
+//head; color doesnt matter
+//Entities/Human/Parts/Head/Narrow
+Entities/Human/Parts/Head/Round
+//Entities/Human/Parts/Head/Wide
+#0.4;0.4;0.9;1;0.2
+
+[3]
+//jacket; color doesnt matter
+Entities/Human/Parts/EmptyParts
+#0.4;0.4;0.9;1;0.2
+
+[4]
+//eyes
+Entities/Human/Parts/Eyes/Narrow
+Entities/Human/Parts/Eyes/Square
+#0.5;0.5;0.5;1;0.5
+
+[5]
+//face detail (facial hair); this color will be used for hair aswell
+Entities/Human/Parts/Face/Beard
+Entities/Human/Parts/Face/BeardFull
+Entities/Human/Parts/Face/Mustache
+Entities/Human/Parts/Face/None
+Entities/Human/Parts/Face/ThreeDay
+#0.5;0.5;0.5;1;0.5
+
+[6]
+//hair; color doesnt matter
+Entities/Human/Parts/Hair/CleanShave
+Entities/Human/Parts/Hair/Default
+Entities/Human/Parts/Hair/Long
+#0.4;0.4;0.9;1;0.2
+
+[7]
+//headwear; color doesnt matter
+Entities/Human/Parts/EmptyParts
+#0.4;0.4;0.9;1;0.2
+
+[8]
+//hands; color doesnt matter
+Entities/Human/Parts/Hands/Default
+#0.4;0.4;0.9;1;0.2

@@ -56,7 +56,7 @@ MonoBehaviour:
   Type: 1
   Sprites: []
   SpritesPath: Items/Shirt/Shirt01
-  Color: {r: 0.1102941, g: 0.81592274, b: 1, a: 1}
+  color: {r: 0, g: 0.7921569, b: 1, a: 1}
 --- !u!212 &212907708296903238
 SpriteRenderer:
   m_ObjectHideFlags: 1

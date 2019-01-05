@@ -129,6 +129,14 @@ public class Player : MonoBehaviour {
         {
             Grenade(MouseWorldPos);
         }
+
+        if (Input.GetKeyUp(KeyCode.Mouse2))
+        {
+            //NavTestStatic.SightLine(transform.position, UniversalReference.MouseWorldPos);
+            NavTestStatic.FieldOfView(transform.position);
+        }
+        
+
         //end of test stuff
 
         

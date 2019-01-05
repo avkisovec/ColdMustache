@@ -6,7 +6,7 @@ public class SpriteManagerGeneric : SpriteManagerBase {
 
     public SpriteRenderer[] spriteRenderers;
     public string[] spritePaths;
-    Sprite[][] sprites; //from paths
+    public Sprite[][] sprites = null; //from paths
     public bool[] sprites_isTriple;  //false if single sprite ([0]) is used for all directions
     public Color[] colors;
     
@@ -23,9 +23,12 @@ public class SpriteManagerGeneric : SpriteManagerBase {
 	void Start () {
         Empty = Resources.LoadAll<Sprite>("Entities/Human/Parts/EmptyParts");
 
-        //loading sprites from paths
-        sprites = new Sprite[spritePaths.Length][];
-        LoadSpritesFromPaths();
+        //loading sprites from paths, if needed
+        if(sprites == null)
+        {
+            sprites = new Sprite[spritePaths.Length][];
+            LoadSpritesFromPaths();
+        }
 
         if (GetDirectionFromEntity)
         {
@@ -51,6 +54,7 @@ public class SpriteManagerGeneric : SpriteManagerBase {
         if (GetDirectionFromEntity)
         {
             Vector2 delta = e.LookingToward - (Vector2)transform.position;
+            
             if(Mathf.Abs(delta.x) > Mathf.Abs(delta.y)){
                 if(delta.x > 0)
                 {
@@ -170,6 +174,11 @@ public class SpriteManagerGeneric : SpriteManagerBase {
 
         }
     }
+    
+    public void UpdateEverything()
+    {
+        UpdateEverything(LastDirection);
+    }
 
     public float TemporaryColorTimeRemaining = 0;
     public override void TemporaryColor(Color color, float Time)
@@ -191,6 +200,14 @@ public class SpriteManagerGeneric : SpriteManagerBase {
             colors[i] = new Color(Random.Range(0,1f), Random.Range(0,1f), Random.Range(0,1f));
         }
         UpdateEverything(LastDirection);
+    }
+
+    public void UnifiedColor(int Source, int[] Affected) //takes color from a specific slot, and sets it to all specified slots; case: body color is set to head and hands, hair color is set to facial hair
+    {
+        for(int i = 0; i < Affected.Length; i++)
+        {
+            colors[Affected[i]] = colors[Source];
+        }
     }
 
 }

@@ -17,6 +17,16 @@ public class SaverLoader : MonoBehaviour {
             LoadInventory();
         }
 
+        /*
+        if (Input.GetKeyUp(KeyCode.X))
+        {
+            //looks like it doesnt work
+            StreamWriter sw = new StreamWriter("Assets/Resources/Save/newFileMate.save");
+            sw.WriteLine("eh");
+            sw.Close();
+
+        }
+        */
 	}
 
     public static void LoadInventory()

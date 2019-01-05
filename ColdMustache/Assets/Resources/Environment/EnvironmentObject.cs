@@ -12,6 +12,7 @@ public class EnvironmentObject : MonoBehaviour {
 
     public bool Nav_Walkable = false;
     public bool Nav_ExplosionCanPass = false;
+    public bool Nav_LightCanPass = false;
 
     //automatically generated from transform.position, rounded
     public int posX = 0;

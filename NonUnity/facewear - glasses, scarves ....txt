@@ -1,0 +1,3 @@
+add "facewear"
+
+things like glasses, scarves (can stack with headwear like helmet)

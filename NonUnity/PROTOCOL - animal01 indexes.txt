@@ -1,0 +1,7 @@
+Animal01 (the spikey shieldface)
+
+sprite manager index protocol
+
+[0] body
+[1] spikes
+[2] eyes

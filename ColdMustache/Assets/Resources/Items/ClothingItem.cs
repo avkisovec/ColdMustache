@@ -7,7 +7,7 @@ public class ClothingItem : InventoryItem {
     public Sprite[] Sprites = null;
     public string SpritesPath = "";
 
-    public Color Color;
+    public Color color;
 
     private void Start()
     {
@@ -19,11 +19,42 @@ public class ClothingItem : InventoryItem {
 
     public override void CodeBeforeRemoving()
     {
-        UniversalReference.SpriteManagerBuilder.UnequipClothing(Type);
+        //UniversalReference.PlayerSpriteManager.UnequipClothing(Type);
+        switch (Type)
+        {
+            case ItemType.ClothingShirt:
+                UniversalReference.PlayerSpriteManager.sprites[1] = UniversalReference.EmptyBodyPart;
+                break;
+            case ItemType.ClothingJacket:
+                UniversalReference.PlayerSpriteManager.sprites[3] = UniversalReference.EmptyBodyPart;
+                break;
+            case ItemType.ClothingHead:
+                UniversalReference.PlayerSpriteManager.sprites[7] = UniversalReference.EmptyBodyPart;
+                break;
+        }
+        UniversalReference.PlayerSpriteManager.UpdateEverything();
     }
 
     public override void CodeAfterEquipping()
     {
-        UniversalReference.SpriteManagerBuilder.EquipClothing(Type, Sprites, Color);
+        //UniversalReference.PlayerSpriteManager.EquipClothing(Type, Sprites, Color);switch (Type)
+        {
+            switch (Type)
+            {
+                case ItemType.ClothingShirt:
+                    UniversalReference.PlayerSpriteManager.sprites[1] = Sprites;
+                    UniversalReference.PlayerSpriteManager.colors[1] = color;
+                    break;
+                case ItemType.ClothingJacket:
+                    UniversalReference.PlayerSpriteManager.sprites[3] = Sprites;
+                    UniversalReference.PlayerSpriteManager.colors[3] = color;
+                    break;
+                case ItemType.ClothingHead:
+                    UniversalReference.PlayerSpriteManager.sprites[7] = Sprites;
+                    UniversalReference.PlayerSpriteManager.colors[7] = color;
+                    break;
+            }
+        }
+        UniversalReference.PlayerSpriteManager.UpdateEverything();
     }
 }

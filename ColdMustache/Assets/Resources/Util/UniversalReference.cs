@@ -14,7 +14,7 @@ public class UniversalReference : MonoBehaviour {
     public static Entity PlayerEntity;
     public static Player PlayerScript;
     public static Rigidbody2D PlayerRb;
-    public static SpriteManagerBuilder SpriteManagerBuilder;
+    public static SpriteManagerGeneric PlayerSpriteManager;
 
     public static GunRotatorHand GunRotator;
 
@@ -35,6 +35,8 @@ public class UniversalReference : MonoBehaviour {
 
     public static Crosshair crosshair;
 
+    //misc
+    public static Sprite[] EmptyBodyPart; //the sprite used for missing clothing, has 5 subsprites (up to [4])
 
 
 
@@ -49,13 +51,13 @@ public class UniversalReference : MonoBehaviour {
         PlayerEntity = PlayerObject.GetComponent<Entity>();
         PlayerScript = PlayerObject.GetComponent<Player>();
         PlayerRb = PlayerObject.GetComponent<Rigidbody2D>();
-        SpriteManagerBuilder = GameObject.Find("PlayerContainer/Body").GetComponent<SpriteManagerBuilder>();
+        PlayerSpriteManager = GameObject.Find("PlayerContainer").GetComponent<SpriteManagerGeneric>();
 
         GunRotator = GameObject.Find("PlayerContainer/GunContainer").GetComponent<GunRotatorHand>();
 
         PlayerBulletsOrigin = GameObject.Find("PlayerContainer/GunContainer/BulletsOrigin").transform;
 
-        PlayerInventory = GameObject.Find("UNCHANGING/Inventory").GetComponent<Inventory>();
+        PlayerInventory = GameObject.Find("InventoryContainer/Inventory").GetComponent<Inventory>();
 
         //gui
         AmmoCounter = GameObject.Find("Canvas/AmmoCounter").GetComponent<Image>();
@@ -69,6 +71,9 @@ public class UniversalReference : MonoBehaviour {
         MouseWorldPos = MainCamera.ScreenToWorldPoint(Input.mousePosition);
 
         crosshair = GameObject.Find("Crosshair").GetComponent<Crosshair>();
+
+        //misc
+        EmptyBodyPart = Resources.LoadAll<Sprite>("Entities/Human/Parts/EmptyParts");
 
     }
 	

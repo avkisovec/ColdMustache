@@ -103,7 +103,7 @@ public class GunRotatorHand : MonoBehaviour {
 
                     OtherHand.localPosition = new Vector3(FrontBackRightShoulder.x, FrontBackRightShoulder.y, VisibleDepth/2);
                     Util.RotateTransformToward(OtherHand, HoldPoint);
-                    OtherHandSr.flipY = false;
+                    OtherHand.transform.localScale = new Vector3(1, 1, 1);
                 }
                 //other side (toward left - needs mirrorring)
                 else
@@ -113,7 +113,7 @@ public class GunRotatorHand : MonoBehaviour {
 
                     OtherHand.localPosition = new Vector3(FrontBackLeftShoulder.x, FrontBackLeftShoulder.y, VisibleDepth/2);
                     Util.RotateTransformToward(OtherHand, HoldPoint);
-                    OtherHandSr.flipY = true;
+                    OtherHand.transform.localScale = new Vector3(1, -1, 1);
                 }
             }
 

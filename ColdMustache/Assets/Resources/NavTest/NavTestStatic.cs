@@ -12,7 +12,8 @@ public class NavTestStatic : MonoBehaviour {
 
     public static int[,] NavArray;
     public static int[,] ExplosionNavArray;
-    
+    public static int[,] LightNavArray;
+
     public static void BuildMapFromImage()
     {
         Texture2D map = Resources.Load<Texture2D>("NavTest/navmap");
@@ -380,6 +381,646 @@ public class NavTestStatic : MonoBehaviour {
 
         return Output;
     }
-    
+
+    /*
+     * the concept of drawing a line
+     * 
+     * first, a virtual straight line between the points is created
+     * 
+     * then, you start with the pixel of origin
+     * if its light passable, you move onto the next pixel, and repeat until you land on target pixel
+     * 
+     * you choose the next pixel in a direction that makes it closer to the virtual line
+     * if you happen to land exactly on the line, choose a default option
+     * 
+     * 
+     * line formula:
+     * y = x * slope + shift
+     * 
+     * formula i will be using:
+     * y = x * slope
+     * slope = y/x
+     * 
+     * 
+     */
+    public static void DrawLine(Vector3 Origin3, Vector3 Target3)
+    {
+        Vector2Int Origin = Util.Vector3To2Int(Origin3);
+        Vector2Int Target = Util.Vector3To2Int(Target3);
+
+        Vector3 Delta3 = Target3 - Origin3;
+
+        List<Vector2Int> points = new List<Vector2Int>();
+        points.Add(Origin);
+
+        Vector2Int DeltaInt = Target - Origin;
+        float OriginalSlope = ((float)Delta3.y / ((float)Delta3.x+0.00001f));
+        float CurrSlope = 0;
+
+        Vector2Int CurrentTile = Origin;
+
+        int Quadrant = -1;
+        if(Delta3.x > 0)
+        {
+            if(Delta3.y >= 0)
+            {
+                Quadrant = 0;
+                CurrSlope = 1;
+                /*
+                if(OriginalSlope > 1)
+                {
+                    CurrentTile += Vector2Int.up;
+                }
+                else
+                {
+                    CurrentTile += Vector2Int.right;
+                }
+                */
+            }
+            else
+            {
+                Quadrant = 3;
+                CurrSlope = -1;
+            }
+
+        }
+        else
+        {
+            if (Delta3.y >= 0)
+            {
+                Quadrant = 1;
+                CurrSlope = -1;
+            }
+            else
+            {
+                Quadrant = 2;
+                CurrSlope = 1;
+            }
+        }
+
+        points.Add(CurrentTile);
+
+        Debug.Log(OriginalSlope + " slope, Quadrant: "+ Quadrant);
+
+        //CurrentTile += Vector2Int.up;
+
+        int ToPreventInfiniteCycle = 0;
+        while(CurrentTile != Target && ToPreventInfiniteCycle < 100)
+        {
+            ToPreventInfiniteCycle++;
+
+            //first quadrant (0) - moving up and right
+            if (Quadrant == 0)
+            {
+                Vector2Int CurrDelta = Target - CurrentTile;
+                //to prevent dividing by zero
+                if(CurrDelta.x == 0)
+                {
+                    CurrSlope = 999999999;
+                }
+                else
+                {
+                    CurrSlope = (float)CurrDelta.y / (float)CurrDelta.x;
+                }
+                //up
+                if(CurrSlope > OriginalSlope)
+                {
+                    CurrentTile += Vector2Int.up;
+                }
+                //right
+                else
+                {
+                    CurrentTile += Vector2Int.right;
+                }
+            }
+            //second quadrant - moving up and left
+            else if (Quadrant == 1)
+            {
+                
+                Vector2Int CurrDelta = Target - CurrentTile;
+                //to prevent dividing by zero
+                if (CurrDelta.x == 0)
+                {
+                    CurrSlope = -999999999;
+                }
+                else
+                {
+                    CurrSlope = (float)CurrDelta.y / (float)CurrDelta.x;
+                }
+                //left
+                if (CurrSlope > OriginalSlope || CurrSlope == 0)
+                {
+                    CurrentTile += Vector2Int.left;
+                }
+                //up
+                else
+                {
+                    CurrentTile += Vector2Int.up;
+                }
+            }
+            //third quadrant - moving down and left
+            else if (Quadrant == 2)
+            {
+                Vector2Int CurrDelta = Target - CurrentTile;
+                //to prevent dividing by zero
+                if (CurrDelta.x == 0)
+                {
+                    CurrSlope = 999999999;
+                }
+                else
+                {
+                    CurrSlope = (float)CurrDelta.y / (float)CurrDelta.x;
+                }
+                //down
+                if (CurrSlope > OriginalSlope)
+                {
+                    CurrentTile += Vector2Int.down;
+                }
+                //left
+                else
+                {
+                    CurrentTile += Vector2Int.left;
+                }
+            }
+            //fourth quadrant - moving down and right
+            else if (Quadrant == 3)
+            {
+                Vector2Int CurrDelta = Target - CurrentTile;
+                //to prevent dividing by zero
+                if (CurrDelta.x == 0)
+                {
+                    CurrSlope = -999999999;
+                }
+                else
+                {
+                    CurrSlope = (float)CurrDelta.y / (float)CurrDelta.x;
+                    //Debug.Log(CurrSlope);
+                }
+                //right
+                if (CurrSlope > OriginalSlope || CurrSlope == 0)
+                {
+                    CurrentTile += Vector2Int.right;
+                }
+                //down
+                else
+                {
+                    CurrentTile += Vector2Int.down;
+                }
+            }
+
+            points.Add(CurrentTile);
+        }
+
+        foreach(Vector2Int v in points)
+        {
+            GameObject debug = new GameObject();
+            debug.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("pixel");
+            debug.transform.position = new Vector3(v.x, v.y, -20);
+            debug.AddComponent<DieInSeconds>().Seconds = 2;
+        }
+
+    }
+
+    public static void SightLine(Vector3 Origin3, Vector3 Target3)
+    {
+        Vector2Int Origin = Util.Vector3To2Int(Origin3);
+        Vector2Int Target = Util.Vector3To2Int(Target3);
+
+        Vector3 Delta3 = Target3 - Origin3;
+
+        List<Vector2Int> points = new List<Vector2Int>();
+        points.Add(Origin);
+
+        Vector2Int DeltaInt = Target - Origin;
+        float OriginalSlope = ((float)Delta3.y / ((float)Delta3.x + 0.00001f));
+        float CurrSlope = 0;
+
+        Vector2Int CurrentTile = Origin;
+
+        int Quadrant = -1;
+        if (Delta3.x > 0)
+        {
+            if (Delta3.y >= 0)
+            {
+                Quadrant = 0;
+                CurrSlope = 1;
+                /*
+                if(OriginalSlope > 1)
+                {
+                    CurrentTile += Vector2Int.up;
+                }
+                else
+                {
+                    CurrentTile += Vector2Int.right;
+                }
+                */
+            }
+            else
+            {
+                Quadrant = 3;
+                CurrSlope = -1;
+            }
+
+        }
+        else
+        {
+            if (Delta3.y >= 0)
+            {
+                Quadrant = 1;
+                CurrSlope = -1;
+            }
+            else
+            {
+                Quadrant = 2;
+                CurrSlope = 1;
+            }
+        }
+
+        points.Add(CurrentTile);
+
+        Debug.Log(OriginalSlope + " slope, Quadrant: " + Quadrant);
+
+        //CurrentTile += Vector2Int.up;
+
+        int ToPreventInfiniteCycle = 0;
+        while (CurrentTile != Target && ToPreventInfiniteCycle < 100)
+        {
+            ToPreventInfiniteCycle++;
+
+            //first quadrant (0) - moving up and right
+            if (Quadrant == 0)
+            {
+                Vector2Int CurrDelta = Target - CurrentTile;
+                //to prevent dividing by zero
+                if (CurrDelta.x == 0)
+                {
+                    CurrSlope = 999999999;
+                }
+                else
+                {
+                    CurrSlope = (float)CurrDelta.y / (float)CurrDelta.x;
+                }
+                //up
+                if (CurrSlope > OriginalSlope)
+                {
+                    CurrentTile += Vector2Int.up;
+                }
+                //right
+                else
+                {
+                    CurrentTile += Vector2Int.right;
+                }
+            }
+            //second quadrant - moving up and left
+            else if (Quadrant == 1)
+            {
+
+                Vector2Int CurrDelta = Target - CurrentTile;
+                //to prevent dividing by zero
+                if (CurrDelta.x == 0)
+                {
+                    CurrSlope = -999999999;
+                }
+                else
+                {
+                    CurrSlope = (float)CurrDelta.y / (float)CurrDelta.x;
+                }
+                //left
+                if (CurrSlope > OriginalSlope || CurrSlope == 0)
+                {
+                    CurrentTile += Vector2Int.left;
+                }
+                //up
+                else
+                {
+                    CurrentTile += Vector2Int.up;
+                }
+            }
+            //third quadrant - moving down and left
+            else if (Quadrant == 2)
+            {
+                Vector2Int CurrDelta = Target - CurrentTile;
+                //to prevent dividing by zero
+                if (CurrDelta.x == 0)
+                {
+                    CurrSlope = 999999999;
+                }
+                else
+                {
+                    CurrSlope = (float)CurrDelta.y / (float)CurrDelta.x;
+                }
+                //down
+                if (CurrSlope > OriginalSlope)
+                {
+                    CurrentTile += Vector2Int.down;
+                }
+                //left
+                else
+                {
+                    CurrentTile += Vector2Int.left;
+                }
+            }
+            //fourth quadrant - moving down and right
+            else if (Quadrant == 3)
+            {
+                Vector2Int CurrDelta = Target - CurrentTile;
+                //to prevent dividing by zero
+                if (CurrDelta.x == 0)
+                {
+                    CurrSlope = -999999999;
+                }
+                else
+                {
+                    CurrSlope = (float)CurrDelta.y / (float)CurrDelta.x;
+                    //Debug.Log(CurrSlope);
+                }
+                //right
+                if (CurrSlope > OriginalSlope || CurrSlope == 0)
+                {
+                    CurrentTile += Vector2Int.right;
+                }
+                //down
+                else
+                {
+                    CurrentTile += Vector2Int.down;
+                }
+            }
+
+            if(LightNavArray[CurrentTile.x,CurrentTile.y] == EmptyTileValue)
+            {
+                points.Add(CurrentTile);
+            }
+            else
+            {
+                foreach (Vector2Int v in points)
+                {
+                    GameObject debug = new GameObject();
+                    debug.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("pixel");
+                    debug.transform.position = new Vector3(v.x, v.y, -20);
+                    debug.AddComponent<DieInSeconds>().Seconds = 2;
+                }
+                return;
+            }
+        }
+
+        foreach (Vector2Int v in points)
+        {
+            GameObject debug = new GameObject();
+            debug.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("pixel");
+            debug.transform.position = new Vector3(v.x, v.y, -20);
+            debug.AddComponent<DieInSeconds>().Seconds = 2;
+        }
+        return;
+
+    }
+
+    public static void FieldOfView(Vector3 origin)
+    {
+        int HaveVisionOf = -123456;
+
+        Vector2Int Origin = Util.Vector3To2Int(origin);
+        Vector2Int CurrTile = Origin;
+
+        int[,] CurrLightArray = (int[,])LightNavArray.Clone();
+
+        CurrLightArray[CurrTile.x, CurrTile.y] = HaveVisionOf;
+        
+        
+        List<Vector2Int> TilesToExamineNext = new List<Vector2Int>();
+        List<Vector2Int> TilesCurrentlyBeingExamined = new List<Vector2Int>();
+
+        TilesToExamineNext.Add(new Vector2Int(CurrTile.x + 1, CurrTile.y));
+        TilesToExamineNext.Add(new Vector2Int(CurrTile.x - 1, CurrTile.y));
+        TilesToExamineNext.Add(new Vector2Int(CurrTile.x, CurrTile.y + 1));
+        TilesToExamineNext.Add(new Vector2Int(CurrTile.x, CurrTile.y - 1));
+
+        int ToPreventInfiniteCycle = 0;
+
+        while (ToPreventInfiniteCycle < 100)
+        {
+            ToPreventInfiniteCycle++;
+            
+
+            TilesCurrentlyBeingExamined.Clear();
+            foreach (Vector2Int v in TilesToExamineNext)
+            {
+                TilesCurrentlyBeingExamined.Add(v);
+            }
+            TilesToExamineNext.Clear();
+            
+            foreach (Vector2 v in TilesCurrentlyBeingExamined)
+            {
+                //projecting a sightline from current tile toward origin
+                //if it ends up on impassable tile, stop
+                //if it ends up on tile that already has line of sight, spread
+
+                
+
+                Vector2Int LineOrigin = CurrTile;
+                Vector2Int LineTarget = Origin;
+                                
+                Vector2Int DeltaInt = LineTarget - LineOrigin;
+                float OriginalSlope = ((float)DeltaInt.y / ((float)DeltaInt.x + 0.00001f));
+                float CurrSlope = 0;
+
+                Vector2Int LineCurrentTile = LineOrigin;
+
+                int Quadrant = -1;
+                if (DeltaInt.x > 0)
+                {
+                    if (DeltaInt.y >= 0)
+                    {
+                        Quadrant = 0;
+                        CurrSlope = 1;
+                    }
+                    else
+                    {
+                        Quadrant = 3;
+                        CurrSlope = -1;
+                    }
+
+                }
+                else
+                {
+                    if (DeltaInt.y >= 0)
+                    {
+                        Quadrant = 1;
+                        CurrSlope = -1;
+                    }
+                    else
+                    {
+                        Quadrant = 2;
+                        CurrSlope = 1;
+                    }
+                }
+
+                int Line_ToPreventInfiniteCycle = 0;
+                
+                while (Line_ToPreventInfiniteCycle < 100)
+                {
+                    Debug.Log(Line_ToPreventInfiniteCycle);
+
+                    Line_ToPreventInfiniteCycle++;
+
+                    //first quadrant (0) - moving up and right
+                    if (Quadrant == 0)
+                    {
+                        Vector2Int CurrDelta = LineTarget - LineCurrentTile;
+                        //to prevent dividing by zero
+                        if (CurrDelta.x == 0)
+                        {
+                            CurrSlope = 999999999;
+                        }
+                        else
+                        {
+                            CurrSlope = (float)CurrDelta.y / (float)CurrDelta.x;
+                        }
+                        //up
+                        if (CurrSlope > OriginalSlope)
+                        {
+                            LineCurrentTile += Vector2Int.up;
+                        }
+                        //right
+                        else
+                        {
+                            LineCurrentTile += Vector2Int.right;
+                        }
+                    }
+                    //second quadrant - moving up and left
+                    else if (Quadrant == 1)
+                    {
+
+                        Vector2Int CurrDelta = LineTarget - LineCurrentTile;
+                        //to prevent dividing by zero
+                        if (CurrDelta.x == 0)
+                        {
+                            CurrSlope = -999999999;
+                        }
+                        else
+                        {
+                            CurrSlope = (float)CurrDelta.y / (float)CurrDelta.x;
+                        }
+                        //left
+                        if (CurrSlope > OriginalSlope || CurrSlope == 0)
+                        {
+                            LineCurrentTile += Vector2Int.left;
+                        }
+                        //up
+                        else
+                        {
+                            LineCurrentTile += Vector2Int.up;
+                        }
+                    }
+                    //third quadrant - moving down and left
+                    else if (Quadrant == 2)
+                    {
+                        Vector2Int CurrDelta = LineTarget - LineCurrentTile;
+                        //to prevent dividing by zero
+                        if (CurrDelta.x == 0)
+                        {
+                            CurrSlope = 999999999;
+                        }
+                        else
+                        {
+                            CurrSlope = (float)CurrDelta.y / (float)CurrDelta.x;
+                        }
+                        //down
+                        if (CurrSlope > OriginalSlope)
+                        {
+                            LineCurrentTile += Vector2Int.down;
+                        }
+                        //left
+                        else
+                        {
+                            LineCurrentTile += Vector2Int.left;
+                        }
+                    }
+                    //fourth quadrant - moving down and right
+                    else if (Quadrant == 3)
+                    {
+                        Vector2Int CurrDelta = LineTarget - LineCurrentTile;
+                        //to prevent dividing by zero
+                        if (CurrDelta.x == 0)
+                        {
+                            CurrSlope = -999999999;
+                        }
+                        else
+                        {
+                            CurrSlope = (float)CurrDelta.y / (float)CurrDelta.x;
+                            //Debug.Log(CurrSlope);
+                        }
+                        //right
+                        if (CurrSlope > OriginalSlope || CurrSlope == 0)
+                        {
+                            LineCurrentTile += Vector2Int.right;
+                        }
+                        //down
+                        else
+                        {
+                            LineCurrentTile += Vector2Int.down;
+                        }
+                    }
+
+                    if (LightNavArray[LineCurrentTile.x, LineCurrentTile.y] == EmptyTileValue)
+                    {
+                        ToPreventInfiniteCycle = 1000;
+                        continue;
+                    }
+                    else if(LightNavArray[LineCurrentTile.x, LineCurrentTile.y] == HaveVisionOf)
+                    {
+
+                        TilesToExamineNext.Add(new Vector2Int(CurrTile.x + 1, CurrTile.y));
+                        TilesToExamineNext.Add(new Vector2Int(CurrTile.x - 1, CurrTile.y));
+                        TilesToExamineNext.Add(new Vector2Int(CurrTile.x, CurrTile.y + 1));
+                        TilesToExamineNext.Add(new Vector2Int(CurrTile.x, CurrTile.y - 1));
+
+
+                        GameObject debug = new GameObject();
+                        debug.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("pixel");
+                        debug.GetComponent<SpriteRenderer>().color = new Color(1,1,0,0.5f);
+                        debug.transform.position = new Vector3(CurrTile.x, CurrTile.y, -20);
+                        debug.AddComponent<DieInSeconds>().Seconds = 2;
+
+                        ToPreventInfiniteCycle = 1000;
+                        continue;
+                    }
+                    else if(LineCurrentTile == LineTarget)
+                    {
+                        TilesToExamineNext.Add(new Vector2Int(CurrTile.x + 1, CurrTile.y));
+                        TilesToExamineNext.Add(new Vector2Int(CurrTile.x - 1, CurrTile.y));
+                        TilesToExamineNext.Add(new Vector2Int(CurrTile.x, CurrTile.y + 1));
+                        TilesToExamineNext.Add(new Vector2Int(CurrTile.x, CurrTile.y - 1));
+
+
+                        GameObject debug = new GameObject();
+                        debug.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("pixel");
+                        debug.GetComponent<SpriteRenderer>().color = new Color(1, 1, 0, 0.5f);
+                        debug.transform.position = new Vector3(CurrTile.x, CurrTile.y, -20);
+                        debug.AddComponent<DieInSeconds>().Seconds = 2;
+
+                        ToPreventInfiniteCycle = 1000;
+                        continue;
+                    }
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+            }
+
+
+        }
+        
+
+    }
 
 }

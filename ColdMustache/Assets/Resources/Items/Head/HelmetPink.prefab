@@ -56,7 +56,7 @@ MonoBehaviour:
   Type: 3
   Sprites: []
   SpritesPath: Items/Head/Helmet01
-  Color: {r: 0.9843137, g: 0, b: 1, a: 1}
+  color: {r: 0.9843137, g: 0, b: 1, a: 1}
 --- !u!212 &212037075629651188
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -1,0 +1,20 @@
+sprite manager generic loader
+
+in a file:
+
+[0]		//identified by starting w [, marks the slot this affects
+path/file;5	//paths to all sprites that can go to the slot
+path/file;3	//the number after a path is the weigth - how likely is this sprite to be selected (lets say whtg 10 for clean skin, wgth 1 for each tatoo - all in all +-50% chance for non-tatoo)
+path/file;3
+#0.5;1;0.17;1;0.1	//identified by starting w #
+#0.5;1;0.17;1;0.1	//all possible colors for the slot (they can be randomly changed by 10 ish percent)
+#0.5;1;0.17;1;0.1	//red, grn, blu, alpha, randomness (rand(-this,this) gets added to each channel (except alpha))
+#0.5;0.5;0.5;1;0.5	//this specific one means any color
+[1]
+
+generic loader doesnt do anything on its own
+when it recieves request from someone to get a random body (and the source file from which to get it), it first checks if it hasnt already loaded this body for someone else, in which case it will be already cached, and if its new file then it loads the new file and caches all the sprites colors and stuff
+.
+actually you dont really need this caching, the files will only be loaded at the start of a level, when there will be a game loading lag anyways, this wont slot the game during runtime so you dont need caching (unless new enemies can spawn halfway through a leve)
+.
+if you expect something like this, then you can have a bool if you want to cache that specific preset (which means look for the preset in case its cached, and if not load and cache it)

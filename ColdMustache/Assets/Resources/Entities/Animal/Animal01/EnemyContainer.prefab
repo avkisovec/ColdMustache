@@ -90,8 +90,8 @@ GameObject:
   - component: {fileID: 114614383394212104}
   - component: {fileID: 114517333047585332}
   - component: {fileID: 114969788448215706}
-  - component: {fileID: 114686038632527954}
   - component: {fileID: 114378279305195688}
+  - component: {fileID: 114105562664957852}
   m_Layer: 0
   m_Name: EnemyContainer
   m_TagString: Enemy
@@ -342,6 +342,20 @@ MonoBehaviour:
   HealthOverlayPath: Gui/HealthOverlay
   HealthSR: {fileID: 212822087569250384}
   HealthOverlaySr: {fileID: 212559111530227304}
+--- !u!114 &114105562664957852
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1758198452841016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5674fd611bdf00c4a83c809b5f26e179, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LoadOnStart: 1
+  LoadOnStart_sm: {fileID: 114378279305195688}
+  LoadOnStart_path: Assets/Resources/Entities/Animal/Animal01/default.preset
 --- !u!114 &114335723305225960
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -456,26 +470,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3264b34d0c5c4a4cb33532ae64cb54e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114686038632527954
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1758198452841016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 162726f0554673e4195a576751e20c6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Slot0Color:
-  - {r: 0.86764705, g: 0.210532, b: 0.210532, a: 1}
-  - {r: 0.11467351, g: 0.22294483, b: 0.74264705, a: 1}
-  Slot1Color:
-  - {r: 1, g: 1, b: 0, a: 1}
-  - {r: 0.5661765, g: 0.17901169, b: 0.17901169, a: 1}
-  Slot2Color:
-  - {r: 1, g: 1, b: 1, a: 0}
-  - {r: 0, g: 0.4652129, b: 0.4852941, a: 0}
 --- !u!114 &114969788448215706
 MonoBehaviour:
   m_ObjectHideFlags: 1

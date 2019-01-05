@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1529297514804312}
+  m_IsPrefabParent: 1
+--- !u!1 &1529297514804312
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4336586540916438}
+  - component: {fileID: 212110293592120826}
+  - component: {fileID: 114684395966452090}
+  - component: {fileID: 114045108286435258}
+  m_Layer: 0
+  m_Name: default
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4336586540916438
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1529297514804312}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 16.860373, y: -6.226611, z: -1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114045108286435258
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1529297514804312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7ee95e29930f3949ae6bdcf1c8d1ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentlyActive: 0
+  MaxAmmo: 10
+  Ammo: 10
+  BaseCooldownBetweenShots: 0.1
+  CurrCooldownBetweenShots: 0
+  BaseReloadTime: 1
+  ReloadTimeRemaining: 0
+  EffectiveRange: 10
+  InaccuracyPerShot: 1.2
+  DamagePerBullet: 1
+  InaccuracyBase: 1.5
+  InaccuracyImportance: 3
+  sprite: {fileID: 21300000, guid: df183cbf7b593bb47937f6385023efaf, type: 3}
+  BulletColorStart: {r: 1, g: 1, b: 0.5, a: 1}
+  BulletColorEnd: {r: 0.5, g: 0, b: 0, a: 1}
+  AmmoSpriteSheetPath: Gui/Hud/Ammo/Bullets10
+  AmmoSpriteSheet: []
+  StatusFullPath: Gui/Hud/WeaponStatus/ModeFull
+  StatusFullSprite: {fileID: 0}
+  StatusSemiPath: Gui/Hud/WeaponStatus/ModeSemi
+  StatusSemiSprite: {fileID: 0}
+  MuzzleFlashSpritePath: Fx/SmgMuzzleFlash
+  Mode: 1
+  FramesSincePlayerRequestedShooting: 0
+  FramesSincePlayerRequestedAltFire: 0
+--- !u!114 &114684395966452090
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1529297514804312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f65bcc9263698ec409885630ff9a48b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PrefabPath: Items/Weapons/SMGlike/default
+  Type: 5
+--- !u!212 &212110293592120826
+SpriteRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1529297514804312}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 31cca4040500d434494a840a5f55be72, type: 3}
+  m_Color: {r: 0.7058823, g: 0.7058823, b: 0.7058823, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
