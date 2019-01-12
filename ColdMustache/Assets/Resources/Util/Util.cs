@@ -106,4 +106,33 @@ public class Util : MonoBehaviour {
         return new Vector3(vector2int.x, vector2int.y, 0);
     }
 
+    public static float AngleDifference(float Angle, float AngleB)
+    {
+        float f = Angle - AngleB;
+        f = Mathf.Abs(f);
+
+        if(f > 180)
+        {
+            return 360 - f;
+        }
+        else
+        {
+            return f;
+        }
+
+
+    }
+
+    //makes every angle be 0-180, so from 350 makes 10
+    public static float NormalizeAngle(float Angle)
+    {
+        if (Angle > 180)
+        {
+            return 360 - Angle;
+        }
+        else
+        {
+            return Angle;
+        }
+    }
 }

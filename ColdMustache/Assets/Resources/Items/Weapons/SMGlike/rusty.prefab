@@ -9,65 +9,53 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1658910149222742}
+  m_RootGameObject: {fileID: 1778060128785084}
   m_IsPrefabParent: 1
---- !u!1 &1658910149222742
+--- !u!1 &1778060128785084
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4489788978239352}
-  - component: {fileID: 212718713423018122}
-  - component: {fileID: 114566857656150602}
-  - component: {fileID: 114769979928942540}
+  - component: {fileID: 4220396180788156}
+  - component: {fileID: 212362060150998744}
+  - component: {fileID: 114853184294371234}
+  - component: {fileID: 114033148778567318}
   m_Layer: 0
-  m_Name: SMGlike
+  m_Name: rusty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4489788978239352
+--- !u!4 &4220396180788156
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1658910149222742}
+  m_GameObject: {fileID: 1778060128785084}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.862766, y: -6.2490797, z: -1}
+  m_LocalPosition: {x: 16.947403, y: -4.004451, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114566857656150602
+--- !u!114 &114033148778567318
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1658910149222742}
+  m_GameObject: {fileID: 1778060128785084}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f65bcc9263698ec409885630ff9a48b1, type: 3}
+  m_Script: {fileID: 11500000, guid: c7ee95e29930f3949ae6bdcf1c8d1ef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PrefabPath: 
-  Type: 5
---- !u!114 &114769979928942540
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1658910149222742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec7a3186dd6c5c141bffd75ebc9dc22a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxAmmo: 100
-  Ammo: 100
+  CurrentlyActive: 0
+  MaxAmmo: 10
+  Ammo: 10
   BaseCooldownBetweenShots: 0.1
   CurrCooldownBetweenShots: 0
   BaseReloadTime: 1
@@ -78,9 +66,8 @@ MonoBehaviour:
   InaccuracyBase: 1.5
   InaccuracyImportance: 3
   sprite: {fileID: 21300000, guid: 0366f390637774142b0d06aa7b1ada78, type: 3}
-  SpritePath: Items/Weapons/SMG01
-  BulletColorStart: {r: 1, g: 1, b: 0.5, a: 1}
-  BulletColorEnd: {r: 0.5, g: 0, b: 0, a: 1}
+  BulletColorStart: {r: 1, g: 1, b: 0, a: 1}
+  BulletColorEnd: {r: 1, g: 0, b: 0, a: 1}
   AmmoSpriteSheetPath: Gui/Hud/Ammo/Bullets10
   AmmoSpriteSheet: []
   StatusFullPath: Gui/Hud/WeaponStatus/ModeFull
@@ -91,12 +78,25 @@ MonoBehaviour:
   Mode: 1
   FramesSincePlayerRequestedShooting: 0
   FramesSincePlayerRequestedAltFire: 0
---- !u!212 &212718713423018122
+--- !u!114 &114853184294371234
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1778060128785084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f65bcc9263698ec409885630ff9a48b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PrefabPath: Items/Weapons/SMGlike/rusty
+  Type: 5
+--- !u!212 &212362060150998744
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1658910149222742}
+  m_GameObject: {fileID: 1778060128785084}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -125,7 +125,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bf5679deab3f66d47a8fb1443172fc42, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 31cca4040500d434494a840a5f55be72, type: 3}
   m_Color: {r: 1, g: 0.791, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0

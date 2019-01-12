@@ -30,6 +30,8 @@ public class Spearlike : Weapon {
     //backend stuff 
     DamagerInflicter DamagerInflicterReference;
 
+    public int FramesSincePlayerRequestedAltFire = 0;
+
 
     public override void OnBecomingActive()
     {
@@ -69,6 +71,11 @@ public class Spearlike : Weapon {
             {
                 CurrExtensionCooldown -= Time.deltaTime;
             }
+
+            if(FramesSincePlayerRequestedAltFire < 1000)
+            {
+                FramesSincePlayerRequestedAltFire++;
+            }
         }
     }
 
@@ -82,6 +89,16 @@ public class Spearlike : Weapon {
 
     public override void TryAltFire()
     {
+
+        if (FramesSincePlayerRequestedAltFire >= 2)
+        {
+            //GetComponent<Rigidbody2D>().velocity += (Util.RotateVector(Util.GetVectorToward(transform, UniversalReference.MouseWorldPos), 180)) * 20;
+
+            UniversalReference.PlayerObject.transform.position += (Vector3)(Util.RotateVector(Util.GetDirectionVectorToward(UniversalReference.PlayerObject.transform, UniversalReference.MouseWorldPos), 180)) * 2;
+            
+        }
+        
+        FramesSincePlayerRequestedAltFire = 0;
     }
 
     public override void ForceReload()
