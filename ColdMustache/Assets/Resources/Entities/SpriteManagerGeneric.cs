@@ -209,5 +209,19 @@ public class SpriteManagerGeneric : SpriteManagerBase {
             colors[Affected[i]] = colors[Source];
         }
     }
+    
+    public string[] SaveCurrentAsPreset()
+    {
+        List<string> OutputLines = new List<string>();
+
+        for(int i = 0; i < spritePaths.Length; i++)
+        {
+            OutputLines.Add("["+i+"]");
+            OutputLines.Add(spritePaths[i]);
+            OutputLines.Add("#" + colors[i].r + ";" + colors[i].g + ";" + colors[i].b + ";" + colors[i].a + ";0");
+        }
+
+        return OutputLines.ToArray();
+    }
 
 }

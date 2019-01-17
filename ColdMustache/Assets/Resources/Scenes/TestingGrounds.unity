@@ -1778,6 +1778,11 @@ Prefab:
       propertyPath: m_Name
       value: EnemyContainer (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 114105562664957852, guid: 4c7a3623861925a4ba7ce08162ae2ac1,
+        type: 2}
+      propertyPath: LoadOnStart_path
+      value: /Generated/Preset/Animal01_Default.preset
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c7a3623861925a4ba7ce08162ae2ac1, type: 2}
   m_IsPrefabParent: 0
@@ -3299,6 +3304,11 @@ Prefab:
       propertyPath: m_Name
       value: EnemyContainer (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 114105562664957852, guid: 4c7a3623861925a4ba7ce08162ae2ac1,
+        type: 2}
+      propertyPath: LoadOnStart_path
+      value: /Generated/Preset/Animal01_Default.preset
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c7a3623861925a4ba7ce08162ae2ac1, type: 2}
   m_IsPrefabParent: 0
@@ -3531,7 +3541,9 @@ MonoBehaviour:
 
     TAB cycle weapons
 
-    V load inventory items'
+    V load inventory items
+
+    F5 F6 quicksave quickload (player)'
 --- !u!222 &222104795
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5487,6 +5499,11 @@ Prefab:
     - target: {fileID: 1758198452841016, guid: 4c7a3623861925a4ba7ce08162ae2ac1, type: 2}
       propertyPath: m_Name
       value: EnemyContainer (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114105562664957852, guid: 4c7a3623861925a4ba7ce08162ae2ac1,
+        type: 2}
+      propertyPath: LoadOnStart_path
+      value: /Generated/Preset/Animal01_Default.preset
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c7a3623861925a4ba7ce08162ae2ac1, type: 2}
@@ -8050,6 +8067,11 @@ Prefab:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 858886da1fc0e7c479e9fbeb7b51a905, type: 2}
+    - target: {fileID: 114105562664957852, guid: 4c7a3623861925a4ba7ce08162ae2ac1,
+        type: 2}
+      propertyPath: LoadOnStart_path
+      value: /Generated/Preset/Animal01_Default.preset
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c7a3623861925a4ba7ce08162ae2ac1, type: 2}
   m_IsPrefabParent: 0
@@ -9671,6 +9693,11 @@ Prefab:
       propertyPath: m_Name
       value: EnemyContainer (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 114105562664957852, guid: 4c7a3623861925a4ba7ce08162ae2ac1,
+        type: 2}
+      propertyPath: LoadOnStart_path
+      value: /Generated/Preset/Animal01_Default.preset
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c7a3623861925a4ba7ce08162ae2ac1, type: 2}
   m_IsPrefabParent: 0
@@ -10562,6 +10589,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 690402948}
+  - component: {fileID: 690402956}
   - component: {fileID: 690402950}
   - component: {fileID: 690402949}
   - component: {fileID: 690402951}
@@ -10666,6 +10694,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b83ec3f550aacd844b6240b521e59a35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &690402956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 690402947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9e92ed146f5b004f913bd8a0eb1ca54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &692168202
@@ -17886,6 +17925,11 @@ Prefab:
       propertyPath: m_Name
       value: EnemyContainer (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 114105562664957852, guid: 4c7a3623861925a4ba7ce08162ae2ac1,
+        type: 2}
+      propertyPath: LoadOnStart_path
+      value: /Generated/Preset/Animal01_Default.preset
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c7a3623861925a4ba7ce08162ae2ac1, type: 2}
   m_IsPrefabParent: 0
@@ -19063,7 +19107,8 @@ Prefab:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114677359693296648, guid: 44d4cde11436f2f47a762a5f17d93a6e, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 44d4cde11436f2f47a762a5f17d93a6e, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1265227795 stripped
@@ -19090,7 +19135,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LoadOnStart: 1
   LoadOnStart_sm: {fileID: 1265227796}
-  LoadOnStart_path: Assets/Resources/Entities/Human/default.preset
+  LoadOnStart_path: /Generated/Preset/Human_Default.preset
+--- !u!114 &1265227806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1265227795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d11cdb0e5addb8a47ad863a7fe5c4e2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1265755232
 GameObject:
   m_ObjectHideFlags: 0
@@ -26890,6 +26946,11 @@ Prefab:
       propertyPath: m_Name
       value: EnemyContainer (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 114105562664957852, guid: 4c7a3623861925a4ba7ce08162ae2ac1,
+        type: 2}
+      propertyPath: LoadOnStart_path
+      value: /Generated/Preset/Animal01_Default.preset
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c7a3623861925a4ba7ce08162ae2ac1, type: 2}
   m_IsPrefabParent: 0
@@ -29030,6 +29091,11 @@ Prefab:
     - target: {fileID: 1758198452841016, guid: 4c7a3623861925a4ba7ce08162ae2ac1, type: 2}
       propertyPath: m_Name
       value: EnemyContainer (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114105562664957852, guid: 4c7a3623861925a4ba7ce08162ae2ac1,
+        type: 2}
+      propertyPath: LoadOnStart_path
+      value: /Generated/Preset/Animal01_Default.preset
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c7a3623861925a4ba7ce08162ae2ac1, type: 2}
@@ -32444,6 +32510,11 @@ Prefab:
     - target: {fileID: 1758198452841016, guid: 4c7a3623861925a4ba7ce08162ae2ac1, type: 2}
       propertyPath: m_Name
       value: EnemyContainer (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114105562664957852, guid: 4c7a3623861925a4ba7ce08162ae2ac1,
+        type: 2}
+      propertyPath: LoadOnStart_path
+      value: /Generated/Preset/Animal01_Default.preset
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c7a3623861925a4ba7ce08162ae2ac1, type: 2}

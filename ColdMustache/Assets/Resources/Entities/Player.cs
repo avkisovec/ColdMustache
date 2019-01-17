@@ -24,11 +24,11 @@ public class Player : MonoBehaviour {
     //moving and shooting increase this value
     public float InaccuracyMin = 0;
     public float InaccuracyMax = 1;
-    public float InaccuracyRecoveryFactor = 2; //how much inaccuracy you lose every second
+    public float InaccuracyRecoveryFactor = 4; //how much inaccuracy you lose every second
 
     public float InaccuracyRecoveryBlock = 0; //how many seconds will inaccuracy not decrease for
 
-    public float InaccuracyInLastFrame;
+    public float InaccuracyInLastFrame = 0;
 
     // Use this for initialization
     void Start() {
@@ -133,7 +133,7 @@ public class Player : MonoBehaviour {
         if (Input.GetKeyUp(KeyCode.Mouse2))
         {
             //NavTestStatic.SightLine(transform.position, UniversalReference.MouseWorldPos);
-            NavTestStatic.FieldOfView(transform.position);
+            //NavTestStatic.FieldOfView(transform.position);
         }
         
 

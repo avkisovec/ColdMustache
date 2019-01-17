@@ -90,15 +90,19 @@ public class CamControlPixelPerfect : MonoBehaviour {
         if (Input.mouseScrollDelta.y != 0)
         {
             DesiredTileScale += (int)Input.mouseScrollDelta.y;
+
+            if (DesiredTileScale > 10)
+            {
+                DesiredTileScale = 10;
+            }
+            else if(DesiredTileScale < -3)
+            {
+                DesiredTileScale = -3;
+            }
+
             if (DesiredTileScale > 0)
             {
                 ActualTileScale = DesiredTileScale;
-
-                if (DesiredTileScale > 15)
-                {
-                    DesiredTileScale = 15;
-                }
-
             }
             else
             {

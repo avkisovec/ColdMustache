@@ -11,7 +11,12 @@ public class ClothingItem : InventoryItem {
 
     private void Start()
     {
-        if(true || Sprites == null)
+        LoadSpritesIfNeeded();
+    }
+
+    public void LoadSpritesIfNeeded()
+    {
+        if (true || Sprites == null)
         {
             Sprites = Resources.LoadAll<Sprite>(SpritesPath);
         }
@@ -37,7 +42,7 @@ public class ClothingItem : InventoryItem {
 
     public override void CodeAfterEquipping()
     {
-        //UniversalReference.PlayerSpriteManager.EquipClothing(Type, Sprites, Color);switch (Type)
+        LoadSpritesIfNeeded();
         {
             switch (Type)
             {

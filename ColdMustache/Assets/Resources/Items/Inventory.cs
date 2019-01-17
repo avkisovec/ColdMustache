@@ -378,7 +378,25 @@ public class Inventory : InventoryBase {
         item.transform.localScale = new Vector3(1, 1, 1);
     }
 
+    //deletes all items
+    public void ForceClearInventory()
+    {
+        foreach(InventorySlot invs in SlotsScripts)
+        {
+            foreach (Transform tr in invs.transform.GetComponentInChildren<Transform>())
+            {
+                Destroy(tr.gameObject);
+            }
+        }
+    }
 
+    public void AddItemToSpecificSlot(GameObject item, int SlotId)
+    {
+
+        item.transform.parent = SlotsScripts[GetListIdOfSlotWithId(SlotId)].transform;
+        item.transform.localPosition = new Vector3(0, 0, -1);
+        item.transform.localScale = new Vector3(1, 1, 1);
+    }
 
 
     //saving loading
@@ -391,6 +409,23 @@ public class Inventory : InventoryBase {
         }
     }
 
+
+    //call CodeAfterEquipping on all currently equipped clothes
+    public void ReEquipClothing()
+    {
+        foreach(InventorySlot invs in SlotsScripts)
+        {
+            if(invs.SlotType == InventoryItem.ItemType.ClothingHead ||
+                invs.SlotType == InventoryItem.ItemType.ClothingJacket ||
+                invs.SlotType == InventoryItem.ItemType.ClothingShirt)
+            {
+                if (invs.transform.childCount != 0)
+                {
+                    invs.transform.GetChild(0).GetComponent<ClothingItem>().CodeAfterEquipping();
+                }
+            }
+        }
+    }
 
 
 

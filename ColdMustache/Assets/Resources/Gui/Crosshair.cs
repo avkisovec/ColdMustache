@@ -43,6 +43,16 @@ public class Crosshair : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        //if mouse is outside the window (on the vertical axis, such as being on the top bar hovering close btn)
+        if((Screen.height - Input.mousePosition.y) < 0 || Input.mousePosition.y < 0)
+        {
+            Cursor.visible = true;
+        }
+        else
+        {
+            Cursor.visible = false;
+        }
+
         if(TemporaryColorRemaining > 0)
         {
             TemporaryColorRemaining -= Time.deltaTime;

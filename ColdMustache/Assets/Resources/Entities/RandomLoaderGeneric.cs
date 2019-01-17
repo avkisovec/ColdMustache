@@ -7,13 +7,13 @@ public class RandomLoaderGeneric : MonoBehaviour {
 
     public bool LoadOnStart = false;
     public SpriteManagerGeneric LoadOnStart_sm;
-    public string LoadOnStart_path = "Assets/Resources/yourPath/yourFile.preset";
+    public string LoadOnStart_path = "yourPath/yourFile.preset"; //application.datapath is implied
         
     private void Awake()
     {
         if (LoadOnStart)
         {
-            Load(LoadOnStart_sm, LoadOnStart_path);
+            Load(LoadOnStart_sm, Application.dataPath + LoadOnStart_path);
         }
     }
 
@@ -21,13 +21,13 @@ public class RandomLoaderGeneric : MonoBehaviour {
     void Update () {
         if (Input.GetKeyDown(KeyCode.L))
         {
-            Load(LoadOnStart_sm, LoadOnStart_path);
+            Load(LoadOnStart_sm, Application.dataPath + LoadOnStart_path);
         }
 	}
 
     public static void Load(SpriteManagerGeneric spriteManager, string PresetPath)
     {
-        List<List<Sprite[]>> AvailableSprites = new List<List<Sprite[]>>();
+        List<List<string>> AvailableSpritePaths = new List<List<string>>();
         List<List<Color>> AvailableColors = new List<List<Color>>();
 
         int Pointer = -1;
@@ -52,9 +52,9 @@ public class RandomLoaderGeneric : MonoBehaviour {
                 line = line.Trim('[');
                 line = line.Trim(']');
                 Pointer = int.Parse(line);
-                if(AvailableSprites.Count <= Pointer)
+                if(AvailableSpritePaths.Count <= Pointer)
                 {
-                    AvailableSprites.Add(new List<Sprite[]>());
+                    AvailableSpritePaths.Add(new List<string>());
                     AvailableColors.Add(new List<Color>());
                 }
             }
@@ -77,7 +77,7 @@ public class RandomLoaderGeneric : MonoBehaviour {
             //line is talking about a sprite
             else
             {
-                AvailableSprites[Pointer].Add(Resources.LoadAll<Sprite>(line.Split(';')[0]));
+                AvailableSpritePaths[Pointer].Add(line.Split(';')[0]);
             }
 
 
@@ -94,14 +94,17 @@ public class RandomLoaderGeneric : MonoBehaviour {
                 )];
         }
 
-        spriteManager.sprites = new Sprite[AvailableSprites.Count][];
+        spriteManager.sprites = new Sprite[AvailableSpritePaths.Count][];
+        spriteManager.spritePaths = new string[AvailableSpritePaths.Count];
         for (int i = 0; i < spriteManager.sprites.Length; i++)
         {
-            spriteManager.sprites[i] = AvailableSprites[i][Random.Range(
+            spriteManager.spritePaths[i] = AvailableSpritePaths[i][Random.Range(
                 (int)0,
-                (int)AvailableSprites[i].Count
+                (int)AvailableSpritePaths[i].Count
                 )];
         }
+
+        spriteManager.LoadSpritesFromPaths();
 
         spriteManager.UpdateEverything();
 

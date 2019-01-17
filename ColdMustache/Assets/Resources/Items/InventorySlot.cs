@@ -27,6 +27,8 @@ public class InventorySlot : MonoBehaviour {
     public int SlotId;
 
 
+
+
 	// Use this for initialization
 	void Start () {
 	}

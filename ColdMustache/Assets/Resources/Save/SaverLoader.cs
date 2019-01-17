@@ -52,4 +52,30 @@ public class SaverLoader : MonoBehaviour {
         return output.ToArray(); 
     }
 
+    //file path = desired path (yourApplicationFolder/...)
+    //default path = where the source file is stored within Resources (assets/resources/ is implied)
+    public static void CheckFileAndCreateIfNeeded(string FilePath, string DefaultPath)
+    {
+        FilePath = Application.dataPath + "/" + FilePath;
+        FileInfo fileInfo = new FileInfo(FilePath);
+
+        if (!fileInfo.Exists)
+        {
+            Directory.CreateDirectory(fileInfo.Directory.FullName);
+            StreamWriter sw = new StreamWriter(FilePath);
+            sw.Write(Resources.Load<TextAsset>(DefaultPath).text);
+            sw.Close();
+        }
+    }
+
+    //hard path means Drive:/path - the complete path, not relative to application directory
+    public static void CreateHardPathIfNeeded(string FilePath)
+    {
+        FileInfo fileInfo = new FileInfo(FilePath);
+        if (!Directory.Exists(fileInfo.Directory.FullName))
+        {
+            Directory.CreateDirectory(fileInfo.Directory.FullName);
+        }
+    }
+
 }
