@@ -49,7 +49,6 @@ public class ZIndexManager : MonoBehaviour {
     //use 0 ... -9 for non-objects (such as ordering GUI) (or just dont use this script if you want to fine-tune)
     //use 0 ... +9 for things below 0 (floors, water...)
     //dont recommend using for objects (entities)
-
     public float RelativeValue = 0;
     
 	void Start () {

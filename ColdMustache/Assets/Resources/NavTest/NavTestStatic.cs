@@ -1,14 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class NavTestStatic : MonoBehaviour {
 
     public static int ImpassableTileValue = 999999;
     public static int EmptyTileValue = 888888;
 
-    public static int MapWidth = 100;
-    public static int MapHeight = 100;
+    public static int MapWidth = 130;
+    public static int MapHeight = 130;
 
     public static int[,] NavArray;
     public static int[,] ExplosionNavArray;
@@ -1020,6 +1021,32 @@ public class NavTestStatic : MonoBehaviour {
 
         }
         
+
+    }
+
+    public static void ExportNavMap()
+    {
+
+        SaverLoader.CreateHardPathIfNeeded(Application.dataPath + "/debug/navMapOutput.txt");
+
+        StreamWriter sw = new StreamWriter(Application.dataPath + "/debug/navMapOutput.txt");
+        sw.AutoFlush = true;
+
+        for(int y = MapHeight-1; y >= 0; y--)
+        {
+            for (int x = 0; x < MapWidth; x++)
+            {
+                if(NavArray[x,y] == ImpassableTileValue)
+                {
+                    sw.Write("#");
+                }
+                else
+                {
+                    sw.Write(".");
+                }
+            }
+            sw.WriteLine();
+        }
 
     }
 

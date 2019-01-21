@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WaypointNavigator : MonoBehaviour {
 
-    public List<Vector2> WayPoints;
+    public List<Vector2> WayPoints = new List<Vector2>();
 
     public bool FromLastToFirst = true;
 

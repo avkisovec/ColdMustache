@@ -11,6 +11,9 @@ public class VehicleShader : MonoBehaviour {
 
     public Shuttle ParentShuttle;
 
+    public float Ratio = 150;
+    public float Bias = 0;
+
     // Use this for initialization
     void Start () {
         sr = GetComponent<SpriteRenderer>();
@@ -55,13 +58,14 @@ public class VehicleShader : MonoBehaviour {
             MyVector
             );
         
-        float Alpha = Util.NormalizeAngle(Angle) / 150;
+        float Alpha = Util.NormalizeAngle(Angle) / Ratio + Bias;
         
-        if(Alpha < 0)
+        
+        if (Alpha < 0)
         {
             Alpha = 0;
         }
-        if(Alpha > 1)
+        if (Alpha > 1)
         {
             Alpha = 1;
         }

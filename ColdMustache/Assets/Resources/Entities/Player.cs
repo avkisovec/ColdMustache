@@ -125,6 +125,17 @@ public class Player : MonoBehaviour {
 
 
         //test purposes - can delete
+
+        if (Input.GetKeyDown(KeyCode.F10))
+        {
+            //export navmap as text
+
+            //hard path means Drive:/path - the complete path, not relative to application directory
+            NavTestStatic.ExportNavMap();           
+
+            Debug.Log("hi");
+        }
+
         if (Input.GetKeyUp(KeyCode.G))
         {
             Grenade(MouseWorldPos);
