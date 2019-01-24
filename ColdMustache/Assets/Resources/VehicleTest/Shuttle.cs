@@ -19,7 +19,7 @@ public class Shuttle : MonoBehaviour {
     public float ReverseSpeed = 60f;
     public float StrafingSpeed = 120f;
 
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
 
     //when the ship is facing right of the screen
     public Vector2 DefaultBow = new Vector2(1, 0);
@@ -69,87 +69,38 @@ public class Shuttle : MonoBehaviour {
             {
                 rb.angularVelocity += TurningSpeed * Throttle * Time.deltaTime;
 
-
-                //bow cluster - starboardside thrusters
-                SpawnEngineFumes(new Vector3(2.471f, -1.414f, 1), 0.1f * Throttle, Sides.Starboard);
-                SpawnEngineFumes(new Vector3(2.722f, -1.414f, 1), 0.1f * Throttle, Sides.Starboard);
-
-                //portside strafe thruster
-                SpawnEngineFumes(new Vector3(-0.768f, 2.229f, 1), 0.1f * Throttle, Sides.Port);
-                SpawnEngineFumes(new Vector3(-0.433f, 2.229f, 1), 0.1f * Throttle, Sides.Port);
-
-                //bow cluster - bowside thrusters
-                SpawnEngineFumes(new Vector3(2.965f, 1.172f, 1), 0.1f * Throttle, Sides.Bow);
-                SpawnEngineFumes(new Vector3(2.965f, 0.920f, 1), 0.1f * Throttle, Sides.Bow);
-
-                //rear thrusters
-                SpawnEngineFumes(new Vector3(-2.905f, -1.848f, 1), 0.1f * Throttle, Sides.Stern);
+                FumeTurnCounterClockwise();
 
             }
             if (Input.GetKey(KeyCode.E))
             {
                 rb.angularVelocity -= TurningSpeed * Throttle * Time.deltaTime;
 
+                FumeTurnClockwise();
 
-                //bow cluster - portside thrusters
-                SpawnEngineFumes(new Vector3(2.471f, 1.414f, 1), 0.1f * Throttle, Sides.Port);
-                SpawnEngineFumes(new Vector3(2.722f, 1.414f, 1), 0.1f * Throttle, Sides.Port);
-
-                //starboardside strafe thruster
-                SpawnEngineFumes(new Vector3(-0.768f, -2.229f, 1), 0.1f * Throttle, Sides.Starboard);
-                SpawnEngineFumes(new Vector3(-0.433f, -2.229f, 1), 0.1f * Throttle, Sides.Starboard);
-
-                //bow cluster - bowside thrusters
-                SpawnEngineFumes(new Vector3(2.965f, -1.172f, 1), 0.1f * Throttle, Sides.Bow);
-                SpawnEngineFumes(new Vector3(2.965f, -0.920f, 1), 0.1f * Throttle, Sides.Bow);
-
-                //rear thrusters
-                SpawnEngineFumes(new Vector3(-2.905f, 1.848f, 1), 0.1f * Throttle, Sides.Stern);
             }
             if (Input.GetKey(KeyCode.W))
             {
                 rb.AddForce(RelativeBow * ForwardSpeed * Throttle * Time.deltaTime);
-
-                //rear thrusters
-                SpawnEngineFumes(new Vector3(-2.905f, 1.848f, 1), 0.5f * Throttle, Sides.Stern);
-                SpawnEngineFumes(new Vector3(-2.905f, -1.848f, 1), 0.5f * Throttle, Sides.Stern);
+                FumeFromStern();
 
             }
             if (Input.GetKey(KeyCode.S))
             {
                 rb.AddForce(RelativeStern * ReverseSpeed * Throttle * Time.deltaTime);
-
-                //bow cluster - bowside thrusters
-                SpawnEngineFumes(new Vector3(2.965f, 1.172f, 1), 0.1f * Throttle, Sides.Bow);
-                SpawnEngineFumes(new Vector3(2.965f, 0.920f, 1), 0.1f * Throttle, Sides.Bow);
-
-                //bow cluster - bowside thrusters
-                SpawnEngineFumes(new Vector3(2.965f, -1.172f, 1), 0.1f * Throttle, Sides.Bow);
-                SpawnEngineFumes(new Vector3(2.965f, -0.920f, 1), 0.1f * Throttle, Sides.Bow);
+                FumeFromBow();
             }
             if (Input.GetKey(KeyCode.A))
             {
                 rb.AddForce(RelativePort * StrafingSpeed * Throttle * Time.deltaTime);
 
-                //starboardside strafe thruster
-                SpawnEngineFumes(new Vector3(-0.768f, -2.229f, 1), 0.2f * Throttle, Sides.Starboard);
-                SpawnEngineFumes(new Vector3(-0.433f, -2.229f, 1), 0.2f * Throttle, Sides.Starboard);
-
-                //bow cluster - starboardside thrusters
-                SpawnEngineFumes(new Vector3(2.471f, -1.414f, 1), 0.1f * Throttle, Sides.Starboard);
-                SpawnEngineFumes(new Vector3(2.722f, -1.414f, 1), 0.1f * Throttle, Sides.Starboard);
+                FumeFromStarboard();
             }
             if (Input.GetKey(KeyCode.D))
             {
                 rb.AddForce(RelativeStarboard * StrafingSpeed * Throttle * Time.deltaTime);
 
-                //portside strafe thruster
-                SpawnEngineFumes(new Vector3(-0.768f, 2.229f, 1), 0.2f * Throttle, Sides.Port);
-                SpawnEngineFumes(new Vector3(-0.433f, 2.229f, 1), 0.2f * Throttle, Sides.Port);
-
-                //bow cluster - portside thrusters
-                SpawnEngineFumes(new Vector3(2.471f, 1.414f, 1), 0.1f * Throttle, Sides.Port);
-                SpawnEngineFumes(new Vector3(2.722f, 1.414f, 1), 0.1f * Throttle, Sides.Port);
+                FumeFromPort();
             }
 
             //throttle controls
@@ -266,7 +217,86 @@ public class Shuttle : MonoBehaviour {
 
     }
 
-    public void SpawnEngineFumes(Vector3 Position, float Magnitude, Sides Side)
+
+    public virtual void FumeFromStern()
+    {
+        //rear thrusters
+        SpawnEngineFumes(new Vector3(-2.905f, 1.848f, 1), 0.5f * Throttle, Sides.Stern);
+        SpawnEngineFumes(new Vector3(-2.905f, -1.848f, 1), 0.5f * Throttle, Sides.Stern);
+    }
+
+    public virtual void FumeFromBow()
+    {
+        //bow cluster - bowside thrusters
+        SpawnEngineFumes(new Vector3(2.965f, 1.172f, 1), 0.1f * Throttle, Sides.Bow);
+        SpawnEngineFumes(new Vector3(2.965f, 0.920f, 1), 0.1f * Throttle, Sides.Bow);
+
+        //bow cluster - bowside thrusters
+        SpawnEngineFumes(new Vector3(2.965f, -1.172f, 1), 0.1f * Throttle, Sides.Bow);
+        SpawnEngineFumes(new Vector3(2.965f, -0.920f, 1), 0.1f * Throttle, Sides.Bow);
+    }
+
+    public virtual void FumeFromPort()
+    {
+        //portside strafe thruster
+        SpawnEngineFumes(new Vector3(-0.768f, 2.229f, 1), 0.2f * Throttle, Sides.Port);
+        SpawnEngineFumes(new Vector3(-0.433f, 2.229f, 1), 0.2f * Throttle, Sides.Port);
+
+        //bow cluster - portside thrusters
+        SpawnEngineFumes(new Vector3(2.471f, 1.414f, 1), 0.1f * Throttle, Sides.Port);
+        SpawnEngineFumes(new Vector3(2.722f, 1.414f, 1), 0.1f * Throttle, Sides.Port);
+    }
+
+    public virtual void FumeFromStarboard()
+    {
+        //starboardside strafe thruster
+        SpawnEngineFumes(new Vector3(-0.768f, -2.229f, 1), 0.2f * Throttle, Sides.Starboard);
+        SpawnEngineFumes(new Vector3(-0.433f, -2.229f, 1), 0.2f * Throttle, Sides.Starboard);
+
+        //bow cluster - starboardside thrusters
+        SpawnEngineFumes(new Vector3(2.471f, -1.414f, 1), 0.1f * Throttle, Sides.Starboard);
+        SpawnEngineFumes(new Vector3(2.722f, -1.414f, 1), 0.1f * Throttle, Sides.Starboard);
+    }
+
+    public virtual void FumeTurnClockwise()
+    {
+        //bow cluster - portside thrusters
+        SpawnEngineFumes(new Vector3(2.471f, 1.414f, 1), 0.1f * Throttle, Sides.Port);
+        SpawnEngineFumes(new Vector3(2.722f, 1.414f, 1), 0.1f * Throttle, Sides.Port);
+
+        //starboardside strafe thruster
+        SpawnEngineFumes(new Vector3(-0.768f, -2.229f, 1), 0.1f * Throttle, Sides.Starboard);
+        SpawnEngineFumes(new Vector3(-0.433f, -2.229f, 1), 0.1f * Throttle, Sides.Starboard);
+
+        //bow cluster - bowside thrusters
+        SpawnEngineFumes(new Vector3(2.965f, -1.172f, 1), 0.1f * Throttle, Sides.Bow);
+        SpawnEngineFumes(new Vector3(2.965f, -0.920f, 1), 0.1f * Throttle, Sides.Bow);
+
+        //rear thrusters
+        SpawnEngineFumes(new Vector3(-2.905f, 1.848f, 1), 0.1f * Throttle, Sides.Stern);
+    }
+
+    public virtual void FumeTurnCounterClockwise()
+    {
+        //bow cluster - starboardside thrusters
+        SpawnEngineFumes(new Vector3(2.471f, -1.414f, 1), 0.1f * Throttle, Sides.Starboard);
+        SpawnEngineFumes(new Vector3(2.722f, -1.414f, 1), 0.1f * Throttle, Sides.Starboard);
+
+        //portside strafe thruster
+        SpawnEngineFumes(new Vector3(-0.768f, 2.229f, 1), 0.1f * Throttle, Sides.Port);
+        SpawnEngineFumes(new Vector3(-0.433f, 2.229f, 1), 0.1f * Throttle, Sides.Port);
+
+        //bow cluster - bowside thrusters
+        SpawnEngineFumes(new Vector3(2.965f, 1.172f, 1), 0.1f * Throttle, Sides.Bow);
+        SpawnEngineFumes(new Vector3(2.965f, 0.920f, 1), 0.1f * Throttle, Sides.Bow);
+
+        //rear thrusters
+        SpawnEngineFumes(new Vector3(-2.905f, -1.848f, 1), 0.1f * Throttle, Sides.Stern);
+    }
+
+
+
+    public virtual void SpawnEngineFumes(Vector3 Position, float Magnitude, Sides Side)
     {
         Vector2 MainVector = new Vector2(0, 0);
 
@@ -305,6 +335,7 @@ public class Shuttle : MonoBehaviour {
         p.EndingHorizontalWind = MainVector.x + Random.Range(-0.08f, 0.08f);
         p.EndingVerticalWind = MainVector.y + Random.Range(-0.08f, 0.08f);
     }
+
 
 
 

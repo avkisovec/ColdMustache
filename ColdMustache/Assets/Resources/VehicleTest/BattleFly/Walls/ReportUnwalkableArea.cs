@@ -14,25 +14,40 @@ public class ReportUnwalkableArea : MonoBehaviour {
      * 
      */
 
+    //if true, it will mark the area in update (so as to not interfere with line drawer)
+    public bool OnlyForNPCs = false;
+
     // Use this for initialization
     void Start()
     {
+        if (!OnlyForNPCs)
+        {
+            DoYourThing();
+        }
+    }
 
+    private void Update()
+    {
+        DoYourThing();
+    }
+
+    void DoYourThing()
+    {
         int minX = Mathf.RoundToInt(transform.position.x - transform.lossyScale.x / 2);
         int maxX = Mathf.RoundToInt(transform.position.x + transform.lossyScale.x / 2);
         int minY = Mathf.RoundToInt(transform.position.y - transform.lossyScale.y / 2);
         int maxY = Mathf.RoundToInt(transform.position.y + transform.lossyScale.y / 2);
 
-        for(int x = minX; x < maxX; x++)
+        for (int x = minX; x <= maxX; x++)
         {
-            for(int y = minY; y < maxY; y++)
+            for (int y = minY; y <= maxY; y++)
             {
                 NavTestStatic.NavArray[x, y] = NavTestStatic.ImpassableTileValue;
             }
         }
 
-
-
+        Destroy(GetComponent<ReportUnwalkableArea>());
     }
-       
+
+
 }

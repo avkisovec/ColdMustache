@@ -14,7 +14,8 @@ public class Entity : MonoBehaviour {
     public Vector2 LookingToward = new Vector2(1,0);
 
     Rigidbody2D rb;
-        
+
+    public bool UseSpriteManager = true;
     public SpriteManagerBase AnySprtMng = null;
     
     public bool LookDirectionBasedOnMovement = true;
@@ -22,7 +23,7 @@ public class Entity : MonoBehaviour {
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody2D>();
-        if(AnySprtMng == null)
+        if(AnySprtMng == null && UseSpriteManager)
         {
             AnySprtMng = GetComponent<SpriteManagerBase>();
         }
@@ -71,7 +72,10 @@ public class Entity : MonoBehaviour {
 
             Health -= Damage;
 
-            AnySprtMng.TemporaryColor(new Color(1, 0, 0), 0.5f);
+            if (UseSpriteManager)
+            {
+                AnySprtMng.TemporaryColor(new Color(1, 0, 0), 0.5f);
+            }
 
             if(Health <= 0)
             {
@@ -82,8 +86,8 @@ public class Entity : MonoBehaviour {
 
     public void Die()
     {
-        GetComponent<DeathAnimation>().Spawn(transform.position);
         Destroy(this.gameObject);
+        GetComponent<DeathAnimation>().Spawn(transform.position);
     }
 
     /*

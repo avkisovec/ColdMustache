@@ -2,34 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shuttle_Battlefly : MonoBehaviour {
+public class Shuttle_Battlefly : Shuttle {
 
-    public enum Sides { Bow, Stern, Port, Starboard }
-
-    //between 0 and 1, all speeds get multiplied by this
-    public float Throttle = 1;
-
-    //public Text ThrottleText;
-
-    public float ThrottleIncreaseSpeed = 1;
-
-    float TurningSpeed = 100f;
-    float ForwardSpeed = 3000f;
-    float ReverseSpeed = 60f;
-    float StrafingSpeed = 1500f;
-
-    Rigidbody2D rb;
-
-    //when the ship is facing right of the screen
-    public Vector2 DefaultBow = new Vector2(1, 0);
-    public Vector2 DefaultStern = new Vector2(-1, 0);
-    public Vector2 DefaultPort = new Vector2(0, 1);
-    public Vector2 DefaultStarboard = new Vector2(0, -1);
-
-    public Vector2 RelativeBow = new Vector2(1, 0);
-    public Vector2 RelativeStern = new Vector2(-1, 0);
-    public Vector2 RelativePort = new Vector2(0, 1);
-    public Vector2 RelativeStarboard = new Vector2(0, -1);
+    
 
     Vector3 RearMainThrusterPortSide = new Vector3(-41, 6.85f,0);
     Vector3 RearMainThrusterStarboardSide = new Vector3(-41, -6.85f, 0);
@@ -173,7 +148,7 @@ public class Shuttle_Battlefly : MonoBehaviour {
 
     }
 
-    public void SpawnEngineFumes(Vector3 Position, float Magnitude, Sides Side)
+    public override void SpawnEngineFumes(Vector3 Position, float Magnitude, Sides Side)
     {
         Vector2 MainVector = new Vector2(0, 0);
 
