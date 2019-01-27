@@ -20,25 +20,32 @@ public class WaypointNavigator : MonoBehaviour {
 
         if (FromLastToFirst)
         {
-            if(WayPoints.Count >= 1)
+            try
             {
-                if (((Vector2)transform.position - WayPoints[WayPoints.Count - 1]).magnitude > 0.3f)
+                if (WayPoints.Count >= 1)
                 {
-                    e.MoveInDirection(WayPoints[WayPoints.Count - 1] - (Vector2)transform.position);
-                }
-                else if(WayPoints.Count > 1)
-                {
-                    WayPoints.RemoveAt(WayPoints.Count - 1);
-                    e.MoveInDirection(WayPoints[WayPoints.Count - 1] - (Vector2)transform.position);
+                    if (((Vector2)transform.position - WayPoints[WayPoints.Count - 1]).magnitude > 0.3f)
+                    {
+                        e.MoveInDirection(WayPoints[WayPoints.Count - 1] - (Vector2)transform.position);
+                    }
+                    else if (WayPoints.Count > 1)
+                    {
+                        WayPoints.RemoveAt(WayPoints.Count - 1);
+                        e.MoveInDirection(WayPoints[WayPoints.Count - 1] - (Vector2)transform.position);
+                    }
+                    else
+                    {
+                        e.MoveInDirection(new Vector2(0, 0));
+                    }
                 }
                 else
                 {
                     e.MoveInDirection(new Vector2(0, 0));
                 }
             }
-            else
+            catch
             {
-                e.MoveInDirection(new Vector2(0, 0));
+
             }
         }
 

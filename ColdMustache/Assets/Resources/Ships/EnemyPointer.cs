@@ -18,7 +18,9 @@ public class EnemyPointer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+
+        ListOfEnemyShips.list.Add(Ship);
+
 	}
 	
 	// Update is called once per frame
@@ -26,6 +28,7 @@ public class EnemyPointer : MonoBehaviour {
 
         if(Ship == null)
         {
+            ListOfEnemyShips.list.Remove(Ship);
             Destroy(this.gameObject);
             return;
         }

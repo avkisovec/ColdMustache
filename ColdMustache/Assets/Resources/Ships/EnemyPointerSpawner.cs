@@ -22,6 +22,7 @@ public class EnemyPointerSpawner : MonoBehaviour {
         pointer.AddComponent<EnemyPointer>().Ship = transform;
 
         pointer.AddComponent<StayFixedSizeSpace>().PixelScale = 2;
+        
 
 	}
 	

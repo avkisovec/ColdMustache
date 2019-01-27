@@ -61,6 +61,13 @@ public class Ship : MonoBehaviour {
         CheckThrottleRange();
         UpdateRelativeDirections();
         UpdateVectorIndicator();
+
+
+        if (rb.velocity.magnitude > ForwardSpeed / 10)
+        {
+            rb.velocity = Vector2.ClampMagnitude(rb.velocity, ForwardSpeed / 10);
+        }
+
     }
 
     public void UpdateRelativeDirections()
@@ -95,11 +102,6 @@ public class Ship : MonoBehaviour {
     void Update()
     {
         BaseUpdate();
-
-        if(rb.velocity.magnitude > ForwardSpeed/10)
-        {
-            rb.velocity = Vector2.ClampMagnitude(rb.velocity, ForwardSpeed/10);
-        }
 
     }
 

@@ -147,7 +147,13 @@ public class Player : MonoBehaviour {
             //NavTestStatic.FieldOfView(transform.position);
         }
         
-
+        if(CheatManager.LastCheat == "GODMODE")
+        {
+            entity.MaxHealth = float.MaxValue;
+            entity.Health = float.MaxValue;
+            entity.BaseMoveSpeed = 25;
+        }
+        
         //end of test stuff
 
         

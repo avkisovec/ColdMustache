@@ -33,14 +33,14 @@ public class FxShipRailgunTrail : MonoBehaviour {
             p.StartAt00 = false;
             p.sprite = Resources.Load<Sprite>("pixel");
             p.Lifespan = Random.Range(8, 15);
-            p.StartingScale = 1f;
+            p.StartingScale = 4f;
             p.EndingScale = 0;
             p.StartingColor =  new Color(1, 0.6f, 0, 1);
             p.EndingColor = new Color(0.5f, 0, 0, 1);
             p.StartingHorizontalWind = Random.Range(0, 0);
             p.StartingVerticalWind = Random.Range(0, 0);
-            p.EndingHorizontalWind = Random.Range(-0.2f, 0.2f);
-            p.EndingVerticalWind = Random.Range(-0.2f, 0.2f);
+            p.EndingHorizontalWind = Random.Range(-0.5f, 0.5f);
+            p.EndingVerticalWind = Random.Range(-0.5f, 0.5f);
         }
     }
 }
