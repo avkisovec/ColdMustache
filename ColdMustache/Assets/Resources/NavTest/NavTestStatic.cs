@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 using System.IO;
+using UnityEngine;
 
 public class NavTestStatic : MonoBehaviour {
 
@@ -433,12 +432,208 @@ public class NavTestStatic : MonoBehaviour {
         }
         return true;
     }
-        
+
+
+    static bool IsTileWithinBounds(Vector2Int Tile)
+    {
+        if (Tile.x >= 0 && Tile.y >= 0 && Tile.x < MapWidth && Tile.y < MapHeight)
+        {
+            return true;
+        }
+        return false;
+    }
+
+
+    #region AvkisLight
+
     /*
-     * The following code is adapted version of code from:
+     * HOW AVKISLIGHT WORKS
      * 
+     * instead of calculating light passes at runtime (like bresenham light does),
+     * AvkisLight builds a map of Nodes (the map is built on game load, and cached)
+     * 
+     * the node map starts with root node, which represents the root tile (the tile light is calculated from)
+     * every node has its children - these represents neighboring tiles to which light will spread from current node/tile
+     * every node is accessible in exactly one way, from one parent node (therefore during calculation every node/tile will be calculated only once, and if light cannot reach it, the children won't ever be calculated)
+     * 
+     * the actual light calculation is then very simple - check if light can pass through a node, and then recursively keep checking children
+     * 
+     * AvkisLight has huge advantage over Bresenham light, because it calculates each tile only once - this means way faster calculation at runtime
+     * also if a light cannot pass through a node, it automatically cannot pass through any children - they wont even be calculated unlike in bresenham light
+     * the downside is having to build the map on load, but thats not a problem - its worth spending some miliseconds during loading to save them on every frame after
+     * 
+     * this algorithm is way more efficient if there are many tiles to calculate, as it will always calculate every visible tile only once
+     * 
+     * 
+     * usage:
+     * somewhere on load/start:
+     *      NavTestStatic.AvkisLight_build(MaxRadius);
+     *      
+     * then when you need:
+     *      foreach(Vector2Int VisibleTile in NavTestStatic.AvkisLight_cast(PlayerPosition))
+     *      {
+     *          //do stuff with visible tiles
+     *      }
+     * 
+     * 
+     */
+
+    public static List<AvkisLightNode> AvkisLightNodes;
+
+    public static void AvkisLight_build(int MaxRadius)
+    {
+        List<Vector2Int> Output = new List<Vector2Int>();
+        AvkisLightNodes = new List<AvkisLightNode>();
+
+        //adding root node
+        AvkisLightNodes.Add(new AvkisLightNode(new Vector2Int(0, 0)));
+
+        for(int Radius = 1; Radius < MaxRadius; Radius++)
+        {
+            foreach(Vector2Int CirclePoint in BresenhamCircle_unrestricted(new Vector2Int(0,0), Radius))
+            {                
+                //if node with identical coordinates already exists, skip to next one
+                //i belive its not possible, so you brobably can delete this check
+                //update: bresenham's midpoint circle will never overlap, it rather leaves gaps; but you should keep this check if you use different circle algorithm
+                foreach (AvkisLightNode node in AvkisLightNodes)
+                {
+                    if (node.Coordinates == CirclePoint)
+                    {
+                        //collision found - current circle shares a point with some previous circle
+                        goto NextCirclePoint;
+                    }
+                }
+                
+                //casting a line from circlepoint toward center
+                List<Vector2Int> Line = BresenhamLine(CirclePoint, new Vector2(0, 0));
+                
+                AvkisLightNode found = null;
+                foreach (AvkisLightNode node in AvkisLightNodes)
+                {
+                    if (node.Coordinates == Line[1])
+                    {
+                        found = node;
+                        break;
+                    }
+                }
+
+                //if parent node was found immediatelly, no need to skip a gap
+                if (found != null)
+                {
+                    AvkisLightNode nu = new AvkisLightNode(CirclePoint);
+                    AvkisLightNodes.Add(nu);
+                    found.AddChild(nu);
+                }
+                //skipping a gap (putting a node into the gap)
+                else
+                {
+                    AvkisLightNode nu = new AvkisLightNode(CirclePoint);
+                    AvkisLightNode GapFiller = new AvkisLightNode(Line[1]);
+                    foreach (AvkisLightNode node in AvkisLightNodes)
+                    {
+                        if (node.Coordinates == Line[2])
+                        {
+                            found = node;
+                            break;
+                        }
+                    }
+                    AvkisLightNodes.Add(nu);
+                    AvkisLightNodes.Add(GapFiller);
+                    found.AddChild(GapFiller);
+                    GapFiller.AddChild(nu);
+                }
+
+                NextCirclePoint:;
+            }
+        }
+        
+    }
+
+    public static List<Vector2Int> AvkisLight_cast(Vector2Int Source)
+    {        
+        List<Vector2Int> Output = new List<Vector2Int>();
+
+        AvkisLight_cast_recursion(Source, AvkisLightNodes[0], Output);
+
+        return Output;
+    }
+
+    static void AvkisLight_cast_recursion(Vector2Int Source, AvkisLightNode node, List<Vector2Int> Output)
+    {
+        if(IsTileWithinBounds(Source + node.Coordinates))
+        {
+            if (CanLightPassThroughTile(Source + node.Coordinates))
+            {
+                Output.Add(Source + node.Coordinates);
+                
+                foreach(AvkisLightNode child in node.Children)
+                {
+                    AvkisLight_cast_recursion(Source, child, Output);
+                }
+
+            }
+        }
+    }
+
+    public class AvkisLightNode
+    {
+        public Vector2Int Coordinates;
+        public AvkisLightNode[] Children;
+
+        public AvkisLightNode(Vector2Int Coordinates)
+        {
+            this.Coordinates = Coordinates;
+            Children = new AvkisLightNode[0];
+        }
+
+        public void AddChild(AvkisLightNode Child)
+        {
+            AvkisLightNode[] ChildrenOriginal = (AvkisLightNode[])Children.Clone();
+            Children = new AvkisLightNode[ChildrenOriginal.Length + 1];
+            for (int i = 0; i < ChildrenOriginal.Length; i++)
+            {
+                Children[i] = ChildrenOriginal[i];
+            }
+            Children[Children.Length - 1] = Child;
+        }
+
+    }
+
+    #endregion
+
+    #region Bresenham
+
+    public static List<Vector2Int> BresenhamLight(Vector2Int Source, int radius)
+    {
+        List<Vector2Int> output = new List<Vector2Int>();
+        
+        foreach(Vector2Int CirclePoint in BresenhamCircle_unrestricted(Source, radius))
+        {
+            foreach (Vector2Int v in BresenhamLine(Source, CirclePoint))
+            {
+                if (IsTileWithinBounds(v) && CanLightPassThroughTile(v))
+                {
+                    if (!output.Contains(v))
+                    {
+                        output.Add(v);
+                    }
+                    continue;
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+        return output;
+    }
+
+    /*
+     * The following code (BresenhamLine() and BresenhamCircle()) is adapted version of code from:
      * https://rosettacode.org/wiki/Bitmap/Bresenham%27s_line_algorithm#C.23
-     * 
+     * and
+     * https://rosettacode.org/wiki/Bitmap/Midpoint_circle_algorithm#C.23
+     * respectively.
      * 
      */
     static List<Vector2Int> BresenhamLine(Vector2 Origin, Vector2 Target)
@@ -461,8 +656,79 @@ public class NavTestStatic : MonoBehaviour {
         }
         return output;
     }
-    
+        
+    public static List<Vector2Int> BresenhamCircle(Vector2Int Origin, int radius)
+    {
+        List<Vector2Int> output = new List<Vector2Int>();
+        int centerX = Origin.x;
+        int centerY = Origin.y;
+        int d = (5 - radius * 4) / 4;
+        int x = 0;
+        int y = radius;
 
+        do
+        {
+            // ensure index is in range before setting (depends on your image implementation)
+            // in this case we check if the pixel location is within the bounds of the image before setting the pixel
+            if (centerX + x >= 0 && centerX + x < MapWidth && centerY + y >= 0 && centerY + y < MapHeight) output.Add(new Vector2Int(centerX + x, centerY + y));
+            if (centerX + x >= 0 && centerX + x < MapWidth && centerY - y >= 0 && centerY - y < MapHeight) output.Add(new Vector2Int(centerX + x, centerY - y));
+            if (centerX - x >= 0 && centerX - x < MapWidth && centerY + y >= 0 && centerY + y < MapHeight) output.Add(new Vector2Int(centerX - x, centerY + y));
+            if (centerX - x >= 0 && centerX - x < MapWidth && centerY - y >= 0 && centerY - y < MapHeight) output.Add(new Vector2Int(centerX - x, centerY - y));
+            if (centerX + y >= 0 && centerX + y < MapWidth && centerY + x >= 0 && centerY + x < MapHeight) output.Add(new Vector2Int(centerX + y, centerY + x));
+            if (centerX + y >= 0 && centerX + y < MapWidth && centerY - x >= 0 && centerY - x < MapHeight) output.Add(new Vector2Int(centerX + y, centerY - x));
+            if (centerX - y >= 0 && centerX - y < MapWidth && centerY + x >= 0 && centerY + x < MapHeight) output.Add(new Vector2Int(centerX - y, centerY + x));
+            if (centerX - y >= 0 && centerX - y < MapWidth && centerY - x >= 0 && centerY - x < MapHeight) output.Add(new Vector2Int(centerX - y, centerY - x));
+            if (d < 0)
+            {
+                d += 2 * x + 1;
+            }
+            else
+            {
+                d += 2 * (x - y) + 1;
+                y--;
+            }
+            x++;
+        } while (x <= y);
+        return output;
+    }
+
+    //this version doesnt check if its within bounds
+    public static List<Vector2Int> BresenhamCircle_unrestricted(Vector2Int Origin, int radius)
+    {
+        List<Vector2Int> output = new List<Vector2Int>();
+        int centerX = Origin.x;
+        int centerY = Origin.y;
+        int d = (5 - radius * 4) / 4;
+        int x = 0;
+        int y = radius;
+
+        do
+        {
+            // ensure index is in range before setting (depends on your image implementation)
+            // in this case we check if the pixel location is within the bounds of the image before setting the pixel
+            output.Add(new Vector2Int(centerX + x, centerY + y));
+            output.Add(new Vector2Int(centerX + x, centerY - y));
+            output.Add(new Vector2Int(centerX - x, centerY + y));
+            output.Add(new Vector2Int(centerX - x, centerY - y));
+            output.Add(new Vector2Int(centerX + y, centerY + x));
+            output.Add(new Vector2Int(centerX + y, centerY - x));
+            output.Add(new Vector2Int(centerX - y, centerY + x));
+            output.Add(new Vector2Int(centerX - y, centerY - x));
+            if (d < 0)
+            {
+                d += 2 * x + 1;
+            }
+            else
+            {
+                d += 2 * (x - y) + 1;
+                y--;
+            }
+            x++;
+        } while (x <= y);
+        return output;
+    }
+
+    #endregion
 
 
 }

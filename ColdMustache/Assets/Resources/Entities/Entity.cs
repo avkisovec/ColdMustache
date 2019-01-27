@@ -20,6 +20,8 @@ public class Entity : MonoBehaviour {
     
     public bool LookDirectionBasedOnMovement = true;
 
+    public bool IsPlayer = false;
+
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody2D>();
@@ -75,6 +77,11 @@ public class Entity : MonoBehaviour {
             if (UseSpriteManager)
             {
                 AnySprtMng.TemporaryColor(new Color(1, 0, 0), 0.5f);
+            }
+
+            if (IsPlayer)
+            {
+                ScreenFx.InjuryScreen();
             }
 
             if(Health <= 0)

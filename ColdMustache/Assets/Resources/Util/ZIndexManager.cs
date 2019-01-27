@@ -9,6 +9,7 @@ public class ZIndexManager : MonoBehaviour {
         scenes likely won't be taller than 200 tiles
         they can be as long as they wont, that won't affect the z-index
         
+        z -70           (reserved for camera)
         z -50 ... z -60 (reserved for GUI, menus)
         z -40 ... z -50 (reserved for HUD)
         z -30 ... z -40 (reserved for fx and stuff not affected by darkness, such as sparks)

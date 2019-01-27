@@ -30,14 +30,23 @@ public class Player : MonoBehaviour {
 
     public float InaccuracyInLastFrame = 0;
 
+    public SpriteRenderer LowHealthOverlay;
+
+    public Vector2Int CurrentTile = new Vector2Int(0, 0);
+    public Vector2Int LastTile = new Vector2Int(-1, -1);
+
     // Use this for initialization
     void Start() {
         entity = GetComponent<Entity>();
         smg = GetComponent<SpriteManagerGunner>();
+        NavTestStatic.AvkisLight_build(6);
     }
 
     // Update is called once per frame
     void Update() {
+
+        LastTile = CurrentTile;
+        CurrentTile = Util.Vector3To2Int(transform.position);
 
 
         Vector2 MouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -121,9 +130,18 @@ public class Player : MonoBehaviour {
         }
         entity.MoveInDirection(MovementVector);
 
-
-
-
+        float HealthRatio = entity.Health / entity.MaxHealth;
+        if(HealthRatio < 0.5f)
+        {
+            LowHealthOverlay.color = new Color(LowHealthOverlay.color.r, LowHealthOverlay.color.g, LowHealthOverlay.color.b,
+                (0.5f - HealthRatio)*0.85f
+                );
+        }
+        else
+        {
+            LowHealthOverlay.color = new Color(LowHealthOverlay.color.r, LowHealthOverlay.color.g, LowHealthOverlay.color.b,0);
+        }
+        
         //test purposes - can delete
 
         if (Input.GetKeyDown(KeyCode.F10))
@@ -154,6 +172,37 @@ public class Player : MonoBehaviour {
             entity.BaseMoveSpeed = 25;
         }
         
+        if (true||Input.GetKeyDown(KeyCode.B)){
+            /*
+            for(int i = 0; i < 50; i++)
+            {
+                //List<Vector2Int> v = NavTestStatic.AvkisLight_cast(CurrentTile);
+                //List<Vector2Int> v = NavTestStatic.BresenhamLight(CurrentTile, 5);
+            }*/
+            /*
+            foreach(Vector2Int v in NavTestStatic.AvkisLight_cast(CurrentTile))
+            {
+                GameObject go = new GameObject();
+                go.transform.position = new Vector3(v.x, v.y, -10);
+                go.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("pixel");
+                go.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
+                go.AddComponent<DieIn>().Frames = 1;
+                go.name = v.ToString();
+            }
+            */
+            /*
+            foreach (Vector2Int v in NavTestStatic.BresenhamLight(CurrentTile, 5))
+            {
+                GameObject go = new GameObject();
+                go.transform.position = new Vector3(v.x, v.y, -10);
+                go.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("pixel");
+                go.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
+                go.AddComponent<DieIn>().Frames = 1;
+                go.name = v.ToString();
+            }
+            */
+        }
+
         //end of test stuff
 
         
