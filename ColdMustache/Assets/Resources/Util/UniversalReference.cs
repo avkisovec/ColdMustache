@@ -37,7 +37,7 @@ public class UniversalReference : MonoBehaviour {
 
     //misc
     public static Sprite[] EmptyBodyPart; //the sprite used for missing clothing, has 5 subsprites (up to [4])
-
+    public static Sprite Pixel;
 
 
 
@@ -74,6 +74,7 @@ public class UniversalReference : MonoBehaviour {
 
         //misc
         EmptyBodyPart = Resources.LoadAll<Sprite>("Entities/Human/Parts/EmptyParts");
+        Pixel = Resources.Load<Sprite>("pixel");
 
     }
 	

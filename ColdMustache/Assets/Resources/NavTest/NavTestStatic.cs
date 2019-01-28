@@ -562,10 +562,9 @@ public class NavTestStatic : MonoBehaviour {
     {
         if(IsTileWithinBounds(Source + node.Coordinates))
         {
+            Output.Add(Source + node.Coordinates);
             if (CanLightPassThroughTile(Source + node.Coordinates))
-            {
-                Output.Add(Source + node.Coordinates);
-                
+            {                
                 foreach(AvkisLightNode child in node.Children)
                 {
                     AvkisLight_cast_recursion(Source, child, Output);

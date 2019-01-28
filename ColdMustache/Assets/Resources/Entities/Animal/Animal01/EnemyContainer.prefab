@@ -89,9 +89,9 @@ GameObject:
   - component: {fileID: 114402923968201286}
   - component: {fileID: 114614383394212104}
   - component: {fileID: 114517333047585332}
-  - component: {fileID: 114969788448215706}
   - component: {fileID: 114378279305195688}
   - component: {fileID: 114105562664957852}
+  - component: {fileID: 114919614812433002}
   m_Layer: 0
   m_Name: EnemyContainer
   m_TagString: Enemy
@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 58860593697810106}
   - component: {fileID: 114335723305225960}
   - component: {fileID: 114671609434938800}
-  - component: {fileID: 114433576695536584}
+  - component: {fileID: 114105216922742146}
   m_Layer: 0
   m_Name: DamageContainer
   m_TagString: Untagged
@@ -170,7 +170,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1758198452841016}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11, y: 3, z: -0.021484375}
+  m_LocalPosition: {x: 12, y: 4, z: -0.021484375}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4670171129767648}
@@ -342,6 +342,21 @@ MonoBehaviour:
   HealthOverlayPath: Gui/HealthOverlay
   HealthSR: {fileID: 212822087569250384}
   HealthOverlaySr: {fileID: 212559111530227304}
+--- !u!114 &114105216922742146
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1895638892517340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 135a0abb50e81e2489300dc8912a93d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityObject: {fileID: 1758198452841016}
+  DurationSeconds: 0.5
+  Coefficient: 0
+  SpawnParticles: 0
 --- !u!114 &114105562664957852
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -355,7 +370,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LoadOnStart: 1
   LoadOnStart_sm: {fileID: 114378279305195688}
-  LoadOnStart_path: Assets/Resources/Entities/Animal/Animal01/default.preset
+  LoadOnStart_path: /Generated/Preset/Animal01_Default.preset
 --- !u!114 &114335723305225960
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -371,9 +386,9 @@ MonoBehaviour:
   Damage: 1
   SingleUse: 0
   CoolDownBetweenHits: 1
+  BecomeActiveAfterSeconds: 0
   AttackWalls: 0
   SpawnFxOnTargetInsteadOfSource: 1
-  BecomeActiveAfterSeconds: 0
   IsProjectile: 0
 --- !u!114 &114378279305195688
 MonoBehaviour:
@@ -419,22 +434,10 @@ MonoBehaviour:
   BaseMoveSpeed: 5
   MoveSpeedSlowModifier: 1
   LookingToward: {x: 1, y: 0}
+  UseSpriteManager: 1
   AnySprtMng: {fileID: 0}
   LookDirectionBasedOnMovement: 1
---- !u!114 &114433576695536584
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1895638892517340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13a2fe70eb10eff43af0f0bae46be7ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DurationSeconds: 2
-  Coefficient: 0.5
-  SpawnParticles: 1
+  IsPlayer: 0
 --- !u!114 &114517333047585332
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -470,7 +473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3264b34d0c5c4a4cb33532ae64cb54e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114969788448215706
+--- !u!114 &114919614812433002
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -478,9 +481,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1758198452841016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eec6d3c0b6511ac41ae0d2a013b44706, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ee1ecd9be1e2974d895ccb228d98ad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FramesSincePlayerWasObserved: 999999
 --- !u!212 &212074775365452952
 SpriteRenderer:
   m_ObjectHideFlags: 1

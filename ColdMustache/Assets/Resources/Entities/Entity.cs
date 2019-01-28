@@ -31,11 +31,6 @@ public class Entity : MonoBehaviour {
         }
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     public void MoveInDirection(Vector2 MovementVector)
     {
         //fixing some bug when computing/assigning vector 0,0

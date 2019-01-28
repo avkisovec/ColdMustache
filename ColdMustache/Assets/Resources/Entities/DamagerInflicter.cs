@@ -8,31 +8,28 @@ public class DamagerInflicter : MonoBehaviour {
     public float Damage = 1;
 
     public bool SingleUse = true;
+
     public float CoolDownBetweenHits = 1;
-    float CurrCooldown = 0;
+    public float BecomeActiveAfterSeconds = 0;
+    float PossibleActivation;
 
     public bool AttackWalls = true;
 
     public bool SpawnFxOnTargetInsteadOfSource = false;
 
-    public float BecomeActiveAfterSeconds = 0;
 
     public bool IsProjectile = false;
 
+
+
     //public bool InflictEffects
 
-    private void Update()
+    private void Start()
     {
-        if (CurrCooldown > 0)
-        {
-            CurrCooldown -= Time.deltaTime;
-        }
-        if(BecomeActiveAfterSeconds > 0)
-        {
-            BecomeActiveAfterSeconds -= Time.deltaTime;
-        }
+        PossibleActivation = Time.time + BecomeActiveAfterSeconds;
+        float f = Time.time + 0.5f + BecomeActiveAfterSeconds;
     }
-
+    
     private void OnTriggerEnter2D(Collider2D coll)
     {
         Collision(coll);
@@ -45,8 +42,7 @@ public class DamagerInflicter : MonoBehaviour {
 
     private void Collision(Collider2D coll)
     {
-
-        if (CurrCooldown <= 0 && BecomeActiveAfterSeconds <= 0)
+        if (Time.time >= PossibleActivation)
         {
             /*
             if (coll.CompareTag("Wall") || coll.CompareTag("PseudoWall"))
@@ -61,7 +57,7 @@ public class DamagerInflicter : MonoBehaviour {
             {
                 if (Team != hit.Team)
                 {
-                    CurrCooldown = CoolDownBetweenHits;
+                    PossibleActivation = Time.time + CoolDownBetweenHits;
                     if (Damage != 0)
                     {
                         hit.TakeDamage(Damage);
@@ -97,7 +93,7 @@ public class DamagerInflicter : MonoBehaviour {
             {
                 if (!IsProjectile || hit2.InterceptProjectiles)
                 {
-                    CurrCooldown = CoolDownBetweenHits;
+                    PossibleActivation = Time.time + CoolDownBetweenHits;
                     if (Damage != 0)
                     {
                         hit2.TakeDamage(Damage);

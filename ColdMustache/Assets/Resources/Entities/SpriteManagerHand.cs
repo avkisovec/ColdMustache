@@ -40,6 +40,7 @@ public class SpriteManagerHand : SpriteManagerGeneric {
     * 
     * 
     */
+    
 
     public override void UpdateEverything(int Direction)
     {

@@ -4,6 +4,38 @@ using UnityEngine;
 
 public class CheatManager : MonoBehaviour {
 
+    /*
+     *          THE CONCEPT
+     * 
+     * this registers key strokes and recordes them in "currentString"
+     * for example pressing [T] [E] [S] and [T] would result in "TEST" being stored in currentString
+     * 
+     * THIS SUPPORTS ONLY LETTERS A-Z AND [SPACE]. other characters will not be registered (and won't interrupt the sequence)
+     * 
+     * after pressing [ENTER], the sequence is verified
+     * if the sequence starts with "IMADEV " (note the space at the end), the following text will be considered a cheat code
+     * the cheat code (everything after the opening sequence IMADEV[space]) will be stored for one frame in LastCheat
+     * 
+     * it is recommended to press [ENTER] before inputting a code, otherwise your input string will be full of "WASDWASDWASDWASDWASD"
+     * 
+     * 
+     *          USAGE
+     * 
+     *  if(CheatManager.LastCheat == "GODMODE") //you can write any custom made up phrase here - cheat manager doesnt verify if such a cheat exists, it just tells other classes what was typed
+     *  {
+     *      //stuff
+     *  }
+     *  
+     * in game, then press [enter] I M A D E V [space] G O D M O D E [enter]
+     * 
+     * 
+     * there is no visual feedback, you dont see typing or anything
+     * 
+     * THE CHEAT CODES HAVE TO BE IN FULL CAPS AND CAN ONLY CONTAIN A-Z AND [SPACE]
+     * 
+     * 
+     */
+
     //visible for a single frame, then deletes self
     public static string LastCheat = "";
 
@@ -24,7 +56,7 @@ public class CheatManager : MonoBehaviour {
 
         CheckInput();
 
-        if(CurrentString.Length > 1000)
+        if(CurrentString.Length > 100)
         {
             StringReset();
         }
@@ -39,11 +71,9 @@ public class CheatManager : MonoBehaviour {
 
                     LastCheat = CurrentString;
 
-                    StringReset();
                 }
-
-                
             }
+            StringReset();
         }
 
     }

@@ -29,8 +29,7 @@ public class HealthBar : MonoBehaviour {
         {
             Destroy(this);
         }
-
-        HealthSR.sprite = Health[Mathf.RoundToInt(Health.Length- 1 - (entity.Health / entity.MaxHealth * Health.Length-1))];
+        HealthSR.sprite = Health[Mathf.RoundToInt(Health.Length- 1 - (entity.Health / entity.MaxHealth * (Health.Length-1)))];
 
         if(entity.MaxHealth < 11)
         {

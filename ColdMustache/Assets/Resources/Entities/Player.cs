@@ -32,21 +32,17 @@ public class Player : MonoBehaviour {
 
     public SpriteRenderer LowHealthOverlay;
 
-    public Vector2Int CurrentTile = new Vector2Int(0, 0);
-    public Vector2Int LastTile = new Vector2Int(-1, -1);
 
     // Use this for initialization
     void Start() {
         entity = GetComponent<Entity>();
         smg = GetComponent<SpriteManagerGunner>();
-        NavTestStatic.AvkisLight_build(6);
+        NavTestStatic.AvkisLight_build(10);
     }
 
     // Update is called once per frame
     void Update() {
 
-        LastTile = CurrentTile;
-        CurrentTile = Util.Vector3To2Int(transform.position);
 
 
         Vector2 MouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -172,6 +168,7 @@ public class Player : MonoBehaviour {
             entity.BaseMoveSpeed = 25;
         }
         
+
         if (true||Input.GetKeyDown(KeyCode.B)){
             /*
             for(int i = 0; i < 50; i++)
