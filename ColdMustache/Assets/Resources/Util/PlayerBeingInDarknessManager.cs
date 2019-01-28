@@ -7,12 +7,7 @@ public class PlayerBeingInDarknessManager : MonoBehaviour {
     public static int FramesSincePlayerWasInDarkness = 0;
 
     public static bool IsPlayerInDarkness = false;
-
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
+    	
 	// Update is called once per frame
 	void Update () {
 		

@@ -10,13 +10,8 @@ public class ShipThrusterless : Ship {
      * they behave like ships and have similar movement, but without things like thruster fumes
      * 
      * 
-     * 
      */
-
-	// Use this for initialization
-	void Start () {
-	}
-	
+     	
 	// Update is called once per frame
 	void Update () {
         BaseUpdate();

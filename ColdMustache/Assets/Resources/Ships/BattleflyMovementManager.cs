@@ -15,11 +15,6 @@ public class BattleflyMovementManager : MonoBehaviour {
         tr = GetComponent<Transform>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     public static Vector2 GetPositionInSeconds(float Seconds)
     {
         return (Vector2)tr.position + (rb.velocity * Seconds);

@@ -13,7 +13,6 @@ public class Inventory : InventoryBase {
     // Use this for initialization
     void Start () {
         SlotsScripts = SlotsScripts.OrderBy(o => o.SlotId).ToList();
-
 	}
 	
 	// Update is called once per frame

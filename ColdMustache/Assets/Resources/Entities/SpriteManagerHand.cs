@@ -41,7 +41,6 @@ public class SpriteManagerHand : SpriteManagerGeneric {
     * 
     */
     
-
     public override void UpdateEverything(int Direction)
     {
         int Length = spriteRenderers.Length;
@@ -247,5 +246,5 @@ public class SpriteManagerHand : SpriteManagerGeneric {
 
         }
     }
-
+    
 }

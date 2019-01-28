@@ -13,11 +13,7 @@ public class CamControl : MonoBehaviour {
     public float ActualTileScale = 1;
 
     public float PixelResolution = 32;
-
-	// Use this for initialization
-	void Start () {
-	}
-	
+    	
 	// Update is called once per frame
 	void Update () {
         if (Input.GetKeyDown(KeyCode.F1))

@@ -66,4 +66,15 @@ public class MouseInterceptor : MonoBehaviour {
         return false;
     }
 
+    void Update()
+    {
+
+        FramesSinceMouseHoveredOverAMenu++;
+
+        if (Input.GetKeyUp(KeyCode.Mouse0))
+        {
+            MouseBeingIntercepted = false;
+        }
+    }
+
 }

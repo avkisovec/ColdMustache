@@ -10,13 +10,7 @@ public class ShipTurret_railgun : ShipTurret {
 
     public bool RelativeVelocity = false;
     public Rigidbody2D rb;
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
+    
     // Update is called once per frame
     void Update()
     {

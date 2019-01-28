@@ -51,22 +51,7 @@ public class GunRotatorHand : MonoBehaviour {
             HoldGun(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-        if (ActivelyAiming)
-        {
-            AimGun(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        }
-        else
-        {
-            HoldGun(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        }
-
-    }
-
+       
     public void AimGun(Vector3 Target)
     {
 

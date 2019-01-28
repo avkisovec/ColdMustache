@@ -27,10 +27,13 @@ public class UniversalReference : MonoBehaviour {
     public static Image AmmoStatus;
     public static Image WeaponStatus;
 
-    //camera cursor, crosshair
+    //camera, cursor, crosshair
     public static Camera MainCamera;
     public static CamControlPixelPerfect camControlPixelPerfect;
 
+
+    public static Vector2 MouseScreenPosDelta;
+    public static Vector2 MouseScreenPos;
     public static Vector2 MouseWorldPos;
 
     public static Crosshair crosshair;
@@ -64,11 +67,13 @@ public class UniversalReference : MonoBehaviour {
         AmmoStatus = GameObject.Find("Canvas/AmmoStatus").GetComponent<Image>();
         WeaponStatus = GameObject.Find("Canvas/WeaponStatus").GetComponent<Image>();
 
-        //camera cursor, crosshair
+        //camera, cursor, crosshair
         MainCamera = Camera.main;
         camControlPixelPerfect = MainCamera.GetComponent<CamControlPixelPerfect>();
 
-        MouseWorldPos = MainCamera.ScreenToWorldPoint(Input.mousePosition);
+        MouseScreenPosDelta = new Vector2(0,0);
+        MouseScreenPos = Input.mousePosition;
+        MouseWorldPos = MainCamera.ScreenToWorldPoint(MouseScreenPos);
 
         crosshair = GameObject.Find("Crosshair").GetComponent<Crosshair>();
 
@@ -80,6 +85,10 @@ public class UniversalReference : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+
+        MouseScreenPosDelta = MouseScreenPos - (Vector2)Input.mousePosition;
+        MouseScreenPos = Input.mousePosition;
+        MouseWorldPos = MainCamera.ScreenToWorldPoint(MouseScreenPos);
+
 	}
 }

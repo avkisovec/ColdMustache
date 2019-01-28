@@ -5,13 +5,7 @@ using UnityEngine;
 public class DieInSeconds : MonoBehaviour {
 
     public float Seconds = 0;
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
+    
     // Update is called once per frame
     void Update()
     {

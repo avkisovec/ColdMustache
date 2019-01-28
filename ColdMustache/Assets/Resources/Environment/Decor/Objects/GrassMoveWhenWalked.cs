@@ -10,11 +10,7 @@ public class GrassMoveWhenWalked : MonoBehaviour {
     float AngularMovementRemaining = 0;
     bool IsMovementNegative = false;
     float TargetAngle = 0; //this is to avoid modulo problems with transform's rotation
-
-	// Use this for initialization
-	void Start () {
-	}
-	
+    
 	// Update is called once per frame
 	void Update () {
         //Debug.Log(1 * Time.deltaTime*60);
@@ -47,9 +43,6 @@ public class GrassMoveWhenWalked : MonoBehaviour {
                     IsMovementNegative = false;
                 }
             }
-
-
-
             transform.rotation = Quaternion.Euler(0, 0, TargetAngle);
         }
 	}

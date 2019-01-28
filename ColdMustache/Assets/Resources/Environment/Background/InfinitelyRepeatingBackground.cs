@@ -29,12 +29,7 @@ public class InfinitelyRepeatingBackground : MonoBehaviour {
     public int Height = 3375;
 
     public bool HasAlreadySpawnedClones = false;
-
-	// Use this for initialization
-	void Start () {
-        
-	}
-
+    
     // Update is called once per frame
     void Update()
     {

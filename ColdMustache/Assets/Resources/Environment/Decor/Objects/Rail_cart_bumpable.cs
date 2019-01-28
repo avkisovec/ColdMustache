@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rail_cart_bumpable : MonoBehaviour {
+public class Rail_cart_bumpable : CentrallyUpdatable {
 
     public bool Horizontal;
     public float HorMinX;
@@ -17,15 +17,15 @@ public class Rail_cart_bumpable : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
+        CentralUpdater.Scripts.Add(this);
 	}
-	
-	// Update is called once per frame
-	void Update () {
 
+    public override void CentralUpdate()
+    {
         if (UniversalReference.PlayerObject.transform.position.x > transform.position.x - transform.lossyScale.x &&
-               UniversalReference.PlayerObject.transform.position.x < transform.position.x + transform.lossyScale.x &&
-               UniversalReference.PlayerObject.transform.position.y > transform.position.y - transform.lossyScale.y &&
-               UniversalReference.PlayerObject.transform.position.y < transform.position.y + transform.lossyScale.y)
+                  UniversalReference.PlayerObject.transform.position.x < transform.position.x + transform.lossyScale.x &&
+                  UniversalReference.PlayerObject.transform.position.y > transform.position.y - transform.lossyScale.y &&
+                  UniversalReference.PlayerObject.transform.position.y < transform.position.y + transform.lossyScale.y)
         {
             if (Horizontal)
             {
@@ -78,10 +78,6 @@ public class Rail_cart_bumpable : MonoBehaviour {
                 rb.velocity = -0.4f * rb.velocity;
             }
         }
-
-        
-
-
-
     }
+    
 }

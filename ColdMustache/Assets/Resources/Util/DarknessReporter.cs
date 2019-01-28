@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DarknessReporter : MonoBehaviour {
+public class DarknessReporter : CentrallyUpdatable {
 
 	// Use this for initialization
 	void Start () {
-		
+        CentralUpdater.Scripts.Add(this);
 	}
 	
-	// Update is called once per frame
-	void Update () {
+    public override void CentralUpdate()
+    {
         if (
             UniversalReference.PlayerObject.transform.position.x > transform.position.x - (transform.lossyScale.x / 2) &&
             UniversalReference.PlayerObject.transform.position.x < transform.position.x + (transform.lossyScale.x / 2) &&

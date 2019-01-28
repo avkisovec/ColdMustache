@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Elevator : MonoBehaviour {
+public class Elevator : CentrallyUpdatable {
 
     public bool AllowGoingUp;
     public Vector3 TargetPositionGoingUp;
@@ -18,11 +18,10 @@ public class Elevator : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         sr = GetComponent<SpriteRenderer>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
+        CentralUpdater.Scripts.Add(this);
+    }
+    public override void CentralUpdate()
+    {
         if ((UniversalReference.PlayerObject.transform.position - transform.position).magnitude < 2)
         {
             sr.sprite = SpriteActivatable;

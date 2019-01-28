@@ -16,14 +16,11 @@ public class RandomLoaderGeneric : MonoBehaviour {
             Load(LoadOnStart_sm, Application.dataPath + LoadOnStart_path);
         }
     }
-
-    // Update is called once per frame
-    void Update () {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            Load(LoadOnStart_sm, Application.dataPath + LoadOnStart_path);
-        }
-	}
+    
+    public void RerollRandomly()
+    {
+        Load(LoadOnStart_sm, Application.dataPath + LoadOnStart_path);
+    }
 
     public static void Load(SpriteManagerGeneric spriteManager, string PresetPath)
     {

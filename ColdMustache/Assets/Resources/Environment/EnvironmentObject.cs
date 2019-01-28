@@ -59,11 +59,6 @@ public class EnvironmentObject : MonoBehaviour {
 
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     public void TakeDamage(float Damage)
     {
         if (!Indestructible)

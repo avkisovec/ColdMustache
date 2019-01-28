@@ -13,7 +13,7 @@ public class Player : MonoBehaviour {
 
     Entity entity;
 
-    SpriteManagerGunner smg;
+    public SpriteManagerHand spriteManagerHand;
 
     public Weapon CurrentlyEquippedWeapon;
 
@@ -33,17 +33,30 @@ public class Player : MonoBehaviour {
     public SpriteRenderer LowHealthOverlay;
 
 
+    public GunRotatorHand gunRotatorHand;
+    public bool ActivelyAiming = true;
+
+
     // Use this for initialization
     void Start() {
         entity = GetComponent<Entity>();
-        smg = GetComponent<SpriteManagerGunner>();
         NavTestStatic.AvkisLight_build(10);
     }
 
     // Update is called once per frame
     void Update() {
 
-
+        if(UniversalReference.MouseScreenPosDelta != new Vector2(0, 0))
+        {
+            if (ActivelyAiming)
+            {
+                gunRotatorHand.AimGun(UniversalReference.MouseWorldPos);
+            }
+            else
+            {
+                gunRotatorHand.HoldGun(UniversalReference.MouseWorldPos);
+            }
+        }
 
         Vector2 MouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -201,8 +214,20 @@ public class Player : MonoBehaviour {
         }
 
         //end of test stuff
-
         
+        if (Input.GetKeyUp(KeyCode.F5))
+        {
+            SaverLoader.QuickSave(spriteManagerHand);
+        }
+
+        //quickload
+        if (Input.GetKeyUp(KeyCode.F6))
+        {
+            SaverLoader.QuickLoad(spriteManagerHand);
+
+            //Debug.Log("Quickload Complete.");
+        }
+
         if (Input.GetKey(KeybindManager.MousePrimary) && MouseInterceptor.IsMouseAvailable())
         {
            CurrentlyEquippedWeapon.TryShooting(MouseWorldPos);

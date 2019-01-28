@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WallSpriteFinder : MonoBehaviour {
-
-
+public class WallSpriteFinder {
+    
     public static Sprite Find(Sprite[] sprites, bool ConnectedRight, bool ConnectedUp, bool ConnectedLeft, bool ConnectedDown)
     {
         int Connections = 0;
@@ -98,15 +97,5 @@ public class WallSpriteFinder : MonoBehaviour {
 
         return null;
     }
-
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    
 }

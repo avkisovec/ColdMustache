@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Storage : MonoBehaviour {
+public class Storage : CentrallyUpdatable {
 
     public string[] ItemPaths;
 
@@ -19,11 +19,11 @@ public class Storage : MonoBehaviour {
 	void Start () {
         sr = GetComponent<SpriteRenderer>();
         DefaultSprite = sr.sprite;
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        CentralUpdater.Scripts.Add(this);
+    }
 
+    public override void CentralUpdate()
+    {
         Vector2 MouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         if (MouseWorldPos.x > transform.position.x - (transform.lossyScale.x / 2) &&
@@ -33,7 +33,7 @@ public class Storage : MonoBehaviour {
             !IsCurrentlyOpened
             )
         {
-            UniversalReference.crosshair.SetTemporaryColor(new Color(1,1,0,1), 0.1f);
+            UniversalReference.crosshair.SetTemporaryColor(new Color(1, 1, 0, 1), 0.1f);
             sr.sprite = HoverSprite;
 
             if (Input.GetKeyDown(KeybindManager.Interaction))
@@ -47,7 +47,7 @@ public class Storage : MonoBehaviour {
                 IsCurrentlyOpened = true;
 
                 //if another one is currently opened, close that one
-                if(UniversalReference.PlayerInventory.OpenStorage != null)
+                if (UniversalReference.PlayerInventory.OpenStorage != null)
                 {
                     UniversalReference.PlayerInventory.OpenStorage.transform.parent.GetComponent<InventoryStorageCloser>().Close();
                 }
@@ -71,6 +71,5 @@ public class Storage : MonoBehaviour {
         {
             sr.sprite = DefaultSprite;
         }
-
     }
 }

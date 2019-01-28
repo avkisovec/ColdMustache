@@ -1,2 +1,0 @@
-You have succesfully loaded a piece of text from a file.
-dsflooimidsfdf.
