@@ -9,8 +9,8 @@ public class NavTestStatic : MonoBehaviour {
     public static int ImpassableTileValue = 999999;
     public static int EmptyTileValue = 888888;
 
-    public static int MapWidth = 130;
-    public static int MapHeight = 130;
+    public static int MapWidth = 200;
+    public static int MapHeight = 200;
 
     public static int[,] NavArray;
     public static int[,] ExplosionNavArray;
@@ -117,19 +117,8 @@ public class NavTestStatic : MonoBehaviour {
         }
     }
 
-    public static bool IsTileEmpty(int X, int Y)
-    {
-        if (NavArray[X, Y] == EmptyTileValue)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 
-    public static List<Vector2> FindAPath(int SourceX, int SourceY, int TargetX, int TargetY)
+    public static List<Vector2> FindAPath(int SourceX, int SourceY, int TargetX, int TargetY, int MaxDistance = 20)
     {
         //Debug.Log(SourceX + ", " + TargetY);
 
@@ -151,17 +140,18 @@ public class NavTestStatic : MonoBehaviour {
         {
             CurrDistance++;
 
+            if(CurrDistance > MaxDistance)
+            {
+                return null;
+            }
+
             TilesCurrentlyBeingExamined.Clear();
             foreach (Vector2 v in TilesToExamineNext)
             {
                 TilesCurrentlyBeingExamined.Add(v);
             }
             TilesToExamineNext.Clear();
-
-            if (CurrDistance > 100)
-            {
-                return null;
-            }
+            
 
             foreach (Vector2 v in TilesCurrentlyBeingExamined)
             {
@@ -171,7 +161,6 @@ public class NavTestStatic : MonoBehaviour {
                     Found = true;
                     break;
                 }
-
                 if (CurrNavArr[(int)v.x, (int)v.y] == ImpassableTileValue)
                 {
                     // impassable tile - ignore
@@ -450,7 +439,46 @@ public class NavTestStatic : MonoBehaviour {
         }
 
     }
-    
+
+    public static bool IsTileWalkable(int X, int Y)
+    {
+        if (NavArray[X, Y] == EmptyTileValue)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public static bool IsTileWalkable(Vector2Int tile)
+    {
+        if (NavArray[tile.x, tile.y] == EmptyTileValue)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public static bool IsPathWalkable(List<Vector2Int> Path)
+    {
+        foreach(Vector2Int tile in Path)
+        {
+            if (!IsTileWalkable(tile))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static bool CanLightPassThroughTile(int x, int y)
+    {
+        if (LightNavArray[x, y] == EmptyTileValue)
+        {
+            return true;
+        }
+        return false;
+    }
+
     public static bool CanLightPassThroughTile(Vector2Int tile)
     {
         if (LightNavArray[tile.x, tile.y] == EmptyTileValue)
@@ -460,6 +488,18 @@ public class NavTestStatic : MonoBehaviour {
         return false;
     }
 
+    public static bool CanLightPassThroughPath(List<Vector2Int> Path)
+    {
+        foreach (Vector2Int tile in Path)
+        {
+            if (!CanLightPassThroughTile(tile))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    
     public static bool CheckLineOfSight(Vector2Int Origin, Vector2 Target)
     {
         foreach(Vector2Int v in BresenhamLine(Origin, Target)){
@@ -469,9 +509,38 @@ public class NavTestStatic : MonoBehaviour {
             }
         }
         return true;
+        
     }
 
-
+    //returns null if the line is obstructed, returns the path is the line of sight is clear
+    public static List<Vector2Int> GetLineOfSightOptimised(Vector2 Origin, Vector2 Target)
+    {
+        int x0 = Mathf.RoundToInt(Origin.x);
+        int y0 = Mathf.RoundToInt(Origin.y);
+        int x1 = Mathf.RoundToInt(Target.x);
+        int y1 = Mathf.RoundToInt(Target.y);
+        List<Vector2Int> output = new List<Vector2Int>();
+        int dx = Mathf.Abs(x1 - x0), sx = x0 < x1 ? 1 : -1;
+        int dy = Mathf.Abs(y1 - y0), sy = y0 < y1 ? 1 : -1;
+        int err = (dx > dy ? dx : -dy) / 2, e2;
+        for (;;)
+        {
+            if (CanLightPassThroughTile(x0, y0))
+            {
+                output.Add(new Vector2Int(x0, y0));
+            }
+            else
+            {
+                return null;
+            }
+            if (x0 == x1 && y0 == y1) break;
+            e2 = err;
+            if (e2 > -dx) { err -= dy; x0 += sx; }
+            if (e2 < dy) { err += dx; y0 += sy; }
+        }
+        return output;
+    }
+    
     static bool IsTileWithinBounds(Vector2Int Tile)
     {
         if (Tile.x >= 0 && Tile.y >= 0 && Tile.x < MapWidth && Tile.y < MapHeight)
@@ -693,7 +762,7 @@ public class NavTestStatic : MonoBehaviour {
         }
         return output;
     }
-        
+            
     public static List<Vector2Int> BresenhamCircle(Vector2Int Origin, int radius)
     {
         List<Vector2Int> output = new List<Vector2Int>();

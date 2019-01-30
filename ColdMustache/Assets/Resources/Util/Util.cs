@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Util : MonoBehaviour {
 
+    //the following is useful for variables that dont support actual null, such as vectors
+    public const int NullValue = -999999;
+    public static Vector3 NullVector3 = new Vector3(NullValue, NullValue, NullValue);
+    public static Vector2 NullVector2 = new Vector2(NullValue, NullValue);
+    public static Vector2Int NullVector2Int = new Vector2Int(NullValue, NullValue);
+
+
     public const float DegToRadRatio = 57.2957795131f;
 
     public static float GetAngleBetweenVectors(Vector2 From, Vector2 To)

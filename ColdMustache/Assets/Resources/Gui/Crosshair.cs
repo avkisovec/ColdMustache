@@ -34,7 +34,7 @@ public class Crosshair : MonoBehaviour {
     public Sprite Dot;
     public Sprite PointerEmpty;
     public Sprite PointerFull;
-    
+        
     // Use this for initialization
     void Start () {
         Cursor.visible = false;
@@ -42,6 +42,7 @@ public class Crosshair : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
 
         //if mouse is outside the window (on the vertical axis, such as being on the top bar hovering close btn)
         if((Screen.height - Input.mousePosition.y) < 0 || Input.mousePosition.y < 0)
@@ -57,8 +58,9 @@ public class Crosshair : MonoBehaviour {
         {
             TemporaryColorRemaining -= Time.deltaTime;
         }
-
-        transform.position = new Vector3(UniversalReference.MouseWorldPos.x, UniversalReference.MouseWorldPos.y, transform.position.z);
+        
+        Vector3 something = UniversalReference.MainCamera.ScreenToWorldPoint(Input.mousePosition);
+        transform.position = new Vector3(something.x, something.y, transform.position.z);
 
         float Distance = ((Vector2)UniversalReference.PlayerObject.transform.position - UniversalReference.MouseWorldPos).magnitude;
         if (MouseInterceptor.IsMouseHoveringMenu())

@@ -41,6 +41,7 @@ public class Player : MonoBehaviour {
     void Start() {
         entity = GetComponent<Entity>();
         NavTestStatic.AvkisLight_build(10);
+        NavTestStatic.ExportNavMap();
     }
 
     // Update is called once per frame
