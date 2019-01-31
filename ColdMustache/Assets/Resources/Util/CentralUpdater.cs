@@ -18,10 +18,14 @@ public class CentralUpdater : MonoBehaviour {
     public static List<CentrallyUpdatable> Scripts = new List<CentrallyUpdatable>();
     
 	void Update () {
+        Debug.Log(Scripts.Count);
         int count = Scripts.Count;
 		for(int i = 0; i < count; i++)
         {
-            Scripts[i].CentralUpdate();
+            if (Scripts[i] != null)
+            {
+                Scripts[i].CentralUpdate();
+            }
         }
 	}
 }

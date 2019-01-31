@@ -181,8 +181,12 @@ public class Player : MonoBehaviour {
             entity.Health = float.MaxValue;
             entity.BaseMoveSpeed = 25;
         }
-        
 
+        if (Input.GetKeyUp(KeyCode.T))
+        {
+            AlphabetManager.SpawnFloatingText("Hi!", new Vector3(transform.position.x, transform.position.y, -35));
+        }
+        
         if (true||Input.GetKeyDown(KeyCode.B)){
             /*
             for(int i = 0; i < 50; i++)

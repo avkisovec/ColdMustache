@@ -13,8 +13,8 @@ public class NPCWeapon_01 : Weapon {
     public float BaseCooldownBetweenShots = 0.1f;
     public float CurrCooldownBetweenShots = 0;
 
-    public float BaseReloadTime = 1f;
-    public float ReloadTimeRemaining = 0;
+    float BaseReloadTime = 4f;
+    float ReloadTimeRemaining = 0;
 
     public float EffectiveRange = 10;
 
@@ -102,9 +102,9 @@ public class NPCWeapon_01 : Weapon {
             Ammo = 0;
 
             ReloadTimeRemaining = BaseReloadTime;
+                        
+            AlphabetManager.SpawnFloatingText("Reloading", new Vector3(transform.position.x, transform.position.y, -35));
 
-            gameObject.AddComponent<StatusSlow>().ini(BaseReloadTime, 0.25f, true);
-            
         }
     }    
 }

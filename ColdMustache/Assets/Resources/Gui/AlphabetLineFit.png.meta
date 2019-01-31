@@ -1,0 +1,1522 @@
+fileFormatVersion: 2
+guid: f46c6b1ee415c384eb7c53b041e6254a
+timeCreated: 1548972220
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: AlphabetLineFit_0
+    21300002: AlphabetLineFit_1
+    21300004: AlphabetLineFit_2
+    21300006: AlphabetLineFit_3
+    21300008: AlphabetLineFit_4
+    21300010: AlphabetLineFit_5
+    21300012: AlphabetLineFit_6
+    21300014: AlphabetLineFit_7
+    21300016: AlphabetLineFit_8
+    21300018: AlphabetLineFit_9
+    21300020: AlphabetLineFit_10
+    21300022: AlphabetLineFit_11
+    21300024: AlphabetLineFit_12
+    21300026: AlphabetLineFit_13
+    21300028: AlphabetLineFit_14
+    21300030: AlphabetLineFit_15
+    21300032: AlphabetLineFit_16
+    21300034: AlphabetLineFit_17
+    21300036: AlphabetLineFit_18
+    21300038: AlphabetLineFit_19
+    21300040: AlphabetLineFit_20
+    21300042: AlphabetLineFit_21
+    21300044: AlphabetLineFit_22
+    21300046: AlphabetLineFit_23
+    21300048: AlphabetLineFit_24
+    21300050: AlphabetLineFit_25
+    21300052: AlphabetLineFit_26
+    21300054: AlphabetLineFit_27
+    21300056: AlphabetLineFit_28
+    21300058: AlphabetLineFit_29
+    21300060: AlphabetLineFit_30
+    21300062: AlphabetLineFit_31
+    21300064: AlphabetLineFit_32
+    21300066: AlphabetLineFit_33
+    21300068: AlphabetLineFit_34
+    21300070: AlphabetLineFit_35
+    21300072: AlphabetLineFit_36
+    21300074: AlphabetLineFit_37
+    21300076: AlphabetLineFit_38
+    21300078: AlphabetLineFit_39
+    21300080: AlphabetLineFit_40
+    21300082: AlphabetLineFit_41
+    21300084: AlphabetLineFit_42
+    21300086: AlphabetLineFit_43
+    21300088: AlphabetLineFit_44
+    21300090: AlphabetLineFit_45
+    21300092: AlphabetLineFit_46
+    21300094: AlphabetLineFit_47
+    21300096: AlphabetLineFit_48
+    21300098: AlphabetLineFit_49
+    21300100: AlphabetLineFit_50
+    21300102: AlphabetLineFit_51
+    21300104: AlphabetLineFit_52
+    21300106: AlphabetLineFit_53
+    21300108: AlphabetLineFit_54
+    21300110: AlphabetLineFit_55
+    21300112: AlphabetLineFit_56
+    21300114: AlphabetLineFit_57
+    21300116: AlphabetLineFit_58
+    21300118: AlphabetLineFit_59
+    21300120: AlphabetLineFit_60
+    21300122: AlphabetLineFit_61
+    21300124: AlphabetLineFit_62
+    21300126: AlphabetLineFit_63
+    21300128: AlphabetLineFit_64
+    21300130: AlphabetLineFit_65
+    21300132: AlphabetLineFit_66
+    21300134: AlphabetLineFit_67
+    21300136: AlphabetLineFit_68
+    21300138: AlphabetLineFit_69
+    21300140: AlphabetLineFit_70
+    21300142: AlphabetLineFit_71
+    21300144: AlphabetLineFit_72
+    21300146: AlphabetLineFit_73
+    21300148: AlphabetLineFit_74
+    21300150: AlphabetLineFit_75
+    21300152: AlphabetLineFit_76
+    21300154: AlphabetLineFit_77
+    21300156: AlphabetLineFit_78
+    21300158: AlphabetLineFit_79
+    21300160: AlphabetLineFit_80
+    21300162: AlphabetLineFit_81
+    21300164: AlphabetLineFit_82
+    21300166: AlphabetLineFit_83
+    21300168: AlphabetLineFit_84
+    21300170: AlphabetLineFit_85
+    21300172: AlphabetLineFit_86
+    21300174: AlphabetLineFit_87
+    21300176: AlphabetLineFit_88
+    21300178: AlphabetLineFit_89
+    21300180: AlphabetLineFit_90
+    21300182: AlphabetLineFit_91
+    21300184: AlphabetLineFit_92
+    21300186: AlphabetLineFit_93
+    21300188: AlphabetLineFit_94
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 32
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: AlphabetLineFit_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 49
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_1
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 49
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_2
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 49
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_3
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 49
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_4
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 49
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_5
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 49
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_6
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 49
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_7
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 49
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_8
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 49
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_9
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 49
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_10
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 49
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_11
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 49
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_12
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 49
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_13
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 49
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_14
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 49
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_15
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 49
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_16
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 49
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_17
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 49
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_18
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 49
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_19
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 49
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_20
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 37
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_21
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 37
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_22
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 37
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_23
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 37
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_24
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 37
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_25
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 37
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_26
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 37
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_27
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 37
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_28
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 37
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_29
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 37
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_30
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 37
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_31
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 37
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_32
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 37
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_33
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 37
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_34
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 37
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_35
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 37
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_36
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 37
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_37
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 37
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_38
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 37
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_39
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 37
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_40
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 25
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_41
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 25
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_42
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 25
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_43
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 25
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_44
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 25
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_45
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 25
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_46
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 25
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_47
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 25
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_48
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 25
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_49
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 25
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_50
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 25
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_51
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 25
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_52
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 25
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_53
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 25
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_54
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 25
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_55
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 25
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_56
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 25
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_57
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 25
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_58
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 25
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_59
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 25
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_60
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 13
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_61
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 13
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_62
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 13
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_63
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 13
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_64
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 13
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_65
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 13
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_66
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 13
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_67
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 13
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_68
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 13
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_69
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 13
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_70
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 13
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_71
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 13
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_72
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 13
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_73
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 13
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_74
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 13
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_75
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 13
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_76
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 13
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_77
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 13
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_78
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 13
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_79
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 13
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_80
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_81
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 1
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_82
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 1
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_83
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 1
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_84
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 1
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_85
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 1
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_86
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 1
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_87
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 1
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_88
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 1
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_89
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 1
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_90
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 1
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_91
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 1
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_92
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 1
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_93
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 1
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AlphabetLineFit_94
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 1
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

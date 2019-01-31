@@ -33,9 +33,10 @@ public class AI_MoveRoundNShoot : AI_Base {
     float DontChangeDirectionForBase = 5; //base
 
     //if player often tries to outflank you by appearing behind your back to use the rection time, your patience gets reduced
-    //if 0, your reaction time is increased and you will pathfind to player instead of walking, if you dont have anyhting to shoot at
+    //if 0 --> hunting mode - your reaction time is increased and you will pathfind to player instead of walking, if you dont have anyhting to shoot at
     float BasePatience = 2;
     float CurrPatience = 2;
+    bool HuntingMode = false;
 
     //if you see player but are outside of range, move toward him
     public float MaxDistanceToShootFrom = 15;
@@ -53,12 +54,19 @@ public class AI_MoveRoundNShoot : AI_Base {
     // Update is called once per frame
     private void FixedUpdate()
     {
+        if (!HuntingMode)
+        {
+            if(CurrPatience <= 0)
+            {
+                AlphabetManager.SpawnFloatingText("I'm coming for you!", new Vector3(transform.position.x, transform.position.y, -35));
+                HuntingMode = true;
+            }
+        }
+
         //if you are frozen because of your reaction time, return to skip all the rest
         if(CurrReactionTimeFreeze > 0)
         {
             CurrReactionTimeFreeze -= Time.deltaTime;
-            //patience also decreases by flat amount whenever player is spotted
-            CurrPatience -= Time.deltaTime;
             return;
         }
         if(DontChangeDirectionFor > 0)
@@ -76,14 +84,17 @@ public class AI_MoveRoundNShoot : AI_Base {
         if (LineOfSight != null)
         {
             //if you have patience, freeze if hes coming from behind
-            if(CurrPatience > 0)
+            if(!HuntingMode)
             {
-                CurrReactionTimeFreeze = Mathf.Abs(Vector2.SignedAngle(AimDirection, Util.GetVectorToward(transform, target))) / 180 * ReactionTime - 0.1f;
+                CurrReactionTimeFreeze = Mathf.Abs(Vector2.SignedAngle(AimDirection, Util.GetVectorToward(transform, target))) / 180 * ReactionTime;
+                //patience reduces more if player attacks from behind
+                CurrPatience -= CurrReactionTimeFreeze;
+                CurrReactionTimeFreeze -= 0.1f;
                 DontChangeDirectionFor = DontChangeDirectionForBase;
+
+                //patience reduces every time player is seen, and also for the duration enemy is reaction frozen                
             }
 
-            //patience reduces every time player is seen, and also for the duration enemy is reaction frozen
-            CurrPatience -= 0.2f;
             
             //aim toward player
             AimDirection = Util.GetVectorToward(transform, target);
@@ -128,7 +139,7 @@ public class AI_MoveRoundNShoot : AI_Base {
         else
         {
             //you are out of patience - pathfind toward him
-            if (CurrPatience <= 0)
+            if (HuntingMode)
             {
                 if(wn.WayPoints.Count <= 1)
                 {
@@ -171,6 +182,6 @@ public class AI_MoveRoundNShoot : AI_Base {
         }
         e.spriteManager.LookTowardAngle(Vector2.SignedAngle(Vector2.right, AimDirection));
         
-    }
+    }    
 
 }

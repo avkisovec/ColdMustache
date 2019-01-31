@@ -171,7 +171,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1758198452841016}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28.68, y: 42.45, z: -0.021484375}
+  m_LocalPosition: {x: 4.25, y: 11.61, z: -0.021484375}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4670171129767648}
@@ -429,14 +429,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec92d1b726761ab469d2208afd5c80e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 3
+  MaxHealth: 10
   Health: 10
   Team: 1
   BaseMoveSpeed: 5
   MoveSpeedSlowModifier: 1
   LookingToward: {x: 1, y: 0}
   UseSpriteManager: 1
-  AnySprtMng: {fileID: 0}
+  spriteManager: {fileID: 0}
   LookDirectionBasedOnMovement: 1
   IsPlayer: 0
 --- !u!114 &114435559250375814

@@ -25,11 +25,14 @@ public class HealthBar : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if(entity.Health <= 0)
+        if(entity.Health > 0)
         {
-            Destroy(this);
+            HealthSR.sprite = Health[Mathf.RoundToInt(Health.Length - 1 - (entity.Health / entity.MaxHealth * (Health.Length - 1)))];
         }
-        HealthSR.sprite = Health[Mathf.RoundToInt(Health.Length- 1 - (entity.Health / entity.MaxHealth * (Health.Length-1)))];
+        else
+        {
+            HealthSR.sprite = Health[Health.Length - 1];
+        }
 
         if(entity.MaxHealth < 11)
         {
