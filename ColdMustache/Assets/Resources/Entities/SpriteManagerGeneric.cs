@@ -76,21 +76,20 @@ public class SpriteManagerGeneric : SpriteManagerBase {
                     UpdateIfNeeded(270);
                 }
             }
-
-            if (TemporaryColorTimeRemaining > 0)
-            {
-                TemporaryColorTimeRemaining-= Time.deltaTime;
-            }
-            if (TemporaryColorTimeRemaining != -999999 && TemporaryColorTimeRemaining <= 0)
-            {
-                TemporaryColorTimeRemaining = -999999;
-
-                colors = (Color[])colors_original.Clone();
-
-                UpdateEverything(LastDirection);
-            }
             
+        }
 
+        if (TemporaryColorTimeRemaining > 0)
+        {
+            TemporaryColorTimeRemaining -= Time.deltaTime;
+        }
+        if (TemporaryColorTimeRemaining != -999999 && TemporaryColorTimeRemaining <= 0)
+        {
+            TemporaryColorTimeRemaining = -999999;
+
+            colors = (Color[])colors_original.Clone();
+
+            UpdateEverything(LastDirection);
         }
 
         if (Input.GetKey(KeyCode.C))
@@ -100,8 +99,24 @@ public class SpriteManagerGeneric : SpriteManagerBase {
 
 	}
 
+    /*
+     * valid direction values:
+     * 
+     * 0, 90, 180, 270
+     * 
+     * according to unit circle
+     * 
+     * use LookTowardAngle to convert lets say 105.27 to 90
+     * 
+     * 
+     * 
+     */
 
     public int LastDirection = -1;
+    public override int GetLastDirection()
+    {
+        return LastDirection;
+    }
 
     public override void UpdateIfNeeded(int Direction)
     {
@@ -110,6 +125,31 @@ public class SpriteManagerGeneric : SpriteManagerBase {
             UpdateEverything(Direction);
             LastDirection = Direction;
         }
+    }
+
+    public override void LookTowardAngle(float Angle)
+    {
+        if(Angle < 0)
+        {
+            Angle = 360 + Angle;
+        }
+        if(Angle < 45 || Angle > 315)
+        {
+            UpdateIfNeeded(0);
+            return;
+        }
+        if(Angle < 135)
+        {
+            UpdateIfNeeded(90);
+            return;
+        }
+        if(Angle < 225)
+        {
+            UpdateIfNeeded(180);
+            return;
+        }
+        UpdateIfNeeded(270);
+        return;
     }
 
     public override void UpdateEverything(int Direction)

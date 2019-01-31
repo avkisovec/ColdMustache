@@ -57,7 +57,7 @@ public class AI_RunNBite : AI_Base {
             }
 
             //you have recently seen the player, and you went to his last seen position - for some time you can now "sense" his position - pathfind toward him
-            if (FramesSincePlayerWasObserved > 1 && FramesSincePlayerWasObserved < 180 && wn.WayPoints.Count <= 1)
+            else if (FramesSincePlayerWasObserved > 1 && FramesSincePlayerWasObserved < 180 && wn.WayPoints.Count <= 1)
             {
                 List<Vector2> path = NavTestStatic.FindAPath(MyPos, TargetPos);
                 if (path != null)
@@ -65,6 +65,20 @@ public class AI_RunNBite : AI_Base {
                     wn.WayPoints = path;
                 }
             }
+
+            else
+            {
+                //if you have no waypoints, choose a random nearby tile, and go there if you can
+                if (wn.WayPoints.Count <= 1)
+                {
+                    List<Vector2> path = NavTestStatic.FindAPath(MyPos, MyPos + new Vector2Int(Random.Range((int)-5, (int)6), Random.Range((int)-5, (int)6)));
+                    if (path != null)
+                    {
+                        wn.WayPoints = path;
+                    }
+                }
+            }
+
 
         }
 

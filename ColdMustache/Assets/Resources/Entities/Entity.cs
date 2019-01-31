@@ -16,7 +16,7 @@ public class Entity : MonoBehaviour {
     Rigidbody2D rb;
 
     public bool UseSpriteManager = true;
-    public SpriteManagerBase AnySprtMng = null;
+    public SpriteManagerBase spriteManager = null;
     
     public bool LookDirectionBasedOnMovement = true;
 
@@ -25,9 +25,9 @@ public class Entity : MonoBehaviour {
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody2D>();
-        if(AnySprtMng == null && UseSpriteManager)
+        if(spriteManager == null && UseSpriteManager)
         {
-            AnySprtMng = GetComponent<SpriteManagerBase>();
+            spriteManager = GetComponent<SpriteManagerBase>();
         }
 	}
 	
@@ -53,6 +53,11 @@ public class Entity : MonoBehaviour {
         MoveSpeedSlowModifier = 1;
     }
 
+    public void StopMoving()
+    {
+        rb.velocity = new Vector2(0, 0);
+    }
+
     public void TakeDamage (float Damage)
     {
         //check invincibility, resistances and stuff
@@ -71,7 +76,7 @@ public class Entity : MonoBehaviour {
 
             if (UseSpriteManager)
             {
-                AnySprtMng.TemporaryColor(new Color(1, 0, 0), 0.5f);
+                spriteManager.TemporaryColor(new Color(1, 0, 0), 0.5f);
             }
 
             if (IsPlayer)
@@ -90,6 +95,11 @@ public class Entity : MonoBehaviour {
     {
         Destroy(this.gameObject);
         GetComponent<DeathAnimation>().Spawn(transform.position);
+
+        if (IsPlayer)
+        {
+            ScreenFx.DeathScreen();
+        }
     }
 
     /*

@@ -54,7 +54,6 @@ public class GunRotatorHand : MonoBehaviour {
        
     public void AimGun(Vector3 Target)
     {
-
         Vector2 Delta = (Vector2)Target - (Vector2)transform.parent.position;
 
         //Target = Target / Target.magnitude;

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Nav_ThisObjectIsLargerThan1x1 : MonoBehaviour {
 
+    public bool ObstructsMovement = true;
+    public bool ObstructsVision = true;
+    public bool ObstructsExplosions = false;
+
     public int AdditionalTilesAbovePivot = 0;
     public int AdditionalTilesBelowPivot = 0;
     public int AdditionalTilesLeftOfPivot = 0;
@@ -23,7 +27,9 @@ public class Nav_ThisObjectIsLargerThan1x1 : MonoBehaviour {
         {
             for (int y = minY; y <= maxY; y++)
             {
-                NavTestStatic.NavArray[x, y] = NavTestStatic.ImpassableTileValue;
+                if(ObstructsMovement) NavTestStatic.NavArray[x, y] = NavTestStatic.ImpassableTileValue;
+                if(ObstructsVision) NavTestStatic.LightNavArray[x, y] = NavTestStatic.ImpassableTileValue;
+                if(ObstructsExplosions) NavTestStatic.ExplosionNavArray[x, y] = NavTestStatic.ImpassableTileValue;
             }
         }
 

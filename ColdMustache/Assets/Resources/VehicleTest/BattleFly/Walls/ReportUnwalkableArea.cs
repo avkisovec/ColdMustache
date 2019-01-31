@@ -33,10 +33,10 @@ public class ReportUnwalkableArea : MonoBehaviour {
 
     void DoYourThing()
     {
-        int minX = Mathf.RoundToInt(transform.position.x - transform.lossyScale.x / 2);
-        int maxX = Mathf.RoundToInt(transform.position.x + transform.lossyScale.x / 2);
-        int minY = Mathf.RoundToInt(transform.position.y - transform.lossyScale.y / 2);
-        int maxY = Mathf.RoundToInt(transform.position.y + transform.lossyScale.y / 2);
+        int minX = Mathf.RoundToInt(transform.position.x - Mathf.Abs(transform.lossyScale.x) / 2);
+        int maxX = Mathf.RoundToInt(transform.position.x + Mathf.Abs(transform.lossyScale.x) / 2);
+        int minY = Mathf.RoundToInt(transform.position.y - Mathf.Abs(transform.lossyScale.y) / 2);
+        int maxY = Mathf.RoundToInt(transform.position.y + Mathf.Abs(transform.lossyScale.y) / 2);
 
         for (int x = minX; x <= maxX; x++)
         {
