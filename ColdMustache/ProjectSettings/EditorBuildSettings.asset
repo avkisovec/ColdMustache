@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Resources/Scenes/TestingGrounds.unity
     guid: c9f6fb1cf57841d45986e1a33241fd90
   - enabled: 0
-    path: Assets/Resources/Save/TryLoadFromBuild.unity
-    guid: fe65be0616ff4204b979feb1e32326ed
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Resources/Scenes/LevelTest/01.unity
+    guid: 113b5055d3db728488971e5f638c20e2

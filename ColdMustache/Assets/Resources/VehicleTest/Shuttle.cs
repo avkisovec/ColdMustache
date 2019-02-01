@@ -293,9 +293,7 @@ public class Shuttle : MonoBehaviour {
         //rear thrusters
         SpawnEngineFumes(new Vector3(-2.905f, -1.848f, 1), 0.1f * Throttle, Sides.Stern);
     }
-
-
-
+    
     public virtual void SpawnEngineFumes(Vector3 Position, float Magnitude, Sides Side)
     {
         Vector2 MainVector = new Vector2(0, 0);
@@ -335,10 +333,7 @@ public class Shuttle : MonoBehaviour {
         p.EndingHorizontalWind = MainVector.x + Random.Range(-0.08f, 0.08f);
         p.EndingVerticalWind = MainVector.y + Random.Range(-0.08f, 0.08f);
     }
-
-
-
-
+    
     public bool Docked = false;
     Vector3 DockedPosition = new Vector3(0, 0, 0);
     Quaternion DockedRotation = new Quaternion(0,0,0,0);

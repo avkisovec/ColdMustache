@@ -300,7 +300,7 @@ public class Player : MonoBehaviour {
             GameObject ActualBlast = new GameObject();
             ActualBlast.transform.position = new Vector3(v.x, v.y, -5);
 
-            ActualBlast.AddComponent<DamagerInflicter>().ini(Entity.team.Neutral, (int)v.z, true, true, 0, 0, false);
+            ActualBlast.AddComponent<DamagerInflicter>().ini(Entity.team.Neutral, (int)v.z, true, true, 0, 0, false, DamagerInflicter.WeaponTypes.Explosion);
             ActualBlast.AddComponent<CircleCollider2D>().isTrigger = true;
             ActualBlast.GetComponent<CircleCollider2D>().radius = 0.6f;
             ActualBlast.AddComponent<Rigidbody2D>().isKinematic = true;

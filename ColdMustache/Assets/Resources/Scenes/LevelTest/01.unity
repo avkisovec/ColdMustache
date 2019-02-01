@@ -15513,6 +15513,11 @@ Prefab:
       propertyPath: DeathTextPublic
       value: 
       objectReference: {fileID: 969415347}
+    - target: {fileID: 114067403890560346, guid: a555c3a55740c4d40b7f1733462a08e5,
+        type: 2}
+      propertyPath: AlphabetPath
+      value: Gui/Text/AlphabetText
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a555c3a55740c4d40b7f1733462a08e5, type: 2}
   m_IsPrefabParent: 0
