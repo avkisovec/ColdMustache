@@ -14,6 +14,10 @@ public class InfinitelyRepeatingBackground : MonoBehaviour {
      * 
      */
 
+    private void Awake()
+    {
+        CurrentBackgrounds.Clear();
+    }
 
     public static List<GameObject> CurrentBackgrounds = new List<GameObject>();
 

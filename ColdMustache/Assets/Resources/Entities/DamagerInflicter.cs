@@ -20,7 +20,9 @@ public class DamagerInflicter : MonoBehaviour {
 
     public bool IsProjectile = false;
 
-
+    //for the purpose of death text, has nothing to do with damage types
+    public enum WeaponTypes { Undefined, Bullet, Claw, Blade, Explosion }
+    public WeaponTypes WeaponType = WeaponTypes.Undefined;
 
     //public bool InflictEffects
 
@@ -60,7 +62,7 @@ public class DamagerInflicter : MonoBehaviour {
                     PossibleActivation = Time.time + CoolDownBetweenHits;
                     if (Damage != 0)
                     {
-                        hit.TakeDamage(Damage);
+                        hit.TakeDamage(Damage, WeaponType);
                     }
                     if (SpawnFxOnTargetInsteadOfSource)
                     {
@@ -123,7 +125,7 @@ public class DamagerInflicter : MonoBehaviour {
         }
     }
 
-    public void ini(Entity.team Team, float Damage, bool SingleUse = true, bool SpawnFxOnTargetInsteadOfSource = false, float CoolDownBetweenHits = 1, float BecomeActiveAfterSeconds = 0, bool IsProjectile = true)
+    public void ini(Entity.team Team, float Damage, bool SingleUse = true, bool SpawnFxOnTargetInsteadOfSource = false, float CoolDownBetweenHits = 1, float BecomeActiveAfterSeconds = 0, bool IsProjectile = true, WeaponTypes WeaponType = WeaponTypes.Undefined)
     {
         this.Team = Team;
         this.Damage = Damage;
@@ -132,5 +134,6 @@ public class DamagerInflicter : MonoBehaviour {
         this.CoolDownBetweenHits = CoolDownBetweenHits;
         this.BecomeActiveAfterSeconds = BecomeActiveAfterSeconds;
         this.IsProjectile = IsProjectile;
+        this.WeaponType = WeaponType;
     }
 }

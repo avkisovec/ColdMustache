@@ -7,11 +7,6 @@ public class IfPlayerIsWithinMoveThingSomewhere : MonoBehaviour {
     public Transform Thing;
     public Vector3 Coordinates;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
 	// Update is called once per frame
 	void Update () {
         if (UniversalReference.PlayerObject.transform.position.x > transform.position.x - transform.lossyScale.x/2 &&

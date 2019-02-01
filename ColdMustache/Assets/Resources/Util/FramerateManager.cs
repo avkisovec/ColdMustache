@@ -38,12 +38,7 @@ public class FramerateManager : MonoBehaviour {
     public float CumulatedTime = 0;
 
     public static int FramesRequiredToRenderToKeepUp = 0;
-
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
+    
 	// Update is called once per frame
 	void Update () {
 

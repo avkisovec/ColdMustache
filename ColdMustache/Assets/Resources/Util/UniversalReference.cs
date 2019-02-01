@@ -48,7 +48,7 @@ public class UniversalReference : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
+        
         //player
         PlayerObject = GameObject.Find("PlayerContainer");
         PlayerEntity = PlayerObject.GetComponent<Entity>();

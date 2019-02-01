@@ -7,12 +7,7 @@ public class InventoryStorageCloser : MonoBehaviour {
     public GameObject CloseButton;
 
     public InventoryStorage inventory;
-
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
+    	
 	// Update is called once per frame
 	void Update () {
         if (Input.GetKeyUp(KeybindManager.CloseMenus) ||

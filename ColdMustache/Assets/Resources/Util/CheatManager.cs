@@ -43,9 +43,14 @@ public class CheatManager : MonoBehaviour {
 
     //the phrase that cheats have to start with
     public const string MagicPhrase = "IMADEV ";
-    	
-	// Update is called once per frame
-	void Update () {
+
+    private void Awake()
+    {
+        LastCheat = "";
+    }
+
+    // Update is called once per frame
+    void Update () {
 
         LastCheat = "";
 

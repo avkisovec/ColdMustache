@@ -16,6 +16,12 @@ public class MouseInterceptor : MonoBehaviour {
      * 
      */
 
+    private void Awake()
+    {
+        FramesSinceMouseHoveredOverAMenu = 0;
+        MouseBeingIntercepted = false;
+    }
+
     public static int FramesSinceMouseHoveredOverAMenu = 0;
     public static bool MouseBeingIntercepted = false;
     

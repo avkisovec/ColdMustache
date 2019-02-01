@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 114343827621098540}
   - component: {fileID: 114319035394331998}
   - component: {fileID: 114808270957185530}
+  - component: {fileID: 114515817263519600}
   m_Layer: 0
   m_Name: EnemyContainer (1)
   m_TagString: Enemy
@@ -173,9 +174,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1982514727128936}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 49.3, y: 43.9, z: -0.021484375}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.619975, y: -1.137862, z: -0.021484375}
+  m_LocalScale: {x: 0.02154112, y: 0.049300775, z: 1}
   m_Children:
   - {fileID: 4703893200781022}
   - {fileID: 4507347356239940}
@@ -394,6 +395,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a445d5b3337ce1e41bcef8a0f5f13cee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114515817263519600
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1982514727128936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ee1ecd9be1e2974d895ccb228d98ad1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetPosition: {x: -999999, y: -999999}
+  FramesSincePlayerWasObserved: 999999
+  DisallowWaypointChangeForFrames: 0
 --- !u!114 &114588452323539392
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -517,6 +532,7 @@ MonoBehaviour:
   AttackWalls: 0
   SpawnFxOnTargetInsteadOfSource: 1
   IsProjectile: 0
+  WeaponType: 2
 --- !u!212 &212776912745629226
 SpriteRenderer:
   m_ObjectHideFlags: 1

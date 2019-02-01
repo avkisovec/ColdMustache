@@ -6,8 +6,8 @@ public class NavTestStatic : MonoBehaviour {
 
 
 
-    public static int ImpassableTileValue = 999999;
-    public static int EmptyTileValue = 888888;
+    public const int ImpassableTileValue = 999999;
+    public const int EmptyTileValue = 888888;
 
     public static int MapWidth = 200;
     public static int MapHeight = 200;

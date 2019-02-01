@@ -23,8 +23,14 @@ public class AmmoStatus : MonoBehaviour {
     public Image AmmoCounter_;
     public SpriteRenderer CrosshairOverlay_;
 
-    // Use this for initialization
+    public bool HasBeenSetup = false;
     void Start () {
+        if (HasBeenSetup)
+        {
+            return;
+        }
+        HasBeenSetup = true;
+
         ammoStatusImage = this.GetComponent<Image>();
         IconReloading = IconReloading_;
         IconChambering = IconChambering_;

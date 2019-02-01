@@ -21,8 +21,14 @@ public class AvkisDarkness : MonoBehaviour {
 
     static List<Vector2Int> LastVisible = new List<Vector2Int>();
 
-	// Use this for initialization
-	void Start () {
+    private void Awake()
+    {
+        Darkness = new SpriteRenderer[NavTestStatic.MapWidth, NavTestStatic.MapHeight];
+        LastVisible = new List<Vector2Int>();
+    }
+    
+    // Use this for initialization
+    void Start () {
 		for(int x = 0; x < NavTestStatic.MapWidth; x++)
         {
             for(int y = 0; y < NavTestStatic.MapHeight; y++)

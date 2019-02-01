@@ -18,8 +18,15 @@ public class AlphabetManager : MonoBehaviour {
     public static Sprite[] Alphabet;
     public string AlphabetPath;
 
-	// Use this for initialization
+    // Use this for initialization
+    static bool HasBeenSetup = false;
 	void Start () {
+        if(HasBeenSetup)
+        {
+            return;
+        }
+        HasBeenSetup = true;
+
         Alphabet = Resources.LoadAll<Sprite>(AlphabetPath);
 	}
 	
@@ -99,10 +106,5 @@ public class AlphabetManager : MonoBehaviour {
 
 
     }
-
-    public static void SpawnDeathText()
-    {
-
-    }
-
+    
 }

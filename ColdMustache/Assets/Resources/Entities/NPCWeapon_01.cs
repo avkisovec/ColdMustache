@@ -87,7 +87,7 @@ public class NPCWeapon_01 : Weapon {
             bullet.AddComponent<FxBulletExplosionCustom>().ini(BulletColorStart, BulletColorEnd);
 
             //custom mechanics
-            bullet.AddComponent<DamagerInflicter>().ini(entity.Team, DamagePerBullet, true);
+            bullet.AddComponent<DamagerInflicter>().ini(entity.Team, DamagePerBullet, true, false, 1, 0, true, DamagerInflicter.WeaponTypes.Bullet);
             bullet.AddComponent<DieInSeconds>().Seconds = 5;
             bullet.AddComponent<SlowlySlowDown>().EffectiveRange = EffectiveRange;
             bullet.AddComponent<InflicterSlow>().ini(2, 0.5f, true);

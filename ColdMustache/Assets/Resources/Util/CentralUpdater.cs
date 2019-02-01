@@ -15,10 +15,14 @@ public class CentralUpdater : MonoBehaviour {
      * 
      */
 
+    private void Awake()
+    {
+        Scripts.Clear();
+    }
+
     public static List<CentrallyUpdatable> Scripts = new List<CentrallyUpdatable>();
     
 	void Update () {
-        Debug.Log(Scripts.Count);
         int count = Scripts.Count;
 		for(int i = 0; i < count; i++)
         {

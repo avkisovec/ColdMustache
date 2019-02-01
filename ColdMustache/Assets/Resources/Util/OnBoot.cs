@@ -13,12 +13,16 @@ public class OnBoot : MonoBehaviour {
      * 
      */
 
+    public bool HasBeenCalled = false;
     private void Awake()
     {
-        //Debug.Log(Application.dataPath);
-        SaverLoader.CheckFileAndCreateIfNeeded("Generated/Preset/Animal01_Default.preset", "Entities/Animal/Animal01/Preset_Default");
-        SaverLoader.CheckFileAndCreateIfNeeded("Generated/Preset/Human_Default.preset", "Entities/Human/Preset_Default");
-
+        if (!HasBeenCalled)
+        {
+            HasBeenCalled = true;
+            //Debug.Log(Application.dataPath);
+            SaverLoader.CheckFileAndCreateIfNeeded("Generated/Preset/Animal01_Default.preset", "Entities/Animal/Animal01/Preset_Default");
+            SaverLoader.CheckFileAndCreateIfNeeded("Generated/Preset/Human_Default.preset", "Entities/Human/Preset_Default");
+        }
 
     }
 }

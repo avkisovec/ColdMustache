@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ScreenFx : MonoBehaviour {
-    
+
+    private void Awake()
+    {
+        HaveDeathFxBeenSpawned = false;
+    }
+
     public static void InjuryScreen()
     {
         GameObject Overlay = new GameObject();
@@ -26,7 +31,7 @@ public class ScreenFx : MonoBehaviour {
         Setup();
     }
     
-    public static void DeathScreen()
+    public static void DeathScreen(DamagerInflicter.WeaponTypes WeaponType = DamagerInflicter.WeaponTypes.Undefined)
     {
         if (!HaveDeathFxBeenSpawned)
         {
@@ -53,10 +58,10 @@ public class ScreenFx : MonoBehaviour {
             
             GameObject container = new GameObject();
             container.transform.parent = UniversalReference.MainCamera.transform;
-            container.transform.localPosition = new Vector3(-50f * 7f / 32f, 0, 27);
+            container.transform.localPosition = new Vector3(-40f * 7f / 32f, 0, 27);
             container.AddComponent<StayFixedSize>().PixelScale = 2;
 
-            string DeathText = AlphabetManager.BreakText(GetDeathText(),50);
+            string DeathText = AlphabetManager.BreakText(GetDeathText(WeaponType),40);
             float X = 0;
             float Y = 0;
 
@@ -77,71 +82,139 @@ public class ScreenFx : MonoBehaviour {
 
         }
     }
-
-    
-    public enum DamageTypes { Bullet, Claws, Blade, Explosion };
-    
-    public static string GetDeathText(DamageTypes DamageType = DamageTypes.Bullet)
-    {
-        return BulletRibcage.DoYourThing();
-        /*
-        string output = "";
         
-        if(DamageType == DamageTypes.Bullet)
+    public static string GetDeathText(DamagerInflicter.WeaponTypes WeaponType = DamagerInflicter.WeaponTypes.Undefined)
+    {
+        switch (WeaponType)
         {
-            switch (Random.Range(0, 4))
-            {
-                
-            }
-            
-            return output;
+            case DamagerInflicter.WeaponTypes.Bullet:
+                return Start_Bullet.DoYourThing();
+            case DamagerInflicter.WeaponTypes.Claw:
+                return Start_Claws.DoYourThing();
+            case DamagerInflicter.WeaponTypes.Blade:
+                return Start_Blade.DoYourThing();
+            case DamagerInflicter.WeaponTypes.Explosion:
+                return Start_Explosion.DoYourThing();
         }
-
-        //defualt
-
-        output += "As you take your last labored breath, you finally fall down, never to get up again.";
-        return output;
-        */
+        //default option
+        return Start_Undefined.DoYourThing();
     }
 
-    public static DeathText BulletRibcage = new DeathText();
+    public static DeathText Start_Bullet = new DeathText();
+    public static DeathText Start_Claws = new DeathText();
+    public static DeathText Start_Blade = new DeathText();
+    public static DeathText Start_Explosion = new DeathText();
+    public static DeathText Start_Undefined = new DeathText();
 
+    static bool HasBeenSetup = false;
     public static void Setup()
     {
-        DeathText RibcageProjectileOptions = new DeathText();
+        if (HasBeenSetup)
+        {
+            return;
+        }
+        HasBeenSetup = true;
 
-        DeathText RibcageEntrance = new DeathText();
+        //bullet
+        DeathText BulletRibcage = new DeathText();
+        DeathText BulletRibcageProjectileOptions = new DeathText();
+        DeathText BulletRibcageEntrance = new DeathText();
+        DeathText BulletRibcageExit = new DeathText();
 
-        DeathText RibcageExit = new DeathText();
+        //claws
+        DeathText ClawnOptions = new DeathText();
 
+        //blade
+        DeathText BladeOptions = new DeathText();
+
+        //sharp melee (claws+blades)
+        DeathText SharpMelee = new DeathText();
+
+        //explosion
+
+        //undefined
+
+        //shared
         DeathText PreFinal = new DeathText();
         DeathText Final = new DeathText();
 
+        //bullet
+        Start_Bullet.Next.Add(BulletRibcage);
 
-        BulletRibcage.Next.Add(RibcageProjectileOptions);
+        BulletRibcage.Next.Add(BulletRibcageProjectileOptions);
 
-        RibcageProjectileOptions.Next.Add(new DeathText("As the bullet", RibcageEntrance));
-        RibcageProjectileOptions.Next.Add(new DeathText("As the last bullet", RibcageEntrance));
-        RibcageProjectileOptions.Next.Add(new DeathText("As the final bullet", RibcageEntrance));
+        BulletRibcageProjectileOptions.Next.Add(new DeathText("As the bullet", BulletRibcageEntrance));
+        BulletRibcageProjectileOptions.Next.Add(new DeathText("As the last bullet", BulletRibcageEntrance));
+        BulletRibcageProjectileOptions.Next.Add(new DeathText("As the final bullet", BulletRibcageEntrance));
 
-        RibcageEntrance.Next.Add(new DeathText(" pierces your ribcage", RibcageExit));
-        RibcageEntrance.Next.Add(new DeathText(" drills into your ribcage", RibcageExit));
-        RibcageEntrance.Next.Add(new DeathText(" tears through your ribcage", RibcageExit));
-        RibcageEntrance.Next.Add(new DeathText(" punches a hole in your ribcage", RibcageExit));
-        RibcageEntrance.Next.Add(new DeathText(" finds its way inbetween your ribs", RibcageExit));
+        BulletRibcageEntrance.Next.Add(new DeathText(" pierces your ribcage", BulletRibcageExit));
+        BulletRibcageEntrance.Next.Add(new DeathText(" drills into your chest", BulletRibcageExit));
+        BulletRibcageEntrance.Next.Add(new DeathText(" tears through your chest", BulletRibcageExit));
+        BulletRibcageEntrance.Next.Add(new DeathText(" punches a hole in your ribcage", BulletRibcageExit));
+        BulletRibcageEntrance.Next.Add(new DeathText(" finds its way inbetween your ribs", BulletRibcageExit));
+        BulletRibcageEntrance.Next.Add(new DeathText(" penetrates your ribcage", BulletRibcageExit));
+        BulletRibcageEntrance.Next.Add(new DeathText(" burrows itself into your chest", BulletRibcageExit));
 
-        RibcageExit.Next.Add(new DeathText(" and lodges itself into your spine", PreFinal));
-        RibcageExit.Next.Add(new DeathText(", only to leave a gaping hole on the way out", PreFinal));
-        RibcageExit.Next.Add(new DeathText(" and slashes your aorta", PreFinal));
-        RibcageExit.Next.Add(new DeathText(" and right thrught the heart", PreFinal));
+        BulletRibcageExit.Next.Add(new DeathText(" and lodges itself into your spine", PreFinal));
+        BulletRibcageExit.Next.Add(new DeathText(", only to leave a gaping hole on the way out", PreFinal));
+        BulletRibcageExit.Next.Add(new DeathText(" and slashes your aorta", PreFinal));
+        BulletRibcageExit.Next.Add(new DeathText(" and tears your aorta open", PreFinal));
+        BulletRibcageExit.Next.Add(new DeathText(" and tears your heart open", PreFinal));
+        BulletRibcageExit.Next.Add(new DeathText(" and tears right through the heart", PreFinal));
 
+
+        //claws
+        Start_Claws.Next.Add(new DeathText("As the claws", SharpMelee));
+        Start_Claws.Next.Add(new DeathText("As the neddle-like claws", SharpMelee));
+        Start_Claws.Next.Add(new DeathText("As the jagged claws", SharpMelee));
+        Start_Claws.Next.Add(new DeathText("As the teeth", SharpMelee));
+        Start_Claws.Next.Add(new DeathText("As the neddle-like teeth", SharpMelee));
+        Start_Claws.Next.Add(new DeathText("As the jagged teeth", SharpMelee));
+
+        //blades
+        Start_Blade.Next.Add(new DeathText("As the blade", SharpMelee));
+        Start_Blade.Next.Add(new DeathText("As the cold steel", SharpMelee));
+        Start_Blade.Next.Add(new DeathText("As the hardened steel", SharpMelee));
+        Start_Blade.Next.Add(new DeathText("As the sharp blade", SharpMelee));
+        Start_Blade.Next.Add(new DeathText("As the rusty blade", SharpMelee));
+
+        //sharp melee - claws + blades
+        SharpMelee.Next.Add(new DeathText(" dig into your flesh",PreFinal));
+        SharpMelee.Next.Add(new DeathText(" rend your flesh", PreFinal));
+        SharpMelee.Next.Add(new DeathText(" slash open your neck", PreFinal));
+        SharpMelee.Next.Add(new DeathText(" slash open your jugular", PreFinal));
+        SharpMelee.Next.Add(new DeathText(" tear through your ribs", PreFinal));
+        SharpMelee.Next.Add(new DeathText(" tear through your guts", PreFinal));
+        SharpMelee.Next.Add(new DeathText(" dig into your face", PreFinal));
+        SharpMelee.Next.Add(new DeathText(" spill out your guts", PreFinal));
+        SharpMelee.Next.Add(new DeathText(" spill out your innards", PreFinal));
+
+        //explosion
+        Start_Explosion.Next.Add(new DeathText("As the pressure wave crushes your lungs", PreFinal));
+        Start_Explosion.Next.Add(new DeathText("As the shock wave crushes your lungs", PreFinal));
+        Start_Explosion.Next.Add(new DeathText("As the explosion tears your limbs apart", PreFinal));
+        Start_Explosion.Next.Add(new DeathText("As the shrapnels dig into your face", PreFinal));
+        Start_Explosion.Next.Add(new DeathText("As the shrapnels dig into your chest", PreFinal));
+        Start_Explosion.Next.Add(new DeathText("As the shrapnels dig into your stomach", PreFinal));
+
+        //undefined
+        Start_Undefined.Next.Add(new DeathText("As you take your last labored breath", PreFinal));
+        Start_Undefined.Next.Add(new DeathText("As you take your last dying breath", PreFinal));
+
+        //shared
         PreFinal.Next.Add(new DeathText(", you finally fall down", Final));
         PreFinal.Next.Add(new DeathText(", you stumble to the ground", Final));
         PreFinal.Next.Add(new DeathText(", you fall to your knees", Final));
+        PreFinal.Next.Add(new DeathText(", you fall to the ground", Final));
+        PreFinal.Next.Add(new DeathText(", you land in a puddle of your blood", Final));
 
         Final.Next.Add(new DeathText(", realizing it's the last thing you'll ever do."));
         Final.Next.Add(new DeathText(", never to get up again."));
         Final.Next.Add(new DeathText(", awaiting your final moment."));
+        Final.Next.Add(new DeathText(", knowing your time has come."));
+        Final.Next.Add(new DeathText(", and there's nothing you can do about it."));
+        Final.Next.Add(new DeathText(", and there's nothing you can do anymore."));
+        Final.Next.Add(new DeathText(" without having much of a choice."));
 
     }
     

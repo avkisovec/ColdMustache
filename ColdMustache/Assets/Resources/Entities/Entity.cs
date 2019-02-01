@@ -58,7 +58,7 @@ public class Entity : MonoBehaviour {
         rb.velocity = new Vector2(0, 0);
     }
 
-    public void TakeDamage (float Damage)
+    public void TakeDamage (float Damage, DamagerInflicter.WeaponTypes WeaponType = DamagerInflicter.WeaponTypes.Undefined)
     {
         //check invincibility, resistances and stuff
         if (true)
@@ -84,17 +84,21 @@ public class Entity : MonoBehaviour {
 
             if(Health <= 0)
             {
-                Die();
+                Die(WeaponType);
             }
         }
     }
 
-    public void Die()
+    public void Die(DamagerInflicter.WeaponTypes WeaponType = DamagerInflicter.WeaponTypes.Undefined)
     {
         GetComponent<DeathAnimation>().Spawn(transform.position);
         if (IsPlayer)
         {
-            ScreenFx.DeathScreen();
+            ScreenFx.DeathScreen(WeaponType);
+
+            //as other scripts often reference player, destroying him would cause issues, so im just moving him away from any danger, hopefully
+            //if id just kept him where he "dies", enemies would still attack him which would mess with cursor
+            transform.position = new Vector3(NavTestStatic.MapWidth-1, NavTestStatic.MapHeight-1, 0);
         }
         else
         {
