@@ -26,16 +26,14 @@ public class InventorySlot : MonoBehaviour {
     //unique id of this specific slot
     public int SlotId;
 
-
-
-
-	// Use this for initialization
-	void Start () {
-	}
-
+    public bool AddSelfOnAwake = false;
+    
     private void Awake()
     {
-        ParentInventory.SlotsScripts.Add(this);
+        if (AddSelfOnAwake)
+        {
+            ParentInventory.SlotScripts.Add(this);
+        }
     }
 
     // Update is called once per frame

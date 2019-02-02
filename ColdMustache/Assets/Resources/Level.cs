@@ -9,7 +9,12 @@ public class Level : MonoBehaviour {
         
         if (Input.GetKeyUp(KeyCode.F1))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            ReloadScene();
         }
+    }
+
+    public static void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

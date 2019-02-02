@@ -86,7 +86,147 @@ public class AlphabetManager : MonoBehaviour {
 
         return output;
     }
+    
+    /*
+     * kinda supports '\n', but ONLY if it's are on the end of a word and ARE FOLLOWED BY SPACE (' ')
+     * if you want to use newline just use BreakText2_Array(), that one full supports \n.
+     */
+    public static List<string> BreakText_Array(string text, int MaxLineWidth)
+    {
+       
 
+
+        List<string> Output = new List<string>();
+
+        string[] words = text.Split(' ');
+
+        string Line = "";
+
+        int CurrLenght = 0;
+
+        //first word
+        Line = words[0];
+        CurrLenght = words[0].Length;
+
+        for (int i = 1; i < words.Length; i++)
+        {            
+            //if next word is not longer than the entire line
+            if (words[i].Length < MaxLineWidth)
+            {
+                //if its possible to fit the word onto current line (+1 to account for space)
+                if (CurrLenght + 1 + words[i].Length <= MaxLineWidth)
+                {
+                    Line += " " + words[i];
+                    CurrLenght += 1 + words[i].Length;
+                    
+                    if (words[i].Contains("\n"))
+                    {
+                        Output.Add(Line);
+                        Line = "";
+                        CurrLenght = 0;
+                    }
+                    continue;
+                }
+                //it wont fit, need a newline
+                else
+                {
+                    Output.Add(Line);
+
+                    Line = words[i];                    
+                    CurrLenght = words[i].Length;
+
+                    if (words[i].Contains("\n"))
+                    {
+                        Output.Add(Line);
+                        Line = "";
+                        CurrLenght = 0;
+                    }
+
+                    continue;
+                }
+            }
+        }
+
+        Output.Add(Line);
+
+        return Output;
+    }
+
+    public static List<string> BreakText2_Array(string text, int MaxLineWidth)
+    {
+        List<string> Output = new List<string>();
+
+        int TextPointer = 0;
+
+        string CurrWord = "";
+        string CurrLine = "";
+
+        bool FirstWordOnLine = true;
+        
+        for (;;)
+        {
+            if(TextPointer >= text.Length)
+            {   
+                //if word fits onto a line
+                if (CurrLine.Length + 1 + CurrWord.Length <= MaxLineWidth)
+                {
+                    if (FirstWordOnLine) { CurrLine += CurrWord; FirstWordOnLine = false; }
+                    else { CurrLine += " " + CurrWord; }
+                    CurrWord = "";
+                }
+                else
+                {
+                    Output.Add(CurrLine);
+                    CurrLine = CurrWord;
+                }
+                Output.Add(CurrLine);
+                return Output;
+            }
+            
+            if (text[TextPointer] == ' ')
+            {
+                //if word fits onto a line
+                if (CurrLine.Length + 1 + CurrWord.Length <= MaxLineWidth)
+                {
+                    if (FirstWordOnLine) { CurrLine += CurrWord; FirstWordOnLine = false; }
+                    else { CurrLine += " " + CurrWord; }
+                    CurrWord = "";
+                }
+                else
+                {
+                    Output.Add(CurrLine);
+                    CurrLine = CurrWord;
+                }
+            }
+            else if (text[TextPointer] == '\n')
+            {
+                //if word fits onto a line
+                if (CurrLine.Length + 1 + CurrWord.Length <= MaxLineWidth)
+                {
+                    if (FirstWordOnLine) { CurrLine += CurrWord; FirstWordOnLine = false; }
+                    else { CurrLine += " " + CurrWord; }
+                    CurrWord = "";
+                    Output.Add(CurrLine);
+                    CurrLine = "";
+                    FirstWordOnLine = true;
+                }
+                else
+                {
+                    Output.Add(CurrLine);
+                    CurrLine = CurrWord;
+                    Output.Add(CurrLine);
+                    CurrLine = "";
+                    FirstWordOnLine = true;
+                }
+            }
+            else
+            {
+                CurrWord += text[TextPointer];
+            }
+            
+            TextPointer++;
+        }        
+    }
     public static void SpawnFloatingText(string text, Vector3 position)
     {
         GameObject container = new GameObject();

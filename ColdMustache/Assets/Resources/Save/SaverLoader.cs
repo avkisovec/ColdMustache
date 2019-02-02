@@ -7,6 +7,10 @@ public class SaverLoader : MonoBehaviour {
     
     public static string[] ReadAFile(string path)
     {
+        if (!File.Exists(path))
+        {
+            return null;
+        }
         List<string> output = new List<string>();
 
         StreamReader sr = new StreamReader(path);
@@ -70,7 +74,7 @@ public class SaverLoader : MonoBehaviour {
         SaverLoader.CreateHardPathIfNeeded(FilePath);
         sw = new StreamWriter(FilePath);
         Inventory inventory = UniversalReference.PlayerInventory;
-        foreach (InventorySlot invs in inventory.SlotsScripts)
+        foreach (InventorySlot invs in inventory.SlotScripts)
         {
             sw.Write(invs.SlotId + ";");
 

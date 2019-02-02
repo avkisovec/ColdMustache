@@ -13,7 +13,7 @@ public class InventoryStorage : InventoryBase {
     // Use this for initialization
     void Start()
     {
-        SlotsScripts = SlotsScripts.OrderBy(o => o.SlotId).ToList();
+        SlotScripts = SlotScripts.OrderBy(o => o.SlotId).ToList();
 
         LoadItemsFromPaths(ParentStorageObject.ItemPaths);
     }
@@ -40,9 +40,9 @@ public class InventoryStorage : InventoryBase {
     
     public int GetListIdOfSlotWithId(int slotId)
     {
-        for (int i = 0; i < SlotsScripts.Count; i++)
+        for (int i = 0; i < SlotScripts.Count; i++)
         {
-            if (SlotsScripts[i].SlotId == slotId)
+            if (SlotScripts[i].SlotId == slotId)
             {
                 return i;
             }
@@ -54,9 +54,9 @@ public class InventoryStorage : InventoryBase {
     {
         List<int> output = new List<int>();
 
-        for (int i = 0; i < SlotsScripts.Count; i++)
+        for (int i = 0; i < SlotScripts.Count; i++)
         {
-            if (SlotsScripts[i].SlotId == slotId)
+            if (SlotScripts[i].SlotId == slotId)
             {
                 output.Add(i);
             }
@@ -67,7 +67,7 @@ public class InventoryStorage : InventoryBase {
 
     public bool IsSlotEmpty(int ListId)
     {
-        if (SlotsScripts[ListId].transform.childCount == 0)
+        if (SlotScripts[ListId].transform.childCount == 0)
         {
             return true;
         }
@@ -77,7 +77,7 @@ public class InventoryStorage : InventoryBase {
 
     public int FindListIdOfFirstEmptySlot()
     {
-        for (int i = 0; i < SlotsScripts.Count; i++)
+        for (int i = 0; i < SlotScripts.Count; i++)
         {
             if (IsSlotEmpty(i))
             {
@@ -92,7 +92,7 @@ public class InventoryStorage : InventoryBase {
 
     InventorySlot GetSlotWithId(int id)
     {
-        return SlotsScripts[GetListIdOfSlotWithId(id)];
+        return SlotScripts[GetListIdOfSlotWithId(id)];
     }
 
     GameObject ItemOnSlot(InventorySlot inventorySlot)
@@ -103,7 +103,7 @@ public class InventoryStorage : InventoryBase {
 
     public void AddItem(GameObject item)
     {
-        item.transform.parent = SlotsScripts[FindListIdOfFirstEmptySlot()].transform;        
+        item.transform.parent = SlotScripts[FindListIdOfFirstEmptySlot()].transform;        
         item.transform.localPosition = new Vector3(0, 0, -1);
         item.transform.localScale = new Vector3(1, 1, 1);
     }
@@ -121,11 +121,11 @@ public class InventoryStorage : InventoryBase {
     {
         List<string> ItemsRemaining = new List<string>();
 
-        for (int i = 0; i < SlotsScripts.Count; i++)
+        for (int i = 0; i < SlotScripts.Count; i++)
         {
             if (!IsSlotEmpty(i))
             {
-                ItemsRemaining.Add(ItemOnSlot(SlotsScripts[i]).GetComponent<InventoryItem>().PrefabPath);
+                ItemsRemaining.Add(ItemOnSlot(SlotScripts[i]).GetComponent<InventoryItem>().PrefabPath);
             }
         }
 

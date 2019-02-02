@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class InventoryBase : MonoBehaviour {
     
-    public List<InventorySlot> SlotsScripts = new List<InventorySlot>();
+    public List<InventorySlot> SlotScripts = new List<InventorySlot>();
 
     public virtual void ReportSlotBeingClicked(int id)
     {
+        
     }
 }

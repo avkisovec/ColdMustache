@@ -60,7 +60,14 @@ public class UniversalReference : MonoBehaviour {
 
         PlayerBulletsOrigin = GameObject.Find("PlayerContainer/GunContainer/BulletsOrigin").transform;
 
-        PlayerInventory = GameObject.Find("InventoryContainer/Inventory").GetComponent<Inventory>();
+        try
+        {
+            PlayerInventory = GameObject.Find("InventoryContainer/Inventory").GetComponent<Inventory>();
+        }
+        catch
+        {
+
+        }
 
         //gui
         AmmoCounter = GameObject.Find("Canvas/AmmoCounter").GetComponent<Image>();

@@ -12,7 +12,7 @@ public class Inventory : InventoryBase {
 
     // Use this for initialization
     void Start () {
-        SlotsScripts = SlotsScripts.OrderBy(o => o.SlotId).ToList();
+        SlotScripts = SlotScripts.OrderBy(o => o.SlotId).ToList();
 	}
 	
 	// Update is called once per frame
@@ -28,7 +28,7 @@ public class Inventory : InventoryBase {
     public override void ReportSlotBeingClicked(int id)
     {
         GameObject itemObject;
-        InventorySlot SlotScript = SlotsScripts[GetListIdOfSlotWithId(id)];
+        InventorySlot SlotScript = SlotScripts[GetListIdOfSlotWithId(id)];
 
         //moving to a storage
         if (IsStorageOpen)
@@ -68,7 +68,7 @@ public class Inventory : InventoryBase {
                             itemObject.GetComponent<InventoryItem>().CodeBeforeRemoving();
                         }
 
-                        itemObject.transform.parent = SlotsScripts[FindListIdOfFirstEmptySlot(InventoryItem.ItemType.Everything)].transform;
+                        itemObject.transform.parent = SlotScripts[FindListIdOfFirstEmptySlot(InventoryItem.ItemType.Everything)].transform;
 
                         itemObject.transform.localPosition = new Vector3(0, 0, -1);
 
@@ -100,7 +100,7 @@ public class Inventory : InventoryBase {
                                 if (IsSlotEmpty(listId))
                                 {
                                     //empty slot was found, put new thing there (and nothing more)
-                                    itemObject.transform.parent = SlotsScripts[listId].transform;
+                                    itemObject.transform.parent = SlotScripts[listId].transform;
                                     itemObject.transform.localPosition = new Vector3(0, 0, -1);
                                     return;
                                 }
@@ -114,16 +114,16 @@ public class Inventory : InventoryBase {
                             //its CodeBeforeRemoving will be called during the switch, in ReportSlotBeingClicked
 
                             //go to the new slot
-                            itemObject.transform.parent = SlotsScripts[NewSlotListId].transform;
+                            itemObject.transform.parent = SlotScripts[NewSlotListId].transform;
                             itemObject.transform.localPosition = new Vector3(0, 0, -1);
 
                             //move the previously equipped item to some empty slot
-                            ReportSlotBeingClicked(SlotsScripts[NewSlotListId].SlotId);
+                            ReportSlotBeingClicked(SlotScripts[NewSlotListId].SlotId);
 
                             //previous thing was selected, so new thing is selected aswell
                             if (NewSlotListId == LastSelectedWeaponListId)
                             {
-                                CodeAfterEquipping(SlotsScripts[NewSlotListId]);
+                                CodeAfterEquipping(SlotScripts[NewSlotListId]);
                             }
 
                             return;
@@ -143,7 +143,7 @@ public class Inventory : InventoryBase {
                                 {
                                     //empty slot was found, put new thing there
 
-                                    itemObject.transform.parent = SlotsScripts[listId].transform;
+                                    itemObject.transform.parent = SlotScripts[listId].transform;
                                     itemObject.transform.localPosition = new Vector3(0, 0, -1);
 
                                     itemObject.GetComponent<InventoryItem>().CodeAfterEquipping();
@@ -158,10 +158,10 @@ public class Inventory : InventoryBase {
 
                             int NewSlotListId = FindListIdOfFirstSlot(ObjectType);
 
-                            itemObject.transform.parent = SlotsScripts[NewSlotListId].transform;
+                            itemObject.transform.parent = SlotScripts[NewSlotListId].transform;
                             itemObject.transform.localPosition = new Vector3(0, 0, -1);
 
-                            ReportSlotBeingClicked(SlotsScripts[NewSlotListId].SlotId); //to move the previously equipped item to the now empty slot;
+                            ReportSlotBeingClicked(SlotScripts[NewSlotListId].SlotId); //to move the previously equipped item to the now empty slot;
 
                             itemObject.GetComponent<InventoryItem>().CodeAfterEquipping();
                         }
@@ -184,9 +184,9 @@ public class Inventory : InventoryBase {
     
     public int GetListIdOfSlotWithId(int slotId)
     {
-        for(int i = 0; i < SlotsScripts.Count; i++)
+        for(int i = 0; i < SlotScripts.Count; i++)
         {
-            if(SlotsScripts[i].SlotId == slotId)
+            if(SlotScripts[i].SlotId == slotId)
             {
                 return i;
             }
@@ -198,9 +198,9 @@ public class Inventory : InventoryBase {
     {
         List<int> output = new List<int>();
 
-        for (int i = 0; i < SlotsScripts.Count; i++)
+        for (int i = 0; i < SlotScripts.Count; i++)
         {
-            if(SlotsScripts[i].SlotId == slotId)
+            if(SlotScripts[i].SlotId == slotId)
             {
                 output.Add(i);
             }
@@ -212,9 +212,9 @@ public class Inventory : InventoryBase {
     {
         List<int> output = new List<int>();
 
-        for (int i = 0; i < SlotsScripts.Count; i++)
+        for (int i = 0; i < SlotScripts.Count; i++)
         {
-            if (SlotsScripts[i].SlotType == type)
+            if (SlotScripts[i].SlotType == type)
             {
                 output.Add(i);
             }
@@ -226,9 +226,9 @@ public class Inventory : InventoryBase {
     {
         List<int> output = new List<int>();
 
-        for (int i = 0; i < SlotsScripts.Count; i++)
+        for (int i = 0; i < SlotScripts.Count; i++)
         {
-            if (SlotsScripts[i].SlotType == type && !IsSlotEmpty(i))
+            if (SlotScripts[i].SlotType == type && !IsSlotEmpty(i))
             {
                 output.Add(i);
             }
@@ -238,7 +238,7 @@ public class Inventory : InventoryBase {
 
     public bool IsSlotEmpty(int ListId)
     {
-        if (SlotsScripts[ListId].transform.childCount == 0)
+        if (SlotScripts[ListId].transform.childCount == 0)
         {
             return true;
         }
@@ -247,9 +247,9 @@ public class Inventory : InventoryBase {
 
     public int FindListIdOfFirstEmptySlot(InventoryItem.ItemType type = InventoryItem.ItemType.Undefined)
     {
-        for (int i = 0; i < SlotsScripts.Count; i++)
+        for (int i = 0; i < SlotScripts.Count; i++)
         {
-            if (SlotsScripts[i].SlotType == type && IsSlotEmpty(i))
+            if (SlotScripts[i].SlotType == type && IsSlotEmpty(i))
             {
                 return i;
             }
@@ -259,9 +259,9 @@ public class Inventory : InventoryBase {
 
     public int FindListIdOfFirstSlot(InventoryItem.ItemType type = InventoryItem.ItemType.Undefined)
     {
-        for (int i = 0; i < SlotsScripts.Count; i++)
+        for (int i = 0; i < SlotScripts.Count; i++)
         {
-            if (SlotsScripts[i].SlotType == type)
+            if (SlotScripts[i].SlotType == type)
             {
                 return i;
             }
@@ -326,8 +326,8 @@ public class Inventory : InventoryBase {
             //new weapon found - job's done
             if (!IsSlotEmpty(MainWeaponSlotsListIndexes[SelectedMainWeaponLocalIndex]))
             {
-                SlotsScripts[ LastSelectedWeaponListId ].transform.GetChild(0).GetComponent<InventoryItem>().CodeBeforeRemoving();
-                SlotsScripts[ MainWeaponSlotsListIndexes[ SelectedMainWeaponLocalIndex ] ].transform.GetChild(0).GetComponent<InventoryItem>().CodeAfterEquipping();
+                SlotScripts[ LastSelectedWeaponListId ].transform.GetChild(0).GetComponent<InventoryItem>().CodeBeforeRemoving();
+                SlotScripts[ MainWeaponSlotsListIndexes[ SelectedMainWeaponLocalIndex ] ].transform.GetChild(0).GetComponent<InventoryItem>().CodeAfterEquipping();
 
                 LastSelectedWeaponListId = MainWeaponSlotsListIndexes[SelectedMainWeaponLocalIndex];
 
@@ -344,7 +344,7 @@ public class Inventory : InventoryBase {
             if (!IsSlotEmpty(i))
             {
                 LastSelectedWeaponListId = i;
-                CodeAfterEquipping(SlotsScripts[i]);
+                CodeAfterEquipping(SlotScripts[i]);
             }
         }
     }
@@ -352,7 +352,7 @@ public class Inventory : InventoryBase {
 
     InventorySlot GetSlotWithId(int id)
     {
-        return SlotsScripts[GetListIdOfSlotWithId(id)];
+        return SlotScripts[GetListIdOfSlotWithId(id)];
     }
 
     GameObject ItemOnSlot(InventorySlot inventorySlot)
@@ -372,7 +372,7 @@ public class Inventory : InventoryBase {
 
     public void AddItem(GameObject item)
     {
-        item.transform.parent = SlotsScripts[FindListIdOfFirstEmptySlot(InventoryItem.ItemType.Everything)].transform;
+        item.transform.parent = SlotScripts[FindListIdOfFirstEmptySlot(InventoryItem.ItemType.Everything)].transform;
         item.transform.localPosition = new Vector3(0, 0, -1);
         item.transform.localScale = new Vector3(1, 1, 1);
     }
@@ -380,7 +380,7 @@ public class Inventory : InventoryBase {
     //deletes all items
     public void ForceClearInventory()
     {
-        foreach(InventorySlot invs in SlotsScripts)
+        foreach(InventorySlot invs in SlotScripts)
         {
             foreach (Transform tr in invs.transform.GetComponentInChildren<Transform>())
             {
@@ -392,7 +392,7 @@ public class Inventory : InventoryBase {
     public void AddItemToSpecificSlot(GameObject item, int SlotId)
     {
 
-        item.transform.parent = SlotsScripts[GetListIdOfSlotWithId(SlotId)].transform;
+        item.transform.parent = SlotScripts[GetListIdOfSlotWithId(SlotId)].transform;
         item.transform.localPosition = new Vector3(0, 0, -1);
         item.transform.localScale = new Vector3(1, 1, 1);
     }
@@ -412,7 +412,7 @@ public class Inventory : InventoryBase {
     //call CodeAfterEquipping on all currently equipped clothes
     public void ReEquipClothing()
     {
-        foreach(InventorySlot invs in SlotsScripts)
+        foreach(InventorySlot invs in SlotScripts)
         {
             if(invs.SlotType == InventoryItem.ItemType.ClothingHead ||
                 invs.SlotType == InventoryItem.ItemType.ClothingJacket ||

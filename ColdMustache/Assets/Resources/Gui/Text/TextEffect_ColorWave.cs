@@ -52,6 +52,7 @@ public class TextEffect_ColorWave : MonoBehaviour {
 
             if (Phase == Phases)
             {
+                sr.color = EndingColor[Phase-1];
                 Destroy(this);
             }
 
