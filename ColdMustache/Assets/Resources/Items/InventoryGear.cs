@@ -11,20 +11,37 @@ public class InventoryGear : InventoryBase
     public TextObject WeightText;
 
     public Transform EquippedWeaponIndicator;
+    public Transform EquipppedItemIndicator;
 
     public bool DeleteMode = false;
     
     // Start is called before the first frame update
     void Start()
     {
+        ReloadInventory();
+    }
+
+    public void ReloadInventory()
+    {
         SlotScripts = SlotScripts.OrderBy(o => o.SlotId).ToList();
+
+        for(int i = 0; i < SlotScripts.Count; i++)
+        {
+            if (SlotScripts[i].transform.childCount != 0)
+            {
+                Transform tr = SlotScripts[i].transform.GetChild(0);
+                tr.parent = null;
+                Destroy(tr.gameObject);
+            }
+        }
 
         LoadFromFile();
         ReEquipClothing();
 
         UpdateWeight();
 
-        EquipFirstAvailableWeapon();
+        EquipFirstAvailableWeapon();        
+        EquipFirstAvailableItem();
     }
 
     public void LoadFromFile()
@@ -71,7 +88,20 @@ public class InventoryGear : InventoryBase
                     LastEquippedWeapon.CodeBeforeRemoving();
                     LastEquippedWeapon = SlotScripts[ListId].transform.GetChild(0).GetComponent<InventoryItem>();
                     LastEquippedWeapon.CodeAfterEquipping();
-                    EquippedWeaponIndicator.transform.position = new Vector3(LastEquippedWeapon.transform.position.x, LastEquippedWeapon.transform.position.y, -55);
+                    EquippedWeaponIndicator.transform.position = new Vector3(LastEquippedWeapon.transform.position.x, LastEquippedWeapon.transform.position.y, transform.position.z-5);
+                    return;
+                }
+            }
+            else if (SlotScripts[ListId].SlotType == InventoryItem.ItemType.ActiveItem)
+            {
+                if (SlotScripts[ListId].transform.childCount != 0)
+                {
+                    if(LastEquippedItem!=null){
+                        LastEquippedItem.CodeBeforeRemoving();
+                    }
+                    LastEquippedItem = SlotScripts[ListId].transform.GetChild(0).GetComponent<InventoryItem>();
+                    LastEquippedItem.CodeAfterEquipping();
+                    EquipppedItemIndicator.transform.position = new Vector3(LastEquippedItem.transform.position.x, LastEquippedItem.transform.position.y, transform.position.z - 5);
                     return;
                 }
             }
@@ -135,8 +165,30 @@ public class InventoryGear : InventoryBase
                         LastEquippedWeapon.CodeBeforeRemoving();
                     }
                     LastEquippedWeapon = SlotScripts[i].transform.GetChild(0).GetComponent<InventoryItem>();
-                    LastEquippedWeapon.CodeAfterEquipping();
-                    EquippedWeaponIndicator.transform.position = new Vector3(LastEquippedWeapon.transform.position.x, LastEquippedWeapon.transform.position.y, -55);
+                    LastEquippedWeapon.CodeAfterEquipping();                    
+                    EquippedWeaponIndicator.transform.position = new Vector3(LastEquippedWeapon.transform.position.x, LastEquippedWeapon.transform.position.y, transform.position.z-5);
+                    return;
+                }
+            }
+        }
+    }
+
+    InventoryItem LastEquippedItem = null;
+    void EquipFirstAvailableItem()
+    {
+        for (int i = 0; i < SlotScripts.Count; i++)
+        {
+            if (SlotScripts[i].SlotType == InventoryItem.ItemType.ActiveItem)
+            {
+                if (SlotScripts[i].transform.childCount != 0)
+                {
+                    if (LastEquippedItem != null)
+                    {
+                        LastEquippedItem.CodeBeforeRemoving();
+                    }
+                    LastEquippedItem = SlotScripts[i].transform.GetChild(0).GetComponent<InventoryItem>();
+                    LastEquippedItem.CodeAfterEquipping();
+                    EquipppedItemIndicator.transform.position = new Vector3(LastEquippedItem.transform.position.x, LastEquippedItem.transform.position.y, transform.position.z - 5);
                     return;
                 }
             }

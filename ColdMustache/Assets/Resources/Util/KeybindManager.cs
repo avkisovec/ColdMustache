@@ -21,6 +21,7 @@ public class KeybindManager : MonoBehaviour {
     public static KeyCode MousePrimary = KeyCode.Mouse0; //this could be renamed to "shootPrimary", but since there is a whole MouseInterceptor thing, ill keep calling it "mouse"
     public static KeyCode AltFire = KeyCode.Q;
     public static KeyCode Reload = KeyCode.R;
+    public static KeyCode UseItem = KeyCode.F;
 
     //menus
     public static KeyCode OpenInventory = KeyCode.E;

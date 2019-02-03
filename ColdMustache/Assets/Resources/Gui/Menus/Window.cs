@@ -31,8 +31,11 @@ public class Window : MonoBehaviour
 
     public bool AmIActive = true; //false means window is "closed" (actually moves outside cameras view), therefore not reacting
 
-    Vector3 HidingCoordinates = new Vector3(-999, -999, -100);
-    Vector3 VisibleCoordinates = new Vector3(0, 0, -50); //this changes, so it returns to the place it was before closing
+    public Vector3 HidingCoordinates = new Vector3(-999, -999, -100);
+    public Vector3 VisibleCoordinates = new Vector3(0, 0, -50); //this changes, so it returns to the place it was before closing
+
+    public bool OpenableViaKey = false;
+    public KeyCode OpenKey = KeyCode.Joystick8Button9;
 
     // Use this for initialization
     void Start()
@@ -61,14 +64,7 @@ public class Window : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //opening
-        /*
-        if (Input.GetKeyUp(KeybindManager.Interaction))
-        {
-            transform.position = VisibleCoordinates;
-            AmIActive = true;
-        }
-        */
+        
         if (AmIActive)
         {
 
@@ -141,6 +137,18 @@ public class Window : MonoBehaviour
             MouseLastWorldPos = c.ScreenToWorldPoint(Input.mousePosition);
 
 
+        }
+        //not active
+        else
+        {
+            if (OpenableViaKey)
+            {
+                if (Input.GetKeyUp(OpenKey))
+                {
+                    transform.position = VisibleCoordinates;
+                    AmIActive = true;
+                }
+            }
         }
     }
 }

@@ -7,6 +7,10 @@ using System.IO;
 public class InventoryArmory : InventoryBase
 {
 
+    public Window MyWindow;
+    public Window InventoryGearWindow;
+    public InventoryGear InventoryGearScript;
+
     public float BaseMaxWeight = 40;
 
     public List<InventorySlot> GearSlotScripts = new List<InventorySlot>();
@@ -22,9 +26,33 @@ public class InventoryArmory : InventoryBase
         
         SlotScripts = SlotScripts.OrderBy(o => o.SlotId).ToList();
 
+        GearSlotScripts = GearSlotScripts.OrderBy(o => o.SlotId).ToList();
+
+        LoadGearFromFile();
+
         UpdateWeight();
     }
-        
+
+
+    public void LoadGearFromFile()
+    {
+        foreach (string s in SaverLoader.ReadAFile(Application.dataPath + "/Save/Gear.save"))
+        {
+            string[] data = s.Split(';');
+            if (data.Length >= 2)
+            {
+                if (data[1] != "EmptySlot")
+                {
+                    GameObject item = Instantiate(Resources.Load<GameObject>(data[1]) as GameObject);
+                    item.transform.parent = GearSlotScripts[int.Parse(data[0])].transform;
+                    item.transform.localPosition = new Vector3(0, 0, -1);
+                    item.transform.localScale = new Vector3(1, 1, 1);
+                }
+            }
+
+        }
+    }
+
     public void GenerateFromFile()
     {
         float LeftmostX = 8.4f;
@@ -159,23 +187,76 @@ public class InventoryArmory : InventoryBase
         WeightText.SetText("Weight: "+Weight.ToString().PadLeft(3)+"/"+MaxWeight.ToString().PadRight(3) + " ("+(100f*(float)Weight/(float)MaxWeight).ToString().PadLeft(3).Substring(0, 3).Trim(' ') + "%)");
     }
 
+    public bool IsWeightUnder100Percent(){
+        float Weight = 0;
+        float MaxWeight = BaseMaxWeight;
+
+        foreach (InventorySlot invSlot in GearSlotScripts)
+        {
+            if (invSlot.transform.childCount != 0)
+            {
+                InventoryItem ii = invSlot.transform.GetChild(0).GetComponent<InventoryItem>();
+                Weight += ii.Weight;
+                MaxWeight += ii.MaxWeightIncrease;
+            }
+        }
+        if(Weight <= MaxWeight){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     private void Update()
     {
-        Vector2 MouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (Input.GetKeyDown(KeyCode.Mouse0) &&
-            MouseWorldPos.x > SaveAndExitBtn.position.x - (SaveAndExitBtn.lossyScale.x / 2) &&
-            MouseWorldPos.x < SaveAndExitBtn.position.x + (SaveAndExitBtn.lossyScale.x / 2) &&
-            MouseWorldPos.y > SaveAndExitBtn.position.y - (SaveAndExitBtn.lossyScale.y / 2) &&
-            MouseWorldPos.y < SaveAndExitBtn.position.y + (SaveAndExitBtn.lossyScale.y / 2)
-            )
+        if (MyWindow.AmIActive)
         {
-            SaveAndExit();
+            if (InventoryGearWindow.AmIActive)
+            {
+                InventoryGearWindow.VisibleCoordinates = InventoryGearWindow.transform.position;
+                InventoryGearWindow.transform.position = InventoryGearWindow.HidingCoordinates;
+                InventoryGearWindow.AmIActive = false;
+            }
+
+
+            Vector2 MouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            if (Input.GetKeyDown(KeyCode.Mouse0) &&
+                MouseWorldPos.x > SaveAndExitBtn.position.x - (SaveAndExitBtn.lossyScale.x / 2) &&
+                MouseWorldPos.x < SaveAndExitBtn.position.x + (SaveAndExitBtn.lossyScale.x / 2) &&
+                MouseWorldPos.y > SaveAndExitBtn.position.y - (SaveAndExitBtn.lossyScale.y / 2) &&
+                MouseWorldPos.y < SaveAndExitBtn.position.y + (SaveAndExitBtn.lossyScale.y / 2)
+                )
+            {
+                SaveAndExit();
+            }
         }
 
     }
 
     public void SaveAndExit()
     {
+        //if player has no weapon, he will het the first one (on slot if 22001)
+        int EquippedWeapons = 0;
+        for(int i = 0; i <GearSlotScripts.Count; i++){
+            if(GearSlotScripts[i].SlotType == InventoryItem.ItemType.WeaponMain){
+                if(GearSlotScripts[i].transform.childCount!=0){
+                    EquippedWeapons++;
+                }
+            }
+        }
+        if (EquippedWeapons == 0)
+        {
+            AlphabetManager.SpawnFloatingText("You need a weapon.", new Vector3(UniversalReference.MouseWorldPos.x, UniversalReference.MouseWorldPos.y, -60));
+            return;
+        }
+
+        if(!IsWeightUnder100Percent()){
+            AlphabetManager.SpawnFloatingText("You are too heavy.", new Vector3(UniversalReference.MouseWorldPos.x, UniversalReference.MouseWorldPos.y, -60));
+            return;
+        }
+        
+
         StreamWriter sw = new StreamWriter(Application.dataPath + "/Save/Gear.save");
 
         for(int i = 0; i < GearSlotScripts.Count; i++)
@@ -195,9 +276,13 @@ public class InventoryArmory : InventoryBase
 
         sw.Close();
 
-        Destroy(transform.parent.gameObject);
 
-        Level.ReloadScene();
+        InventoryGearScript.ReloadInventory();
+        InventoryGearWindow.transform.position = InventoryGearWindow.VisibleCoordinates;
+        InventoryGearWindow.AmIActive = true;
+
+        Destroy(transform.parent.gameObject);
+        
     }
 
 }

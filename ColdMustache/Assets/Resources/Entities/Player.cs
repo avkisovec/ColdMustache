@@ -17,6 +17,8 @@ public class Player : MonoBehaviour {
 
     public Weapon CurrentlyEquippedWeapon;
 
+    public ActiveItem CurrentlyEquippedItem = null;
+
     public float Inaccuracy = 0;
     //ranges between 0 and 1
     //random bullet spread is multiplied by this value
@@ -187,38 +189,13 @@ public class Player : MonoBehaviour {
             AlphabetManager.SpawnFloatingText("Hi!", new Vector3(transform.position.x, transform.position.y, -35));
         }
         
-        if (true||Input.GetKeyDown(KeyCode.B)){
-            /*
-            for(int i = 0; i < 50; i++)
-            {
-                //List<Vector2Int> v = NavTestStatic.AvkisLight_cast(CurrentTile);
-                //List<Vector2Int> v = NavTestStatic.BresenhamLight(CurrentTile, 5);
-            }*/
-            /*
-            foreach(Vector2Int v in NavTestStatic.AvkisLight_cast(CurrentTile))
-            {
-                GameObject go = new GameObject();
-                go.transform.position = new Vector3(v.x, v.y, -10);
-                go.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("pixel");
-                go.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
-                go.AddComponent<DieIn>().Frames = 1;
-                go.name = v.ToString();
-            }
-            */
-            /*
-            foreach (Vector2Int v in NavTestStatic.BresenhamLight(CurrentTile, 5))
-            {
-                GameObject go = new GameObject();
-                go.transform.position = new Vector3(v.x, v.y, -10);
-                go.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("pixel");
-                go.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
-                go.AddComponent<DieIn>().Frames = 1;
-                go.name = v.ToString();
-            }
-            */
-        }
-
         //end of test stuff
+
+        if(Input.GetKeyDown(KeybindManager.UseItem)){
+            if(CurrentlyEquippedItem!=null){
+                CurrentlyEquippedItem.DoYourThing();
+            }
+        }
         
         if (Input.GetKeyUp(KeyCode.F5))
         {

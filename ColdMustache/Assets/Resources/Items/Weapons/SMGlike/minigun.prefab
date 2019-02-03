@@ -95,7 +95,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PrefabPath: Items/Weapons/SMGlike/minigun
   Type: 5
-  Weight: 1
+  Weight: 20
+  MaxWeightIncrease: 0
   HoverDescription: Man-portable (though still very heavy) minigun, with rotating
     barrel and huge ammo capacity. Can tear through almost anything, assuming you
     are able to even pick it up.

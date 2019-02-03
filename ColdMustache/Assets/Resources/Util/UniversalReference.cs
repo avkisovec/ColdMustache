@@ -14,7 +14,7 @@ public class UniversalReference : MonoBehaviour {
     public static Entity PlayerEntity;
     public static Player PlayerScript;
     public static Rigidbody2D PlayerRb;
-    public static SpriteManagerGeneric PlayerSpriteManager;
+    public static SpriteManagerHand PlayerSpriteManager;
 
     public static GunRotatorHand GunRotator;
 
@@ -26,6 +26,8 @@ public class UniversalReference : MonoBehaviour {
     public static Image AmmoCounter;
     public static Image AmmoStatus;
     public static Image WeaponStatus;
+
+    public static Image SelectedItemIcon;
 
     //camera, cursor, crosshair
     public static Camera MainCamera;
@@ -54,7 +56,7 @@ public class UniversalReference : MonoBehaviour {
         PlayerEntity = PlayerObject.GetComponent<Entity>();
         PlayerScript = PlayerObject.GetComponent<Player>();
         PlayerRb = PlayerObject.GetComponent<Rigidbody2D>();
-        PlayerSpriteManager = GameObject.Find("PlayerContainer").GetComponent<SpriteManagerGeneric>();
+        PlayerSpriteManager = GameObject.Find("PlayerContainer").GetComponent<SpriteManagerHand>();
 
         GunRotator = GameObject.Find("PlayerContainer/GunContainer").GetComponent<GunRotatorHand>();
 
@@ -73,6 +75,7 @@ public class UniversalReference : MonoBehaviour {
         AmmoCounter = GameObject.Find("Canvas/AmmoCounter").GetComponent<Image>();
         AmmoStatus = GameObject.Find("Canvas/AmmoStatus").GetComponent<Image>();
         WeaponStatus = GameObject.Find("Canvas/WeaponStatus").GetComponent<Image>();
+        SelectedItemIcon = GameObject.Find("Canvas/SelectedItem").GetComponent<Image>();
 
         //camera, cursor, crosshair
         MainCamera = Camera.main;
