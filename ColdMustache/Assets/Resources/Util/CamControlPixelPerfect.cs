@@ -87,7 +87,7 @@ public class CamControlPixelPerfect : MonoBehaviour {
 
         
 
-        if (Input.mouseScrollDelta.y != 0)
+        if (Input.mouseScrollDelta.y != 0 && (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)))
         {
             DesiredTileScale += (int)Input.mouseScrollDelta.y;
 

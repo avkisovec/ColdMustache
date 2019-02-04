@@ -14,6 +14,8 @@ SLOT TYPE:
 -21 equip - sidearm
 -22 equip - main weapon
 
+-31 active item
+
 those numbers are outdated, replaced by InventryItem.ItemType (enum)
 
 

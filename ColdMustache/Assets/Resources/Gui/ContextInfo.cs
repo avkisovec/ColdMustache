@@ -113,7 +113,7 @@ public class ContextInfo : MonoBehaviour
     
     public void SetText(string text)
     {
-        List<string> FormattedText = AlphabetManager.BreakText_Array(text, LineLength);
+        List<string> FormattedText = AlphabetManager.BreakText2_Array(text, LineLength);
 
         Color first = new Color(1f, 1f, 1, 1);
         Color second = new Color(1f, 1f, 0f, 1);

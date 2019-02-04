@@ -22,8 +22,33 @@ public class InventoryArmory : InventoryBase
     // Start is called before the first frame update
     void Start()
     {
+        ReloadArmory();
+    }
+
+    public void ReloadArmory(){
+
+        SlotScripts.Clear();
+
+        List<Transform> ToDie = new List<Transform>();
+        for(int i = 0; i < transform.childCount; i++){
+            ToDie.Add(transform.GetChild(i));
+        }
+        Transform GearSlots = transform.parent.Find("GearSlots");
+        for (int i = 0; i < GearSlots.childCount; i++)
+        {
+            try{
+                ToDie.Add(GearSlots.GetChild(i).GetChild(0));
+            }catch{}
+        }
+
+        foreach(Transform tr in ToDie){
+            tr.parent = null;
+            Destroy(tr.gameObject);
+        }
+
+
         GenerateFromFile();
-        
+
         SlotScripts = SlotScripts.OrderBy(o => o.SlotId).ToList();
 
         GearSlotScripts = GearSlotScripts.OrderBy(o => o.SlotId).ToList();
@@ -32,7 +57,6 @@ public class InventoryArmory : InventoryBase
 
         UpdateWeight();
     }
-
 
     public void LoadGearFromFile()
     {
@@ -74,6 +98,7 @@ public class InventoryArmory : InventoryBase
             GameObject slot = new GameObject();
             slot.transform.parent = transform;
             slot.transform.localPosition = new Vector3(X, Y, -0.1f);
+            slot.transform.localScale = new Vector3(1,1,1);
             slot.AddComponent<SpriteRenderer>().sprite = SlotSprite;
             
             InventorySlot slotScript = slot.AddComponent<InventorySlot>();
@@ -281,8 +306,9 @@ public class InventoryArmory : InventoryBase
         InventoryGearWindow.transform.position = InventoryGearWindow.VisibleCoordinates;
         InventoryGearWindow.AmIActive = true;
 
-        Destroy(transform.parent.gameObject);
-        
+        //Destroy(transform.parent.gameObject);
+        transform.parent.GetComponent<Window>().Hide();
     }
 
+     
 }

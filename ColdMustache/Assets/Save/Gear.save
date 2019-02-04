@@ -1,6 +1,6 @@
-0;Items/Head/HelmetGreen
-1;Items/Jacket/CoatBrown
-2;Items/Shirt/ShirtPink
+0;Items/Head/HelmetPink
+1;EmptySlot
+2;Items/Shirt/ShirtBlue
 3;Items/Weapons/SMGlike/hitech
 4;Items/Weapons/SMGlike/default
 5;Items/Weapons/SMGlike/minigun
@@ -9,8 +9,8 @@
 8;Items/Active/Heal/HealthKit
 9;Items/Active/Heal/HealthKit
 10;Items/Active/Heal/HealthKit
-11;EmptySlot
-12;EmptySlot
+11;Items/Active/Buff/SyringeMovespeed
+12;Items/Active/Buff/SyringeMovespeed
 13;EmptySlot
 14;EmptySlot
 15;EmptySlot

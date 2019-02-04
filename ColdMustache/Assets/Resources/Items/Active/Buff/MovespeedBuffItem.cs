@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealingItem : ActiveItem
+public class MovespeedBuffItem : ActiveItem
 {
-    public float Healing = 5f;
+    public float BuffCoefficient = 1.5f;
+
+    public float Duration = 30;
 
     public int Charges = 1;
     public Sprite[] ChargesSprites;
@@ -24,26 +26,31 @@ public class HealingItem : ActiveItem
         if (Charges > 0)
         {
             Entity e = UniversalReference.PlayerEntity;
-            e.gameObject.AddComponent<HealingStatus>().ini(Healing, 2, 0.1f);
+            e.gameObject.AddComponent<MovespeedBuffStatus>().ini(Duration, BuffCoefficient);
             Charges--;
-            if(Charges > 0){
-                sr.sprite = ChargesSprites[ChargesSprites.Length-1];
+            if (Charges > 0)
+            {
+                sr.sprite = ChargesSprites[ChargesSprites.Length - 1];
             }
-            else{
+            else
+            {
                 sr.sprite = EmptySprite;
             }
         }
-        else{
+        else
+        {
             AlphabetManager.SpawnFloatingText(FloatingTextWhenUsingWithoutCharges, new Vector3(UniversalReference.PlayerObject.transform.position.x, UniversalReference.PlayerObject.transform.position.y, -45));
         }
         UniversalReference.SelectedItemIcon.sprite = sr.sprite;
     }
 
-    public override void CodeBeforeRemoving(){
+    public override void CodeBeforeRemoving()
+    {
         UniversalReference.PlayerScript.CurrentlyEquippedItem = null;
     }
 
-    public override void Refill(){
+    public override void Refill()
+    {
         Charges = 1;
     }
 }

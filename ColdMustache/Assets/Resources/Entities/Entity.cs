@@ -10,6 +10,7 @@ public class Entity : MonoBehaviour {
     public team Team = team.Neutral;
     public float BaseMoveSpeed = 5;
     public float MoveSpeedSlowModifier = 1;
+    public float MoveSpeedBuffModifier = 1;
 
     public Vector2 LookingToward = new Vector2(1,0);
 
@@ -37,7 +38,7 @@ public class Entity : MonoBehaviour {
         if (MovementVector.x != 0 || MovementVector.y != 0)
         {
             //dividing by magnitude to make diagonal travel as fast as horizontal/vertical
-            rb.velocity = MovementVector / MovementVector.magnitude * BaseMoveSpeed * MoveSpeedSlowModifier;
+            rb.velocity = MovementVector / MovementVector.magnitude * BaseMoveSpeed * MoveSpeedSlowModifier * MoveSpeedBuffModifier;
 
             if (LookDirectionBasedOnMovement)
             {
@@ -51,6 +52,7 @@ public class Entity : MonoBehaviour {
 
 
         MoveSpeedSlowModifier = 1;
+        MoveSpeedBuffModifier = 1;
     }
 
     public void StopMoving()

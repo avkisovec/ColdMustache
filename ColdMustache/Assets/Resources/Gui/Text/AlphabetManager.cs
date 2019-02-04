@@ -196,6 +196,7 @@ public class AlphabetManager : MonoBehaviour {
                 {
                     Output.Add(CurrLine);
                     CurrLine = CurrWord;
+                    CurrWord = "";
                 }
             }
             else if (text[TextPointer] == '\n')
@@ -214,6 +215,7 @@ public class AlphabetManager : MonoBehaviour {
                 {
                     Output.Add(CurrLine);
                     CurrLine = CurrWord;
+                    CurrWord = "";
                     Output.Add(CurrLine);
                     CurrLine = "";
                     FirstWordOnLine = true;

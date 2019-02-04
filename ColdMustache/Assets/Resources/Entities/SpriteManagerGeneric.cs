@@ -264,4 +264,10 @@ public class SpriteManagerGeneric : SpriteManagerBase {
         return OutputLines.ToArray();
     }
 
+    public void ResetChosenSprites(int[] ids){
+        foreach(int i in ids){
+            sprites[i] = UniversalReference.EmptyBodyPart;
+        }
+    }
+
 }

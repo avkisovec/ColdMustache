@@ -67,7 +67,6 @@ public class Window : MonoBehaviour
         
         if (AmIActive)
         {
-
             Vector2 MouseWorldPos = c.ScreenToWorldPoint(Input.mousePosition);
 
             MouseDelta = (Vector2)Input.mousePosition - MouseLastScreenPos;
@@ -99,9 +98,7 @@ public class Window : MonoBehaviour
                 MouseWorldPos.y < CloseButton.transform.position.y + (CloseButton.transform.lossyScale.y / 2)
                 ))
             {
-                VisibleCoordinates = transform.position;
-                transform.position = HidingCoordinates;
-                AmIActive = false;
+                Hide();
             }
 
             if (Input.GetKeyDown(KeyCode.Mouse0) &&
@@ -145,10 +142,21 @@ public class Window : MonoBehaviour
             {
                 if (Input.GetKeyUp(OpenKey))
                 {
-                    transform.position = VisibleCoordinates;
-                    AmIActive = true;
+                    UnHide();
                 }
             }
         }
     }
+
+    public void Hide(){
+        VisibleCoordinates = transform.position;
+        transform.position = HidingCoordinates;
+        AmIActive = false;
+    }
+
+    public void UnHide(){
+        transform.position = VisibleCoordinates;
+        AmIActive = true;
+    }
+
 }

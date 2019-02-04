@@ -8,4 +8,8 @@ public class ActiveItem : InventoryItem
     {
 
     }
+
+    public virtual void Refill(){
+        
+    }
 }

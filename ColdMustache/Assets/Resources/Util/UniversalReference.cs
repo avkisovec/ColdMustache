@@ -22,6 +22,10 @@ public class UniversalReference : MonoBehaviour {
 
     public static Inventory PlayerInventory;
 
+    public static InventoryGear PlayerGearInventory;
+
+    public static InventoryArmory Armory;
+
     //gui
     public static Image AmmoCounter;
     public static Image AmmoStatus;
@@ -70,6 +74,11 @@ public class UniversalReference : MonoBehaviour {
         {
 
         }
+
+
+        PlayerGearInventory= GameObject.Find("InventoryGearContainer/Gear").GetComponent<InventoryGear>();
+
+        Armory= GameObject.Find("ArmoryContainer/Armory").GetComponent<InventoryArmory>();
 
         //gui
         AmmoCounter = GameObject.Find("Canvas/AmmoCounter").GetComponent<Image>();
