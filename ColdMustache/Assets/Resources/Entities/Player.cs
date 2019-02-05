@@ -42,7 +42,6 @@ public class Player : MonoBehaviour {
     // Use this for initialization
     void Start() {
         entity = GetComponent<Entity>();
-        //NavTestStatic.AvkisLight_build(10);
     }
 
     // Update is called once per frame
@@ -171,7 +170,7 @@ public class Player : MonoBehaviour {
 
         if (Input.GetKeyUp(KeyCode.G))
         {
-            Grenade(MouseWorldPos);
+            //Grenade(MouseWorldPos);
         }
 
         if (Input.GetKeyUp(KeyCode.Mouse2))

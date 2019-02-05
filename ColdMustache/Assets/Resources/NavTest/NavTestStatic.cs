@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NavTestStatic : MonoBehaviour {
 
-
+    #region Declarations
 
     public const int ImpassableTileValue = 999999;
     public const int EmptyTileValue = 888888;
@@ -12,9 +12,16 @@ public class NavTestStatic : MonoBehaviour {
     public static int MapWidth = 200;
     public static int MapHeight = 200;
 
+    //the maximum radius AvkisLight and explosions using it can have
+    public static int MaxLightAndExplosionDistance = 15;
+
     public static int[,] NavArray;
     public static int[,] ExplosionNavArray;
     public static int[,] LightNavArray;
+
+    #endregion
+
+    #region Building
 
     void Start()
     {
@@ -50,6 +57,9 @@ public class NavTestStatic : MonoBehaviour {
                 NavTestStatic.LightNavArray[Mathf.RoundToInt(eo.transform.position.x), Mathf.RoundToInt(eo.transform.position.y)] = NavTestStatic.ImpassableTileValue;
             }
         }
+
+
+        NavTestStatic.AvkisLight_build(MaxLightAndExplosionDistance);
     }
 
     public static void BuildMapFromImage()
@@ -117,6 +127,52 @@ public class NavTestStatic : MonoBehaviour {
         }
     }
 
+    #endregion
+
+    #region Debug
+
+    public static void ExportNavMap()
+    {
+
+        SaverLoader.CreateHardPathIfNeeded(Application.dataPath + "/debug/navMapOutput.txt");
+
+        StreamWriter sw = new StreamWriter(Application.dataPath + "/debug/navMapOutput.txt");
+        sw.AutoFlush = true;
+
+        for (int y = MapHeight - 1; y >= 0; y--)
+        {
+            for (int x = 0; x < MapWidth; x++)
+            {
+                if (NavArray[x, y] == ImpassableTileValue)
+                {
+                    sw.Write("#");
+                }
+                else
+                {
+                    sw.Write(".");
+                }
+            }
+            sw.WriteLine();
+        }
+
+    }
+
+    #endregion
+
+    #region General
+
+    public static bool IsTileWithinBounds(Vector2Int Tile)
+    {
+        if (Tile.x >= 0 && Tile.y >= 0 && Tile.x < MapWidth && Tile.y < MapHeight)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    #endregion
+
+    #region Navigation
 
     public static List<Vector2> FindAPath(int SourceX, int SourceY, int TargetX, int TargetY, int MaxDistance = 20)
     {
@@ -414,31 +470,7 @@ public class NavTestStatic : MonoBehaviour {
         return Output;
     }
     
-    public static void ExportNavMap()
-    {
-
-        SaverLoader.CreateHardPathIfNeeded(Application.dataPath + "/debug/navMapOutput.txt");
-
-        StreamWriter sw = new StreamWriter(Application.dataPath + "/debug/navMapOutput.txt");
-        sw.AutoFlush = true;
-
-        for(int y = MapHeight-1; y >= 0; y--)
-        {
-            for (int x = 0; x < MapWidth; x++)
-            {
-                if(NavArray[x,y] == ImpassableTileValue)
-                {
-                    sw.Write("#");
-                }
-                else
-                {
-                    sw.Write(".");
-                }
-            }
-            sw.WriteLine();
-        }
-
-    }
+    
 
     public static bool IsTileWalkable(int X, int Y)
     {
@@ -469,6 +501,10 @@ public class NavTestStatic : MonoBehaviour {
         }
         return true;
     }
+
+    #endregion
+
+    #region Light
 
     public static bool CanLightPassThroughTile(int x, int y)
     {
@@ -540,16 +576,46 @@ public class NavTestStatic : MonoBehaviour {
         }
         return output;
     }
-    
-    static bool IsTileWithinBounds(Vector2Int Tile)
+
+    #endregion
+
+    #region Explosion
+
+    public static bool CanExplosionPassThroughTile(Vector2Int tile)
     {
-        if (Tile.x >= 0 && Tile.y >= 0 && Tile.x < MapWidth && Tile.y < MapHeight)
+        if (ExplosionNavArray[tile.x, tile.y] == EmptyTileValue)
         {
             return true;
         }
         return false;
     }
 
+    //RETURNS a vector 3, X and Y are TILE COORDINATES and Z is DISTANCE FROM SOURCE
+    public static List<Vector3> GetExplosionArea(Vector2Int Source, float MaxDistance){
+        List<Vector3>Output = new List<Vector3>();
+
+        AvkisLight_cast_explosion_recursion(Source, AvkisLightNodes[0], MaxDistance, Output);
+
+        return Output;
+    }
+
+    static void AvkisLight_cast_explosion_recursion(Vector2Int Source, AvkisLightNode node, float MaxDistance, List<Vector3> Output)
+    {
+        if (IsTileWithinBounds(Source + node.Coordinates))
+        {
+            Output.Add(new Vector3(Source.x + node.Coordinates.x, Source.y + node.Coordinates.y, node.DistanceFromSource));
+            if (CanExplosionPassThroughTile(Source + node.Coordinates) && node.DistanceFromSource < MaxDistance)
+            {
+                foreach (AvkisLightNode child in node.Children)
+                {
+                    AvkisLight_cast_explosion_recursion(Source, child, MaxDistance, Output);
+                }
+
+            }
+        }
+    }
+
+    #endregion
 
     #region AvkisLight
 
@@ -566,7 +632,7 @@ public class NavTestStatic : MonoBehaviour {
      * the actual light calculation is then very simple - check if light can pass through a node, and then recursively keep checking children
      * 
      * AvkisLight has huge advantage over Bresenham light, because it calculates each tile only once - this means way faster calculation at runtime
-     * also if a light cannot pass through a node, it automatically cannot pass through any children - they wont even be calculated unlike in bresenham light
+     * also if a light cannot pass through a node, it automatically cannot pass through any children - they wont be calculated
      * the downside is having to build the map on load, but thats not a problem - its worth spending some miliseconds during loading to save them on every frame after
      * 
      * this algorithm is way more efficient if there are many tiles to calculate, as it will always calculate every visible tile only once
@@ -627,15 +693,15 @@ public class NavTestStatic : MonoBehaviour {
                 //if parent node was found immediatelly, no need to skip a gap
                 if (found != null)
                 {
-                    AvkisLightNode nu = new AvkisLightNode(CirclePoint);
+                    AvkisLightNode nu = new AvkisLightNode(CirclePoint, Vector2Int.Distance(CirclePoint, new Vector2Int(0,0)));
                     AvkisLightNodes.Add(nu);
                     found.AddChild(nu);
                 }
                 //skipping a gap (putting a node into the gap)
                 else
                 {
-                    AvkisLightNode nu = new AvkisLightNode(CirclePoint);
-                    AvkisLightNode GapFiller = new AvkisLightNode(Line[1]);
+                    AvkisLightNode nu = new AvkisLightNode(CirclePoint, Vector2Int.Distance(CirclePoint, new Vector2Int(0, 0)));
+                    AvkisLightNode GapFiller = new AvkisLightNode(Line[1], Vector2Int.Distance(Line[1], new Vector2Int(0, 0)));
                     foreach (AvkisLightNode node in AvkisLightNodes)
                     {
                         if (node.Coordinates == Line[2])
@@ -686,9 +752,12 @@ public class NavTestStatic : MonoBehaviour {
         public Vector2Int Coordinates;
         public AvkisLightNode[] Children;
 
-        public AvkisLightNode(Vector2Int Coordinates)
+        public float DistanceFromSource = -1;
+
+        public AvkisLightNode(Vector2Int Coordinates, float DistanceFromSource = -1)
         {
             this.Coordinates = Coordinates;
+            this.DistanceFromSource = DistanceFromSource;
             Children = new AvkisLightNode[0];
         }
 
