@@ -37,6 +37,8 @@ public class Window : MonoBehaviour
     public bool OpenableViaKey = false;
     public KeyCode OpenKey = KeyCode.Joystick8Button9;
 
+    public int FramesActive = -1;
+
     // Use this for initialization
     void Start()
     {
@@ -67,6 +69,8 @@ public class Window : MonoBehaviour
         
         if (AmIActive)
         {
+            if(FramesActive < 1000) FramesActive++;
+
             Vector2 MouseWorldPos = c.ScreenToWorldPoint(Input.mousePosition);
 
             MouseDelta = (Vector2)Input.mousePosition - MouseLastScreenPos;
@@ -133,11 +137,27 @@ public class Window : MonoBehaviour
             MouseLastScreenPos = Input.mousePosition;
             MouseLastWorldPos = c.ScreenToWorldPoint(Input.mousePosition);
 
+            //if the top bar is on the edge of the screen (or out of bounds), correction will push it back within bounds
+            if(!CurrentlyBeingMovedByMouse){
+                Vector3 RequiredCorrection = WindowManager.RequestCorrection(TopBar.transform);
+                if (RequiredCorrection.x != 0 || RequiredCorrection.y != 0)
+                {
+                    transform.position += RequiredCorrection;
 
+                    if(FramesActive > 1){
+                        ScreenXPercentRatio = c.WorldToScreenPoint(transform.position).x / c.pixelWidth;
+                        ScreenYPercentRatio = c.WorldToScreenPoint(transform.position).y / c.pixelHeight;
+                    }
+                    //Debug.Log(RequiredCorrection);
+                }
+            }
+            
+            
         }
         //not active
         else
         {
+            FramesActive = -1;
             if (OpenableViaKey)
             {
                 if (Input.GetKeyUp(OpenKey))
@@ -151,11 +171,20 @@ public class Window : MonoBehaviour
     public void Hide(){
         VisibleCoordinates = transform.position;
         transform.position = HidingCoordinates;
+        FramesActive = -1;
         AmIActive = false;
     }
 
     public void UnHide(){
-        transform.position = VisibleCoordinates;
+        
+        if (StayOnScreenPosition)
+        {
+            transform.position = new Vector3(
+                c.ScreenToWorldPoint(new Vector3(c.pixelWidth * ScreenXPercentRatio, 1)).x,
+                c.ScreenToWorldPoint(new Vector3(1, c.pixelHeight * ScreenYPercentRatio)).y,
+                -50
+                );
+        }
         AmIActive = true;
     }
 

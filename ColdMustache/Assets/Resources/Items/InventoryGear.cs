@@ -175,6 +175,8 @@ public class InventoryGear : InventoryBase
 
     void Update(){
 
+        #region Hotkeys
+
         if(Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1)){
             if(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)){
                 TryEquippingItem(8);
@@ -282,7 +284,8 @@ public class InventoryGear : InventoryBase
                 }
             }
         }
-        
+        #endregion
+
 
     }
 
@@ -292,6 +295,8 @@ public class InventoryGear : InventoryBase
      *  items 1-10 ... [8]-[17]
      *
      */
+
+    #region Weapons
 
     int[] WeaponSlotIndexes = new int[]{3,4,5,6,7};
     int LastEquippedWeaponSlotIndex = -1;
@@ -382,6 +387,10 @@ public class InventoryGear : InventoryBase
         }
         return output;
     }
+
+    #endregion
+
+    #region Items
 
     int[] ItemSlotIndexes = new int[]{8,9,10,11,12,13,14,15,16,17};
     int LastEquippedItemSlotIndex = -1;
@@ -493,5 +502,5 @@ public class InventoryGear : InventoryBase
             }
         }
     }
-
+    #endregion
 }

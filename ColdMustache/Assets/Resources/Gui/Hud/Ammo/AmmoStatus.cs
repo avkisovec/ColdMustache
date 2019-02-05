@@ -61,6 +61,12 @@ public class AmmoStatus : MonoBehaviour {
         }
     }
 
+    public static void SetEmptySpriteAndNormalColor(){
+        ammoStatusImage.sprite = Empty;
+        AmmoCounter.color = new Color(1, 1, 1, 1);
+        CrosshairOverlay.sprite = Empty;
+    }
+
     public static void EmptyMag()
     {
         /*

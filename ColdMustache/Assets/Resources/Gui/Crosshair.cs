@@ -62,6 +62,8 @@ public class Crosshair : MonoBehaviour {
         Vector3 something = UniversalReference.MainCamera.ScreenToWorldPoint(Input.mousePosition);
         transform.position = new Vector3(something.x, something.y, transform.position.z);
 
+        #region Window
+
         float Distance = ((Vector2)UniversalReference.PlayerObject.transform.position - UniversalReference.MouseWorldPos).magnitude;
         if (MouseInterceptor.IsMouseHoveringMenu())
         {
@@ -84,6 +86,7 @@ public class Crosshair : MonoBehaviour {
                 Dot_sr.sprite = PointerEmpty;
             }
         }
+        #endregion
         else
         {
             if(TemporaryColorRemaining > 0)
@@ -134,7 +137,8 @@ public class Crosshair : MonoBehaviour {
                 else
                 {
                     Color clr = IneffectiveRangeColor * (1 - ((Distance - 2 * EffectiveRange) / EffectiveRange));                    
-                    Edge0_sr.color = Edge1_sr.color = Edge2_sr.color = Edge3_sr.color = Dot_sr.color = clr;
+                    Edge0_sr.color = Edge1_sr.color = Edge2_sr.color = Edge3_sr.color = clr;
+                    Dot_sr.color = IneffectiveRangeColor;
                 }
             }
             else
@@ -145,7 +149,8 @@ public class Crosshair : MonoBehaviour {
                 }
                 else
                 {
-                    Edge0_sr.color = Edge1_sr.color = Edge2_sr.color = Edge3_sr.color = Dot_sr.color = InvisibleColor;
+                    Edge0_sr.color = Edge1_sr.color = Edge2_sr.color = Edge3_sr.color = InvisibleColor;
+                    Dot_sr.color = IneffectiveRangeColor;
                 }
             }
 

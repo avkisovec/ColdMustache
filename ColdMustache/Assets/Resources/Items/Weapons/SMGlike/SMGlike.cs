@@ -41,7 +41,6 @@ public class SMGlike : Weapon {
 
     public string MuzzleFlashSpritePath = "Fx/SmgMuzzleFlash";
 
-
     //alt fire
 
     public enum SmgModes { Semi, Full }
@@ -71,6 +70,8 @@ public class SMGlike : Weapon {
         //status
         StatusFullSprite = Resources.Load<Sprite>(StatusFullPath);
         StatusSemiSprite = Resources.Load<Sprite>(StatusSemiPath);
+
+        AmmoStatus.SetEmptySpriteAndNormalColor();
 
         DisplayCorrectStatusImage();
 

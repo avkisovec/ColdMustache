@@ -481,6 +481,21 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224744476371771216, guid: b5b1560b884a7bc4e8f43dac4c42bb24,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 126
+      objectReference: {fileID: 0}
+    - target: {fileID: 224744476371771216, guid: b5b1560b884a7bc4e8f43dac4c42bb24,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -285
+      objectReference: {fileID: 0}
+    - target: {fileID: 224744476371771216, guid: b5b1560b884a7bc4e8f43dac4c42bb24,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 114815141044254962, guid: b5b1560b884a7bc4e8f43dac4c42bb24,
         type: 3}
       propertyPath: AmmoCounter_
@@ -495,6 +510,10 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: 'LMB, Q, R - weapons
+
+        F - use item
+
+        E - interact/inventory
 
         G explosion
 
@@ -516,7 +535,11 @@ PrefabInstance:
 
         SHIFT+(1-10) hotkey items
 
-        F5 F6 quicksave quickload (player)'
+        F5 F6 quicksave quickload (player)
+
+        F1 restart
+
+        F2 screenshot'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5b1560b884a7bc4e8f43dac4c42bb24, type: 3}
@@ -551,11 +574,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4282849593013630, guid: 44d4cde11436f2f47a762a5f17d93a6e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.11
+      value: 24.57
       objectReference: {fileID: 0}
     - target: {fileID: 4282849593013630, guid: 44d4cde11436f2f47a762a5f17d93a6e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 15.9
+      value: 11.95
       objectReference: {fileID: 0}
     - target: {fileID: 4282849593013630, guid: 44d4cde11436f2f47a762a5f17d93a6e, type: 3}
       propertyPath: m_LocalPosition.z

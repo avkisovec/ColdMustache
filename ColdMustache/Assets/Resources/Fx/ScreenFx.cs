@@ -55,7 +55,7 @@ public class ScreenFx : MonoBehaviour {
             
             GameObject container = new GameObject();
             container.transform.parent = UniversalReference.MainCamera.transform;
-            container.transform.localPosition = new Vector3(-40f * 7f / 32f, 0, 27);
+            container.transform.localPosition = new Vector3(-40f * 7f / 32f / UniversalReference.camControlPixelPerfect.ActualTileScale, 2 / UniversalReference.camControlPixelPerfect.ActualTileScale, 27);
             container.AddComponent<StayFixedSize>().PixelScale = 2;
 
             string DeathText = AlphabetManager.BreakText(GetDeathText(WeaponType),40);

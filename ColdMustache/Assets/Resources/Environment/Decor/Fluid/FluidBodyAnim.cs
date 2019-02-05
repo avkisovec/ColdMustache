@@ -1,10 +1,14 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class FluidAnim : MonoBehaviour {
+public class FluidBodyAnim : MonoBehaviour
+{
+
 
     /*
     
-        the cocept 
+        the old FluidAnim cocept 
 
         who images overlaid (A is above B (A = Above B = Below))
         A changes in transparency, B is always fully opaque
@@ -18,16 +22,18 @@ public class FluidAnim : MonoBehaviour {
         just as before the old A sprite slowly transitions into B sprite, B sprite now transitions into new A sprite
         and once A if fully opaque and B not visible, set new sprite for B and repeat
     
-     */
 
-    public SpriteRenderer srA;
-    public SpriteRenderer srB;
+        THIS IS EDITED VERSION OF THAT that supports multiple spriteRenderers that it updates centrally
+        so you can have a large body of water where every tile will be the same as others (color sprite phase and everything)
+
+
+     */
+    public List<Sprite> Sprites = new List<Sprite>();
+    public List<SpriteRenderer> spriteRenderersA = new List<SpriteRenderer>();
+    public List<SpriteRenderer> spriteRenderersB = new List<SpriteRenderer>();
 
     public Color ColorA;
     public Color ColorB;
-
-    public string SpriteSheetPath;
-    Sprite[] Sprites;
 
     public int LastSpriteIndex = -1;
 
@@ -38,15 +44,12 @@ public class FluidAnim : MonoBehaviour {
     //1 is about 1 phase per second (2 seconds per full cycle) higher number means faster animation, lower number (0.5) means longer animation
     public float Speed = 1;
 
-	// Use this for initialization
-	void Start () {
-        Sprites = Resources.LoadAll<Sprite>(SpriteSheetPath);
-        
-	}
-	
-	// Update is called once per frame
-	void Update () {
 
+    
+
+    // Update is called once per frame
+    void Update()
+    {
         if (GoinUp)
         {
             if (Alpha + Time.deltaTime * Speed >= 1)
@@ -77,42 +80,59 @@ public class FluidAnim : MonoBehaviour {
                 Alpha -= Time.deltaTime * Speed;
             }
         }
-
-        srA.color = new Color(srA.color.r, srA.color.g, srA.color.b, Alpha);
+        foreach(SpriteRenderer sr in spriteRenderersA){
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, Alpha);
+        }
     }
 
     public void RollA()
     {
-        srA.sprite = Sprites[GetNewSpriteIndex()];
-        srA.color = new Color(
-            Random.Range(ColorA.r, ColorB.r),
-            Random.Range(ColorA.g, ColorB.g),
-            Random.Range(ColorA.b, ColorB.b),
-            0
-            );
-        srA.flipX = Util.Coinflip();
-        srA.flipY = Util.Coinflip();
+        int NewSpriteIndex = GetNewSpriteIndex();
+        bool FlipX = Util.Coinflip();
+        bool FLipY = Util.Coinflip();
+        Color clr = new Color(
+                Random.Range(ColorA.r, ColorB.r),
+                Random.Range(ColorA.g, ColorB.g),
+                Random.Range(ColorA.b, ColorB.b),
+                0
+                );
+
+        foreach(SpriteRenderer sr in spriteRenderersA){
+            sr.sprite = Sprites[NewSpriteIndex];
+            sr.color = clr;
+            sr.flipX = FlipX;
+            sr.flipY = FLipY;
+        }
+        
     }
 
     public void RollB()
     {
-        srB.sprite = Sprites[GetNewSpriteIndex()];
-        srB.color = new Color(
-            Random.Range(ColorA.r, ColorB.r),
-            Random.Range(ColorA.g, ColorB.g),
-            Random.Range(ColorA.b, ColorB.b),
-            1
-            );
-        srB.flipX = Util.Coinflip();
-        srB.flipY = Util.Coinflip();
+        int NewSpriteIndex = GetNewSpriteIndex();
+        bool FlipX = Util.Coinflip();
+        bool FLipY = Util.Coinflip();
+        Color clr = new Color(
+                Random.Range(ColorA.r, ColorB.r),
+                Random.Range(ColorA.g, ColorB.g),
+                Random.Range(ColorA.b, ColorB.b),
+                1
+                );
+
+        foreach (SpriteRenderer sr in spriteRenderersB)
+        {
+            sr.sprite = Sprites[NewSpriteIndex];
+            sr.color = clr;
+            sr.flipX = FlipX;
+            sr.flipY = FLipY;
+        }
     }
 
     public int GetNewSpriteIndex()
     {
-        int Output = Random.Range(0, Sprites.Length);
+        int Output = Random.Range(0, Sprites.Count);
         while (Output == LastSpriteIndex)
         {
-            Output = Random.Range(0, Sprites.Length);
+            Output = Random.Range(0, Sprites.Count);
         }
         LastSpriteIndex = Output;
         return Output;

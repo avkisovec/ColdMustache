@@ -42,8 +42,7 @@ public class Player : MonoBehaviour {
     // Use this for initialization
     void Start() {
         entity = GetComponent<Entity>();
-        NavTestStatic.AvkisLight_build(10);
-        NavTestStatic.ExportNavMap();
+        //NavTestStatic.AvkisLight_build(10);
     }
 
     // Update is called once per frame
@@ -121,26 +120,30 @@ public class Player : MonoBehaviour {
         
         */
 
-        //movement vector will hold information about direction, speed is added after
+        //movement vector will hold information about direction, speed is added after, in Entity script
+        //you cannot walk when mouse is dragging a window, that causes problems (though MovementVector has to be set to 0 stop previous movement)
         Vector2 MovementVector = new Vector2(0, 0);
+        if(MouseInterceptor.IsMouseAvailable()){
 
-        if (Input.GetKey(KeybindManager.MoveUp))
-        {
-            MovementVector += new Vector2(0, 1);
+            if (Input.GetKey(KeybindManager.MoveUp))
+            {
+                MovementVector += new Vector2(0, 1);
+            }
+            if (Input.GetKey(KeybindManager.MoveDown))
+            {
+                MovementVector += new Vector2(0, -1);
+            }
+            if (Input.GetKey(KeybindManager.MoveLeft))
+            {
+                MovementVector += new Vector2(-1, 0);
+            }
+            if (Input.GetKey(KeybindManager.MoveRight))
+            {
+                MovementVector += new Vector2(1, 0);
+            }
+            entity.MoveInDirection(MovementVector);
         }
-        if (Input.GetKey(KeybindManager.MoveDown))
-        {
-            MovementVector += new Vector2(0, -1);
-        }
-        if (Input.GetKey(KeybindManager.MoveLeft))
-        {
-            MovementVector += new Vector2(-1, 0);
-        }
-        if (Input.GetKey(KeybindManager.MoveRight))
-        {
-            MovementVector += new Vector2(1, 0);
-        }
-        entity.MoveInDirection(MovementVector);
+        
 
         float HealthRatio = entity.Health / entity.MaxHealth;
         if(HealthRatio < 0.5f)

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class CamControlPixelPerfect : MonoBehaviour {
 
@@ -34,9 +35,17 @@ public class CamControlPixelPerfect : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F1))
+
+        if (Input.GetKeyDown(KeyCode.F2))
         {
-            ScreenCapture.CaptureScreenshot("screen.png", 4);
+            string BaseOutputFileName = Application.dataPath+"/Screenshots/screenshot";
+            int ToPreventOverwriting = 0;
+            while (File.Exists(BaseOutputFileName + ToPreventOverwriting + ".png"))
+            {
+                ToPreventOverwriting++;
+            }
+            SaverLoader.CreateHardPathIfNeeded(BaseOutputFileName + ToPreventOverwriting + ".png");
+            ScreenCapture.CaptureScreenshot(BaseOutputFileName + ToPreventOverwriting + ".png", 1);
         }
 
 
@@ -62,6 +71,12 @@ public class CamControlPixelPerfect : MonoBehaviour {
         Vector2 MouseScreenPos = new Vector2(MouseScreenX, MouseScreenY);
         
         MousePos = UniversalReference.MouseWorldPos;
+
+        /*/
+        if (MouseInterceptor.IsMouseBeingIntercepted())
+        {
+            return;
+        }*/
 
         if (Input.GetKey(KeyCode.Z))
         {
