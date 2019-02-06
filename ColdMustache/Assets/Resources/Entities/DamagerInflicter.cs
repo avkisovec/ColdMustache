@@ -21,7 +21,7 @@ public class DamagerInflicter : MonoBehaviour {
     public bool IsProjectile = false;
 
     //for the purpose of death text, has nothing to do with damage types
-    public enum WeaponTypes { Undefined, Bullet, Claw, Blade, Explosion }
+    public enum WeaponTypes { Undefined, Bullet, Claw, Blade, Explosion, Fire }
     public WeaponTypes WeaponType = WeaponTypes.Undefined;
 
     //public bool InflictEffects
@@ -29,7 +29,6 @@ public class DamagerInflicter : MonoBehaviour {
     private void Start()
     {
         PossibleActivation = Time.time + BecomeActiveAfterSeconds;
-        float f = Time.time + 0.5f + BecomeActiveAfterSeconds;
     }
     
     private void OnTriggerEnter2D(Collider2D coll)

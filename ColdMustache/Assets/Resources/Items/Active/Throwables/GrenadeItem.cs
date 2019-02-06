@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FragGrenade : ActiveItem
+public class GrenadeItem : ActiveItem
 {
+    public Grenade.GrenadeTypes GrenadeType = Grenade.GrenadeTypes.Frag;
+
     public int Charges = 1;
     public Sprite[] ChargesSprites;
     public Sprite EmptySprite;
@@ -23,7 +25,9 @@ public class FragGrenade : ActiveItem
         {
             
             GameObject go = new GameObject();
-            go.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Items/Active/Throwables/FragGrenade_projectile");
+            if (GrenadeType==Grenade.GrenadeTypes.Frag) go.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Items/Active/Throwables/FragGrenade_projectile");
+            else if (GrenadeType == Grenade.GrenadeTypes.Fire) go.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Items/Active/Throwables/GrenadeIncendiary_projectile");
+            
             go.transform.position = UniversalReference.PlayerObject.transform.position;
             Rigidbody2D rb = go.AddComponent<Rigidbody2D>();
             rb.gravityScale = 0;
@@ -32,8 +36,11 @@ public class FragGrenade : ActiveItem
             rb.angularVelocity = Random.Range(-30f,30f);
             rb.drag = 1;
             Grenade expl = go.AddComponent<Grenade>();
+            expl.GrenadeType = GrenadeType;
             expl.Delay = 3;
             expl.ExplosionRadius = 5;
+            expl.rb = rb;
+            expl.LastPos = go.transform.position;
 
             Charges--;
             if (Charges > 0)

@@ -2,19 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Explosion_AvkisLight : MonoBehaviour
+public class ExplosionFire : MonoBehaviour
 {
 
     //Age can be negative for delayed activation
     public float Age = 0;
 
-    float MaxAge = 0.4f;
-
-    float AgeToSpreadAt = 0.04f;
+    static float MaxAge = 10f;
 
     public float MaxSpreadDistance = 10;
-
-    Vector2Int Origin;
 
     NavTestStatic.AvkisLightNode node = null;
 
@@ -24,6 +20,9 @@ public class Explosion_AvkisLight : MonoBehaviour
 
     void Start()
     {
+        if(!NavTestStatic.IsTileWalkable(Util.Vector3To2Int(transform.position))){
+            Destroy(gameObject, 0.6f);
+        }
     }
 
     void Update()
@@ -62,33 +61,39 @@ public class Explosion_AvkisLight : MonoBehaviour
             return;
         }
 
-        Age+=Time.deltaTime;
-        if(Age>MaxAge){
+        Age += Time.deltaTime;
+        if (Age > MaxAge)
+        {
             Destroy(gameObject);
             return;
         }
-        sr.sprite = sprites[Mathf.RoundToInt(Age/MaxAge*(float)(sprites.Length-1))];
+        sr.sprite = sprites[Mathf.RoundToInt(Age / MaxAge * (float)(sprites.Length - 1))];
     }
 
-    
 
-    public static void SpawnOriginal(Vector2Int Tile, float MaxSpreadDistance){
-        foreach(Vector3 v in NavTestStatic.GetExplosionArea(Tile, MaxSpreadDistance))
+
+    public static void SpawnOriginal(Vector2Int Tile, float MaxSpreadDistance)
+    {
+        foreach (Vector3 v in NavTestStatic.GetExplosionArea(Tile, MaxSpreadDistance))
         {
-
-            GameObject go = new GameObject();            
+            GameObject go = new GameObject();
             go.transform.position = new Vector3(v.x, v.y, -10);
-            Explosion_AvkisLight e = go.AddComponent<Explosion_AvkisLight>();
-            e.Origin = Tile;
-            e.Age = -v.z/10;
+            ExplosionFire e = go.AddComponent<ExplosionFire>();
+            e.Age = -v.z / 10;
             e.sr = go.AddComponent<SpriteRenderer>();
+            e.sr.color = new Color(1,0,0,1);
             e.sprites = Resources.LoadAll<Sprite>("Fx/Explosion");
             e.node = NavTestStatic.AvkisLightNodes[0];
             e.MaxSpreadDistance = MaxSpreadDistance;
-
+           
             go.AddComponent<BoxCollider2D>().isTrigger = true;
-            go.GetComponent<BoxCollider2D>().size = new Vector2(1,1);
-            go.AddComponent<DamagerInflicterAoE>().ini(Entity.team.Neutral, 10, 0.4f, true, 1, -e.Age, DamagerInflicter.WeaponTypes.Explosion  );
+            go.GetComponent<BoxCollider2D>().size = new Vector2(1, 1);
+            go.AddComponent<DamagerInflicterAoE>().ini(Entity.team.Neutral, 3, 0.4f, true, 1, -e.Age, DamagerInflicter.WeaponTypes.Fire);
+
+            GameObject Flame = new GameObject();
+            Flame.transform.position = new Vector3(v.x, v.y, -10);
+            Flame.AddComponent<Fire>().Age = -v.z/10;
+            Flame.AddComponent<SpriteRenderer>();
         }
     }
 }

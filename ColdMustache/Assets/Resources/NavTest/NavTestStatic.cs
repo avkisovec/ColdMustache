@@ -693,15 +693,15 @@ public class NavTestStatic : MonoBehaviour {
                 //if parent node was found immediatelly, no need to skip a gap
                 if (found != null)
                 {
-                    AvkisLightNode nu = new AvkisLightNode(CirclePoint, Vector2Int.Distance(CirclePoint, new Vector2Int(0,0)));
+                    AvkisLightNode nu = new AvkisLightNode(CirclePoint, Radius);
                     AvkisLightNodes.Add(nu);
                     found.AddChild(nu);
                 }
                 //skipping a gap (putting a node into the gap)
                 else
                 {
-                    AvkisLightNode nu = new AvkisLightNode(CirclePoint, Vector2Int.Distance(CirclePoint, new Vector2Int(0, 0)));
-                    AvkisLightNode GapFiller = new AvkisLightNode(Line[1], Vector2Int.Distance(Line[1], new Vector2Int(0, 0)));
+                    AvkisLightNode nu = new AvkisLightNode(CirclePoint, Radius);
+                    AvkisLightNode GapFiller = new AvkisLightNode(Line[1], Radius);
                     foreach (AvkisLightNode node in AvkisLightNodes)
                     {
                         if (node.Coordinates == Line[2])

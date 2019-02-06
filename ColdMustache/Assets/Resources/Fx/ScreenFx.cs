@@ -136,6 +136,8 @@ public class ScreenFx : MonoBehaviour {
                 return Start_Blade.DoYourThing();
             case DamagerInflicter.WeaponTypes.Explosion:
                 return Start_Explosion.DoYourThing();
+            case DamagerInflicter.WeaponTypes.Fire:
+                return Start_Fire.DoYourThing();
         }
         //default option
         return Start_Undefined.DoYourThing();
@@ -145,7 +147,9 @@ public class ScreenFx : MonoBehaviour {
     public static DeathText Start_Claws = new DeathText();
     public static DeathText Start_Blade = new DeathText();
     public static DeathText Start_Explosion = new DeathText();
+    public static DeathText Start_Fire = new DeathText();
     public static DeathText Start_Undefined = new DeathText();
+
 
     static bool HasBeenSetup = false;
     public static void Setup()
@@ -172,6 +176,10 @@ public class ScreenFx : MonoBehaviour {
         DeathText SharpMelee = new DeathText();
 
         //explosion
+
+        //fire
+        DeathText FireDescriptions = new DeathText();
+        DeathText FireBurningDescription = new DeathText();
 
         //undefined
 
@@ -237,6 +245,21 @@ public class ScreenFx : MonoBehaviour {
         Start_Explosion.Next.Add(new DeathText("As the shrapnels dig into your face", PreFinal));
         Start_Explosion.Next.Add(new DeathText("As the shrapnels dig into your chest", PreFinal));
         Start_Explosion.Next.Add(new DeathText("As the shrapnels dig into your stomach", PreFinal));
+
+        //fire        
+        Start_Fire.Next.Add(new DeathText("As", FireDescriptions));
+
+        FireDescriptions.Next.Add(new DeathText(" the scorching heat", FireBurningDescription));
+        FireDescriptions.Next.Add(new DeathText(" the immense heat", FireBurningDescription));
+        FireDescriptions.Next.Add(new DeathText(" the insane heat", FireBurningDescription));
+        FireDescriptions.Next.Add(new DeathText(" the unbearable heat", FireBurningDescription));
+        FireDescriptions.Next.Add(new DeathText(" the scorching flame", FireBurningDescription));
+        FireDescriptions.Next.Add(new DeathText(" the fiery ring", FireBurningDescription));
+
+        FireBurningDescription.Next.Add(new DeathText(" melts your face off", PreFinal));
+        FireBurningDescription.Next.Add(new DeathText(" sets your clothes ablaze", PreFinal));
+        FireBurningDescription.Next.Add(new DeathText(" charres your skin", PreFinal));
+        
 
         //undefined
         Start_Undefined.Next.Add(new DeathText("As you take your last labored breath", PreFinal));

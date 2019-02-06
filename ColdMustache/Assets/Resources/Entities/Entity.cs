@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour {
 
+    public int UniqueId = -1;
     public float MaxHealth = 10;
     public float Health = 10;
     public enum team {Player, Enemy, Neutral }
@@ -25,6 +26,7 @@ public class Entity : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        UniqueId = EntityIdDistributor.GetUniqueId();
         rb = GetComponent<Rigidbody2D>();
         if(spriteManager == null && UseSpriteManager)
         {

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Explosion_AvkisLight : MonoBehaviour
+public class ExplosionFrag : MonoBehaviour
 {
-
+    
     //Age can be negative for delayed activation
     public float Age = 0;
 
@@ -75,10 +75,9 @@ public class Explosion_AvkisLight : MonoBehaviour
     public static void SpawnOriginal(Vector2Int Tile, float MaxSpreadDistance){
         foreach(Vector3 v in NavTestStatic.GetExplosionArea(Tile, MaxSpreadDistance))
         {
-
             GameObject go = new GameObject();            
             go.transform.position = new Vector3(v.x, v.y, -10);
-            Explosion_AvkisLight e = go.AddComponent<Explosion_AvkisLight>();
+            ExplosionFrag e = go.AddComponent<ExplosionFrag>();
             e.Origin = Tile;
             e.Age = -v.z/10;
             e.sr = go.AddComponent<SpriteRenderer>();
