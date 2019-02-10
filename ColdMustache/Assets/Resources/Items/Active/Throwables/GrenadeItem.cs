@@ -33,7 +33,7 @@ public class GrenadeItem : ActiveItem
             rb.gravityScale = 0;
             rb.mass = 0.1f;
             rb.velocity = Util.GetDirectionVectorToward(go.transform, UniversalReference.MouseWorldPos)*10;
-            rb.angularVelocity = Random.Range(-30f,30f);
+            rb.angularVelocity = Random.Range(-300f,300f);
             rb.drag = 1;
             Grenade expl = go.AddComponent<Grenade>();
             expl.GrenadeType = GrenadeType;

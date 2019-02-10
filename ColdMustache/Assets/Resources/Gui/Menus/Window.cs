@@ -103,6 +103,7 @@ public class Window : MonoBehaviour
                 ))
             {
                 Hide();
+                return;
             }
 
             if (Input.GetKeyDown(KeyCode.Mouse0) &&
@@ -169,6 +170,7 @@ public class Window : MonoBehaviour
     }
 
     public void Hide(){
+        CurrentlyBeingMovedByMouse = false;
         VisibleCoordinates = transform.position;
         transform.position = HidingCoordinates;
         FramesActive = -1;

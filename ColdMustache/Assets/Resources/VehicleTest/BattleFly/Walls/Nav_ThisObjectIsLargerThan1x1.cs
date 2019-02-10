@@ -15,6 +15,7 @@ public class Nav_ThisObjectIsLargerThan1x1 : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
         int origX = Mathf.RoundToInt(transform.position.x);
         int origY = Mathf.RoundToInt(transform.position.y);
 
@@ -27,9 +28,11 @@ public class Nav_ThisObjectIsLargerThan1x1 : MonoBehaviour {
         {
             for (int y = minY; y <= maxY; y++)
             {
-                if(ObstructsMovement) NavTestStatic.NavArray[x, y] = NavTestStatic.ImpassableTileValue;
-                if(ObstructsVision) NavTestStatic.LightNavArray[x, y] = NavTestStatic.ImpassableTileValue;
-                if(ObstructsExplosions) NavTestStatic.ExplosionNavArray[x, y] = NavTestStatic.ImpassableTileValue;
+                if (NavTestStatic.IsTileWithinBounds(new Vector2Int(x,y))){
+                    if (ObstructsMovement) NavTestStatic.NavArray[x, y] = NavTestStatic.ImpassableTileValue;
+                    if (ObstructsVision) NavTestStatic.LightNavArray[x, y] = NavTestStatic.ImpassableTileValue;
+                    if (ObstructsExplosions) NavTestStatic.ExplosionNavArray[x, y] = NavTestStatic.ImpassableTileValue;
+                }                
             }
         }
 

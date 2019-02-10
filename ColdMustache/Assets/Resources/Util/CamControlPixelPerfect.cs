@@ -106,13 +106,13 @@ public class CamControlPixelPerfect : MonoBehaviour {
         {
             DesiredTileScale += (int)Input.mouseScrollDelta.y;
 
-            if (DesiredTileScale > 10)
+            if (DesiredTileScale > 8)
             {
-                DesiredTileScale = 10;
+                DesiredTileScale = 8;
             }
-            else if(DesiredTileScale < -3)
+            else if(DesiredTileScale < 0) //original limit was -3, but that was too much
             {
-                DesiredTileScale = -3;
+                DesiredTileScale = 0;
             }
 
             if (DesiredTileScale > 0)
