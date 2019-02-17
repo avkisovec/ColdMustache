@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System.Globalization;
 
 public class RandomLoaderGeneric : MonoBehaviour {
 
@@ -28,6 +29,8 @@ public class RandomLoaderGeneric : MonoBehaviour {
         List<List<Color>> AvailableColors = new List<List<Color>>();
 
         int Pointer = -1;
+
+        NumberFormatInfo nfi = new CultureInfo("en-US", false).NumberFormat;
 
         StreamReader sr = new StreamReader(PresetPath);
         string line = sr.ReadLine();
@@ -62,7 +65,7 @@ public class RandomLoaderGeneric : MonoBehaviour {
                 float[] nums = new float[nums_string.Length];
                 for(int i = 0; i < nums.Length; i++)
                 {
-                    nums[i] = float.Parse(nums_string[i]);
+                    nums[i] = float.Parse(nums_string[i], nfi);
                 }
 
                 float r = nums[0] + Random.Range(-nums[4], nums[4]);
