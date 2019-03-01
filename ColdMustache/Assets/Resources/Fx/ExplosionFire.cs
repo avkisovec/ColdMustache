@@ -90,10 +90,14 @@ public class ExplosionFire : MonoBehaviour
             go.GetComponent<BoxCollider2D>().size = new Vector2(1, 1);
             go.AddComponent<DamagerInflicterAoE>().ini(Entity.team.Neutral, 3, 0.4f, true, 1, -e.Age, DamagerInflicter.WeaponTypes.Fire);
 
-            GameObject Flame = new GameObject();
-            Flame.transform.position = new Vector3(v.x, v.y, -10);
-            Flame.AddComponent<Fire>().Age = -v.z/10;
-            Flame.AddComponent<SpriteRenderer>();
+            //spawning flames
+            if(NavTestStatic.IsTileWalkable(Util.Vector3To2Int(v))){
+                GameObject Flame = new GameObject();
+                Flame.transform.position = new Vector3(v.x, v.y, -10);
+                Flame.AddComponent<Fire>().Age = -v.z / 10;
+                Flame.AddComponent<SpriteRenderer>();
+            }
+            
         }
     }
 }

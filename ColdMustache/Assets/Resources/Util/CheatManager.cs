@@ -42,7 +42,8 @@ public class CheatManager : MonoBehaviour {
     string CurrentString = "";
 
     //the phrase that cheats have to start with
-    public const string MagicPhrase = "IMADEV ";
+    //AT THE MOMENT IGNORED
+    public const string MagicPhrase = ""; //original - "IMADEV "
 
     private void Awake()
     {
