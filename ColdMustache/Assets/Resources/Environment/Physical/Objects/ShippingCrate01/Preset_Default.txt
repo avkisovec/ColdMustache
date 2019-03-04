@@ -1,0 +1,22 @@
+[0]
+//material
+Environment/Physical/Objects/ShippingCrate01/Material/WoodW;1
+Environment/Physical/Objects/ShippingCrate01/Material/WoodRough;1
+
+//normal wood color, 3 shades (light-medium-dark)
+#0.8313726;0.6588235;0.5137255;1;0.1
+#0.6784314;0.4862745;0.3294118;1;0.1
+#0.4980392;0.3294118;0.1960784;1;0.1
+
+//light and medium, colored a bit red
+#0.9013726;0.6588235;0.5137255;1;0.1
+#0.7784314;0.4862745;0.3294118;1;0.1
+
+[1]
+//bracing
+Environment/Physical/Objects/ShippingCrate01/Bracing/Corner;1
+Environment/Physical/Objects/ShippingCrate01/Bracing/Double;1
+Environment/Physical/Objects/ShippingCrate01/Bracing/None;1
+Environment/Physical/Objects/ShippingCrate01/Bracing/Single;1
+Environment/Physical/Objects/ShippingCrate01/Bracing/SingleAlt;1
+#1;1;1;1;0

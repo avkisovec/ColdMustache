@@ -17,6 +17,10 @@ public class ReportUnwalkableArea : MonoBehaviour {
     //if true, it will mark the area in update (so as to not interfere with line drawer)
     public bool OnlyForNPCs = false;
 
+    public bool BlockMovement = true;
+    public bool BlockLight = false;
+    public bool BlockExplosions = false;
+
     // Use this for initialization
     void Start()
     {
@@ -42,7 +46,9 @@ public class ReportUnwalkableArea : MonoBehaviour {
         {
             for (int y = minY; y <= maxY; y++)
             {
-                NavTestStatic.NavArray[x, y] = NavTestStatic.ImpassableTileValue;
+                if(BlockMovement) NavTestStatic.NavArray[x, y] = NavTestStatic.ImpassableTileValue;
+                if(BlockLight) NavTestStatic.LightNavArray[x, y] = NavTestStatic.ImpassableTileValue;
+                if(BlockExplosions) NavTestStatic.ExplosionNavArray[x, y] = NavTestStatic.ImpassableTileValue;
             }
         }
 
