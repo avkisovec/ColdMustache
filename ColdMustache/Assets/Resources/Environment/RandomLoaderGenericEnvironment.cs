@@ -87,7 +87,11 @@ public class RandomLoaderGenericEnvironment : MonoBehaviour
             //line is talking about a sprite
             else
             {
-                AvailableSpritePaths[Pointer].Add(line.Split(';')[0]);
+                string[] sprite_string = line.Split(';');
+                int limit = int.Parse(sprite_string[1]);
+                for(int i = 0; i < limit; i++){
+                    AvailableSpritePaths[Pointer].Add(sprite_string[0]);
+                }
             }
 
 
