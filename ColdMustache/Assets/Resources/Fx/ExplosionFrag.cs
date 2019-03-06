@@ -72,7 +72,7 @@ public class ExplosionFrag : MonoBehaviour
 
     
 
-    public static void SpawnOriginal(Vector2Int Tile, float MaxSpreadDistance){
+    public static void SpawnOriginal(Vector2Int Tile, float MaxSpreadDistance, float Damage=10){
         foreach(Vector3 v in NavTestStatic.GetExplosionArea(Tile, MaxSpreadDistance))
         {
             GameObject go = new GameObject();            
@@ -87,7 +87,7 @@ public class ExplosionFrag : MonoBehaviour
 
             go.AddComponent<BoxCollider2D>().isTrigger = true;
             go.GetComponent<BoxCollider2D>().size = new Vector2(1,1);
-            go.AddComponent<DamagerInflicterAoE>().ini(Entity.team.Neutral, 10, 0.4f, true, 1, -e.Age, DamagerInflicter.WeaponTypes.Explosion  );
+            go.AddComponent<DamagerInflicterAoE>().ini(Entity.team.Neutral, Damage, 0.4f, true, 1, -e.Age, DamagerInflicter.WeaponTypes.Explosion  );
         }
     }
 }

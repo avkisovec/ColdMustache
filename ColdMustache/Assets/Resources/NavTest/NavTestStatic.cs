@@ -13,7 +13,7 @@ public class NavTestStatic : MonoBehaviour {
     public static int MapHeight = 200;
 
     //the maximum radius AvkisLight and explosions using it can have
-    public static int MaxLightAndExplosionDistance = 15;
+    public static int MaxLightAndExplosionDistance = 25;
 
     public static int[,] NavArray;
     public static int[,] ExplosionNavArray;

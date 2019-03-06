@@ -186,6 +186,33 @@ public class Player : MonoBehaviour {
             entity.BaseMoveSpeed = 25;
         }
 
+        if (CheatManager.LastCheat == "NUKE")
+        {
+            //ExplosionFrag.SpawnOriginal(Util.Vector3To2Int(transform.position), 100, 10);
+            ExplosionFrag.SpawnOriginal(Util.Vector3To2Int(transform.position), 5);
+        }
+
+        if (CheatManager.LastCheat == "KILLALL")
+        {
+            foreach(Entity e in GameObject.FindObjectsOfType<Entity>()){
+                if(e.Team == Entity.team.Enemy) Destroy(e.gameObject);
+            }
+        }
+
+        if (CheatManager.LastCheat == "DRAWUNWALKABLE")
+        {
+            for(int x = 0; x < NavTestStatic.MapWidth; x++){
+                for(int y = 0; y < NavTestStatic.MapHeight; y++){
+                    if(!NavTestStatic.IsTileWalkable(x,y)){
+                        GameObject go = new GameObject();
+                        go.transform.position = new Vector3(x,y,-10);
+                        go.AddComponent<SpriteRenderer>().sprite = UniversalReference.Pixel;
+                        go.GetComponent<SpriteRenderer>().color = new Color(1,0,0,0.6f);
+                    }
+                }
+            }
+        }
+
         if (Input.GetKeyUp(KeyCode.T))
         {
             AlphabetManager.SpawnFloatingText("Hi!", new Vector3(transform.position.x, transform.position.y, -35));
