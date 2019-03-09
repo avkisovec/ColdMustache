@@ -4,10 +4,10 @@
 3;Items/Weapons/SMGlike/hitech
 4;Items/Weapons/SMGlike/default
 5;Items/Weapons/SMGlike/minigun
-6;Items/Weapons/SMGlike/rusty
-7;EmptySlot
+6;Items/Weapons/Lasergun/01
+7;Items/Weapons/SMGlike/devender
 8;Items/Active/Heal/HealthKit
-9;Items/Active/Throwables/FragGrenade
+9;Items/Active/Heal/HealthKit
 10;Items/Active/Throwables/FragGrenade
 11;Items/Active/Throwables/FragGrenade
 12;Items/Active/Buff/SyringeMovespeed

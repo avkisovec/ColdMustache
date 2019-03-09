@@ -96,6 +96,7 @@ MonoBehaviour:
   PrefabPath: Items/Weapons/SMGlike/hitech
   Type: 5
   Weight: 1
+  MaxWeightIncrease: 0
   HoverDescription: Hi-tech variation on the standard Submachine gun. Simple, lightweight,
     easy to use, and, thanks to modern technology, extremely accurate.
 --- !u!114 &114360934937466784
