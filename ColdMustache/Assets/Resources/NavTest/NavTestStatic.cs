@@ -577,6 +577,27 @@ public class NavTestStatic : MonoBehaviour {
         return output;
     }
 
+    //input the two points that you want to cast the laser between (source and target)
+    //this returns the maximum distance the laser can be until it stops at na obstacle
+    public static float GetLaserDistance(Vector2 Source, Vector2 Target){
+
+        if(!CanLightPassThroughTile(Util.Vector2To2Int(Source))) return 0;
+
+        Vector2 Last = Target;
+
+        foreach(Vector2Int v in BresenhamLine(Source, Target)){
+            
+            if(!CanLightPassThroughTile(v)){
+                return (Source - Last).magnitude;
+            }
+            else{
+                Last = v;
+            }
+        }
+        return (Source - Last).magnitude;
+
+    }
+
     #endregion
 
     #region Explosion

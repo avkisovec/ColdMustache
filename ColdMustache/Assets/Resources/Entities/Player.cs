@@ -179,7 +179,7 @@ public class Player : MonoBehaviour {
             //NavTestStatic.FieldOfView(transform.position);
         }
         
-        if(CheatManager.LastCheat == "GODMODE")
+        if(CheatManager.LastCheat == "GODMODE" || CheatManager.LastCheat == "GM")
         {
             entity.MaxHealth = float.MaxValue;
             entity.Health = float.MaxValue;
@@ -189,17 +189,17 @@ public class Player : MonoBehaviour {
         if (CheatManager.LastCheat == "NUKE")
         {
             //ExplosionFrag.SpawnOriginal(Util.Vector3To2Int(transform.position), 100, 10);
-            ExplosionFrag.SpawnOriginal(Util.Vector3To2Int(transform.position), 5);
+            ExplosionFrag.SpawnOriginal(Util.Vector3To2Int(transform.position), 100);
         }
 
-        if (CheatManager.LastCheat == "KILLALL")
+        if (CheatManager.LastCheat == "KILLALL" || CheatManager.LastCheat == "KA")
         {
             foreach(Entity e in GameObject.FindObjectsOfType<Entity>()){
                 if(e.Team == Entity.team.Enemy) Destroy(e.gameObject);
             }
         }
 
-        if (CheatManager.LastCheat == "DRAWUNWALKABLE")
+        if (CheatManager.LastCheat == "NAVDRAW") // Nav Draw
         {
             for(int x = 0; x < NavTestStatic.MapWidth; x++){
                 for(int y = 0; y < NavTestStatic.MapHeight; y++){
@@ -208,6 +208,40 @@ public class Player : MonoBehaviour {
                         go.transform.position = new Vector3(x,y,-10);
                         go.AddComponent<SpriteRenderer>().sprite = UniversalReference.Pixel;
                         go.GetComponent<SpriteRenderer>().color = new Color(1,0,0,0.6f);
+                    }
+                }
+            }
+        }
+
+        if (CheatManager.LastCheat == "NAVDRAWLIGHT") // Nav Draw Light
+        {
+            for (int x = 0; x < NavTestStatic.MapWidth; x++)
+            {
+                for (int y = 0; y < NavTestStatic.MapHeight; y++)
+                {
+                    if (!NavTestStatic.CanLightPassThroughTile(x, y))
+                    {
+                        GameObject go = new GameObject();
+                        go.transform.position = new Vector3(x, y, -10);
+                        go.AddComponent<SpriteRenderer>().sprite = UniversalReference.Pixel;
+                        go.GetComponent<SpriteRenderer>().color = new Color(1, 1, 0, 0.6f);
+                    }
+                }
+            }
+        }
+
+        if (CheatManager.LastCheat == "NAVDRAWEXPLOSION") // Nav Draw Explosion
+        {
+            for (int x = 0; x < NavTestStatic.MapWidth; x++)
+            {
+                for (int y = 0; y < NavTestStatic.MapHeight; y++)
+                {
+                    if (!NavTestStatic.CanExplosionPassThroughTile(new Vector2Int(x, y)))
+                    {
+                        GameObject go = new GameObject();
+                        go.transform.position = new Vector3(x, y, -10);
+                        go.AddComponent<SpriteRenderer>().sprite = UniversalReference.Pixel;
+                        go.GetComponent<SpriteRenderer>().color = new Color(1, 0.5f, 0, 0.6f);
                     }
                 }
             }
@@ -255,6 +289,14 @@ public class Player : MonoBehaviour {
         if (Input.GetKey(KeyCode.P))
         {
             SpamParticlesToFuckWithFramerate();
+        }
+        if (Input.GetKey(KeyCode.O))
+        {
+            SpamOptimisedParticlesToFuckWithFramerate();
+        }
+        if (Input.GetKey(KeyCode.I))
+        {
+            SpamListParticlesToFuckWithFramerate();
         }
     }
 
@@ -327,6 +369,49 @@ public class Player : MonoBehaviour {
             p.UseShifts = true;
             p.LeaveParent = true;
             p.StartAt00 = false;
+            p.sprite = Resources.Load<Sprite>("pixel");
+            p.Lifespan = (int)Mathf.Pow(Random.Range(3, 10), 2);
+            p.StartingScale = 0.1f;
+            p.EndingScale = 0;
+            p.StartingColor = new Color(1f, 1f, 0.5f, 1);
+            p.EndingColor = new Color(0.5f, 0, 0, 1);
+            p.StartingHorizontalWind = Random.Range(-0.05f, 0.05f);
+            p.StartingVerticalWind = Random.Range(-0.05f, 0.05f);
+            p.EndingHorizontalWind = Random.Range(-0.01f, 0.01f);
+            p.EndingVerticalWind = Random.Range(-0.01f, 0.01f);
+        }
+    }
+
+    void SpamOptimisedParticlesToFuckWithFramerate()
+    {
+        for (int i = 0; i < 100; i++)
+        {
+            GameObject go = new GameObject();
+            go.AddComponent<Particle_Chain>();
+            go.transform.position = transform.position;
+            Particle_Chain p = go.GetComponent<Particle_Chain>();
+            p.LeaveParent = true;
+            p.sprite = Resources.Load<Sprite>("pixel");
+            p.Lifespan = (int)Mathf.Pow(Random.Range(3, 10), 2);
+            p.StartingScale = 0.1f;
+            p.EndingScale = 0;
+            p.StartingColor = new Color(1f, 1f, 0.5f, 1);
+            p.EndingColor = new Color(0.5f, 0, 0, 1);
+            p.StartingHorizontalWind = Random.Range(-0.05f, 0.05f);
+            p.StartingVerticalWind = Random.Range(-0.05f, 0.05f);
+            p.EndingHorizontalWind = Random.Range(-0.01f, 0.01f);
+            p.EndingVerticalWind = Random.Range(-0.01f, 0.01f);
+        }
+    }
+    
+    void SpamListParticlesToFuckWithFramerate()
+    {
+        for (int i = 0; i < 100; i++)
+        {
+            GameObject go = new GameObject();
+            Particle_List p = go.AddComponent<Particle_List>();
+            go.transform.position = transform.position;
+            p.LeaveParent = true;
             p.sprite = Resources.Load<Sprite>("pixel");
             p.Lifespan = (int)Mathf.Pow(Random.Range(3, 10), 2);
             p.StartingScale = 0.1f;
