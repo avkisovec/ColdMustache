@@ -44,6 +44,8 @@ public class NavTestStatic : MonoBehaviour {
         //go through all existing environment objects in scene, and if they block particular thing, note in in the array
         foreach (EnvironmentObject eo in GameObject.FindObjectsOfType<EnvironmentObject>())
         {
+            if(!eo.DoNav) continue;
+
             if (!eo.Nav_Walkable)
             {
                 NavTestStatic.NavArray[Mathf.RoundToInt(eo.transform.position.x), Mathf.RoundToInt(eo.transform.position.y)] = NavTestStatic.ImpassableTileValue;

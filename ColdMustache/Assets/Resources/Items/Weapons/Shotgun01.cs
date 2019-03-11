@@ -17,6 +17,9 @@ public class Shotgun01 : Weapon {
     public float ReloadTimeRemaining = 0;
 
     public float EffectiveRange = 30;
+
+    public float ProjectileSpeed = 20;
+
     public float InaccuracyPerShot = 4f;
 
     public float DamagePerBullet = 1;
@@ -135,7 +138,7 @@ public class Shotgun01 : Weapon {
 
         //bullet physics
         bullet.AddComponent<Rigidbody2D>().gravityScale = 0;
-        bullet.GetComponent<Rigidbody2D>().velocity = Vector * 20;
+        bullet.GetComponent<Rigidbody2D>().velocity = Vector * ProjectileSpeed;
         bullet.GetComponent<Rigidbody2D>().collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         bullet.AddComponent<CircleCollider2D>().isTrigger = true;
         bullet.GetComponent<CircleCollider2D>().radius = 1.3f;
@@ -149,7 +152,7 @@ public class Shotgun01 : Weapon {
         //custom mechanics
         bullet.AddComponent<DamagerInflicter>().ini(Entity.team.Player, DamagePerBullet, true);
         bullet.AddComponent<DieInSeconds>().Seconds = 5;
-        bullet.AddComponent<SlowlySlowDown>().EffectiveRange = EffectiveRange;
+        bullet.AddComponent<SlowlySlowDown>().TimeUntilStartSlowingDown = EffectiveRange / ProjectileSpeed;
         bullet.AddComponent<InflicterSlow>().ini(2, 0.5f, true);
 
 

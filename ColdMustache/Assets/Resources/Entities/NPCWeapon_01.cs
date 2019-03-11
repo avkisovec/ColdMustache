@@ -22,7 +22,7 @@ public class NPCWeapon_01 : Weapon {
 
     public float Inaccuracy = 1f;
 
-    public float BulletVelocity = 20;
+    public float ProjectileSpeed = 20;
 
     //visual things - sprites, icons, colors
 
@@ -75,7 +75,7 @@ public class NPCWeapon_01 : Weapon {
 
             //bullet physics
             bullet.AddComponent<Rigidbody2D>().gravityScale = 0;
-            bullet.GetComponent<Rigidbody2D>().velocity = Util.RotateVector(Util.GetDirectionVectorToward(transform, Target), Random.Range(-Inaccuracy, Inaccuracy)) * BulletVelocity;
+            bullet.GetComponent<Rigidbody2D>().velocity = Util.RotateVector(Util.GetDirectionVectorToward(transform, Target), Random.Range(-Inaccuracy, Inaccuracy)) * ProjectileSpeed;
             bullet.GetComponent<Rigidbody2D>().collisionDetectionMode = CollisionDetectionMode2D.Continuous;
             bullet.gameObject.AddComponent<CircleCollider2D>().isTrigger = true;
             bullet.GetComponent<CircleCollider2D>().radius = 1.3f;
@@ -89,7 +89,7 @@ public class NPCWeapon_01 : Weapon {
             //custom mechanics
             bullet.AddComponent<DamagerInflicter>().ini(entity.Team, DamagePerBullet, true, false, 1, 0, true, DamagerInflicter.WeaponTypes.Bullet);
             bullet.AddComponent<DieInSeconds>().Seconds = 5;
-            bullet.AddComponent<SlowlySlowDown>().EffectiveRange = EffectiveRange;
+            bullet.AddComponent<SlowlySlowDown>().TimeUntilStartSlowingDown = EffectiveRange / ProjectileSpeed;
             bullet.AddComponent<InflicterSlow>().ini(2, 0.5f, true);
                         
         }

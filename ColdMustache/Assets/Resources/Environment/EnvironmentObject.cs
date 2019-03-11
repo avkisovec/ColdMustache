@@ -10,6 +10,7 @@ public class EnvironmentObject : MonoBehaviour {
     public bool Indestructible = false;
     public bool InterceptProjectiles = true;
 
+    public bool DoNav = true;
     public bool Nav_Walkable = false;
     public bool Nav_ExplosionCanPass = false;
     public bool Nav_LightCanPass = false;

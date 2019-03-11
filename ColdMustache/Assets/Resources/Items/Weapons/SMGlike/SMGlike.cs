@@ -23,6 +23,7 @@ public class SMGlike : Weapon {
     public float InaccuracyBase = 1.5f;
     public float InaccuracyImportance = 3f;
 
+    public float ProjectileSpeed = 20;
 
     //visual things - sprites, icons, colors
 
@@ -132,7 +133,7 @@ public class SMGlike : Weapon {
                 //bullet physics
                 bullet.AddComponent<Rigidbody2D>().gravityScale = 0;
                 float Inaccuracy = InaccuracyBase + InaccuracyImportance * UniversalReference.PlayerScript.Inaccuracy;
-                bullet.GetComponent<Rigidbody2D>().velocity = Util.RotateVector(Util.GetDirectionVectorToward(UniversalReference.PlayerObject.transform, Target), Random.Range(-Inaccuracy, Inaccuracy)) * 20;
+                bullet.GetComponent<Rigidbody2D>().velocity = Util.RotateVector(Util.GetDirectionVectorToward(UniversalReference.PlayerObject.transform, Target), Random.Range(-Inaccuracy, Inaccuracy)) * ProjectileSpeed;
                 bullet.GetComponent<Rigidbody2D>().collisionDetectionMode = CollisionDetectionMode2D.Continuous;
                 bullet.gameObject.AddComponent<CircleCollider2D>().isTrigger = true;
                 bullet.GetComponent<CircleCollider2D>().radius = 1.3f;
@@ -146,7 +147,7 @@ public class SMGlike : Weapon {
                 //custom mechanics
                 bullet.AddComponent<DamagerInflicter>().ini(Entity.team.Player, DamagePerBullet, true);
                 bullet.AddComponent<DieInSeconds>().Seconds = 5;
-                bullet.AddComponent<SlowlySlowDown>().EffectiveRange = EffectiveRange;
+                bullet.AddComponent<SlowlySlowDown>().TimeUntilStartSlowingDown = EffectiveRange / ProjectileSpeed;
                 bullet.AddComponent<InflicterSlow>().ini(2, 0.5f, true);
 
                 //muzzle flash (visual effect)

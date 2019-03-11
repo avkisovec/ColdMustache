@@ -1,14 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class SMG01 : Weapon {
-
+public class AlienBouncer : Weapon
+{
     //general things - ammo, cooldown, reload, range
 
-    public int MaxAmmo = 10;
-    public int Ammo = 10;
+    public int MaxAmmo = 4;
+    public int Ammo = 4;
 
     public float BaseCooldownBetweenShots = 0.1f;
     public float CurrCooldownBetweenShots = 0;
@@ -26,11 +25,9 @@ public class SMG01 : Weapon {
 
     public float ProjectileSpeed = 20;
 
-
     //visual things - sprites, icons, colors
-        
+
     public Sprite sprite = null;
-    public string SpritePath = "Items/Weapons/SMG01";
 
     public Color BulletColorStart = new Color(1f, 1f, 0.5f, 1);
     public Color BulletColorEnd = new Color(0.5f, 0, 0, 1);
@@ -44,47 +41,35 @@ public class SMG01 : Weapon {
     public Sprite StatusSemiSprite;
 
     public string MuzzleFlashSpritePath = "Fx/SmgMuzzleFlash";
-    
-    
+
     //alt fire
 
-    public enum SmgModes { Semi, Full }
-    public SmgModes Mode = SmgModes.Full;
-    
     //backend stuff
 
     float SpecialValueThatIndicatesWeaponHasJustBeenReloaded = -999999;
-    
+
     public int FramesSincePlayerRequestedShooting = 0; //for the purposes of semi-auto
     public int FramesSincePlayerRequestedAltFire = 0;
 
-    
-    
 
-
-    private void Start()
+    public override void OnBecomingActive()
     {
         //default values
         ReloadTimeRemaining = SpecialValueThatIndicatesWeaponHasJustBeenReloaded; //without this, weapon gets max ammo in its first frame
-        
+
         //sprites
-        if(sprite != null)
-        {
-            UniversalReference.GunRotator.GunSpriteRenderer.sprite = sprite;
-        }
-        else
-        {
-            UniversalReference.GunRotator.GunSpriteRenderer.sprite = Resources.Load<Sprite>(SpritePath);
-        }
+        UniversalReference.GunRotator.GunSpriteRenderer.sprite = sprite;
 
         //ammo
         AmmoSpriteSheet = Resources.LoadAll<Sprite>(AmmoSpriteSheetPath);
 
         DisplayAmmo();
-        
+
         //status
         StatusFullSprite = Resources.Load<Sprite>(StatusFullPath);
         StatusSemiSprite = Resources.Load<Sprite>(StatusSemiPath);
+
+        AmmoStatus.SetEmptySpriteAndNormalColor();
 
         DisplayCorrectStatusImage();
 
@@ -94,37 +79,42 @@ public class SMG01 : Weapon {
 
     private void Update()
     {
-        if (ReloadTimeRemaining > 0)
+        if (CurrentlyActive)
         {
-            ReloadTimeRemaining -= Time.deltaTime;
-        }
-        else if (ReloadTimeRemaining != SpecialValueThatIndicatesWeaponHasJustBeenReloaded) //special value, indicates that weapon has just reloaded and reloading should be ignored
-        {
-            Ammo = MaxAmmo;
-            UniversalReference.AmmoCounter.sprite = AmmoSpriteSheet[0];
-            ReloadTimeRemaining = SpecialValueThatIndicatesWeaponHasJustBeenReloaded;
-        }
 
-        if (CurrCooldownBetweenShots > 0)
-        {
-            CurrCooldownBetweenShots -= Time.deltaTime;
-        }
 
-        if (FramesSincePlayerRequestedShooting < 1000)
-        {
-            FramesSincePlayerRequestedShooting++;
-        }
-        if (FramesSincePlayerRequestedAltFire < 1000)
-        {
-            FramesSincePlayerRequestedAltFire++;
+            if (ReloadTimeRemaining > 0)
+            {
+                ReloadTimeRemaining -= Time.deltaTime;
+            }
+            else if (ReloadTimeRemaining != SpecialValueThatIndicatesWeaponHasJustBeenReloaded) //special value, indicates that weapon has just reloaded and reloading should be ignored
+            {
+                Ammo = MaxAmmo;
+                UniversalReference.AmmoCounter.sprite = AmmoSpriteSheet[0];
+                ReloadTimeRemaining = SpecialValueThatIndicatesWeaponHasJustBeenReloaded;
+            }
+
+            if (CurrCooldownBetweenShots > 0)
+            {
+                CurrCooldownBetweenShots -= Time.deltaTime;
+            }
+
+            if (FramesSincePlayerRequestedShooting < 1000)
+            {
+                FramesSincePlayerRequestedShooting++;
+            }
+            if (FramesSincePlayerRequestedAltFire < 1000)
+            {
+                FramesSincePlayerRequestedAltFire++;
+            }
         }
     }
 
     public override void TryShooting(Vector3 Target)
     {
-        if(Ammo > 0 && CurrCooldownBetweenShots <= 0)
+        if (Ammo > 0 && CurrCooldownBetweenShots <= 0)
         {
-            if(Mode==SmgModes.Full || ( Mode==SmgModes.Semi && FramesSincePlayerRequestedShooting >= 2))
+            if (FramesSincePlayerRequestedShooting >= 2) //semi-auto
             {
                 Ammo--;
                 CurrCooldownBetweenShots = BaseCooldownBetweenShots;
@@ -140,7 +130,7 @@ public class SMG01 : Weapon {
                 //bullet physics
                 bullet.AddComponent<Rigidbody2D>().gravityScale = 0;
                 float Inaccuracy = InaccuracyBase + InaccuracyImportance * UniversalReference.PlayerScript.Inaccuracy;
-                bullet.GetComponent<Rigidbody2D>().velocity = Util.RotateVector(Util.GetDirectionVectorToward(transform, Target), Random.Range(-Inaccuracy, Inaccuracy)) * ProjectileSpeed;
+                bullet.GetComponent<Rigidbody2D>().velocity = Util.RotateVector(Util.GetDirectionVectorToward(UniversalReference.PlayerObject.transform, Target), Random.Range(-Inaccuracy, Inaccuracy)) * ProjectileSpeed;
                 bullet.GetComponent<Rigidbody2D>().collisionDetectionMode = CollisionDetectionMode2D.Continuous;
                 bullet.gameObject.AddComponent<CircleCollider2D>().isTrigger = true;
                 bullet.GetComponent<CircleCollider2D>().radius = 1.3f;
@@ -153,34 +143,16 @@ public class SMG01 : Weapon {
 
                 //custom mechanics
                 bullet.AddComponent<DamagerInflicter>().ini(Entity.team.Player, DamagePerBullet, true);
+                bullet.GetComponent<DamagerInflicter>().AttackWalls = false;
                 bullet.AddComponent<DieInSeconds>().Seconds = 5;
-                bullet.AddComponent<SlowlySlowDown>().TimeUntilStartSlowingDown = EffectiveRange / ProjectileSpeed;
+                bullet.AddComponent<SlowlySlowDown>().TimeUntilStartSlowingDown = EffectiveRange/ProjectileSpeed;
                 bullet.AddComponent<InflicterSlow>().ini(2, 0.5f, true);
 
-                //muzzle flash (visual effect)
-                GameObject Muzzleflash = new GameObject();
-                Muzzleflash.transform.parent = UniversalReference.GunRotator.GunSpriteRenderer.transform;
-                Muzzleflash.transform.localPosition = new Vector3(0, 0, 0); //split into two to set local position 0 0, ant then z -31 according to z-index protocol
-                Muzzleflash.transform.position = new Vector3(Muzzleflash.transform.position.x, Muzzleflash.transform.position.y, -31);
-                Muzzleflash.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
-                Muzzleflash.transform.localScale = new Vector3(1, 1, 1);
-                Muzzleflash.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(MuzzleFlashSpritePath);
-                Muzzleflash.GetComponent<SpriteRenderer>().color = BulletColorStart;
-                Muzzleflash.AddComponent<DieIn>().Frames = 0; //original: 0
-
-                //light from muzzle flash
-                if (PlayerBeingInDarknessManager.IsPlayerInDarkness)
-                {
-                    GameObject MuzzleFlashLight = new GameObject();
-                    MuzzleFlashLight.AddComponent<SpriteMask>().sprite = Resources.Load<Sprite>("circle512");
-                    MuzzleFlashLight.transform.position = transform.position;
-                    MuzzleFlashLight.transform.localScale = new Vector3(1, 1, 1);
-                    MuzzleFlashLight.AddComponent<DieInFramesFramerateIndependent>().Frames = 2;
-                }
+                bullet.AddComponent<BouncingBullet>().rb = bullet.GetComponent<Rigidbody2D>();
 
                 //increase inaccuracy
                 UniversalReference.PlayerScript.RequestInaccuracyIncrease(InaccuracyPerShot);
-                if(UniversalReference.PlayerScript.InaccuracyRecoveryBlock < BaseCooldownBetweenShots)
+                if (UniversalReference.PlayerScript.InaccuracyRecoveryBlock < BaseCooldownBetweenShots)
                 {
                     UniversalReference.PlayerScript.InaccuracyRecoveryBlock += BaseCooldownBetweenShots;
                 }
@@ -199,32 +171,17 @@ public class SMG01 : Weapon {
 
     public override void TryAltFire()
     {
-        if(FramesSincePlayerRequestedAltFire >= 2)
-        {
-
-            if (Mode == SmgModes.Full)
-            {
-                Mode = SmgModes.Semi;
-            }
-            else if (Mode == SmgModes.Semi)
-            {
-                Mode = SmgModes.Full;
-            }
-        }
-
-        DisplayCorrectStatusImage();
-        FramesSincePlayerRequestedAltFire = 0;
     }
 
     public override void ForceReload()
     {
-        if(Ammo != MaxAmmo && ReloadTimeRemaining <= 0)
+        if (Ammo != MaxAmmo && ReloadTimeRemaining <= 0)
         {
             Ammo = 0;
 
             ReloadTimeRemaining = BaseReloadTime;
 
-            gameObject.AddComponent<StatusSlow>().ini(BaseReloadTime, 0.25f, true);
+            UniversalReference.PlayerObject.AddComponent<StatusSlow>().ini(BaseReloadTime, 0.25f, true);
 
             AmmoStatus.NowReloading(BaseReloadTime);
         }
@@ -234,15 +191,6 @@ public class SMG01 : Weapon {
 
     public void DisplayCorrectStatusImage()
     {
-        if(Mode == SmgModes.Full)
-        {
-            UniversalReference.WeaponStatus.sprite = StatusFullSprite;
-        }
-        else if(Mode == SmgModes.Semi)
-        {
-            UniversalReference.WeaponStatus.sprite = StatusSemiSprite;
-        }
-        
     }
 
     public void DisplayAmmo()

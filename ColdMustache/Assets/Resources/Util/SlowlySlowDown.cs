@@ -10,7 +10,8 @@ public class SlowlySlowDown : MonoBehaviour {
 
     Vector2 Origin;
 
-    public float EffectiveRange = 10;
+    public float TimeUntilStartSlowingDown = 10;
+
 
     bool StartSlowingDown = false;
 
@@ -28,7 +29,8 @@ public class SlowlySlowDown : MonoBehaviour {
 
         if (!StartSlowingDown)
         {
-            if(((Vector2)transform.position - Origin).magnitude > EffectiveRange)
+            TimeUntilStartSlowingDown-=Time.deltaTime;
+            if(TimeUntilStartSlowingDown <= 0)
             {
                 StartSlowingDown = true;
             }
