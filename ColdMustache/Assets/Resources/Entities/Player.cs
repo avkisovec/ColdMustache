@@ -38,6 +38,8 @@ public class Player : MonoBehaviour {
     public GunRotatorHand gunRotatorHand;
     public bool ActivelyAiming = true;
 
+    public HumanLegsManager LegsManager;
+
 
     // Use this for initialization
     void Start() {
@@ -63,6 +65,8 @@ public class Player : MonoBehaviour {
 
         entity.LookingToward = MouseWorldPos;
 
+        //true if looking right, false if looking left
+        bool LookingRight = entity.LookingToward.x > transform.position.x;
 
 
         //decreasing active cooldowns
@@ -119,6 +123,8 @@ public class Player : MonoBehaviour {
         
         */
 
+        #region  Movement
+
         //movement vector will hold information about direction, speed is added after, in Entity script
         //you cannot walk when mouse is dragging a window, that causes problems (though MovementVector has to be set to 0 stop previous movement)
         Vector2 MovementVector = new Vector2(0, 0);
@@ -127,22 +133,32 @@ public class Player : MonoBehaviour {
             if (Input.GetKey(KeybindManager.MoveUp))
             {
                 MovementVector += new Vector2(0, 1);
+                LegsManager.RequestRunUp(LookingRight);
             }
             if (Input.GetKey(KeybindManager.MoveDown))
             {
                 MovementVector += new Vector2(0, -1);
+                LegsManager.RequestRunDown(LookingRight);
             }
             if (Input.GetKey(KeybindManager.MoveLeft))
             {
                 MovementVector += new Vector2(-1, 0);
+                LegsManager.RequestRunLeft(LookingRight);
             }
             if (Input.GetKey(KeybindManager.MoveRight))
             {
                 MovementVector += new Vector2(1, 0);
+                LegsManager.RequestRunRight(LookingRight);
             }
             entity.MoveInDirection(MovementVector);
         }
         
+        if(MovementVector.x < 0.01f && MovementVector.x > -0.01f && MovementVector.y < 0.01f && MovementVector.y > -0.01f ){
+            LegsManager.RequestIdle(entity.LookingToward);
+        }
+
+        #endregion
+
 
         float HealthRatio = entity.Health / entity.MaxHealth;
         if(HealthRatio < 0.5f)
@@ -156,7 +172,7 @@ public class Player : MonoBehaviour {
             LowHealthOverlay.color = new Color(LowHealthOverlay.color.r, LowHealthOverlay.color.g, LowHealthOverlay.color.b,0);
         }
         
-        //test purposes - can delete
+        #region StuffForTestingPurposes
 
         if (Input.GetKeyDown(KeyCode.F10))
         {
@@ -168,17 +184,29 @@ public class Player : MonoBehaviour {
             Debug.Log("hi");
         }
 
-        if (Input.GetKeyUp(KeyCode.G))
+        if (Input.GetKeyUp(KeyCode.T))
         {
-            //Grenade(MouseWorldPos);
+            AlphabetManager.SpawnFloatingText("Hi!", new Vector3(transform.position.x, transform.position.y, -35));
         }
 
-        if (Input.GetKeyUp(KeyCode.Mouse2))
+        if (Input.GetKey(KeyCode.P))
         {
-            //NavTestStatic.SightLine(transform.position, UniversalReference.MouseWorldPos);
-            //NavTestStatic.FieldOfView(transform.position);
+            SpamParticlesToFuckWithFramerate();
         }
-        
+        if (Input.GetKey(KeyCode.O))
+        {
+            SpamOptimisedParticlesToFuckWithFramerate();
+        }
+        if (Input.GetKey(KeyCode.I))
+        {
+            SpamListParticlesToFuckWithFramerate();
+        }
+
+
+        #endregion
+
+        #region CheatCodes
+
         if(CheatManager.LastCheat == "GODMODE" || CheatManager.LastCheat == "GM")
         {
             entity.MaxHealth = float.MaxValue;
@@ -247,12 +275,9 @@ public class Player : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.T))
-        {
-            AlphabetManager.SpawnFloatingText("Hi!", new Vector3(transform.position.x, transform.position.y, -35));
-        }
+        #endregion
         
-        //end of test stuff
+        #region Input
 
         if(Input.GetKeyDown(KeybindManager.UseItem)){
             if(CurrentlyEquippedItem!=null){
@@ -286,18 +311,9 @@ public class Player : MonoBehaviour {
         {
             CurrentlyEquippedWeapon.ForceReload();
         }
-        if (Input.GetKey(KeyCode.P))
-        {
-            SpamParticlesToFuckWithFramerate();
-        }
-        if (Input.GetKey(KeyCode.O))
-        {
-            SpamOptimisedParticlesToFuckWithFramerate();
-        }
-        if (Input.GetKey(KeyCode.I))
-        {
-            SpamListParticlesToFuckWithFramerate();
-        }
+        
+        #endregion
+    
     }
 
     void Shoot(Vector2 Target)
