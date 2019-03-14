@@ -146,6 +146,10 @@ public class Util : MonoBehaviour {
             return Angle;
         }
     }
+
+    public static Color MakeColorDarker(Color c, float Ratio){
+        return new Color(c.r*Ratio, c.g*Ratio, c.b*Ratio, c.a);
+    }
     
 
 }

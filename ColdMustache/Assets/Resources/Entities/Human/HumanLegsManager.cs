@@ -8,14 +8,18 @@ public class HumanLegsManager : MonoBehaviour
 
     public AnimStates CurrState = AnimStates.RunRight;
 
-    public Sprite[] Sprites;
-    public Color BaseColor;
-    public Color DarkerColor;
+    public SpriteManagerGeneric SpriteManagerToStealFrom;
 
     public SpriteRenderer FrontUpper;
     public SpriteRenderer FrontLower;
     public SpriteRenderer BackUpper;
     public SpriteRenderer BackLower;
+
+    public SpriteRenderer FrontUpper_clothing;
+    public SpriteRenderer FrontLower_clothing;
+    public SpriteRenderer BackUpper_clothing;
+    public SpriteRenderer BackLower_clothing;
+
 
 
     Animator anim;
@@ -25,13 +29,15 @@ public class HumanLegsManager : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+
+        //the color of the front (or left from front view) doesnt cange, so i set it here
+        FrontUpper.color = FrontLower.color = SpriteManagerToStealFrom.colors[0];
     }
 
     void Update()
     {
 
     }
-
 
     public void ResetTriggers(){
         anim.ResetTrigger("RunDown");
@@ -43,31 +49,99 @@ public class HumanLegsManager : MonoBehaviour
 
     public bool AreCurrentSpritesSide = false;
 
+    //what sprites are currently used (facing side/down/up), and also how are they colored (if they are facing side the one further back is darker...)
+    public enum SpriteSet{Undefined, Side, Front, Back}
+
+    public SpriteSet CurrSpriteSet = SpriteSet.Undefined;
+
+    public void ResetSpriteSet(){
+        if(CurrSpriteSet == SpriteSet.Side){
+
+            //setting undefinined bcs otherwise it sees that its already set and will not resedt
+            CurrSpriteSet = SpriteSet.Undefined;
+            SetSprites_side();
+            return;
+        }
+        if (CurrSpriteSet == SpriteSet.Front)
+        {
+            CurrSpriteSet = SpriteSet.Undefined;
+            SetSprites_front();
+            return;
+        }
+        if (CurrSpriteSet == SpriteSet.Back)
+        {
+            CurrSpriteSet = SpriteSet.Undefined;
+            SetSprites_back();
+            return;
+        }
+    }
+
     public void SetSprites_side(){
 
-        if(!AreCurrentSpritesSide){
-            AreCurrentSpritesSide = true;
+        if(CurrSpriteSet != SpriteSet.Side){
+            CurrSpriteSet = SpriteSet.Side;
 
-            BackUpper.sprite = FrontUpper.sprite = Sprites[1];
-            BackLower.sprite = FrontLower.sprite = Sprites[3];
+            BackUpper.sprite = FrontUpper.sprite = SpriteManagerToStealFrom.sprites[9][1];
+            BackLower.sprite = FrontLower.sprite = SpriteManagerToStealFrom.sprites[9][4];
 
-            BackUpper.color = BackLower.color = DarkerColor;
+            //the color of the front (or left from front view) doesnt cange, so i set in start
+            BackUpper.color = BackLower.color = Util.MakeColorDarker(SpriteManagerToStealFrom.colors[0], 0.75f);
             BackUpper.flipX = BackLower.flipX = false;
+
+
+
+            BackUpper_clothing.sprite = FrontUpper_clothing.sprite = SpriteManagerToStealFrom.sprites[10][4];
+            BackLower_clothing.sprite = FrontLower_clothing.sprite = SpriteManagerToStealFrom.sprites[10][7];
+            FrontUpper_clothing.color = FrontLower_clothing.color = SpriteManagerToStealFrom.colors[10];
+            BackUpper_clothing.color = BackLower_clothing.color = Util.MakeColorDarker(SpriteManagerToStealFrom.colors[10], 0.75f);
+            BackUpper_clothing.flipX = BackLower_clothing.flipX = false;
 
         }
 
     }
 
     public void SetSprites_front(){
-        if (AreCurrentSpritesSide)
+
+        if (CurrSpriteSet != SpriteSet.Front)
         {
-            AreCurrentSpritesSide = false;
+            CurrSpriteSet = SpriteSet.Front;
 
-            BackUpper.sprite = FrontUpper.sprite = Sprites[0];
-            BackLower.sprite = FrontLower.sprite = Sprites[2];
+            BackUpper.sprite = FrontUpper.sprite = SpriteManagerToStealFrom.sprites[9][0];
+            BackLower.sprite = FrontLower.sprite = SpriteManagerToStealFrom.sprites[9][3];
 
-            BackUpper.color = BackLower.color = BaseColor;
+            //the color of the front (or left from front view) doesnt cange, so i set in start
+            BackUpper.color = BackLower.color = SpriteManagerToStealFrom.colors[0];
             BackUpper.flipX = BackLower.flipX = true;
+
+
+
+            BackUpper_clothing.sprite = FrontUpper_clothing.sprite = SpriteManagerToStealFrom.sprites[10][3];
+            BackLower_clothing.sprite = FrontLower_clothing.sprite = SpriteManagerToStealFrom.sprites[10][6];
+            BackUpper_clothing.color = BackLower_clothing.color = FrontUpper_clothing.color = FrontLower_clothing.color = SpriteManagerToStealFrom.colors[10];
+            BackUpper_clothing.flipX = BackLower_clothing.flipX = true;
+
+        }
+    }
+
+    public void SetSprites_back()
+    {
+        if (CurrSpriteSet != SpriteSet.Back)
+        {
+            CurrSpriteSet = SpriteSet.Back;
+
+            BackUpper.sprite = FrontUpper.sprite = SpriteManagerToStealFrom.sprites[9][2];
+            BackLower.sprite = FrontLower.sprite = SpriteManagerToStealFrom.sprites[9][5];
+
+            //the color of the front (or left from front view) doesnt cange, so i set in start
+            BackUpper.color = BackLower.color = SpriteManagerToStealFrom.colors[0];
+            BackUpper.flipX = BackLower.flipX = true;
+
+
+
+            BackUpper_clothing.sprite = FrontUpper_clothing.sprite = SpriteManagerToStealFrom.sprites[10][5];
+            BackLower_clothing.sprite = FrontLower_clothing.sprite = SpriteManagerToStealFrom.sprites[10][8];
+            BackUpper_clothing.color = BackLower_clothing.color = FrontUpper_clothing.color = FrontLower_clothing.color = SpriteManagerToStealFrom.colors[10];
+            BackUpper_clothing.flipX = BackLower_clothing.flipX = true;
 
         }
     }
@@ -146,7 +220,7 @@ public class HumanLegsManager : MonoBehaviour
 
     public void RequestRunUp(bool LookingRight = true)
     {
-        SetSprites_front();
+        SetSprites_back();
 
         if (CurrState != AnimStates.RunUp)
         {
@@ -232,7 +306,17 @@ public class HumanLegsManager : MonoBehaviour
 
     public void RequestIdleUp()
     {
-        RequestIdleDown();
+        SetSprites_back();
+
+        if (CurrState != AnimStates.IdleDown)
+        {
+            CurrState = AnimStates.IdleDown;
+
+            transform.localScale = new Vector3(1, 1, 1);
+
+            ResetTriggers();
+            anim.SetTrigger("IdleDown");
+        }
     }
 
 

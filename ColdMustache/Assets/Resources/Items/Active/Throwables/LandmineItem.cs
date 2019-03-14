@@ -27,7 +27,8 @@ public class LandmineItem : ActiveItem
             GameObject go = new GameObject();
             if (GrenadeType == Grenade.GrenadeTypes.Frag) go.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Items/Active/Throwables/Landmine_projectile");
             //else if (GrenadeType == Grenade.GrenadeTypes.Fire) go.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Items/Active/Throwables/GrenadeIncendiary_projectile");
-
+            go.AddComponent<ZIndexManager>().Type = ZIndexManager.Types.Objects;
+            go.GetComponent<ZIndexManager>().RelativeValue = 1.5f;
             go.transform.position = UniversalReference.PlayerObject.transform.position;
             Rigidbody2D rb = go.AddComponent<Rigidbody2D>();
             rb.gravityScale = 0;

@@ -14,7 +14,7 @@ public class UniversalReference : MonoBehaviour {
     public static Entity PlayerEntity;
     public static Player PlayerScript;
     public static Rigidbody2D PlayerRb;
-    public static SpriteManagerHand PlayerSpriteManager;
+    public static SpriteManagerGeneric PlayerSpriteManager;
 
     public static GunRotatorHand GunRotator;
 
@@ -60,7 +60,7 @@ public class UniversalReference : MonoBehaviour {
         PlayerEntity = PlayerObject.GetComponent<Entity>();
         PlayerScript = PlayerObject.GetComponent<Player>();
         PlayerRb = PlayerObject.GetComponent<Rigidbody2D>();
-        PlayerSpriteManager = GameObject.Find("PlayerContainer").GetComponent<SpriteManagerHand>();
+        PlayerSpriteManager = GameObject.Find("PlayerContainer").GetComponent<SpriteManagerGeneric>();
 
         GunRotator = GameObject.Find("PlayerContainer/GunContainer").GetComponent<GunRotatorHand>();
 

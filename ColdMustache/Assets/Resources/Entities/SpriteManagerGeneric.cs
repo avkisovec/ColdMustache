@@ -87,7 +87,7 @@ public class SpriteManagerGeneric : SpriteManagerBase {
         {
             TemporaryColorTimeRemaining = -999999;
 
-            colors = (Color[])colors_original.Clone();
+            EndTemporaryColor();
 
             UpdateEverything(LastDirection);
         }
@@ -229,6 +229,12 @@ public class SpriteManagerGeneric : SpriteManagerBase {
         }
         TemporaryColorTimeRemaining = Time;
         UpdateEverything(LastDirection);
+    }
+
+    public virtual void EndTemporaryColor(){
+        
+        colors = (Color[])colors_original.Clone();
+
     }
     
 

@@ -55,3 +55,14 @@ Entities/Human/Parts/EmptyParts
 //hands; color doesnt matter
 Entities/Human/Parts/Hands/Default
 #0.4;0.4;0.9;1;0.2
+
+[9]
+//legs; color doesnt matter
+Entities/Human/Parts/Legs/Default2
+#0.4;0.4;0.9;1;0.2
+
+[10]
+//legwear
+Items/Leg/Pants
+Items/Leg/Shorts
+#0.5;0.5;0.5;1;0.5

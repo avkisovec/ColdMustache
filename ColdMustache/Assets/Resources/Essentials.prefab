@@ -778,12 +778,12 @@ PrefabInstance:
         type: 3}
       propertyPath: LoadOnStart_sm
       value: 
-      objectReference: {fileID: 349253877191003927}
+      objectReference: {fileID: 1368292431986821441}
     - target: {fileID: 114004189303569602, guid: 44d4cde11436f2f47a762a5f17d93a6e,
         type: 3}
       propertyPath: spriteManagerHand
       value: 
-      objectReference: {fileID: 349253877191003927}
+      objectReference: {fileID: 0}
     - target: {fileID: 114004189303569602, guid: 44d4cde11436f2f47a762a5f17d93a6e,
         type: 3}
       propertyPath: CurrentlyEquippedWeapon
@@ -1073,16 +1073,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec7a3186dd6c5c141bffd75ebc9dc22a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &349253877191003927 stripped
+--- !u!114 &1368292431986821441 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114739093210699038, guid: 44d4cde11436f2f47a762a5f17d93a6e,
+  m_CorrespondingSourceObject: {fileID: 1707507070685107016, guid: 44d4cde11436f2f47a762a5f17d93a6e,
     type: 3}
   m_PrefabInstance: {fileID: 382645533762214409}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c18c897adb60a641b2cd1fb1c438e8b, type: 3}
+  m_Script: {fileID: 11500000, guid: 46d3ce7a30b3ba54b92f0bd8fa9334fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &349380674830833373 stripped
