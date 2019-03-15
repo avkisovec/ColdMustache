@@ -180,6 +180,7 @@ public class AI_MoveRoundNShoot : AI_Base {
             }
 
         }
+        e.LookingToward = AimDirection;
         e.spriteManager.LookTowardAngle(Vector2.SignedAngle(Vector2.right, AimDirection));
         
     }    
