@@ -11,8 +11,6 @@ Entities/Human/Parts/Body/Default
 //shirt; color doesnt matter
 Entities/Human/Parts/EmptyParts
 Items/Shirt/Shirt01
-Items/Shirt/TshirtBlank
-Items/Shirt/TshirtLogo01
 #0.5;0.5;0.5;1;0.5
 
 [2]
@@ -25,8 +23,9 @@ Entities/Human/Parts/Head/Round
 [3]
 //jacket; color doesnt matter
 Entities/Human/Parts/EmptyParts
+Entities/Human/Parts/EmptyParts
+Entities/Human/Parts/EmptyParts
 Items/Jacket/Jacket01
-Items/Jacket/Backpack
 #0.5;0.5;0.5;1;0.5
 
 [4]

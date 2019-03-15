@@ -67,11 +67,7 @@ public class Entity : MonoBehaviour {
         //check invincibility, resistances and stuff
         if (true)
         {
-            GameObject BloodSpatter = new GameObject();
-            BloodSpatter.transform.position = new Vector3(transform.position.x, transform.position.y, 209);
-            BloodSpatter.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
-            BloodSpatter.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Fx/BloodSpatter2");
-            BloodSpatter.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 1);
+            BloodSpatterSpawner.SpawnSmall(transform.position);
             
 
             Health -= Damage;
@@ -89,6 +85,9 @@ public class Entity : MonoBehaviour {
             if(Health <= 0)
             {
                 Die(WeaponType);
+
+                BloodSpatterSpawner.SpawnPool(transform.position);
+
             }
         }
     }

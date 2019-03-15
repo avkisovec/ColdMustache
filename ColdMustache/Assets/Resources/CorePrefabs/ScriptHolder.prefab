@@ -24,6 +24,8 @@ GameObject:
   - component: {fileID: 114990714272682698}
   - component: {fileID: 1538058743329221425}
   - component: {fileID: 1841049317855873047}
+  - component: {fileID: 1480126629}
+  - component: {fileID: 2897592390138447636}
   m_Layer: 0
   m_Name: ScriptHolder
   m_TagString: Untagged
@@ -230,3 +232,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 340de609170ac9144be4a3dc0f30cc69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1480126629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693862511653818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dfd4ff20b6f00c45b4840747bbaa1e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2897592390138447636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693862511653818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89bf559bf0a4c704fa9d2b70535606f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BloodSpatterSheetPath: 
