@@ -40,7 +40,7 @@ public class TerrainBuilderDirtlike : MonoBehaviour
                     center.AddComponent<ModuloTexture>().SpriteSheetPath = CenterSheetPath;
                     center.GetComponent<ModuloTexture>().ScaleRelativeTo32x32 = Modulo_ScaleRelativeTo32x;
                     center.GetComponent<ModuloTexture>().TilesInSheet = Modulo_TilesInSheet;
-                    center.transform.position = new Vector3(x, y, Zposition - 0.01f);
+                    center.transform.position = new Vector3(x, y, Zposition + 0.01f);
                     center.transform.parent = transform;
                 }
                 else

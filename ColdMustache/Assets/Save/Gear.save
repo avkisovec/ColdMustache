@@ -1,5 +1,5 @@
 0;EmptySlot
-1;Items/Jacket/CoatBrown
+1;EmptySlot
 2;Items/Shirt/ShirtBlue
 3;Items/Weapons/SMGlike/hitech
 4;Items/Weapons/AlienBouncer/AlienBouncer
@@ -9,10 +9,10 @@
 8;Items/Active/Heal/HealthKit
 9;Items/Active/Heal/HealthKit
 10;Items/Active/Throwables/FragGrenade
-11;Items/Active/Throwables/GrenadeIncendiary
-12;Items/Active/Buff/SyringeMovespeed
+11;Items/Active/Throwables/FragGrenade
+12;Items/Active/Throwables/FragGrenade
 13;Items/Active/Throwables/Landmine
 14;Items/Active/Throwables/Landmine
-15;Items/Active/Throwables/Landmine
-16;Items/Active/Throwables/Landmine
-17;Items/Active/Throwables/Landmine
+15;Items/Active/Throwables/GrenadeIncendiary
+16;Items/Active/Throwables/GrenadeIncendiary
+17;Items/Active/Buff/SyringeMovespeed

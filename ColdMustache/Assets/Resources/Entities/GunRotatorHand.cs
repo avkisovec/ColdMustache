@@ -13,9 +13,9 @@ public class GunRotatorHand : MonoBehaviour {
     Vector3 GunOtherSidePos; //mirrorred = toward left
 
     //right on screen, not the actual character's right shoulder (if character is looking toward screen, his left shoulder is on right)
-    Vector3 FrontBackLeftShoulder = new Vector3(-0.18f, 0.05f);
-    Vector3 FrontBackRightShoulder = new Vector3(0.18f, 0.05f);
-    Vector3 SideShoulder = new Vector3(0, 0.05f);
+    Vector3 FrontBackLeftShoulder = new Vector3(-0.18f, 0.55f);
+    Vector3 FrontBackRightShoulder = new Vector3(0.18f, 0.55f);
+    Vector3 SideShoulder = new Vector3(0, 0.55f);
 
     //public Transform Head;
     public Transform OtherHand;

@@ -431,6 +431,85 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1051183759
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1051183761}
+  - component: {fileID: 1051183760}
+  m_Layer: 0
+  m_Name: pixel (8)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &1051183760
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051183759}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 7e175010d3be5884e99bc255319e001c, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1051183761
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051183759}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -27.73, y: 34.72, z: 0}
+  m_LocalScale: {x: 23.4, y: 66.2, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1072991744
 GameObject:
   m_ObjectHideFlags: 0
@@ -759,6 +838,9 @@ GameObject:
   - component: {fileID: 1631803242}
   - component: {fileID: 1631803244}
   - component: {fileID: 1631803245}
+  - component: {fileID: 1631803241}
+  - component: {fileID: 1631803243}
+  - component: {fileID: 1631803246}
   m_Layer: 0
   m_Name: TerrainGenerator
   m_TagString: Untagged
@@ -780,6 +862,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1631803241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1631803239}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73afcc8f06ad4ba4e8b0db53fe29de4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ENABLED: 1
+  Map: {fileID: 2800000, guid: 57f6773a1d574bb42a8226c9e056d7ee, type: 3}
+  SpritesheetPaths:
+  - Environment/Decor/Terrain/Dirt/02LargeSet/0
+  - Environment/Decor/Terrain/Dirt/02LargeSet/1
+  - Environment/Decor/Terrain/Dirt/02LargeSet/2
+  - Environment/Decor/Terrain/Dirt/02LargeSet/3
+  - Environment/Decor/Terrain/Dirt/02LargeSet/4
+  - Environment/Decor/Terrain/Dirt/02LargeSet/5
+  - Environment/Decor/Terrain/Dirt/02LargeSet/6
+  - Environment/Decor/Terrain/Dirt/02LargeSet/7
+  - Environment/Decor/Terrain/Dirt/02LargeSet/8
+  - Environment/Decor/Terrain/Dirt/02LargeSet/9
+  - Environment/Decor/Terrain/Dirt/02LargeSet/10
+  - Environment/Decor/Terrain/Dirt/02LargeSet/11
+  - Environment/Decor/Terrain/Dirt/02LargeSet/12
+  Modulo_ScaleRelativeTo32x: {x: 1, y: 1}
+  Modulo_TilesInSheet: {x: 8, y: 8}
+  Zposition: -0.5
 --- !u!114 &1631803242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -793,14 +906,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ENABLED: 1
-  CenterSheetPath: Environment/Decor/Terrain/Sand/01/Modulo8x8
+  CenterSheetPath: Environment/Decor/Terrain/Sand/02/Modulo8x8
   Edge: {fileID: 21300000, guid: 78527deee0650cf4c8d769f8096a6a00, type: 3}
   Corner: {fileID: 21300000, guid: 4cef022a01405b742be44844ae58a0ca, type: 3}
   Map: {fileID: 2800000, guid: 9a58f0abf61cbec428189311b07404a9, type: 3}
   Modulo_ScaleRelativeTo32x: {x: 1, y: 1}
   Modulo_TilesInSheet: {x: 8, y: 8}
   Zposition: 1
---- !u!114 &1631803244
+--- !u!114 &1631803243
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -809,6 +922,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 1631803239}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73afcc8f06ad4ba4e8b0db53fe29de4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ENABLED: 1
+  Map: {fileID: 2800000, guid: 9a58f0abf61cbec428189311b07404a9, type: 3}
+  SpritesheetPaths:
+  - Environment/Decor/Terrain/Sand/03LargeSet/0
+  - Environment/Decor/Terrain/Sand/03LargeSet/1
+  - Environment/Decor/Terrain/Sand/03LargeSet/2
+  - Environment/Decor/Terrain/Sand/03LargeSet/3
+  - Environment/Decor/Terrain/Sand/03LargeSet/4
+  - Environment/Decor/Terrain/Sand/03LargeSet/5
+  - Environment/Decor/Terrain/Sand/03LargeSet/6
+  - Environment/Decor/Terrain/Sand/03LargeSet/7
+  - Environment/Decor/Terrain/Sand/03LargeSet/8
+  - Environment/Decor/Terrain/Sand/03LargeSet/9
+  - Environment/Decor/Terrain/Sand/03LargeSet/10
+  - Environment/Decor/Terrain/Sand/03LargeSet/11
+  - Environment/Decor/Terrain/Sand/03LargeSet/12
+  Modulo_ScaleRelativeTo32x: {x: 1, y: 1}
+  Modulo_TilesInSheet: {x: 8, y: 8}
+  Zposition: 0
+--- !u!114 &1631803244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1631803239}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: babf633024e5eed4797c3342352a68e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -816,10 +960,10 @@ MonoBehaviour:
   CenterSheetPath: Environment/Decor/Terrain/Dirt/01W/Modulo8x8
   Edge: {fileID: 21300000, guid: e12f8fb74804b6d4d93153967931d425, type: 3}
   Corner: {fileID: 21300000, guid: 3936ef43720fed8498bf7c2f97e9bd10, type: 3}
-  Map: {fileID: 2800000, guid: a870ee74be4e6c9499644c6d0a60a82e, type: 3}
+  Map: {fileID: 2800000, guid: 57f6773a1d574bb42a8226c9e056d7ee, type: 3}
   Modulo_ScaleRelativeTo32x: {x: 1, y: 1}
   Modulo_TilesInSheet: {x: 8, y: 8}
-  Zposition: 0
+  Zposition: 2
 --- !u!114 &1631803245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -833,13 +977,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ENABLED: 1
-  Map: {fileID: 2800000, guid: 7f20f21c8ffe58c408f629f8e3beab64, type: 3}
+  Map: {fileID: 2800000, guid: 701dbe6fead6ebe4599dbf9400aeefd0, type: 3}
   SpriteSheetPaths:
   - Environment/Decor/Terrain/Grass/01/VL
   - Environment/Decor/Terrain/Grass/01/L
   - Environment/Decor/Terrain/Grass/01/M
   - Environment/Decor/Terrain/Grass/01/H
   Zposition: -1
+--- !u!114 &1631803246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1631803239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73afcc8f06ad4ba4e8b0db53fe29de4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ENABLED: 1
+  Map: {fileID: 2800000, guid: 57f6773a1d574bb42a8226c9e056d7ee, type: 3}
+  SpritesheetPaths:
+  - Environment/Decor/Terrain/Dirt/03LargeSet/0
+  - Environment/Decor/Terrain/Dirt/03LargeSet/1
+  - Environment/Decor/Terrain/Dirt/03LargeSet/2
+  - Environment/Decor/Terrain/Dirt/03LargeSet/3
+  - Environment/Decor/Terrain/Dirt/03LargeSet/4
+  - Environment/Decor/Terrain/Dirt/03LargeSet/5
+  - Environment/Decor/Terrain/Dirt/03LargeSet/6
+  - Environment/Decor/Terrain/Dirt/03LargeSet/7
+  - Environment/Decor/Terrain/Dirt/03LargeSet/8
+  - Environment/Decor/Terrain/Dirt/03LargeSet/9
+  - Environment/Decor/Terrain/Dirt/03LargeSet/10
+  - Environment/Decor/Terrain/Dirt/03LargeSet/11
+  - Environment/Decor/Terrain/Dirt/03LargeSet/12
+  Modulo_ScaleRelativeTo32x: {x: 1, y: 1}
+  Modulo_TilesInSheet: {x: 8, y: 8}
+  Zposition: -0.5
 --- !u!1 &1972017180
 GameObject:
   m_ObjectHideFlags: 0
@@ -2052,7 +2227,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5628008857498470119}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -999}
+  m_LocalPosition: {x: 0, y: 0, z: 9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2541567963523049103}

@@ -25,7 +25,7 @@ public class EnvironmentObject : MonoBehaviour {
     public string DamageOverlayPath = "";
     public Sprite[] DamageSprites;
 
-    SpriteRenderer DamageOverlay;
+    protected SpriteRenderer DamageOverlay;
 
     public bool DoDamageOverlay = true;
     public Sprite DeathRemains;
@@ -60,7 +60,7 @@ public class EnvironmentObject : MonoBehaviour {
 
 	}
 	
-    public void TakeDamage(float Damage)
+    public virtual void TakeDamage(float Damage)
     {
         if (!Indestructible)
         {
@@ -88,7 +88,7 @@ public class EnvironmentObject : MonoBehaviour {
 
         }
     }
-    public void Die()
+    public virtual void Die()
     {
         //GetComponent<DeathAnimation>().Spawn(transform.position);
         if (!Nav_Walkable)
@@ -98,6 +98,10 @@ public class EnvironmentObject : MonoBehaviour {
         if (!Nav_ExplosionCanPass)
         {
             NavTestStatic.ExplosionNavArray[posX, posY] = NavTestStatic.EmptyTileValue;
+        }
+        if(!Nav_LightCanPass)
+        {
+            NavTestStatic.LightNavArray[posX, posY] = NavTestStatic.EmptyTileValue;
         }
 
 

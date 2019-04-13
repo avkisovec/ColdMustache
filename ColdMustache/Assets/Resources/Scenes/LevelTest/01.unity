@@ -78557,7 +78557,6 @@ MonoBehaviour:
   SpritePath: Environment/Decor/Cliffs/Photo01
   BaseTilesPerSheet: 20
   ReflectionTilesPerBase: 10
-  TileWidth: 1
   Duration: 2
 --- !u!1 &1616362917
 GameObject:
@@ -91237,6 +91236,14 @@ PrefabInstance:
     - target: {fileID: 4288237663246702, guid: a6751b881ca72a144816cceb45dccfd0, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4288237663246702, guid: a6751b881ca72a144816cceb45dccfd0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.02154112
+      objectReference: {fileID: 0}
+    - target: {fileID: 4288237663246702, guid: a6751b881ca72a144816cceb45dccfd0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.04930077
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6751b881ca72a144816cceb45dccfd0, type: 3}

@@ -48,15 +48,24 @@ public class NavTestStatic : MonoBehaviour {
 
             if (!eo.Nav_Walkable)
             {
-                NavTestStatic.NavArray[Mathf.RoundToInt(eo.transform.position.x), Mathf.RoundToInt(eo.transform.position.y)] = NavTestStatic.ImpassableTileValue;
+                if(IsTileWithinBounds(Util.Vector3To2Int(eo.transform.position)))
+                {
+                    NavTestStatic.NavArray[Mathf.RoundToInt(eo.transform.position.x), Mathf.RoundToInt(eo.transform.position.y)] = NavTestStatic.ImpassableTileValue;
+                }
             }
             if (!eo.Nav_ExplosionCanPass)
             {
+                if (IsTileWithinBounds(Util.Vector3To2Int(eo.transform.position)))
+                {
                 NavTestStatic.ExplosionNavArray[Mathf.RoundToInt(eo.transform.position.x), Mathf.RoundToInt(eo.transform.position.y)] = NavTestStatic.ImpassableTileValue;
+                }
             }
             if (!eo.Nav_LightCanPass)
             {
+                if (IsTileWithinBounds(Util.Vector3To2Int(eo.transform.position)))
+                {
                 NavTestStatic.LightNavArray[Mathf.RoundToInt(eo.transform.position.x), Mathf.RoundToInt(eo.transform.position.y)] = NavTestStatic.ImpassableTileValue;
+                }
             }
         }
 

@@ -88,6 +88,12 @@ public class ExplosionFrag : MonoBehaviour
             go.AddComponent<BoxCollider2D>().isTrigger = true;
             go.GetComponent<BoxCollider2D>().size = new Vector2(1,1);
             go.AddComponent<DamagerInflicterAoE>().ini(Entity.team.Neutral, Damage, 0.4f, true, 1, -e.Age, DamagerInflicter.WeaponTypes.Explosion  );
+
+
+            go.AddComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+
+
+            go.AddComponent<DamagerInflicter>().ini(Entity.team.Player, Damage, false, true, 9999, -e.Age, true, DamagerInflicter.WeaponTypes.Explosion);
         }
     }
 }

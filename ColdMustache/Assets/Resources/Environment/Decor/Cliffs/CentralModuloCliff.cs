@@ -8,7 +8,6 @@ public class CentralModuloCliff : MonoBehaviour
     public string SpritePath;
     public int BaseTilesPerSheet;
     public int ReflectionTilesPerBase;
-    public int TileWidth;
     Sprite[] FullSpriteSheet;
     int MyModuloChosenSubTileSet = -1;
 
@@ -50,7 +49,8 @@ public class CentralModuloCliff : MonoBehaviour
                 Destroy(child.GetChild(ChildsChild).gameObject);
             }
 
-            MyModuloChosenSubTileSet = (Mathf.RoundToInt(child.position.x) / TileWidth) % BaseTilesPerSheet;
+            // 3*y to skip some sprites where the edge "breaks" (the following cliff is on different y)
+            MyModuloChosenSubTileSet = (Mathf.RoundToInt(child.position.x) + 3 * Mathf.RoundToInt(child.position.y)) % BaseTilesPerSheet;
 
             child.GetComponent<SpriteRenderer>().sprite = AboveWaterSprites[MyModuloChosenSubTileSet];
 
