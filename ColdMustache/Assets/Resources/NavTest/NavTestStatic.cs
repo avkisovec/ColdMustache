@@ -2,7 +2,8 @@
 using System.IO;
 using UnityEngine;
 
-public class NavTestStatic : MonoBehaviour {
+public class NavTestStatic : MonoBehaviour
+{
 
     #region Declarations
 
@@ -18,6 +19,10 @@ public class NavTestStatic : MonoBehaviour {
     public static int[,] NavArray;
     public static int[,] ExplosionNavArray;
     public static int[,] LightNavArray;
+
+
+    //this is for the purpose of decorator, so that it can check its coordinates and based on that become children of a wall
+    public static Transform[,] WallTransformsArray;
 
     #endregion
 
@@ -41,30 +46,36 @@ public class NavTestStatic : MonoBehaviour {
         NavTestStatic.ExplosionNavArray = (int[,])NavTestStatic.NavArray.Clone();
         NavTestStatic.LightNavArray = (int[,])NavTestStatic.NavArray.Clone();
 
+        WallTransformsArray = new Transform[MapWidth, MapHeight];
+
         //go through all existing environment objects in scene, and if they block particular thing, note in in the array
         foreach (EnvironmentObject eo in GameObject.FindObjectsOfType<EnvironmentObject>())
         {
-            if(!eo.DoNav) continue;
+            Vector2Int IntCoordinates = new Vector2Int(Mathf.RoundToInt(eo.transform.position.x), Mathf.RoundToInt(eo.transform.position.y));
+
+            WallTransformsArray[IntCoordinates.x, IntCoordinates.y] = eo.transform;
+
+            if (!eo.DoNav) continue;
 
             if (!eo.Nav_Walkable)
             {
-                if(IsTileWithinBounds(Util.Vector3To2Int(eo.transform.position)))
+                if (IsTileWithinBounds(IntCoordinates))
                 {
-                    NavTestStatic.NavArray[Mathf.RoundToInt(eo.transform.position.x), Mathf.RoundToInt(eo.transform.position.y)] = NavTestStatic.ImpassableTileValue;
+                    NavTestStatic.NavArray[IntCoordinates.x, IntCoordinates.y] = NavTestStatic.ImpassableTileValue;
                 }
             }
             if (!eo.Nav_ExplosionCanPass)
             {
-                if (IsTileWithinBounds(Util.Vector3To2Int(eo.transform.position)))
+                if (IsTileWithinBounds(IntCoordinates))
                 {
-                NavTestStatic.ExplosionNavArray[Mathf.RoundToInt(eo.transform.position.x), Mathf.RoundToInt(eo.transform.position.y)] = NavTestStatic.ImpassableTileValue;
+                    NavTestStatic.ExplosionNavArray[IntCoordinates.x, IntCoordinates.y] = NavTestStatic.ImpassableTileValue;
                 }
             }
             if (!eo.Nav_LightCanPass)
             {
-                if (IsTileWithinBounds(Util.Vector3To2Int(eo.transform.position)))
+                if (IsTileWithinBounds(IntCoordinates))
                 {
-                NavTestStatic.LightNavArray[Mathf.RoundToInt(eo.transform.position.x), Mathf.RoundToInt(eo.transform.position.y)] = NavTestStatic.ImpassableTileValue;
+                    NavTestStatic.LightNavArray[IntCoordinates.x, IntCoordinates.y] = NavTestStatic.ImpassableTileValue;
                 }
             }
         }
@@ -207,7 +218,7 @@ public class NavTestStatic : MonoBehaviour {
         {
             CurrDistance++;
 
-            if(CurrDistance > MaxDistance)
+            if (CurrDistance > MaxDistance)
             {
                 return null;
             }
@@ -218,7 +229,7 @@ public class NavTestStatic : MonoBehaviour {
                 TilesCurrentlyBeingExamined.Add(v);
             }
             TilesToExamineNext.Clear();
-            
+
 
             foreach (Vector2 v in TilesCurrentlyBeingExamined)
             {
@@ -310,7 +321,7 @@ public class NavTestStatic : MonoBehaviour {
         //wn.WayPoints = WayPoints;
 
     }
-    
+
     public static List<Vector2> FindAPath(Vector2Int Source, Vector2Int Target)
     {
         return FindAPath(Source.x, Source.y, Target.x, Target.y);
@@ -480,8 +491,8 @@ public class NavTestStatic : MonoBehaviour {
 
         return Output;
     }
-    
-    
+
+
 
     public static bool IsTileWalkable(int X, int Y)
     {
@@ -503,7 +514,7 @@ public class NavTestStatic : MonoBehaviour {
 
     public static bool IsPathWalkable(List<Vector2Int> Path)
     {
-        foreach(Vector2Int tile in Path)
+        foreach (Vector2Int tile in Path)
         {
             if (!IsTileWalkable(tile))
             {
@@ -546,17 +557,18 @@ public class NavTestStatic : MonoBehaviour {
         }
         return true;
     }
-    
+
     public static bool CheckLineOfSight(Vector2Int Origin, Vector2 Target)
     {
-        foreach(Vector2Int v in BresenhamLine(Origin, Target)){
+        foreach (Vector2Int v in BresenhamLine(Origin, Target))
+        {
             if (!CanLightPassThroughTile(v))
             {
                 return false;
             }
         }
         return true;
-        
+
     }
 
     //returns null if the line is obstructed, returns the path is the line of sight is clear
@@ -570,7 +582,7 @@ public class NavTestStatic : MonoBehaviour {
         int dx = Mathf.Abs(x1 - x0), sx = x0 < x1 ? 1 : -1;
         int dy = Mathf.Abs(y1 - y0), sy = y0 < y1 ? 1 : -1;
         int err = (dx > dy ? dx : -dy) / 2, e2;
-        for (;;)
+        for (; ; )
         {
             if (CanLightPassThroughTile(x0, y0))
             {
@@ -590,18 +602,22 @@ public class NavTestStatic : MonoBehaviour {
 
     //input the two points that you want to cast the laser between (source and target)
     //this returns the maximum distance the laser can be until it stops at na obstacle
-    public static float GetLaserDistance(Vector2 Source, Vector2 Target){
+    public static float GetLaserDistance(Vector2 Source, Vector2 Target)
+    {
 
-        if(!CanLightPassThroughTile(Util.Vector2To2Int(Source))) return 0;
+        if (!CanLightPassThroughTile(Util.Vector2To2Int(Source))) return 0;
 
         Vector2 Last = Target;
 
-        foreach(Vector2Int v in BresenhamLine(Source, Target)){
-            
-            if(!CanLightPassThroughTile(v)){
+        foreach (Vector2Int v in BresenhamLine(Source, Target))
+        {
+
+            if (!CanLightPassThroughTile(v))
+            {
                 return (Source - Last).magnitude;
             }
-            else{
+            else
+            {
                 Last = v;
             }
         }
@@ -623,8 +639,9 @@ public class NavTestStatic : MonoBehaviour {
     }
 
     //RETURNS a vector 3, X and Y are TILE COORDINATES and Z is DISTANCE FROM SOURCE
-    public static List<Vector3> GetExplosionArea(Vector2Int Source, float MaxDistance){
-        List<Vector3>Output = new List<Vector3>();
+    public static List<Vector3> GetExplosionArea(Vector2Int Source, float MaxDistance)
+    {
+        List<Vector3> Output = new List<Vector3>();
 
         AvkisLight_cast_explosion_recursion(Source, AvkisLightNodes[0], MaxDistance, Output);
 
@@ -693,10 +710,10 @@ public class NavTestStatic : MonoBehaviour {
         //adding root node
         AvkisLightNodes.Add(new AvkisLightNode(new Vector2Int(0, 0)));
 
-        for(int Radius = 1; Radius < MaxRadius; Radius++)
+        for (int Radius = 1; Radius < MaxRadius; Radius++)
         {
-            foreach(Vector2Int CirclePoint in BresenhamCircle_unrestricted(new Vector2Int(0,0), Radius))
-            {                
+            foreach (Vector2Int CirclePoint in BresenhamCircle_unrestricted(new Vector2Int(0, 0), Radius))
+            {
                 //if node with identical coordinates already exists, skip to next one
                 //i belive its not possible, so you brobably can delete this check
                 //update: bresenham's midpoint circle will never overlap, it rather leaves gaps; but you should keep this check if you use different circle algorithm
@@ -708,10 +725,10 @@ public class NavTestStatic : MonoBehaviour {
                         goto NextCirclePoint;
                     }
                 }
-                
+
                 //casting a line from circlepoint toward center
                 List<Vector2Int> Line = BresenhamLine(CirclePoint, new Vector2(0, 0));
-                
+
                 AvkisLightNode found = null;
                 foreach (AvkisLightNode node in AvkisLightNodes)
                 {
@@ -748,14 +765,14 @@ public class NavTestStatic : MonoBehaviour {
                     GapFiller.AddChild(nu);
                 }
 
-                NextCirclePoint:;
+            NextCirclePoint:;
             }
         }
-        
+
     }
 
     public static List<Vector2Int> AvkisLight_cast(Vector2Int Source)
-    {        
+    {
         List<Vector2Int> Output = new List<Vector2Int>();
 
         AvkisLight_cast_recursion(Source, AvkisLightNodes[0], Output);
@@ -765,12 +782,12 @@ public class NavTestStatic : MonoBehaviour {
 
     static void AvkisLight_cast_recursion(Vector2Int Source, AvkisLightNode node, List<Vector2Int> Output)
     {
-        if(IsTileWithinBounds(Source + node.Coordinates))
+        if (IsTileWithinBounds(Source + node.Coordinates))
         {
             Output.Add(Source + node.Coordinates);
             if (CanLightPassThroughTile(Source + node.Coordinates))
-            {                
-                foreach(AvkisLightNode child in node.Children)
+            {
+                foreach (AvkisLightNode child in node.Children)
                 {
                     AvkisLight_cast_recursion(Source, child, Output);
                 }
@@ -813,8 +830,8 @@ public class NavTestStatic : MonoBehaviour {
     public static List<Vector2Int> BresenhamLight(Vector2Int Source, int radius)
     {
         List<Vector2Int> output = new List<Vector2Int>();
-        
-        foreach(Vector2Int CirclePoint in BresenhamCircle_unrestricted(Source, radius))
+
+        foreach (Vector2Int CirclePoint in BresenhamCircle_unrestricted(Source, radius))
         {
             foreach (Vector2Int v in BresenhamLine(Source, CirclePoint))
             {
@@ -853,7 +870,7 @@ public class NavTestStatic : MonoBehaviour {
         int dx = Mathf.Abs(x1 - x0), sx = x0 < x1 ? 1 : -1;
         int dy = Mathf.Abs(y1 - y0), sy = y0 < y1 ? 1 : -1;
         int err = (dx > dy ? dx : -dy) / 2, e2;
-        for (;;)
+        for (; ; )
         {
             output.Add(new Vector2Int(x0, y0));
             if (x0 == x1 && y0 == y1) break;
@@ -863,7 +880,7 @@ public class NavTestStatic : MonoBehaviour {
         }
         return output;
     }
-            
+
     public static List<Vector2Int> BresenhamCircle(Vector2Int Origin, int radius)
     {
         List<Vector2Int> output = new List<Vector2Int>();

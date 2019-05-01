@@ -275,6 +275,20 @@ public class Player : MonoBehaviour {
             }
         }
 
+
+        //deals 10 000 damage to every enemy entity
+        if (CheatManager.LastCheat == "KARTHUS") // Karthus
+        {
+            foreach (Entity e in GameObject.FindObjectsOfType<Entity>())
+            {
+                if(e.Team == Entity.team.Enemy){
+                    e.TakeDamage(10000, DamagerInflicter.WeaponTypes.Undefined);
+                }
+
+            }
+
+        }
+
         #endregion
         
         #region Input

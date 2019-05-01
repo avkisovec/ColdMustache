@@ -14,33 +14,40 @@ public class WallSegment : MonoBehaviour
 
     this can then dynamically adapt to destruction of tiles
     
-    
-    
-    
      */
 
     public bool UseChildrenAsTiles = false;
-
     
-    Sprite[] sprites;
+    //the sprites for the front of a new wall
+    public Sprite[] MainSprites;
+    //sprites for the front that gets created by destroying a wall
+    public Sprite[] DamagedSprites;
+    //sprites for the top sections of walls
+    public Sprite[] TopSprites;
 
     public WallSegmentTile[] Tiles = null;
 
     //new parent can be null, thats not a problem
     public Transform NewParentForTiles = null;
 
-    float TileMaxHealth;
-    SpriteRenderer[] spriteRenderers;
-    SpriteRenderer[] DamageOverlaySRs;
+    public float TileMaxHealth;
+    public SpriteRenderer[] spriteRenderers;
+    public SpriteRenderer[] DamageOverlaySRs;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        ini();
+        //initialised by builder that created it
+        //ini();
     }
 
-    public void ini(WallSegmentTile[] ToBeTiles = null){
+    public void ini(WallSegmentTile[] ToBeTiles = null, bool ChildrenAsTiles = true, bool UseDamagedSprites = false, bool FirstTime = true, Sprite[] MainSprites = null, Sprite[] DamagedSprites = null, Sprite[] TopSprites = null){
+        this.UseChildrenAsTiles = ChildrenAsTiles;
+
+        this.MainSprites = MainSprites;
+        this.DamagedSprites = DamagedSprites;
+        this.TopSprites = TopSprites;
 
         if(ToBeTiles!=null){
             Tiles = ToBeTiles;
@@ -108,13 +115,31 @@ public class WallSegment : MonoBehaviour
         }
         TileMaxHealth = Tiles[0].MaxHealth;
 
-        sprites = Resources.LoadAll<Sprite>("Environment/Physical/Walls/Segment/Wall");
+        //MainSprites = Resources.LoadAll<Sprite>("Environment/Physical/Walls/Segment/Wall");
 
-        spriteRenderers[spriteRenderers.Length - 1].sprite = sprites[2];
-        spriteRenderers[spriteRenderers.Length - 2].sprite = sprites[1];
-        for (int i = 0; i < Tiles.Length - 2; i++)
-        {
-            spriteRenderers[i].sprite = sprites[0];
+        if(UseDamagedSprites){
+            int ChosenSprite = Random.Range(0, this.DamagedSprites.Length/2);
+            spriteRenderers[spriteRenderers.Length - 1].sprite = DamagedSprites[DamagedSprites.Length / 2 + ChosenSprite];
+            spriteRenderers[spriteRenderers.Length - 2].sprite = DamagedSprites[ChosenSprite];
+
+            //destroy all children - for situations where some decorative object was part of the wall
+            Transform UpperSectionOfFrontSide = spriteRenderers[spriteRenderers.Length - 1].transform;
+            for(int i = 0; i < UpperSectionOfFrontSide.childCount; i++){
+                Destroy(UpperSectionOfFrontSide.GetChild(i).gameObject);
+            }
+
+        }
+        else{
+            int ChosenSprite = Random.Range(0, MainSprites.Length / 2);
+            spriteRenderers[spriteRenderers.Length - 1].sprite = MainSprites[MainSprites.Length / 2 + ChosenSprite];
+            spriteRenderers[spriteRenderers.Length - 2].sprite = MainSprites[ChosenSprite];
+        }
+
+        if(FirstTime){
+            for (int i = 0; i < Tiles.Length - 2; i++)
+            {
+                spriteRenderers[i].sprite = TopSprites[Random.Range(0,TopSprites.Length)];
+            }
         }
     }
 
@@ -178,7 +203,7 @@ public class WallSegment : MonoBehaviour
         //tile has health left
         if (Tiles[TileIndex].Health > 0){
 
-            float HealthRatio =  0.25f + (Tiles[TileIndex].Health / TileMaxHealth)*0.75f;
+            float HealthRatio =  0.75f + (Tiles[TileIndex].Health / TileMaxHealth)*0.25f;
             spriteRenderers[TileIndex].color = new Color(HealthRatio, HealthRatio, HealthRatio, 1);
 
 
@@ -203,12 +228,12 @@ public class WallSegment : MonoBehaviour
 
         for(int i = 0; i < Tiles.Length; i++){
 
-            //go to a
+            //go to a (section ABOVE the now destroyed tile)
             if(i < MissingTile){
                 a[i] = Tiles[i];
             }
 
-            //go to b
+            //go to b (section BELOW the now destroyed tile)
             if(i > MissingTile){
                 b[i-MissingTile-1] = Tiles[i];
             }
@@ -216,10 +241,12 @@ public class WallSegment : MonoBehaviour
         }
 
         GameObject goa = new GameObject();
-        goa.AddComponent<WallSegment>().ini(a);
+        goa.AddComponent<WallSegment>().ini(a, false, true, false, MainSprites, DamagedSprites, TopSprites);
+
+        
 
         GameObject gob = new GameObject();
-        gob.AddComponent<WallSegment>().ini(b);
+        gob.AddComponent<WallSegment>().ini(b, false, false, false, MainSprites, DamagedSprites, TopSprites);
 
         Destroy(this.gameObject);
 

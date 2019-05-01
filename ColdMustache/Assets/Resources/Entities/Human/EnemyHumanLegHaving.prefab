@@ -1078,7 +1078,6 @@ GameObject:
   - component: {fileID: 5680663014558077290}
   - component: {fileID: 5664866972750031780}
   - component: {fileID: 3943575744947599915}
-  - component: {fileID: 5762789332704510756}
   - component: {fileID: 5762819526244246366}
   - component: {fileID: 5762301606159792294}
   - component: {fileID: 5761811293984017240}
@@ -1089,6 +1088,7 @@ GameObject:
   - component: {fileID: 5648748488547276246}
   - component: {fileID: 5648748488547276247}
   - component: {fileID: 5648748488547276264}
+  - component: {fileID: 6646311694090754852}
   m_Layer: 0
   m_Name: EnemyHumanLegHaving
   m_TagString: Player
@@ -1168,18 +1168,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.009952545, y: 0.016731262}
   m_Size: {x: 0.45620728, y: 0.5}
   m_Direction: 0
---- !u!114 &5762789332704510756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5648748488547276244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a445d5b3337ce1e41bcef8a0f5f13cee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5762819526244246366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1391,6 +1379,25 @@ MonoBehaviour:
   LegsManager: {fileID: 7370531698150182762}
   e: {fileID: 5762819526244246366}
   DeltaPos: {x: 0, y: 0, z: 0}
+--- !u!114 &6646311694090754852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5648748488547276244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cde8d62598ea7b43a35d5ec614299c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StuffToBePreservedAfterDeath:
+  - {fileID: 5652543121749686124}
+  - {fileID: 5651774419805500410}
+  - {fileID: 5652526425438917726}
+  - {fileID: 8529193281718707491}
+  - {fileID: 2974203070481105601}
+  - {fileID: 5652361161111604048}
 --- !u!1 &5648768486306638186
 GameObject:
   m_ObjectHideFlags: 0

@@ -25,10 +25,11 @@ public class SimpleAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        Age+=Time.deltaTime;
         if(Age > Duration){
             Age = 0;
         }
-        Age+=Time.deltaTime;
 
         sr.sprite = sprites[Mathf.RoundToInt(Age/Duration*(sprites.Length-1))];
 

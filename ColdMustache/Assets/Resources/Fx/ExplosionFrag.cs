@@ -73,21 +73,32 @@ public class ExplosionFrag : MonoBehaviour
     
 
     public static void SpawnOriginal(Vector2Int Tile, float MaxSpreadDistance, float Damage=10){
+        
+        string[] ExplosionAnimPaths = new string[]{
+            "Fx/Explosions/64_01",
+            "Fx/Explosions/64_02"
+
+        };
+        
         foreach(Vector3 v in NavTestStatic.GetExplosionArea(Tile, MaxSpreadDistance))
         {
             GameObject go = new GameObject();            
             go.transform.position = new Vector3(v.x, v.y, -10);
+            go.transform.localScale = new Vector3(1.3f,1.3f,1);
             ExplosionFrag e = go.AddComponent<ExplosionFrag>();
             e.Origin = Tile;
             e.Age = -v.z/10;
+            e.MaxAge = Random.Range(0.2f,0.6f);
             e.sr = go.AddComponent<SpriteRenderer>();
-            e.sprites = Resources.LoadAll<Sprite>("Fx/Explosion");
+            e.sr.flipX = Util.Coinflip();
+            e.sr.flipY = Util.Coinflip();
+            e.sprites = Resources.LoadAll<Sprite>(ExplosionAnimPaths[Random.Range(0,ExplosionAnimPaths.Length)]);
             e.node = NavTestStatic.AvkisLightNodes[0];
             e.MaxSpreadDistance = MaxSpreadDistance;
 
             go.AddComponent<BoxCollider2D>().isTrigger = true;
             go.GetComponent<BoxCollider2D>().size = new Vector2(1,1);
-            go.AddComponent<DamagerInflicterAoE>().ini(Entity.team.Neutral, Damage, 0.4f, true, 1, -e.Age, DamagerInflicter.WeaponTypes.Explosion  );
+            go.AddComponent<DamagerInflicterAoE>().ini(Entity.team.Neutral, Damage, 9999, true, 1, -e.Age, DamagerInflicter.WeaponTypes.Explosion  );
 
 
             go.AddComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
