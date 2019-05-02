@@ -19,8 +19,8 @@ public class EnvironmentObject : MonoBehaviour {
     public int posX = 0;
     public int posY = 0;
 
-    public bool LinkToNerbyImpassables = true;
-    public string SpritePath = "";
+    bool LinkToNerbyImpassables = false;
+    string SpritePath = ""; //for the purpose of linking to nearby impassables
 
     public string DamageOverlayPath = "";
     public Sprite[] DamageSprites;

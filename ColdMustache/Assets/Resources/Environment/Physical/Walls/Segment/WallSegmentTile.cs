@@ -15,17 +15,6 @@ public class WallSegmentTile : EnvironmentObject
         posX = Mathf.RoundToInt(transform.position.x);
         posY = Mathf.RoundToInt(transform.position.y);
 
-        //takes in consideration only stuff impassable for explosions
-        if (LinkToNerbyImpassables)
-        {
-            gameObject.GetComponent<SpriteRenderer>().sprite = WallSpriteFinder.Find(
-                Resources.LoadAll<Sprite>(SpritePath),
-                posX < NavTestStatic.MapWidth && NavTestStatic.ExplosionNavArray[posX + 1, posY] == NavTestStatic.ImpassableTileValue,
-                posY < NavTestStatic.MapHeight && NavTestStatic.ExplosionNavArray[posX, posY + 1] == NavTestStatic.ImpassableTileValue,
-                posX > 0 && NavTestStatic.ExplosionNavArray[posX - 1, posY] == NavTestStatic.ImpassableTileValue,
-                posY > 0 && NavTestStatic.ExplosionNavArray[posX, posY - 1] == NavTestStatic.ImpassableTileValue
-            );
-        }
 
         if (DoDamageOverlay)
         {

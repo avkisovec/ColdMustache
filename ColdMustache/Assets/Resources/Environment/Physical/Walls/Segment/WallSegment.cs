@@ -19,11 +19,8 @@ public class WallSegment : MonoBehaviour
     public bool UseChildrenAsTiles = false;
     
     //the sprites for the front of a new wall
-    public Sprite[] MainSprites;
-    //sprites for the front that gets created by destroying a wall
     public Sprite[] DamagedSprites;
     //sprites for the top sections of walls
-    public Sprite[] TopSprites;
 
     public WallSegmentTile[] Tiles = null;
 
@@ -42,12 +39,11 @@ public class WallSegment : MonoBehaviour
         //ini();
     }
 
-    public void ini(WallSegmentTile[] ToBeTiles = null, bool ChildrenAsTiles = true, bool UseDamagedSprites = false, bool FirstTime = true, Sprite[] MainSprites = null, Sprite[] DamagedSprites = null, Sprite[] TopSprites = null){
+
+    public void ini(WallSegmentTile[] ToBeTiles = null, bool ChildrenAsTiles = true, bool UseDamagedSprites = false, Sprite[] DamagedSprites = null){
         this.UseChildrenAsTiles = ChildrenAsTiles;
 
-        this.MainSprites = MainSprites;
         this.DamagedSprites = DamagedSprites;
-        this.TopSprites = TopSprites;
 
         if(ToBeTiles!=null){
             Tiles = ToBeTiles;
@@ -115,12 +111,11 @@ public class WallSegment : MonoBehaviour
         }
         TileMaxHealth = Tiles[0].MaxHealth;
 
-        //MainSprites = Resources.LoadAll<Sprite>("Environment/Physical/Walls/Segment/Wall");
+
 
         if(UseDamagedSprites){
-            int ChosenSprite = Random.Range(0, this.DamagedSprites.Length/2);
-            spriteRenderers[spriteRenderers.Length - 1].sprite = DamagedSprites[DamagedSprites.Length / 2 + ChosenSprite];
-            spriteRenderers[spriteRenderers.Length - 2].sprite = DamagedSprites[ChosenSprite];
+            
+            spriteRenderers[spriteRenderers.Length - 1].sprite = DamagedSprites[Random.Range(0, this.DamagedSprites.Length)];
 
             //destroy all children - for situations where some decorative object was part of the wall
             Transform UpperSectionOfFrontSide = spriteRenderers[spriteRenderers.Length - 1].transform;
@@ -129,19 +124,8 @@ public class WallSegment : MonoBehaviour
             }
 
         }
-        else{
-            int ChosenSprite = Random.Range(0, MainSprites.Length / 2);
-            spriteRenderers[spriteRenderers.Length - 1].sprite = MainSprites[MainSprites.Length / 2 + ChosenSprite];
-            spriteRenderers[spriteRenderers.Length - 2].sprite = MainSprites[ChosenSprite];
-        }
-
-        if(FirstTime){
-            for (int i = 0; i < Tiles.Length - 2; i++)
-            {
-                spriteRenderers[i].sprite = TopSprites[Random.Range(0,TopSprites.Length)];
-            }
-        }
     }
+
 
     // Update is called once per frame
     void Update()
@@ -241,12 +225,12 @@ public class WallSegment : MonoBehaviour
         }
 
         GameObject goa = new GameObject();
-        goa.AddComponent<WallSegment>().ini(a, false, true, false, MainSprites, DamagedSprites, TopSprites);
+        goa.AddComponent<WallSegment>().ini(a, false, true, DamagedSprites);
 
         
 
         GameObject gob = new GameObject();
-        gob.AddComponent<WallSegment>().ini(b, false, false, false, MainSprites, DamagedSprites, TopSprites);
+        gob.AddComponent<WallSegment>().ini(b, false, false, DamagedSprites);
 
         Destroy(this.gameObject);
 

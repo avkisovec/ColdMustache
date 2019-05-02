@@ -73,7 +73,9 @@ public class WallBuilderSharedSegment2 : MonoBehaviour
                 if (DoINeedANewSegment)
                 {
                     //before you start dealing with new one, initialise the previous one
-                    if(CurrWallSegment != null) CurrWallSegment.ini(null, true, false, true, MainSprites, DamagedSprites, TopSprites);
+
+                    //THE FOLLOWING INI CALL DOESNT WORK DUE TO CHANGES, THiS BUIDLER SHOULDNT BE USED ANYMORE ANYWAY
+                    //if(CurrWallSegment != null) CurrWallSegment.ini(null, true, false, true, MainSprites, DamagedSprites, TopSprites);
                     CurrWallSegment = GetNewSegment();
                 }
 
