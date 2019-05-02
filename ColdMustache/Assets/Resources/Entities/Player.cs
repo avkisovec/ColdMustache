@@ -284,10 +284,35 @@ public class Player : MonoBehaviour {
                 if(e.Team == Entity.team.Enemy){
                     e.TakeDamage(10000, DamagerInflicter.WeaponTypes.Undefined);
                 }
-
             }
-
         }
+
+
+        //sets every enemy entity's base movespeed to 0
+        if (CheatManager.LastCheat == "FREEZE") // Freeze
+        {
+            foreach (Entity e in GameObject.FindObjectsOfType<Entity>())
+            {
+                if (e.Team == Entity.team.Enemy)
+                {
+                    e.BaseMoveSpeed = 0;
+                }
+            }
+        }
+
+
+        //sets every enemy entity's team to player
+        if (CheatManager.LastCheat == "CHARM") // Charm
+        {
+            foreach (Entity e in GameObject.FindObjectsOfType<Entity>())
+            {
+                if (e.Team == Entity.team.Enemy)
+                {
+                    e.Team = Entity.team.Player;
+                }
+            }
+        }
+
 
         #endregion
         

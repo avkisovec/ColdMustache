@@ -53,6 +53,7 @@ public class CheatManager : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
+
         LastCheat = "";
 
         CheckInput();
@@ -78,6 +79,8 @@ public class CheatManager : MonoBehaviour {
         }
 
     }
+
+
 
     public void StringReset()
     {

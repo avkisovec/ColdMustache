@@ -7,6 +7,8 @@ public class FxMeatExplosionPlusCorpse : DeathAnimation
 
     public Transform[] StuffToBePreservedAfterDeath;
 
+    public SpriteRenderer[] SrsToDarken;
+
     public override void Spawn(Vector3 Coordinates)
     {
 
@@ -19,14 +21,16 @@ public class FxMeatExplosionPlusCorpse : DeathAnimation
 
         Corpse.transform.position = transform.position;
 
+        foreach (SpriteRenderer sr in SrsToDarken)
+        {
+            DarkenSr(sr);
+        }
+
         foreach(Transform t in StuffToBePreservedAfterDeath){
             t.parent = Corpse.transform;
         }
 
-
-
         Corpse.transform.localRotation = Quaternion.Euler(0,0,Random.Range(90, 270));
-
 
         for (int i = 0; i < 50; i++)
         {
@@ -49,4 +53,28 @@ public class FxMeatExplosionPlusCorpse : DeathAnimation
             p.EndingVerticalWind = 0;
         }
     }
+
+    void DarkenSr(SpriteRenderer sr, float Ratio = 0.8f){
+
+
+        //just darken
+        //sr.color = new Color(sr.color.r*Ratio, sr.color.g*Ratio, sr.color.b*Ratio,sr.color.a);
+
+/*
+        //turn grayscale
+        float Grayscale = sr.color.grayscale * Ratio;
+        sr.color = new Color(Grayscale, Grayscale, Grayscale, sr.color.a);
+*/
+
+        //average between grayscale and color
+        float Grayscale = sr.color.grayscale;
+        sr.color = new Color(
+            (Grayscale + sr.color.r) / 2,
+            (Grayscale + sr.color.g) / 2,
+            (Grayscale + sr.color.b) / 2,
+            sr.color.a);
+
+
+    }
+
 }
