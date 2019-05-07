@@ -94,7 +94,7 @@ public class SpriteManagerGeneric : SpriteManagerBase {
 
         if (Input.GetKey(KeyCode.C))
         {
-            RandomColors();
+            //RandomColors();
         }
 
 	}

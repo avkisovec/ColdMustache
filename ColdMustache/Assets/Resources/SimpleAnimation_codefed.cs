@@ -22,13 +22,12 @@ public class SimpleAnimation_codefed : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Age += Time.deltaTime;
         if (Age > Duration)
         {
             Age = 0;
         }
-        Age += Time.deltaTime;
 
-        sr.sprite = sprites[Mathf.RoundToInt(Age / Duration * (sprites.Length - 1))];
-
+        sr.sprite = sprites[Mathf.RoundToInt((Age / Duration) * (sprites.Length - 1))];
     }
 }

@@ -11,7 +11,9 @@
 22005;Items/Weapons/SMGlike/rusty;1
 22006;Items/Weapons/SMGlike/devender;1
 22007;Items/Weapons/Lasergun/01;1
-22008;Items/Weapons/AlienBouncer/AlienBouncer;01
+22008;Items/Weapons/AlienBouncer/AlienBouncer;1
+22009;Items/Weapons/Tools/PaintGun;1
+22010;Items/Weapons/Flamethrower/Default;1
 31001;Items/Active/Heal/HealthKit;1
 31002;Items/Active/Buff/SyringeMovespeed;1
 31003;Items/Active/Throwables/FragGrenade;1

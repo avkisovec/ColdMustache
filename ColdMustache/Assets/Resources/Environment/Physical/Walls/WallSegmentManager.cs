@@ -7,11 +7,21 @@ public class WallSegmentManager : MonoBehaviour
 
     public bool ENABLED = true;
 
+    public bool DestroyChildren = false;
+
     void Start()
     {
         if(!ENABLED) return;
 
         ENABLED = false;
+
+
+        if(DestroyChildren){
+            for(int i = 0; i < transform.childCount; i++){
+                Destroy(transform.GetChild(i).gameObject);
+            }
+        }
+
 
         //arr to load independent wall segment tiles into (to then form them imto segments)
         WallSegmentTileIndependent[,] Arr = new WallSegmentTileIndependent[NavTestStatic.MapWidth, NavTestStatic.MapHeight];
@@ -24,6 +34,7 @@ public class WallSegmentManager : MonoBehaviour
             //load into the arr if theres a space
             if(Arr[IntCoordinates.x, IntCoordinates.y] == null){
                 Arr[IntCoordinates.x, IntCoordinates.y] = eo;
+                NavTestStatic.WallTransformsArray[IntCoordinates.x, IntCoordinates.y] = eo.transform;
             }
             //something already is on these exact coordinates, prolly as a result of a human error during duplication
             //the redundant wall is deleted

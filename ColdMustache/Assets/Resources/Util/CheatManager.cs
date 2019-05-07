@@ -90,6 +90,7 @@ public class CheatManager : MonoBehaviour {
     public void CheckInput()
     {
         CheckAlphaChars();
+        CheckNumChars();
 
         if (Input.GetKeyUp(KeyCode.Space))
         {
@@ -202,6 +203,50 @@ public class CheatManager : MonoBehaviour {
         if (Input.GetKeyUp(KeyCode.Z))
         {
             CurrentString += "Z";
+        }
+    }
+
+    public void CheckNumChars()
+    {
+        if (Input.GetKeyUp(KeyCode.Alpha0) || Input.GetKeyUp(KeyCode.Keypad0))
+        {
+            CurrentString += "0";
+        }
+        if (Input.GetKeyUp(KeyCode.Alpha1) || Input.GetKeyUp(KeyCode.Keypad1))
+        {
+            CurrentString += "1";
+        }
+        if (Input.GetKeyUp(KeyCode.Alpha2) || Input.GetKeyUp(KeyCode.Keypad2))
+        {
+            CurrentString += "2";
+        }
+        if (Input.GetKeyUp(KeyCode.Alpha3) || Input.GetKeyUp(KeyCode.Keypad3))
+        {
+            CurrentString += "3";
+        }
+        if (Input.GetKeyUp(KeyCode.Alpha4) || Input.GetKeyUp(KeyCode.Keypad4))
+        {
+            CurrentString += "4";
+        }
+        if (Input.GetKeyUp(KeyCode.Alpha5) || Input.GetKeyUp(KeyCode.Keypad5))
+        {
+            CurrentString += "5";
+        }
+        if (Input.GetKeyUp(KeyCode.Alpha6) || Input.GetKeyUp(KeyCode.Keypad6))
+        {
+            CurrentString += "6";
+        }
+        if (Input.GetKeyUp(KeyCode.Alpha7) || Input.GetKeyUp(KeyCode.Keypad7))
+        {
+            CurrentString += "7";
+        }
+        if (Input.GetKeyUp(KeyCode.Alpha8) || Input.GetKeyUp(KeyCode.Keypad8))
+        {
+            CurrentString += "8";
+        }
+        if (Input.GetKeyUp(KeyCode.Alpha9) || Input.GetKeyUp(KeyCode.Keypad9))
+        {
+            CurrentString += "9";
         }
     }
 
