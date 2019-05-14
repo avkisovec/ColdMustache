@@ -8,6 +8,7 @@ TextureImporter:
     21300006: 01_3
     21300008: 01_4
     21300010: 01_5
+    21300012: 01_6
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -205,6 +206,26 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: ec7222f225000ba469d9b14f5c415060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 01_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e2c10afeca406d45bccb938320cefdd
       vertices: []
       indices: 
       edges: []

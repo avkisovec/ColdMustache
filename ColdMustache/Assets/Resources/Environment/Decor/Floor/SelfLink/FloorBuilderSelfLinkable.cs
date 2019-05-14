@@ -63,12 +63,12 @@ public class FloorBuilderSelfLinkable : MonoBehaviour
     {
         if (!ENABLED) return;
 
-        GenerateDirtLayer();
+        Generate();
         
         ENABLED = false;
     }
 
-    void GenerateDirtLayer()
+    void Generate()
     {
         
         Sprite[] Sprites = Resources.LoadAll<Sprite>(SpritesheetPath);

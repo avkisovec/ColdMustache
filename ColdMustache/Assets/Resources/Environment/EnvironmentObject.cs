@@ -22,33 +22,46 @@ public class EnvironmentObject : MonoBehaviour {
     bool LinkToNerbyImpassables = false;
     string SpritePath = ""; //for the purpose of linking to nearby impassables
 
-    public string DamageOverlayPath = "";
+    public string DamageOverlayPath = "Undefined";
     public Sprite[] DamageSprites;
 
-    protected SpriteRenderer DamageOverlay;
+    public SpriteRenderer DamageOverlay;
 
-    public bool DoDamageOverlay = true;
+    public bool DoDamageOverlay = false;
     public Sprite DeathRemains;
 
 	// Use this for initialization
 	void Start () {
 
+        CustomStart();
+
+	}
+
+    public void CustomStart(){
+
         MaxHealth = Health;
         posX = Mathf.RoundToInt(transform.position.x);
         posY = Mathf.RoundToInt(transform.position.y);
-        
+
+        if(DoNav){
+            if (!Nav_Walkable) NavTestStatic.NavArray[posX, posY] = NavTestStatic.ImpassableTileValue;
+            if (!Nav_LightCanPass) NavTestStatic.LightNavArray[posX, posY] = NavTestStatic.ImpassableTileValue;
+            if (!Nav_ExplosionCanPass) NavTestStatic.ExplosionNavArray[posX, posY] = NavTestStatic.ImpassableTileValue;
+            
+        }
+
         //takes in consideration only stuff impassable for explosions
         if (LinkToNerbyImpassables)
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = WallSpriteFinder.Find(
                 Resources.LoadAll<Sprite>(SpritePath),
-                posX<NavTestStatic.MapWidth && NavTestStatic.ExplosionNavArray[posX + 1, posY] == NavTestStatic.ImpassableTileValue,
+                posX < NavTestStatic.MapWidth && NavTestStatic.ExplosionNavArray[posX + 1, posY] == NavTestStatic.ImpassableTileValue,
                 posY < NavTestStatic.MapHeight && NavTestStatic.ExplosionNavArray[posX, posY + 1] == NavTestStatic.ImpassableTileValue,
                 posX > 0 && NavTestStatic.ExplosionNavArray[posX - 1, posY] == NavTestStatic.ImpassableTileValue,
                 posY > 0 && NavTestStatic.ExplosionNavArray[posX, posY - 1] == NavTestStatic.ImpassableTileValue
             );
         }
-        
+
         if (DoDamageOverlay)
         {
             GameObject overlay = new GameObject();
@@ -58,7 +71,7 @@ public class EnvironmentObject : MonoBehaviour {
             DamageSprites = Resources.LoadAll<Sprite>(DamageOverlayPath);
         }
 
-	}
+    }
 	
     public virtual void TakeDamage(float Damage)
     {

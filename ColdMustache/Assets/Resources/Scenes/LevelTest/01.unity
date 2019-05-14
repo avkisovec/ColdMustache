@@ -3553,8 +3553,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -4099,8 +4097,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -7538,8 +7534,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -8941,8 +8935,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -13161,8 +13153,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -20338,8 +20328,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -22848,8 +22836,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -27422,8 +27408,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -28354,8 +28338,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -34090,8 +34072,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -34672,8 +34652,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -35228,8 +35206,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -37277,8 +37253,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -39768,8 +39742,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -43102,8 +43074,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -44518,8 +44488,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -45462,8 +45430,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -46629,8 +46595,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -46779,8 +46743,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -50419,8 +50381,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -52334,8 +52294,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -53987,8 +53945,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -54505,8 +54461,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -54835,8 +54789,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -57916,8 +57868,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -61526,8 +61476,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -63828,8 +63776,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -66546,8 +66492,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -69763,8 +69707,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -70512,8 +70454,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -71059,8 +70999,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -71419,8 +71357,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -71951,8 +71887,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -72137,8 +72071,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -81491,8 +81423,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -82054,8 +81984,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -85270,8 +85198,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -85579,8 +85505,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -88459,8 +88383,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -89526,8 +89448,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -91039,8 +90959,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -91525,8 +91443,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -99421,8 +99337,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -102093,8 +102007,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 0
   posY: 0
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -105048,8 +104960,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 40
   posY: 23
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -105124,8 +105034,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 33
   posY: 39
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -105507,8 +105415,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 28
   posY: 21
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -105877,8 +105783,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 40
   posY: 22
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -105905,8 +105809,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 39
   posY: 24
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -106049,8 +105951,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 20
   posY: 26
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -106531,8 +106431,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 30
   posY: 39
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -107492,8 +107390,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 47
   posY: 41
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -107759,8 +107655,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 18
   posY: 50
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -107805,8 +107699,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 50
   posY: 36
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -108146,8 +108038,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 43
   posY: 17
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -108341,8 +108231,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 33
   posY: 48
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -108426,8 +108314,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 42
   posY: 20
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -108510,8 +108396,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 14
   posY: 23
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -108538,8 +108422,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 47
   posY: 44
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -108907,8 +108789,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 27
   posY: 20
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -108952,8 +108832,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 51
   posY: 37
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -109059,8 +108937,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 18
   posY: 27
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -109087,8 +108963,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 39
   posY: 30
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -109287,8 +109161,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 26
   posY: 38
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -109329,8 +109201,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 58
   posY: 39
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -109972,8 +109842,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 19
   posY: 28
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -110376,8 +110244,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 41
   posY: 21
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -110555,8 +110421,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 51
   posY: 36
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -110631,8 +110495,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 36
   posY: 39
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -110902,8 +110764,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 57
   posY: 38
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -111344,8 +111204,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 39
   posY: 29
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -111963,8 +111821,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 18
   posY: 19
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -112985,8 +112841,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 32
   posY: 48
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -113358,8 +113212,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 43
   posY: 19
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -113916,8 +113768,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 30
   posY: 21
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -114249,8 +114099,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 31
   posY: 29
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -114335,8 +114183,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 38
   posY: 25
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -114605,8 +114451,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 18
   posY: 28
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -115240,8 +115084,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 29
   posY: 38
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -115455,8 +115297,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 17
   posY: 27
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -115894,8 +115734,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 15
   posY: 23
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -116350,8 +116188,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 52
   posY: 38
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -116430,8 +116266,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 37
   posY: 37
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -116807,8 +116641,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 43
   posY: 19
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -117091,8 +116923,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 39
   posY: 34
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -117447,8 +117277,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 32
   posY: 27
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -118022,8 +117850,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 42
   posY: 18
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -118763,8 +118589,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 51
   posY: 38
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -119020,8 +118844,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 27
   posY: 27
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -119701,8 +119523,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 58
   posY: 42
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -119800,8 +119620,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 18
   posY: 51
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -120073,8 +119891,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 54
   posY: 37
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -120263,8 +120079,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 24
   posY: 22
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -120291,8 +120105,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 39
   posY: 23
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -120950,8 +120762,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 31
   posY: 34
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -121475,8 +121285,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 22
   posY: 28
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -121600,8 +121408,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 21
   posY: 50
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -121796,8 +121602,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 34
   posY: 38
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -121903,8 +121707,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 27
   posY: 25
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -121966,8 +121768,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 17
   posY: 28
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -122189,8 +121989,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 42
   posY: 21
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -122250,8 +122048,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 38
   posY: 26
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -122999,8 +122795,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 37
   posY: 26
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -123044,8 +122838,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 52
   posY: 42
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -123490,8 +123282,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 40
   posY: 34
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -123561,8 +123351,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 25
   posY: 41
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -123777,8 +123565,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 25
   posY: 42
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -126274,8 +126060,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 19
   posY: 18
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -126439,8 +126223,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 31
   posY: 38
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -126515,8 +126297,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 23
   posY: 22
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -127067,8 +126847,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 38
   posY: 37
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -127265,8 +127043,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 44
   posY: 18
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -127594,8 +127370,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 15
   posY: 27
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -128391,8 +128165,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 55
   posY: 44
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -129020,8 +128792,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 32
   posY: 34
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -129062,8 +128832,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 47
   posY: 38
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -129261,8 +129029,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 54
   posY: 38
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -129642,8 +129408,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 43
   posY: 18
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -129755,8 +129519,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 53
   posY: 35
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -130207,8 +129969,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 28
   posY: 21
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -130281,8 +130041,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 57
   posY: 37
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -130374,8 +130132,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 37
   posY: 34
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -130538,8 +130294,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 32
   posY: 20
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -130873,8 +130627,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 30
   posY: 34
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -131475,8 +131227,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 38
   posY: 27
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -131630,8 +131380,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 41
   posY: 22
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -131800,8 +131548,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 23
   posY: 21
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -131828,8 +131574,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 56
   posY: 39
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -131873,8 +131617,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 29
   posY: 24
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -132315,8 +132057,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 32
   posY: 29
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -132798,8 +132538,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 38
   posY: 20
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -132931,8 +132669,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 57
   posY: 39
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -133699,8 +133435,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 36
   posY: 34
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -134038,8 +133772,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 57
   posY: 42
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -134114,8 +133846,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 56
   posY: 36
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -134399,8 +134129,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 42
   posY: 19
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -134478,8 +134206,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 42
   posY: 25
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -134569,8 +134295,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 34
   posY: 39
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -134613,8 +134337,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 28
   posY: 20
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -134689,8 +134411,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 22
   posY: 27
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -134717,8 +134437,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 27
   posY: 26
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -134832,8 +134550,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 25
   posY: 28
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -134908,8 +134624,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 17
   posY: 23
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -135530,8 +135244,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 50
   posY: 48
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -135606,8 +135318,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 30
   posY: 28
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -135683,8 +135393,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 37
   posY: 30
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -135711,8 +135419,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 37
   posY: 23
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -136141,8 +135847,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 57
   posY: 43
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -137072,8 +136776,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 51
   posY: 48
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -137225,8 +136927,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 29
   posY: 21
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -137253,8 +136953,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 16
   posY: 23
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -138034,8 +137732,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 25
   posY: 25
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -138102,8 +137798,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 47
   posY: 40
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -138433,8 +138127,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 30
   posY: 26
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -138492,8 +138184,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 16
   posY: 27
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -138630,8 +138320,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 48
   posY: 40
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -138790,8 +138478,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 31
   posY: 21
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -139676,8 +139362,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 30
   posY: 48
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -139704,8 +139388,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 38
   posY: 34
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -139847,8 +139529,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 49
   posY: 37
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -140435,8 +140115,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 28
   posY: 36
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -140483,8 +140161,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 19
   posY: 23
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -141879,8 +141555,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 29
   posY: 39
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -142254,8 +141928,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 22
   posY: 26
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -143147,8 +142819,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 38
   posY: 30
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -143561,8 +143231,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 17
   posY: 28
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -143603,8 +143271,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 41
   posY: 22
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -144273,8 +143939,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 18
   posY: 23
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0
@@ -144545,8 +144209,6 @@ MonoBehaviour:
   Nav_LightCanPass: 0
   posX: 23
   posY: 27
-  LinkToNerbyImpassables: 0
-  SpritePath: 
   DamageOverlayPath: 
   DamageSprites: []
   DoDamageOverlay: 0

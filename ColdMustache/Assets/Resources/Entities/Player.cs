@@ -313,6 +313,16 @@ public class Player : MonoBehaviour {
             }
         }
 
+        //teleport player to cursor location
+        if (CheatManager.LastCheat == "TP") // Tp (teleport)
+        {
+            Vector2 Target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            transform.position = new Vector3(Target.x,Target.y,0);
+        }
+
+
+
+
 
         #endregion
         

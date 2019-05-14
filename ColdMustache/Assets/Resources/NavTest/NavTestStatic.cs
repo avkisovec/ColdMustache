@@ -28,8 +28,8 @@ public class NavTestStatic : MonoBehaviour
 
     #region Building
 
-    void Start()
-    {
+    //early start
+    void Awake(){
 
         //set up an empty nav array (all tiles considered empty/walkable)
         NavTestStatic.NavArray = new int[NavTestStatic.MapWidth, NavTestStatic.MapHeight];
@@ -47,7 +47,16 @@ public class NavTestStatic : MonoBehaviour
         NavTestStatic.LightNavArray = (int[,])NavTestStatic.NavArray.Clone();
 
         WallTransformsArray = new Transform[MapWidth, MapHeight];
+    }
 
+    void Start()
+    {
+        NavTestStatic.AvkisLight_build(MaxLightAndExplosionDistance);
+
+
+
+        //walls report themselves, so no need for this
+        /*
         //go through all existing environment objects in scene, and if they block particular thing, note in in the array
         foreach (EnvironmentObject eo in GameObject.FindObjectsOfType<EnvironmentObject>())
         {
@@ -79,9 +88,8 @@ public class NavTestStatic : MonoBehaviour
                 }
             }
         }
+        */
 
-
-        NavTestStatic.AvkisLight_build(MaxLightAndExplosionDistance);
     }
 
     public static void BuildMapFromImage()

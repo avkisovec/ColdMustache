@@ -7,6 +7,7 @@ public class WallSegmentTileIndependent : WallSegmentTile
 
     public string DamagedSpritesheetPath = "Undefined";
 
+
     void Start()
     {
 
@@ -14,6 +15,13 @@ public class WallSegmentTileIndependent : WallSegmentTile
         posX = Mathf.RoundToInt(transform.position.x);
         posY = Mathf.RoundToInt(transform.position.y);
 
+        if (DoNav)
+        {
+            if (!Nav_Walkable) NavTestStatic.NavArray[posX, posY] = NavTestStatic.ImpassableTileValue;
+            if (!Nav_LightCanPass) NavTestStatic.LightNavArray[posX, posY] = NavTestStatic.ImpassableTileValue;
+            if (!Nav_ExplosionCanPass) NavTestStatic.ExplosionNavArray[posX, posY] = NavTestStatic.ImpassableTileValue;
+            NavTestStatic.WallTransformsArray[posX,posY] = transform;
+        }
 
         if (DoDamageOverlay)
         {
@@ -52,10 +60,7 @@ public class WallSegmentTileIndependent : WallSegmentTile
 
         if (DeathRemains != null)
         {
-            GameObject remains = new GameObject();
-            remains.transform.position = new Vector3(transform.position.x, transform.position.y, ZIndexManager.Const_Floors - 1);
-            remains.AddComponent<SpriteRenderer>().sprite = DeathRemains;
-            remains.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f);
+            WallChunkSpawner.SpawnChunk(transform.position);
         }
         Health = 999999999; //this is to make sure object doesnt die twice - if multiple hits land and once, while target if below 0 hp, each new hit is hit bbringing him below 0hp therefore spawning new corpse etc
         Destroy(this.gameObject);

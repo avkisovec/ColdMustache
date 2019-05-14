@@ -31,6 +31,8 @@ public class WallSegment : MonoBehaviour
     public SpriteRenderer[] spriteRenderers;
     public SpriteRenderer[] DamageOverlaySRs;
 
+    public Sprite FrontDamageOverlaySprite = null;
+
 
     // Start is called before the first frame update
     void Start()
@@ -40,10 +42,12 @@ public class WallSegment : MonoBehaviour
     }
 
 
-    public void ini(WallSegmentTile[] ToBeTiles = null, bool ChildrenAsTiles = true, bool UseDamagedSprites = false, Sprite[] DamagedSprites = null){
+    public void ini(WallSegmentTile[] ToBeTiles = null, bool ChildrenAsTiles = true, bool UseDamagedSprites = false, Sprite[] DamagedSprites = null, Sprite FrontDamageOverlaySprite = null){
         this.UseChildrenAsTiles = ChildrenAsTiles;
 
         this.DamagedSprites = DamagedSprites;
+
+        if(FrontDamageOverlaySprite!=null) this.FrontDamageOverlaySprite = FrontDamageOverlaySprite;
 
         if(ToBeTiles!=null){
             Tiles = ToBeTiles;
@@ -87,7 +91,17 @@ public class WallSegment : MonoBehaviour
             }
 
             Tiles = (WallSegmentTile[]) Children_TilesScripts.ToArray();
+
+
+
+
+            SpriteRenderer v = Tiles[Tiles.Length - 1].DamageOverlay;
+            if(v != null) this.FrontDamageOverlaySprite = v.GetComponent<SpriteRenderer>().sprite;
             
+            
+
+
+
         }
 
         if(Tiles.Length < 3){
@@ -117,12 +131,15 @@ public class WallSegment : MonoBehaviour
             
             spriteRenderers[spriteRenderers.Length - 1].sprite = DamagedSprites[Random.Range(0, this.DamagedSprites.Length)];
 
+
             //destroy all children - for situations where some decorative object was part of the wall
             Transform UpperSectionOfFrontSide = spriteRenderers[spriteRenderers.Length - 1].transform;
+            //before that, first find the child that is damage overlay - that one cannot be destroyed
+            Transform DamageOverlay = UpperSectionOfFrontSide.GetComponent<EnvironmentObject>().DamageOverlay.transform;
             for(int i = 0; i < UpperSectionOfFrontSide.childCount; i++){
-                Destroy(UpperSectionOfFrontSide.GetChild(i).gameObject);
+                if(UpperSectionOfFrontSide.GetChild(i)!=DamageOverlay) Destroy(UpperSectionOfFrontSide.GetChild(i).gameObject);
             }
-
+            DamageOverlay.GetComponent<SpriteRenderer>().sprite = FrontDamageOverlaySprite;
         }
     }
 
@@ -187,9 +204,12 @@ public class WallSegment : MonoBehaviour
         //tile has health left
         if (Tiles[TileIndex].Health > 0){
 
-            float HealthRatio =  0.75f + (Tiles[TileIndex].Health / TileMaxHealth)*0.25f;
-            spriteRenderers[TileIndex].color = new Color(HealthRatio, HealthRatio, HealthRatio, 1);
-
+            //float HealthRatio =  0.75f + (Tiles[TileIndex].Health / TileMaxHealth)*0.25f;
+            float HealthRatio = 1 - (Tiles[TileIndex].Health / TileMaxHealth);
+            //spriteRenderers[TileIndex].color = new Color(HealthRatio, HealthRatio, HealthRatio, 1);
+            if(Tiles[TileIndex].DamageOverlay!=null){
+                Tiles[TileIndex].DamageOverlay.color = new Color(1,1,1,HealthRatio);
+            }
 
             return;
         } 
@@ -225,12 +245,12 @@ public class WallSegment : MonoBehaviour
         }
 
         GameObject goa = new GameObject();
-        goa.AddComponent<WallSegment>().ini(a, false, true, DamagedSprites);
+        goa.AddComponent<WallSegment>().ini(a, false, true, DamagedSprites, FrontDamageOverlaySprite);
 
         
 
         GameObject gob = new GameObject();
-        gob.AddComponent<WallSegment>().ini(b, false, false, DamagedSprites);
+        gob.AddComponent<WallSegment>().ini(b, false, false, DamagedSprites, FrontDamageOverlaySprite);
 
         Destroy(this.gameObject);
 

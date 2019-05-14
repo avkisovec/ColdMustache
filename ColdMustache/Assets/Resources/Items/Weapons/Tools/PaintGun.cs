@@ -143,8 +143,12 @@ public class PaintGun : Weapon
 
         if(NavTestStatic.WallTransformsArray[Coordinates.x, Coordinates.y] == null) return;
 
+        //whether or not im painting top (when painting top all children have to be painted aswell)
+        bool Top = false; 
+
         //to prevent index out of range
         if(Coordinates.x >= 2){
+
 
             //check if this wall tile is not hidden by front (if it has exactly one tile below)
             //if yes, move coordinates to refer to front
@@ -153,11 +157,21 @@ public class PaintGun : Weapon
                 Coordinates = new Vector2Int(Coordinates.x, Coordinates.y-1);
             }
 
+            if (NavTestStatic.WallTransformsArray[Coordinates.x, Coordinates.y - 1] != null){
+                Top = true;
+            }
+
         }
 
         Transform tr = NavTestStatic.WallTransformsArray[Coordinates.x, Coordinates.y];
 
         tr.GetComponent<SpriteRenderer>().color = ActiveColor;
+
+        if(Top){
+            for(int i = 0; i < tr.childCount; i++){
+                tr.GetChild(i).GetComponent<SpriteRenderer>().color = ActiveColor;
+            }
+        }
 
         FramesSincePlayerRequestedShooting = 0;
         DisplayAmmo();

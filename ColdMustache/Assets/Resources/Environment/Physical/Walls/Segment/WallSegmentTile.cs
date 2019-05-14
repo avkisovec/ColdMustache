@@ -15,6 +15,13 @@ public class WallSegmentTile : EnvironmentObject
         posX = Mathf.RoundToInt(transform.position.x);
         posY = Mathf.RoundToInt(transform.position.y);
 
+        if (DoNav)
+        {
+            if (!Nav_Walkable) NavTestStatic.NavArray[posX, posY] = NavTestStatic.ImpassableTileValue;
+            if (!Nav_LightCanPass) NavTestStatic.LightNavArray[posX, posY] = NavTestStatic.ImpassableTileValue;
+            if (!Nav_ExplosionCanPass) NavTestStatic.ExplosionNavArray[posX, posY] = NavTestStatic.ImpassableTileValue;
+            NavTestStatic.WallTransformsArray[posX, posY] = transform;
+        }
 
         if (DoDamageOverlay)
         {
