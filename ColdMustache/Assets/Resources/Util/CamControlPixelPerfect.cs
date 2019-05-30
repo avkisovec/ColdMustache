@@ -143,11 +143,11 @@ public class CamControlPixelPerfect : MonoBehaviour {
     }
 
     //return how much of the world camera sees, in unity units (therefore in tiles)
-    float WorldHeight()
+    public float WorldHeight()
     {
         return (float)Screen.height / PixelResolution / ActualTileScale;
     }
-    float WorldWidth()
+    public float WorldWidth()
     {
         return (float)Screen.width / PixelResolution / ActualTileScale;
     }

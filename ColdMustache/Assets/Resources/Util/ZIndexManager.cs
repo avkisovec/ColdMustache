@@ -69,6 +69,9 @@ public class ZIndexManager : MonoBehaviour {
     {
         switch (Type)
         {
+            case Types.Objects:
+                transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.y) + RelativeValue);
+                return;
             case Types.GUI:
                 transform.position = new Vector3(transform.position.x, transform.position.y, Const_GUI+RelativeValue);
                 return;
@@ -83,9 +86,6 @@ public class ZIndexManager : MonoBehaviour {
                 return;
             case Types.FxUnderDark:
                 transform.position = new Vector3(transform.position.x, transform.position.y, Const_FxUnderDark + RelativeValue);
-                return;
-            case Types.Objects:
-                transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.RoundToInt(transform.position.y) + RelativeValue);
                 return;
             case Types.Floors:
                 transform.position = new Vector3(transform.position.x, transform.position.y, Const_Floors + RelativeValue);

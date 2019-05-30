@@ -135,11 +135,14 @@ public class WallSegment : MonoBehaviour
             //destroy all children - for situations where some decorative object was part of the wall
             Transform UpperSectionOfFrontSide = spriteRenderers[spriteRenderers.Length - 1].transform;
             //before that, first find the child that is damage overlay - that one cannot be destroyed
-            Transform DamageOverlay = UpperSectionOfFrontSide.GetComponent<EnvironmentObject>().DamageOverlay.transform;
-            for(int i = 0; i < UpperSectionOfFrontSide.childCount; i++){
-                if(UpperSectionOfFrontSide.GetChild(i)!=DamageOverlay) Destroy(UpperSectionOfFrontSide.GetChild(i).gameObject);
+            EnvironmentObject eo = UpperSectionOfFrontSide.GetComponent<EnvironmentObject>();
+            if(eo.DamageOverlay != null){
+                Transform DamageOverlay = eo.DamageOverlay.transform;
+                for(int i = 0; i < UpperSectionOfFrontSide.childCount; i++){
+                    if(UpperSectionOfFrontSide.GetChild(i)!=DamageOverlay) Destroy(UpperSectionOfFrontSide.GetChild(i).gameObject);
+                }
+                DamageOverlay.GetComponent<SpriteRenderer>().sprite = FrontDamageOverlaySprite;
             }
-            DamageOverlay.GetComponent<SpriteRenderer>().sprite = FrontDamageOverlaySprite;
         }
     }
 

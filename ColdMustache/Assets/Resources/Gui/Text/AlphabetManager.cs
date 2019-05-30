@@ -16,7 +16,7 @@ public class AlphabetManager : MonoBehaviour {
      */
 
     public static Sprite[] Alphabet;
-    public string AlphabetPath;
+    public string AlphabetPath = "Gui/Text/AlphabetText";
 
     // Use this for initialization
     static bool HasBeenSetup = false;

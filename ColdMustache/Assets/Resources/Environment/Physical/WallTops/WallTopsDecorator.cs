@@ -91,9 +91,26 @@ public class WallTopsDecorator : MonoBehaviour
 
 
 
-            Sprite SubtileSprite = null;
+            #region DestroyingOldDecorations
+
+            SpriteRenderer DamageOverlay = Child.GetComponent<WallSegmentTileIndependent>().DamageOverlay;
+            Transform DamageOverlayTr = DamageOverlay.transform;
+
+            int Limit = Child.childCount;
+
+            for(int ii = 0; ii < Limit; ii++){
+
+                if(Child.GetChild(ii) != DamageOverlayTr) Destroy(Child.GetChild(ii).gameObject);
+
+            }
+
+            #endregion
+
+
 
             #region TopRightSubtile
+
+            Sprite SubtileSprite = null;
 
             if (!ConnectedRight && !ConnectedUp) SubtileSprite = GetSprite(8);
             else if (!ConnectedRight) SubtileSprite = GetSprite(0);
@@ -112,6 +129,8 @@ public class WallTopsDecorator : MonoBehaviour
 
             #region TopLeftSubtile
 
+            SubtileSprite = null;
+
             if (!ConnectedLeft && !ConnectedUp) SubtileSprite = GetSprite(9);
             else if (!ConnectedLeft) SubtileSprite = GetSprite(2);
             else if (!ConnectedUp) SubtileSprite = GetSprite(1);
@@ -129,6 +148,8 @@ public class WallTopsDecorator : MonoBehaviour
 
             #region DownLeftSubtile
 
+            SubtileSprite = null;
+
             if (!ConnectedLeft && !ConnectedDown) SubtileSprite = GetSprite(10);
             else if (!ConnectedLeft) SubtileSprite = GetSprite(2);
             else if (!ConnectedDown) SubtileSprite = GetSprite(3);
@@ -145,6 +166,8 @@ public class WallTopsDecorator : MonoBehaviour
             #endregion
 
             #region  DownRightSubtile
+
+            SubtileSprite = null;
 
             if (!ConnectedRight && !ConnectedDown) SubtileSprite = GetSprite(11);
             else if (!ConnectedRight) SubtileSprite = GetSprite(0);

@@ -157,6 +157,9 @@ public class FloorBuilder_Children_ModuloChoice : MonoBehaviour
         for (int i = 0; i < Weights.Length; i++)
         {
             CombinedWeight += Weights[i];
+
+            //weight of 0 completely breaks it and causes infinite loop, so if there is one return 0
+            if(Weights[i] == 0) return 0;
         }
 
         int ChosenNumber = Random.Range(0, CombinedWeight + 1);

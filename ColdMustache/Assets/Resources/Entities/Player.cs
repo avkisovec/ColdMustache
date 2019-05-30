@@ -321,6 +321,22 @@ public class Player : MonoBehaviour {
         }
 
 
+        //deals 10 000 damage to every environment object
+        if (CheatManager.LastCheat == "EARTHQUAKE") // Earthquake
+        {
+
+            //not doing this with simple foreach as something messes with the collection, i think its the wallsegments or something
+            //EDIT: the problem still exists, only +- 90% of walls are destroyed, some remain, and can be destroyed by weapons, but not with this
+
+            EnvironmentObject[] e = GameObject.FindObjectsOfType<EnvironmentObject>();
+            int limit = e.Length;
+
+            for(int i = 0; i < limit; i++){
+                if(e[i]!=null) e[i].TakeDamage(10000);
+            }
+
+            
+        }
 
 
 

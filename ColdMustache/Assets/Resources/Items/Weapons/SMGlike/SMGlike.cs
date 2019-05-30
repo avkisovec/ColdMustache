@@ -138,11 +138,27 @@ public class SMGlike : Weapon {
                 bullet.gameObject.AddComponent<CircleCollider2D>().isTrigger = true;
                 bullet.GetComponent<CircleCollider2D>().radius = 1.3f;
 
+
+
+                /*
                 //bullet visuals
                 bullet.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("pixel");
                 bullet.GetComponent<SpriteRenderer>().color = BulletColorStart;
                 bullet.AddComponent<FxBulletTrailCustom>().ini(BulletColorStart, BulletColorEnd);
                 bullet.AddComponent<FxBulletExplosionCustom>().ini(BulletColorStart, BulletColorEnd);
+                */
+
+                
+                bullet.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("pixel");
+                SimpleAnimation_codefed anim = bullet.AddComponent<SimpleAnimation_codefed>();
+                anim.sprites = Resources.LoadAll<Sprite>("Fx/Bullets/Anim01");
+                //anim.sprites = ResourceLoader.RequestSheet("Fx/Bullets/Anim01");
+                anim.Duration = 0.5f;
+                bullet.transform.localScale = new Vector3(1,1,1);
+                Util.RotateTransformToward(bullet.transform, bullet.transform.position + (Vector3)bullet.GetComponent<Rigidbody2D>().velocity);
+                
+
+
 
                 //custom mechanics
                 bullet.AddComponent<DamagerInflicter>().ini(Entity.team.Player, DamagePerBullet, true);
