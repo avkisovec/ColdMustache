@@ -962,5 +962,36 @@ public class NavTestStatic : MonoBehaviour
 
     #endregion
 
+    #region WallAnalysis
+
+    public static bool IsTileFloor(int x, int y){
+        if(WallTransformsArray[x,y] == null) return true;
+        return false;
+    }
+
+    //only considers the actual top, not the section hidden by wallfront (that hidden section is considered part of wallfront)
+    public static bool IsTileWallTop(int x, int y){
+        if (NavTestStatic.WallTransformsArray[x, y] != null &&
+        NavTestStatic.WallTransformsArray[x, y - 2] != null
+        )
+        {
+            return true;
+        }
+        return false;
+    }
+
+    //ONLY THE LOWERMOST TILE is considered, not the tile hidden by wallfront
+    public static bool IsTileWallFront(int x, int y)
+    {
+        if (NavTestStatic.WallTransformsArray[x, y] != null &&
+        (NavTestStatic.WallTransformsArray[x, y - 1] == null)
+        )
+        {
+            return true;
+        }
+        return false;
+    }
+
+    #endregion
 
 }

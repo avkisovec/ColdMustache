@@ -20,6 +20,10 @@ public class AI_RunNBite : AI_Base {
         wn.WayPoints = new List<Vector2>();
 	}
 
+
+    int FramesSinceTilePosSample = 0;
+    Vector2Int TilePosSample = new Vector2Int(0,0);
+
     // Update is called once per frame
     private void FixedUpdate()
     {
@@ -28,6 +32,11 @@ public class AI_RunNBite : AI_Base {
 
             Vector2Int MyPos = Util.Vector3To2Int(transform.position);
             Vector2Int TargetPos = Util.Vector3To2Int(target.position);
+
+
+
+
+
 
             //line of sight toward target (player) - null if obstructed
             List<Vector2Int> LineOfSight = NavTestStatic.GetLineOfSightOptimised(MyPos, TargetPos);
@@ -68,8 +77,27 @@ public class AI_RunNBite : AI_Base {
 
             else
             {
-                //if you have no waypoints, choose a random nearby tile, and go there if you can
-                if (wn.WayPoints.Count <= 1)
+            
+                if(wn.WayPoints.Count <= 1){
+                    List<Vector2> path = NavTestStatic.FindAPath(MyPos, MyPos + new Vector2Int(Random.Range((int)-5, (int)6), Random.Range((int)-5, (int)6)));
+                    if (path != null)
+                    {
+                        wn.WayPoints = path;
+                    }
+                }
+
+            }
+
+            /*
+
+            make sample of your tile position every n frames
+            if your position havent changed, pathfind to some new place randomly
+
+            */
+
+            if (FramesSinceTilePosSample > 10)
+            {
+                if (TilePosSample == MyPos)
                 {
                     List<Vector2> path = NavTestStatic.FindAPath(MyPos, MyPos + new Vector2Int(Random.Range((int)-5, (int)6), Random.Range((int)-5, (int)6)));
                     if (path != null)
@@ -77,6 +105,14 @@ public class AI_RunNBite : AI_Base {
                         wn.WayPoints = path;
                     }
                 }
+
+                FramesSinceTilePosSample = 0;
+                TilePosSample = MyPos;
+
+            }
+            else
+            {
+                FramesSinceTilePosSample++;
             }
 
 

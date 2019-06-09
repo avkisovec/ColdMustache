@@ -15,7 +15,7 @@ public class Entity : MonoBehaviour {
 
     public Vector2 LookingToward = new Vector2(1,0);
 
-    Rigidbody2D rb;
+    protected Rigidbody2D rb;
 
     public bool UseSpriteManager = true;
     public SpriteManagerBase spriteManager = null;
@@ -34,7 +34,7 @@ public class Entity : MonoBehaviour {
         }
 	}
 	
-    public void MoveInDirection(Vector2 MovementVector)
+    public virtual void MoveInDirection(Vector2 MovementVector)
     {
         //fixing some bug when computing/assigning vector 0,0
         if (MovementVector.x != 0 || MovementVector.y != 0)
@@ -62,7 +62,7 @@ public class Entity : MonoBehaviour {
         rb.velocity = new Vector2(0, 0);
     }
 
-    public void TakeDamage (float Damage, DamagerInflicter.WeaponTypes WeaponType = DamagerInflicter.WeaponTypes.Undefined)
+    public virtual void TakeDamage (float Damage, DamagerInflicter.WeaponTypes WeaponType = DamagerInflicter.WeaponTypes.Undefined)
     {
         //check invincibility, resistances and stuff
         if (true)
@@ -92,9 +92,11 @@ public class Entity : MonoBehaviour {
         }
     }
 
-    public void Die(DamagerInflicter.WeaponTypes WeaponType = DamagerInflicter.WeaponTypes.Undefined)
+    public virtual void Die(DamagerInflicter.WeaponTypes WeaponType = DamagerInflicter.WeaponTypes.Undefined)
     {
-        GetComponent<DeathAnimation>().Spawn(transform.position);
+        DeathAnimation da = GetComponent<DeathAnimation>();
+        if(da != null) da.Spawn(transform.position);
+
         if (IsPlayer)
         {
             ScreenFx.DeathScreen(WeaponType);
@@ -108,25 +110,5 @@ public class Entity : MonoBehaviour {
             Destroy(this.gameObject);
         }
     }
-
-    /*
-    public void MoveToward(Vector2 Target)
-    {
-        float CurrMoveSpeed = BaseMoveSpeed;
-
-        
-        //fixing some bug when computing/assigning vector 0,0
-        if(MovementVector.x != 0 || MovementVector.y != 0)
-        {
-            //dividing by magnitude to make diagonal travel as fast as horizontal/vertical
-            rb.velocity = MovementVector / MovementVector.magnitude * CurrMoveSpeed;
-        }
-        else
-        {
-            rb.velocity = new Vector2(0, 0);
-        }
-        
-    }
-    */
 
 }

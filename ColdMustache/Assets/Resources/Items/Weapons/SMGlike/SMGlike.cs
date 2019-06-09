@@ -140,15 +140,16 @@ public class SMGlike : Weapon {
 
 
 
-                /*
+                
                 //bullet visuals
                 bullet.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("pixel");
                 bullet.GetComponent<SpriteRenderer>().color = BulletColorStart;
                 bullet.AddComponent<FxBulletTrailCustom>().ini(BulletColorStart, BulletColorEnd);
                 bullet.AddComponent<FxBulletExplosionCustom>().ini(BulletColorStart, BulletColorEnd);
-                */
+                // */
 
-                
+                /*
+                //new visuals test
                 bullet.AddComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("pixel");
                 SimpleAnimation_codefed anim = bullet.AddComponent<SimpleAnimation_codefed>();
                 anim.sprites = Resources.LoadAll<Sprite>("Fx/Bullets/Anim01");
@@ -156,7 +157,7 @@ public class SMGlike : Weapon {
                 anim.Duration = 0.5f;
                 bullet.transform.localScale = new Vector3(1,1,1);
                 Util.RotateTransformToward(bullet.transform, bullet.transform.position + (Vector3)bullet.GetComponent<Rigidbody2D>().velocity);
-                
+                // */
 
 
 

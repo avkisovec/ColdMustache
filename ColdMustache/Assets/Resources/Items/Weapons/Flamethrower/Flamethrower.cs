@@ -153,7 +153,8 @@ public class Flamethrower : Weapon
                 anim.sprites = FlameSprites;
 
                 //custom mechanics
-                bullet.AddComponent<DamagerInflicter>().ini(Entity.team.Player, DamagePerBullet, true);
+                bullet.AddComponent<DamagerInflicter_EnvironmentOnly>().ini(Entity.team.Player, DamagePerBullet, true);
+                bullet.AddComponent<DamagerInflicterAoE>().ini(Entity.team.Player, DamagePerBullet, 10, true, 1f, 0, DamagerInflicter.WeaponTypes.Fire );
                 bullet.AddComponent<DieInSeconds>().Seconds = FlamesLivespan;
                 bullet.AddComponent<InflicterSlow>().ini(2, 0.5f, true);
 

@@ -117,6 +117,7 @@ public class WallSegment : MonoBehaviour
 
         for (int i = 0; i < Tiles.Length; i++)
         {
+            if(Tiles[i] == null) continue;
 
             Tiles[i].IndexInSegment = i;
             Tiles[i].Parent = this;
@@ -129,28 +130,30 @@ public class WallSegment : MonoBehaviour
 
         if(UseDamagedSprites){
             
+            try{
             spriteRenderers[spriteRenderers.Length - 1].sprite = DamagedSprites[Random.Range(0, this.DamagedSprites.Length)];
 
-
-            //destroy all children - for situations where some decorative object was part of the wall
-            Transform UpperSectionOfFrontSide = spriteRenderers[spriteRenderers.Length - 1].transform;
-            //before that, first find the child that is damage overlay - that one cannot be destroyed
-            EnvironmentObject eo = UpperSectionOfFrontSide.GetComponent<EnvironmentObject>();
-            if(eo.DamageOverlay != null){
-                Transform DamageOverlay = eo.DamageOverlay.transform;
-                for(int i = 0; i < UpperSectionOfFrontSide.childCount; i++){
-                    if(UpperSectionOfFrontSide.GetChild(i)!=DamageOverlay) Destroy(UpperSectionOfFrontSide.GetChild(i).gameObject);
+                //destroy all children - for situations where some decorative object was part of the wall
+                Transform UpperSectionOfFrontSide = spriteRenderers[spriteRenderers.Length - 1].transform;
+                //before that, first find the child that is damage overlay - that one cannot be destroyed
+                EnvironmentObject eo = UpperSectionOfFrontSide.GetComponent<EnvironmentObject>();
+                if (eo.DamageOverlay != null)
+                {
+                    Transform DamageOverlay = eo.DamageOverlay.transform;
+                    for (int i = 0; i < UpperSectionOfFrontSide.childCount; i++)
+                    {
+                        if (UpperSectionOfFrontSide.GetChild(i) != DamageOverlay) Destroy(UpperSectionOfFrontSide.GetChild(i).gameObject);
+                    }
+                    DamageOverlay.GetComponent<SpriteRenderer>().sprite = FrontDamageOverlaySprite;
                 }
-                DamageOverlay.GetComponent<SpriteRenderer>().sprite = FrontDamageOverlaySprite;
+            
             }
+            catch{
+
+            }
+
+            
         }
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
 

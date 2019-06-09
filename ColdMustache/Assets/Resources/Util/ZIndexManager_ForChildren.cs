@@ -27,10 +27,6 @@ public class ZIndexManager_ForChildren : MonoBehaviour
         SetZValue();
     }
 
-    void Update()
-    {
-    }
-
     public void SetZValue()
     {
         int ChildCount = transform.childCount;
@@ -43,6 +39,9 @@ public class ZIndexManager_ForChildren : MonoBehaviour
                 case ZIndexManager.Types.Objects:
                     t.position = new Vector3(t.position.x, t.position.y, Mathf.RoundToInt(t.position.y) + RelativeValue);
                     break;
+                case ZIndexManager.Types.Floors:
+                    t.position = new Vector3(t.position.x, t.position.y, ZIndexManager.Const_Floors + RelativeValue + ((t.position.y) / 100));
+                    return;
                 case ZIndexManager.Types.GUI:
                     t.position = new Vector3(t.position.x, t.position.y, ZIndexManager.Const_GUI + RelativeValue);
                     break;
@@ -57,10 +56,6 @@ public class ZIndexManager_ForChildren : MonoBehaviour
                     break;
                 case ZIndexManager.Types.FxUnderDark:
                     t.position = new Vector3(t.position.x, t.position.y, ZIndexManager.Const_FxUnderDark + RelativeValue);
-                    break;
-                
-                case ZIndexManager.Types.Floors:
-                    t.position = new Vector3(t.position.x, t.position.y, ZIndexManager.Const_Floors + RelativeValue);
                     break;
                 case ZIndexManager.Types.UnderFloors:
                     t.position = new Vector3(t.position.x, t.position.y, ZIndexManager.Const_FxUnderDark + RelativeValue);

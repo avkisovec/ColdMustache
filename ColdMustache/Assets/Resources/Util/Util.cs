@@ -152,4 +152,14 @@ public class Util : MonoBehaviour {
     }
     
 
+    public static void DestroyChildren(Transform t){
+
+        int Childcount = t.childCount;
+        for(int i = 0; i < Childcount; i++){
+            Destroy(t.GetChild(i).gameObject);
+        }
+
+    }
+
+
 }

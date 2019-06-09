@@ -1206,7 +1206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SingleUse: 0
   Type: 5
-  RelativeValue: 0
+  RelativeValue: -0.25
 --- !u!114 &5761811293984017240
 MonoBehaviour:
   m_ObjectHideFlags: 0

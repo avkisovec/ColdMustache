@@ -27,8 +27,15 @@ public class FloorBuilder_Children_ModuloChoice : MonoBehaviour
     //public Vector2Int ScaleRelativeTo32x32;
     public Vector2Int TilesInSheet;
 
+    public Vector2Int Offset;
+
     public bool RandomXFlip = false;
     public bool RandomYFlip = false;
+
+    //false - the lower-right-most subsprite will align with the lower-right-most child
+    //true - the lower-right-most subsprite will align with coordinates [0,0],
+    //  so multiple these scripts with the same texture will align
+    public bool UseCompatibleCoordinates = true;
 
 
     int HighestX = -999;
@@ -71,12 +78,30 @@ public class FloorBuilder_Children_ModuloChoice : MonoBehaviour
             if (v.y < LowestY) LowestY = v.y;
         }
 
+        int TextureStartY = 0;
+        int TextureStartX = 0;
+        if(UseCompatibleCoordinates){
+
+            //bit of optimisation, move the start of the area so that when you pass through the whole area you skip the empty parts
+            while(TextureStartY + TilesInSheet.y < LowestY){
+                TextureStartY+=TilesInSheet.y;
+            }
+            while (TextureStartY + TilesInSheet.y < LowestY)
+            {
+                TextureStartY += TilesInSheet.y;
+            }
+
+        }
+        else{
+            TextureStartY = LowestY;
+            TextureStartX = LowestX;
+        }
 
 
         //splitting the texture into areas
-        for (int AreaStartY = LowestY; AreaStartY <= HighestY; AreaStartY += TilesInSheet.y)
+        for (int AreaStartY = TextureStartY; AreaStartY <= HighestY; AreaStartY += TilesInSheet.y)
         {
-            for (int AreaStartX = LowestX; AreaStartX <= HighestX; AreaStartX += TilesInSheet.x)
+            for (int AreaStartX = TextureStartX; AreaStartX <= HighestX; AreaStartX += TilesInSheet.x)
             {
 
                 //the start of a new area
@@ -100,12 +125,18 @@ public class FloorBuilder_Children_ModuloChoice : MonoBehaviour
                             if (Srs[AreaStartX + x, AreaStartY + y] != null)
                             {
 
+                                int OffsetX = x+Offset.x;
+                                int OffsetY = y+Offset.y;
+                                OffsetX = OffsetX%TilesInSheet.x;
+                                OffsetY = OffsetY%TilesInSheet.y;
+                                if (OffsetX < 0) OffsetX += TilesInSheet.x;
+                                if (OffsetY < 0) OffsetY += TilesInSheet.y;
 
                                 #region ModuloTexture
 
                                 Sprite[] sprites = Resources.LoadAll<Sprite>(SpriteSheetPaths[SpriteSheetIndex]);
 
-                                Sprite ChosenSprite = sprites[(TilesInSheet.y - 1 - y) * TilesInSheet.y + x];
+                                Sprite ChosenSprite = sprites[(TilesInSheet.y - 1 - OffsetY) * TilesInSheet.y + OffsetX];
 
 
                                 #endregion;

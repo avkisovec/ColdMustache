@@ -116,7 +116,7 @@ public class EnvironmentObject : MonoBehaviour {
         {
             NavTestStatic.LightNavArray[posX, posY] = NavTestStatic.EmptyTileValue;
         }
-
+        
 
         if (DeathRemains != null)
         {

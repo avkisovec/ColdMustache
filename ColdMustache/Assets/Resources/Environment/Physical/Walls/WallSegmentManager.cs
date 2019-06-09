@@ -112,12 +112,6 @@ public class WallSegmentManager : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 
     WallSegment GetNewSegment()
     {

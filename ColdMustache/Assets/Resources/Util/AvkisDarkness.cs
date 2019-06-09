@@ -29,6 +29,9 @@ public class AvkisDarkness : MonoBehaviour {
     
     // Use this for initialization
     void Start () {
+
+        Sprite sprite = Resources.Load<Sprite>("Fx/Darkness/SmoothTile");
+
 		for(int x = 0; x < NavTestStatic.MapWidth; x++)
         {
             for(int y = 0; y < NavTestStatic.MapHeight; y++)
@@ -36,7 +39,7 @@ public class AvkisDarkness : MonoBehaviour {
                 GameObject go = new GameObject();
                 go.transform.position = new Vector3(x, y, -25);
                 SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
-                sr.sprite = UniversalReference.Pixel;
+                sr.sprite = sprite;
                 sr.color = new Color(0,0,0,1);
                 Darkness[x, y] = sr;
             }
@@ -72,6 +75,7 @@ public class AvkisDarkness : MonoBehaviour {
             LastVisible.Add(Current[i]);
         }
 
+        /*
         //softer darkness around the edges
         for (int i = 0; i < Current.Length; i++)
         {
@@ -87,6 +91,7 @@ public class AvkisDarkness : MonoBehaviour {
                 }
             }
         }
+        */
     }
     
 	

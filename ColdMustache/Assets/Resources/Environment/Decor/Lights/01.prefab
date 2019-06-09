@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4839568690207236100}
   - component: {fileID: 4839568690207236102}
   - component: {fileID: 4839568690207236103}
+  - component: {fileID: 7962417215665584128}
   m_Layer: 0
   m_Name: Goop256
   m_TagString: Untagged
@@ -98,6 +99,21 @@ MonoBehaviour:
   AlphaMax: 1
   MaxAlphaDeltaPerFrame: 0.01
   MaxColorShiftPerFrame: 0.01
+--- !u!114 &7962417215665584128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4839568690207236101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76e078b20e7f19b49a9479e45cf42cf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SingleUse: 1
+  Type: 2
+  RelativeValue: 0
 --- !u!1 &4839568690760752394
 GameObject:
   m_ObjectHideFlags: 0
